@@ -1,0 +1,148 @@
+@using System.Reflection
+@using System.Text
+@using Spectre.Console
+
+@if (!_guides.Any())
+{
+    <p class="text-base-600 dark:text-base-400">Loading tree guides...</p>
+}
+else
+{
+    <p class="text-base-600 dark:text-base-400 mb-4">
+        Total tree guide styles available: <strong>@_guides.Count</strong>
+    </p>
+
+    <div class="not-prose space-y-6">
+        @foreach (var guide in _guides)
+        {
+            <div class="border border-base-200 dark:border-base-700 rounded-lg p-6 bg-white dark:bg-base-900">
+                <h3 class="text-lg font-semibold mb-4 text-base-900 dark:text-base-100">
+                    <code class="text-sm bg-base-100 dark:bg-base-800 px-2 py-1 rounded">
+                        TreeGuide.@guide.Name
+                    </code>
+                </h3>
+                <pre class="bg-base-50 dark:bg-base-950 p-4 rounded border border-base-200 dark:border-base-800 overflow-x-auto text-sm leading-none"><code>@guide.AsciiArt</code></pre>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private readonly List<GuideInfo> _guides = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load all tree guides using reflection
+        LoadTreeGuidesFromSpectreConsole();
+    }
+
+    private void LoadTreeGuidesFromSpectreConsole()
+    {
+        try
+        {
+            // Get the TreeGuide class type
+            var guideType = typeof(Spectre.Console.TreeGuide);
+
+            // Get all public static properties of type TreeGuide
+            var guideProperties = guideType.GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Where(p => p.PropertyType == guideType)
+                .OrderBy(p => p.Name)
+                .ToList();
+
+            foreach (var property in guideProperties)
+            {
+                try
+                {
+                    // Get the TreeGuide instance
+                    var guideInstance = property.GetValue(null) as Spectre.Console.TreeGuide;
+
+                    if (guideInstance != null)
+                    {
+                        // Generate ASCII art for this guide
+                        var asciiArt = GenerateAsciiArt(guideInstance);
+                        _guides.Add(new GuideInfo(property.Name, asciiArt));
+                    }
+                }
+                catch
+                {
+                    // Skip guides that can't be accessed
+                }
+            }
+        }
+        catch (Exception)
+        {
+            // If reflection fails, guides list will be empty
+        }
+    }
+
+    private string GenerateAsciiArt(Spectre.Console.TreeGuide guide)
+    {
+        var sb = new StringBuilder();
+
+        // Get the TreeGuidePart enum type using reflection
+        var spectreAssembly = typeof(Spectre.Console.TreeGuide).Assembly;
+        var guidePartType = spectreAssembly.GetTypes()
+            .FirstOrDefault(t => t.Name == "TreeGuidePart" && t.IsEnum);
+
+        if (guidePartType == null)
+        {
+            return "Unable to generate preview";
+        }
+
+        // Helper to get a tree guide part using reflection
+        string GetPart(string partName)
+        {
+            try
+            {
+                var enumValue = Enum.Parse(guidePartType, partName);
+                var getPartMethod = typeof(Spectre.Console.TreeGuide).GetMethod("GetPart");
+                if (getPartMethod != null)
+                {
+                    var result = getPartMethod.Invoke(guide, new[] { enumValue });
+                    return result?.ToString() ?? "    ";
+                }
+                return "    ";
+            }
+            catch
+            {
+                return "    ";
+            }
+        }
+
+        // Build a sample tree structure demonstrating all parts
+        // Root
+        sb.AppendLine("Root");
+
+        // First child (Fork)
+        sb.Append(GetPart("Fork"));
+        sb.AppendLine("Child 1");
+
+        // Grandchild 1.1 (Continue + Fork)
+        sb.Append(GetPart("Continue"));
+        sb.Append(GetPart("Fork"));
+        sb.AppendLine("Grandchild 1.1");
+
+        // Grandchild 1.2 (Continue + End)
+        sb.Append(GetPart("Continue"));
+        sb.Append(GetPart("End"));
+        sb.AppendLine("Grandchild 1.2");
+
+        // Second child (End)
+        sb.Append(GetPart("End"));
+        sb.AppendLine("Child 2");
+
+        // Grandchild 2.1 (Space + Fork)
+        sb.Append(GetPart("Space"));
+        sb.Append(GetPart("Fork"));
+        sb.AppendLine("Grandchild 2.1");
+
+        // Grandchild 2.2 (Space + End)
+        sb.Append(GetPart("Space"));
+        sb.Append(GetPart("End"));
+        sb.Append("Grandchild 2.2");
+
+        return sb.ToString();
+    }
+
+    private record GuideInfo(string Name, string AsciiArt);
+}

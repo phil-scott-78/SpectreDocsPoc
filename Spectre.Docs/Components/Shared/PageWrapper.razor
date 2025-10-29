@@ -1,0 +1,60 @@
+@using MyLittleContentEngine.Services.Content.TableOfContents
+
+<div class="max-w-7xl mx-auto">
+    @if (HeaderContent != null)
+    {
+        @HeaderContent
+    }
+
+    <!-- Content with optional Outline -->
+    <div class="lg:flex lg:gap-8">
+        <!-- Main Content -->
+        <article class="flex-1 min-w-0">
+            @ChildContent
+        </article>
+
+        <!-- Outline Navigation (Desktop) -->
+        @if (Outline is { Length: > 0 })
+        {
+            <aside class="hidden xl:block w-64 shrink-0">
+                <div class="sticky top-24">
+                    <h3 class="text-sm font-semibold text-base-900 dark:text-base-100 uppercase tracking-wider mb-3">
+                        On this page
+                    </h3>
+                    <div class="text-sm">
+                        <OutlineNavigation ContentSelector="article" />
+                    </div>
+                </div>
+            </aside>
+        }
+    </div>
+</div>
+
+<script>
+    window.toggleOutline = function() {
+        const overlay = document.getElementById('outline-overlay');
+        if (overlay) {
+            overlay.classList.toggle('hidden');
+        }
+    }
+</script>
+
+@code {
+    /// <summary>
+    /// The main content to display in the page body.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Optional header content (typically a PageHeader component).
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HeaderContent { get; set; }
+
+    /// <summary>
+    /// Optional outline entries for "On this page" navigation.
+    /// </summary>
+    [Parameter]
+    public OutlineEntry[]? Outline { get; set; }
+}

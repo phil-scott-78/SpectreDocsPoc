@@ -1,0 +1,192 @@
+@using System.Reflection
+@using System.Text
+@using Spectre.Console
+
+@if (!_borders.Any())
+{
+    <p class="text-base-600 dark:text-base-400">Loading table borders...</p>
+}
+else
+{
+    <p class="text-base-600 dark:text-base-400 mb-4">
+        Total border styles available: <strong>@_borders.Count</strong>
+    </p>
+
+    <div class="not-prose space-y-6">
+        @foreach (var border in _borders)
+        {
+            <div class="border border-base-200 dark:border-base-700 rounded-lg p-6 bg-white dark:bg-base-900">
+                <h3 class="text-lg font-semibold mb-4 text-base-900 dark:text-base-100">
+                    <code class="text-sm bg-base-100 dark:bg-base-800 px-2 py-1 rounded">
+                        TableBorder.@border.Name
+                    </code>
+                </h3>
+                <pre class="bg-base-50 dark:bg-base-950 p-4 rounded border border-base-200 dark:border-base-800 overflow-x-auto text-sm leading-none"><code>@border.AsciiArt</code></pre>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private readonly List<BorderInfo> _borders = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load all table borders using reflection
+        LoadTableBordersFromSpectreConsole();
+    }
+
+    private void LoadTableBordersFromSpectreConsole()
+    {
+        try
+        {
+            // Get the TableBorder class type
+            var borderType = typeof(Spectre.Console.TableBorder);
+
+            // Get all public static properties of type TableBorder
+            var borderProperties = borderType.GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Where(p => p.PropertyType == borderType)
+                .OrderBy(p => p.Name)
+                .ToList();
+
+            foreach (var property in borderProperties)
+            {
+                try
+                {
+                    // Get the TableBorder instance
+                    var borderInstance = property.GetValue(null) as Spectre.Console.TableBorder;
+
+                    if (borderInstance != null)
+                    {
+                        // Generate ASCII art for this border
+                        var asciiArt = GenerateAsciiArt(borderInstance);
+                        _borders.Add(new BorderInfo(property.Name, asciiArt));
+                    }
+                }
+                catch
+                {
+                    // Skip borders that can't be accessed
+                }
+            }
+        }
+        catch (Exception)
+        {
+            // If reflection fails, borders list will be empty
+        }
+    }
+
+    private string GenerateAsciiArt(Spectre.Console.TableBorder border)
+    {
+        var sb = new StringBuilder();
+
+        // Get the TableBorderPart enum type using reflection
+        var spectreAssembly = typeof(Spectre.Console.TableBorder).Assembly;
+        var borderPartType = spectreAssembly.GetTypes()
+            .FirstOrDefault(t => t.Name == "TableBorderPart" && t.IsEnum);
+
+        if (borderPartType == null)
+        {
+            return "Unable to generate preview";
+        }
+
+        // Helper to get a border part character using reflection
+        string GetPart(string partName)
+        {
+            try
+            {
+                var enumValue = Enum.Parse(borderPartType, partName);
+                var getPartMethod = typeof(Spectre.Console.TableBorder).GetMethod("GetPart");
+                if (getPartMethod != null)
+                {
+                    var result = getPartMethod.Invoke(border, new[] { enumValue });
+                    return result?.ToString() ?? " ";
+                }
+                return " ";
+            }
+            catch
+            {
+                return " ";
+            }
+        }
+
+        // Build a sample table with 2 columns
+        // Header row uses a fixed width for demonstration
+        var colWidth = 8;
+        var horizontalLine = new string('─', colWidth);
+
+        // Header top row
+        sb.Append(GetPart("HeaderTopLeft"));
+        sb.Append(new string(GetPart("HeaderTop")[0], colWidth));
+        sb.Append(GetPart("HeaderTopSeparator"));
+        sb.Append(new string(GetPart("HeaderTop")[0], colWidth));
+        sb.Append(GetPart("HeaderTopRight"));
+        sb.AppendLine();
+
+        // Header content row
+        sb.Append(GetPart("HeaderLeft"));
+        sb.Append(" Column1");
+        sb.Append(GetPart("HeaderSeparator"));
+        sb.Append(" Column2");
+        sb.Append(GetPart("HeaderRight"));
+        sb.AppendLine();
+
+        // Header bottom row
+        sb.Append(GetPart("HeaderBottomLeft"));
+        sb.Append(new string(GetPart("HeaderBottom")[0], colWidth));
+        sb.Append(GetPart("HeaderBottomSeparator"));
+        sb.Append(new string(GetPart("HeaderBottom")[0], colWidth));
+        sb.Append(GetPart("HeaderBottomRight"));
+        sb.AppendLine();
+
+        // Data row 1
+        sb.Append(GetPart("CellLeft"));
+        sb.Append(" Data   ");
+        sb.Append(GetPart("CellSeparator"));
+        sb.Append(" Value  ");
+        sb.Append(GetPart("CellRight"));
+        sb.AppendLine();
+
+        // Row separator
+        sb.Append(GetPart("RowLeft"));
+        sb.Append(new string(GetPart("RowCenter")[0], colWidth));
+        sb.Append(GetPart("RowSeparator"));
+        sb.Append(new string(GetPart("RowCenter")[0], colWidth));
+        sb.Append(GetPart("RowRight"));
+        sb.AppendLine();
+
+        // Data row 2
+        sb.Append(GetPart("CellLeft"));
+        sb.Append(" Data   ");
+        sb.Append(GetPart("CellSeparator"));
+        sb.Append(" Value  ");
+        sb.Append(GetPart("CellRight"));
+        sb.AppendLine();
+
+        // Footer top row
+        sb.Append(GetPart("FooterTopLeft"));
+        sb.Append(new string(GetPart("FooterTop")[0], colWidth));
+        sb.Append(GetPart("FooterTopSeparator"));
+        sb.Append(new string(GetPart("FooterTop")[0], colWidth));
+        sb.Append(GetPart("FooterTopRight"));
+        sb.AppendLine();
+
+        // Footer content row
+        sb.Append(GetPart("CellLeft"));
+        sb.Append(" Footer ");
+        sb.Append(GetPart("CellSeparator"));
+        sb.Append(" Total  ");
+        sb.Append(GetPart("CellRight"));
+        sb.AppendLine();
+
+        // Footer bottom row
+        sb.Append(GetPart("FooterBottomLeft"));
+        sb.Append(new string(GetPart("FooterBottom")[0], colWidth));
+        sb.Append(GetPart("FooterBottomSeparator"));
+        sb.Append(new string(GetPart("FooterBottom")[0], colWidth));
+        sb.Append(GetPart("FooterBottomRight"));
+
+        return sb.ToString();
+    }
+
+    private record BorderInfo(string Name, string AsciiArt);
+}

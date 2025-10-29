@@ -1,0 +1,38 @@
+<header class="mb-8 pb-8 border-b border-base-200 dark:border-base-700">
+    <h1 class="text-3xl lg:text-4xl font-extrabold text-base-900 dark:text-base-100 mb-3 text-pretty">
+        @Title
+    </h1>
+
+    @if (!string.IsNullOrEmpty(Description))
+    {
+        <p class="text-lg text-base-600 dark:text-base-400 text-pretty">
+            @Description
+        </p>
+    }
+</header>
+
+@code {
+    /// <summary>
+    /// The page title to display.
+    /// </summary>
+    [Parameter]
+    public required string Title { get; set; }
+
+    /// <summary>
+    /// Optional description text shown below the title.
+    /// </summary>
+    [Parameter]
+    public string? Description { get; set; }
+
+    /// <summary>
+    /// Optional tags to display as colored badges.
+    /// </summary>
+    [Parameter]
+    public IEnumerable<string>? Tags { get; set; }
+
+    /// <summary>
+    /// Theme name for tag coloring (e.g., "primary", "tertiary-one").
+    /// </summary>
+    [Parameter]
+    public string Theme { get; set; } = "primary";
+}

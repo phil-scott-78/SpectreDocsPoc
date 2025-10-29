@@ -1,0 +1,34 @@
+@using MyLittleContentEngine.Services.Content.TableOfContents
+
+@if (PostContent == null || NavigationInfo == null)
+{
+    <div>Not found</div>
+    return;
+}
+
+<PageTitle>@SiteTitle - @NavigationInfo.PageTitle</PageTitle>
+
+<PageWrapper Outline="@Outline">
+    <HeaderContent>
+        <PageHeader
+            Title="@NavigationInfo.PageTitle"
+            Description="@Description"
+            Tags="@Tags"
+            Theme="@Theme" />
+    </HeaderContent>
+    <ChildContent>
+        <div class="prose dark:prose-invert max-w-full prose-headings:scroll-m-20">
+            @((MarkupString)PostContent)
+        </div>
+    </ChildContent>
+</PageWrapper>
+
+@code {
+    [Parameter] public string? PostContent { get; set; }
+    [Parameter] public OutlineEntry[]? Outline { get; set; }
+    [Parameter] public NavigationInfo? NavigationInfo { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public IEnumerable<string>? Tags { get; set; }
+    [Parameter] public required string SiteTitle { get; set; }
+    [Parameter] public required string Theme { get; set; }
+}

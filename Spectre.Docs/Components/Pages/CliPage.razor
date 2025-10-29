@@ -1,0 +1,47 @@
+@page "/cli/{*fileName:nonfile}"
+@using MyLittleContentEngine.Services.Content.TableOfContents
+@using Spectre.Console
+@inject IMarkdownContentService<SpectreConsoleCliFrontMatter> CliMarkdownContentServices
+@inject ContentEngineOptions ContentEngineOptions
+@inject ITableOfContentService TableOfContentService
+
+<DocumentationPageContent
+    PostContent="@_postContent"
+    Outline="@_outline"
+    NavigationInfo="@_navigationInfo"
+    Description="@_description"
+    Tags="@_tags"
+    SiteTitle="@ContentEngineOptions.SiteTitle"
+    Theme="tertiary-one" />
+
+@code {
+    private string? _postContent;
+    private OutlineEntry[]? _outline;
+    private NavigationInfo? _navigationInfo;
+    private string? _description;
+    private IEnumerable<string>? _tags;
+
+    [Parameter] public required string FileName { get; init; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var fileName = FileName;
+        if (string.IsNullOrWhiteSpace(fileName))
+        {
+            fileName = "index";
+        }
+
+        var url = $"cli/{fileName}";
+        var renderedPage = await CliMarkdownContentServices.GetRenderedContentPageByUrlOrDefault(url);
+
+        if (renderedPage != null)
+        {
+            _postContent = renderedPage.Value.HtmlContent;
+            _outline = renderedPage.Value.Page.Outline;
+            _description = renderedPage.Value.Page.FrontMatter.Description;
+            _tags = renderedPage.Value.Page.FrontMatter.Tags;
+
+            _navigationInfo = await TableOfContentService.GetNavigationInfoAsync($"/{url}");
+        }
+    }
+}
