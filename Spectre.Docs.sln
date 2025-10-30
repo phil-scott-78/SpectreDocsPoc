@@ -7,6 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectre.Docs", "Spectre.Doc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectre.Docs.Examples", "Spectre.Docs.Examples\Spectre.Docs.Examples.csproj", "{8BC53462-4821-40F3-BC23-B44A34328C42}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Solution Items", "External Solution Items", "{572E276C-2B31-4281-A599-C32258327DEB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
+		Remove-TagsFromMarkdown.ps1 = Remove-TagsFromMarkdown.ps1
+		.github\workflows\publish-to-gh-pages.yml = .github\workflows\publish-to-gh-pages.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
