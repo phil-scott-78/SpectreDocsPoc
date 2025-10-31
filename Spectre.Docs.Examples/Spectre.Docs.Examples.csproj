@@ -5,18 +5,19 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
-      <PackageReference Include="Spectre.Console" Version="0.53.0" />
-      <PackageReference Include="Spectre.Console.Cli" Version="0.53.0" />
-      <PackageReference Include="Spectre.Console.ImageSharp" Version="0.53.0" />
-      <PackageReference Include="Spectre.Console.Json" Version="0.53.0" />
+      <PackageReference Include="Spectre.Console" Version="0.54.1-alpha.0.7" />
+      <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.7" />
+      <PackageReference Include="Spectre.Console.ImageSharp" Version="0.54.1-alpha.0.7" />
+      <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Console\" />
+      <Folder Include="SpectreConsole\Reference\Widgets\" />
     </ItemGroup>
 
 </Project>

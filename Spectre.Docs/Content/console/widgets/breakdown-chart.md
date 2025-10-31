@@ -1,19 +1,84 @@
 ---
 title: "BreakdownChart Widget"
-description: "Show proportional data as a visual breakdown with colored segments"
+description: "Display proportional data as a colored bar chart with optional legend"
 uid: "console-widget-breakdown-chart"
 order: 3650
 ---
 
-The BreakdownChart widget displays data as proportional colored segments in a horizontal bar, similar to a progress bar but showing multiple values that sum to a whole. It's perfect for visualizing percentages, resource allocation, categorical distributions, and "parts of a whole" data.
+The BreakdownChart widget displays proportional data as a single horizontal bar divided into colored segments.
 
-**Key Topics Covered:**
+<Screenshot src="/assets/breakdown-chart.svg" />
 
-* **Adding items** - Using `AddItem()` to add labeled values that will be displayed proportionally
-* **Proportional rendering** - How values are automatically converted to proportional segments
-* **Colors and labels** - Assigning distinct colors to each segment and showing descriptive labels
-* **Width control** - Setting the total width of the breakdown chart
-* **Tag display** - Showing segment labels with values or percentages
-* **Tag formatting** - Customizing how segment information is displayed
-* **Use cases** - Disk space usage, memory allocation, survey results, budget breakdown, test results
+## When to Use
 
+Use BreakdownChart when you need to show **how parts make up a whole**. Common scenarios:
+
+- **Resource allocation**: Disk space used vs. available, memory distribution
+- **Composition**: Market share breakdown, budget allocation by category
+- **Status overview**: Tasks completed vs. in progress vs. pending
+
+For **comparing independent values** (where items don't sum to a meaningful total), use [BarChart](/console/widgets/bar-chart) instead.
+
+## Basic Usage
+
+Add items with a label, value, and color. The bar automatically scales segments proportionally.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BasicBreakdownChartExample
+```
+
+## Displaying Values
+
+### As Percentages
+
+Use `ShowPercentage()` when relative proportions matter more than absolute numbers.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartPercentageExample
+```
+
+### With Custom Formatting
+
+Use `UseValueFormatter()` to add units or custom formatting.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartFormattingExample
+```
+
+## Controlling the Legend
+
+The legend (tags) below the chart shows labels and values. Control visibility when space is limited or when the chart speaks for itself.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartTagsExample
+```
+
+## Layout
+
+### Compact vs Full-Size
+
+Use `Compact()` (default) for tight layouts. Use `FullSize()` to add spacing between the bar and legend for better readability.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartCompactExample
+```
+
+### Fixed Width
+
+By default the chart expands to fill available width. Use `Width()` to constrain it.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartWidthExample
+```
+
+## Working with Data Collections
+
+Use `AddItems()` to add multiple items from a collection of `BreakdownChartItem` objects.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartAddItemsExample
+```
+
+## API Reference
+
+<WidgetApiReference TypeName="Spectre.Console.BreakdownChart" />

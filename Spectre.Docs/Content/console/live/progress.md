@@ -5,31 +5,160 @@ uid: "console-live-progress"
 order: 4000
 ---
 
-The Progress display system provides animated progress bars and task tracking for long-running operations, keeping users informed about work status. It supports multiple concurrent tasks, percentage tracking, custom descriptions, and various visual styles.
+The Progress display renders animated progress bars for tracking task completion in real-time.
 
-![Progress Bar Demo](/assets/progress.webp)
+<Screenshot src="/assets/progress.svg" />
 
-## Sample
+## When to Use
+
+Use Progress when you need to **track completion status for long-running operations**. Common scenarios:
+
+- **Multi-step processes**: Show progress across multiple sequential or concurrent tasks
+- **File operations**: Display download, upload, or processing progress
+- **Build pipelines**: Track compilation, testing, and deployment steps
+- **Data processing**: Monitor record processing, imports, or transformations
+
+For **simple status messages without progress tracking**, use [Status](/console/live/status) instead. For **real-time data updates**, consider [Live Display](/console/live/live-display).
+
+## Basic Usage
+
+Create a progress context and add tasks to track their completion.
 
 ```csharp:xmldocid
-M:Spectre.Docs.Examples.AsciiCast.Samples.ProgressSample.Run(Spectre.Console.IAnsiConsole)
-M:Spectre.Docs.Examples.AsciiCast.Samples.ProgressSample.CreateTasks(Spectre.Console.ProgressContext,System.Random)
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.BasicProgressExample
 ```
 
-**Key Topics Covered:**
+## Managing Tasks
 
-* **Creating progress contexts** - Using `AnsiConsole.Progress()` to create a progress tracking context
-* **Adding tasks** - Defining tasks with `AddTask()` including descriptions and total work amounts
-* **Updating progress** - Incrementing progress with `Increment()` or setting absolute values with `Value`
-* **Task states** - Managing task lifecycle (not started, in progress, completed, failed)
-* **Multiple concurrent tasks** - Tracking several operations simultaneously with individual progress bars
-* **Indeterminate progress** - Showing activity for tasks without known completion percentages
-* **Custom columns** - Configuring what information is displayed (percentage, speed, time remaining, etc.)
-* **Styles and colors** - Customizing progress bar appearance and task descriptions
-* **Auto-refresh** - Controlling update frequency and smooth animations
+### Multiple Tasks
 
+Track several concurrent operations with individual progress bars.
 
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressMultipleTasksExample
+```
 
+### Increment vs Value Assignment
 
+Use `Increment()` for relative progress updates or set `Value` directly for absolute positioning.
 
-Examples demonstrate tracking file downloads with progress and speed, monitoring multi-step build processes, showing parallel task execution, displaying batch processing progress, creating installer-style progress displays, and building complex multi-task dashboards. The guide covers best practices for progress reporting, handling task failures, and choosing appropriate progress styles for different scenarios.
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressIncrementExample
+```
+
+### Indeterminate Progress
+
+Use `IsIndeterminate()` when the total duration or size is unknown, showing an animated progress bar without percentage.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressIndeterminateExample
+```
+
+### Adding Tasks Dynamically
+
+Add new tasks during execution based on discovered work or changing requirements.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressDynamicTasksExample
+```
+
+### Updating Descriptions
+
+Change task descriptions during execution to provide detailed status updates.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressTaskDescriptionUpdateExample
+```
+
+## Display Columns
+
+### Custom Column Configuration
+
+Configure which information columns appear in the progress display using `Columns()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressCustomColumnsExample
+```
+
+### Available Columns
+
+| Column | Purpose |
+|--------|---------|
+| `TaskDescriptionColumn` | Shows the task description text |
+| `ProgressBarColumn` | Displays the animated progress bar |
+| `PercentageColumn` | Shows completion percentage |
+| `RemainingTimeColumn` | Estimates time until completion |
+| `ElapsedTimeColumn` | Shows time since task started |
+| `SpinnerColumn` | Adds an animated spinner indicator |
+| `DownloadedColumn` | Shows downloaded bytes (formatted) |
+| `TransferSpeedColumn` | Shows transfer rate (bytes/sec) |
+
+### Spinner Animation
+
+Add visual feedback with a spinning animation indicator.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressWithSpinnerExample
+```
+
+### Timing Information
+
+Display elapsed time and remaining time estimates for operations.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressTimingColumnsExample
+```
+
+### Download Progress
+
+Use specialized columns for file download scenarios with size and speed information.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressDownloadExample
+```
+
+## Styling
+
+Customize progress bar appearance with colors to match your application theme or convey meaning.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressBarStylingExample
+```
+
+## Refresh Behavior
+
+### Auto Clear
+
+Automatically remove the progress display after all tasks complete using `AutoClear(true)`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressAutoClearExample
+```
+
+### Hide Completed Tasks
+
+Remove completed tasks from view while keeping active ones visible using `HideCompleted(true)`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressHideCompletedExample
+```
+
+## Async Operations
+
+Use `StartAsync()` for async/await scenarios with Task-based operations.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressAsyncExample
+```
+
+### Returning Values
+
+Progress operations can return values for use after completion.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressReturnValueExample
+```
+
+## API Reference
+
+<WidgetApiReference TypeName="Spectre.Console.Progress" />

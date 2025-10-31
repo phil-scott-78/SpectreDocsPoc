@@ -24,10 +24,11 @@ Choose your learning path:
 ### Tutorials
 Start here if you're new to Spectre.Console:
 - [Getting Started: Building a Rich Console App](/console/tutorials/getting-started-building-rich-console-app)
+- [Asking User Questions](/console/tutorials/interactive-prompts-tutorial)
+- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial)
 
 ### How-To Guides
 Learn how to accomplish specific tasks:
-- [Styling Text with Markup and Color](/console/how--to/styling-text-with-markup-and-color)
 - [Displaying Tables and Trees](/console/how--to/displaying-tables-and-trees)
 - [Showing Progress Bars and Spinners](/console/how--to/showing-progress-bars-and-spinners)
 
@@ -88,7 +89,7 @@ Create dynamic, updating console displays:
 - [Progress](/console/live/progress) - Progress bars for long-running tasks
 - [Status](/console/live/status) - Animated status with spinners
 - [Live Display](/console/live/live-display) - Update any content in real-time
-- [Async Patterns](/console/live/async-patterns) - Best practices for async operations
+- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
 
 ---
 

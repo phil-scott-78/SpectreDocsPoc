@@ -5,14 +5,112 @@ uid: "console-widget-align"
 order: 3500
 ---
 
-The Align widget provides explicit control over horizontal and vertical alignment of any renderable content, allowing you to position elements precisely within available space. It's particularly useful for centering content, right-aligning elements, or creating specific positional layouts.
+The Align widget positions any renderable content within a defined space using horizontal and vertical alignment.
 
-**Key Topics Covered:**
+<Screenshot src="/assets/align.svg" />
 
-* **Horizontal alignment** - Left, center, and right alignment within available width
-* **Vertical alignment** - Top, middle, and bottom alignment within available height
-* **Combined alignment** - Setting both horizontal and vertical alignment simultaneously
-* **Width expansion** - Controlling whether content expands to fill width or uses minimum required space
-* **Use cases** - Centering titles, right-aligning numbers, positioning UI elements
-* **Composition with other widgets** - Using Align within panels, tables, grids, and other layout containers
-* **Console width considerations** - How alignment behaves with different console widths
+## When to Use
+
+Use Align when you need to **position content within available space**. Common scenarios:
+
+- **Centering content**: Create title screens, center tables or panels for visual emphasis
+- **Right-aligned output**: Align status information, timestamps, or metadata to the right edge
+- **Vertical positioning**: Position headers at the top, footers at the bottom, or center dialogs
+
+For **adding spacing around content**, use [Padder](/console/widgets/padder) instead. For **side-by-side layouts**, use [Columns](/console/widgets/columns) or [Grid](/console/widgets/grid).
+
+## Basic Usage
+
+Create aligned content using the static factory methods `Align.Left()`, `Align.Center()`, or `Align.Right()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.BasicAlignExample
+```
+
+## Horizontal Alignment
+
+Position content on the left, center, or right. Left alignment is the default for most widgets.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.HorizontalAlignmentExample
+```
+
+## Vertical Alignment
+
+### Setting Vertical Position
+
+Use vertical alignment with a specified height to position content vertically within a defined space.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.VerticalAlignmentExample
+```
+
+### Combining Alignments
+
+Combine horizontal and vertical alignment to position content in both dimensions simultaneously.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.CombinedAlignmentExample
+```
+
+## Using Extension Methods
+
+Use the fluent extension methods like `TopAligned()`, `MiddleAligned()`, and `BottomAligned()` for more readable code.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.FluentExtensionsExample
+```
+
+## Controlling Dimensions
+
+### Width
+
+By default, Align uses the content's natural width. Use `Width()` to define the alignment container's width.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.WidthControlExample
+```
+
+### Height
+
+Set an explicit height with `Height()` when using vertical alignment to define the vertical space.
+
+## Practical Examples
+
+### Multiple Alignments
+
+Create layouts with different horizontal alignments for visual variety or functional purpose.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.MultipleAlignmentsExample
+```
+
+### Centering Tables
+
+Center tables to draw focus and improve presentation for data displays.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.AlignTableExample
+```
+
+## Advanced Usage
+
+### Nested Alignment
+
+Combine Align with containers like Panel to create multi-level alignment for complex layouts.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.NestedAlignExample
+```
+
+### Title Screens
+
+Use centered alignment for application splash screens or welcome messages.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.TitleScreenExample
+```
+
+## API Reference
+
+<WidgetApiReference TypeName="Spectre.Console.Align" />

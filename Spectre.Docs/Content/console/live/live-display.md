@@ -1,21 +1,139 @@
 ---
 title: "Live Display"
 description: "Update and refresh any renderable content dynamically in real-time"
-uid: "console-live-display"
+uid: "console-live-live-display"
 order: 4100
 ---
 
-The Live Display system allows you to render any widget or content and then update it in place, creating dynamic console interfaces that refresh without scrolling. It's the foundation for building dashboards, real-time monitors, and interactive displays.
+The LiveDisplay renders content that can be updated in place without scrolling the console, perfect for dashboards, real-time monitoring, and dynamic status displays.
 
-**Key Topics Covered:**
+<Screenshot Src="/assets/live.svg" />
 
-* **Creating live displays** - Using `AnsiConsole.Live()` to create an updateable rendering context
-* **Starting display** - Initiating live rendering with `Start()` and initial content
-* **Updating content** - Changing the displayed renderable with `UpdateTarget()` to refresh the display
-* **Supported renderables** - Any widget (tables, panels, charts, etc.) can be used in live displays
-* **Auto-refresh** - Controlling update frequency and animation smoothness
-* **Overflow handling** - Managing content that exceeds console height
-* **Combining with other widgets** - Building complex live dashboards with multiple components
-* **Performance** - Efficiently updating large or complex renderables
+## When to Use
 
-Examples demonstrate creating live dashboards showing system metrics, building real-time log viewers, displaying updating tables as data changes, creating terminal-based monitoring tools, showing live test results during test execution, and building animated visualizations. The guide covers best practices for live rendering performance, when to use Live Display vs. Progress/Status, and handling terminal resizing during live display.
+Use LiveDisplay when you need to **update arbitrary content in place without creating new output lines**. Common scenarios:
+
+- **Custom dashboards**: Display real-time metrics, server stats, or system monitors with any widget combination
+- **Dynamic tables**: Build tables incrementally or update existing rows as data changes
+- **Status transitions**: Show multi-step processes with changing panels or formatted text
+- **Real-time data**: Update charts, gauges, or custom visualizations continuously
+
+For **progress tracking with multiple tasks**, use [Progress](/console/live/progress) instead. For **simple spinner animations**, use [Status](/console/live/status).
+
+## Basic Usage
+
+Create a live display by passing any renderable to `AnsiConsole.Live()`, then update it within the context.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.BasicLiveDisplayExample
+```
+
+## Updating Content
+
+### Modifying Mutable Renderables
+
+Modify properties of mutable widgets like Table, then call `ctx.Refresh()` to update the display.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayWithTableExample
+```
+
+### Replacing the Target
+
+Use `ctx.UpdateTarget()` to completely replace the displayed renderable with a different widget.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayUpdateTargetExample
+```
+
+### Displaying Panels
+
+Wrap dynamic content in panels for polished status displays.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayWithPanelExample
+```
+
+## Handling Overflow
+
+When content exceeds the console height, LiveDisplay provides several overflow strategies.
+
+### Ellipsis Mode
+
+Show an ellipsis indicator when content is truncated.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayOverflowEllipsisExample
+```
+
+### Crop Mode
+
+Silently crop content that doesn't fit, combined with cropping direction control.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayOverflowCropExample
+```
+
+### Visible Mode
+
+Allow content to scroll naturally when it exceeds console height.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayOverflowVisibleExample
+```
+
+## Cropping Direction
+
+Control which part of overflowing content remains visible.
+
+### Crop from Top
+
+Keep the most recent content visible by removing old content from the top.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayCroppingTopExample
+```
+
+### Crop from Bottom
+
+Keep the initial content visible by removing new content from the bottom.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayCroppingBottomExample
+```
+
+## Auto Clear
+
+Remove the live display from the console when the context completes.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayAutoClearExample
+```
+
+## Async Operations
+
+Use `StartAsync()` for asynchronous work within the live display context.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayAsyncExample
+```
+
+## Returning Values
+
+Return results from the live display context using the generic `Start<T>()` method.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayReturnValueExample
+```
+
+## Combining Widgets
+
+Create sophisticated dashboards by combining multiple widgets in layouts.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDisplayCompositeExample
+```
+
+## API Reference
+
+<WidgetApiReference TypeName="Spectre.Console.LiveDisplay" />

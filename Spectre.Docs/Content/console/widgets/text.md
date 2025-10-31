@@ -5,17 +5,133 @@ uid: "console-widget-text"
 order: 3000
 ---
 
-The Text widget provides a renderable wrapper for text content with explicit control over styling, justification, and overflow behavior. While markup strings are often sufficient, the Text widget offers programmatic styling control and advanced text handling features.
+The Text widget renders text content with programmatic control over styling, justification, and overflow behavior.
 
-**Key Topics Covered:**
+## When to Use
 
-* **Creating Text widgets** - Using `new Text(content)` vs. markup strings
-* **Styling** - Applying colors, bold, italic, underline, and other styles programmatically with `Style` objects
+Use Text when you need **programmatic control over styling** or when styles are determined at runtime. Common scenarios:
+
+- **Status messages**: Apply colors based on success/failure state
+- **Computed styles**: Build styles dynamically from variables or configuration
+- **Container content**: Embed styled text inside panels, tables, or other widgets
+
+For **inline markup syntax** like `[bold red]text[/]`, use [Markup](/console/widgets/markup) instead.
+
+## Basic Usage
+
+Create text with a string and optional style.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.BasicTextExample
+```
+
+### Multi-line Text
+
+Use newline characters (`\n`) to create multi-line output.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.MultiLineTextExample
+```
+
+### Static Members
+
+Use `Text.Empty` and `Text.NewLine` for reusable empty text and line break instances.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.EmptyTextExample
+```
+
+## Justification
+
+Use justification to align text within containers like panels.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextJustificationExample
+```
+
+Set justification via the property when you need to configure it separately from construction.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextJustificationPropertyExample
+```
+
+## Overflow
+
+Control what happens when text exceeds available width.
+
+- **Fold** - Wraps text to the next line (default)
+- **Crop** - Truncates text at the boundary
+- **Ellipsis** - Truncates and adds an ellipsis character (…)
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextOverflowExample
+```
+
+Set overflow via the property for separate configuration.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextOverflowPropertyExample
+```
+
+## Styling
+
+### Colors
+
+Apply colors to make text stand out or convey meaning.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextColorsExample
+```
 
 > [!NOTE]
 > See the [Color Reference](/console/reference/color-reference) for all available colors and the [Text Style Reference](/console/reference/text-style-reference) for decoration options.
-* **Justification** - Left, center, right, or full justification of text content
-* **Overflow behavior** - Controlling how text behaves when it exceeds available width (truncate, wrap, ellipsis)
-* **Line breaks** - Handling multi-line text and explicit line breaks
-* **When to use Text** - Choosing between Text widgets, markup strings, and simple string output
-* **Composition** - Using Text as content for other widgets like panels and tables
+
+### Decorations
+
+Use decorations to emphasize text: Bold, Italic, Underline, and Strikethrough.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextDecorationsExample
+```
+
+Advanced decorations like Dim, Invert, Conceal, and Blink are available but may not work in all terminals.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextAdvancedDecorationsExample
+```
+
+### Combined Styles
+
+Combine multiple decorations using bitwise flags. Styles can include foreground, background, and decorations together.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextCombinedStylesExample
+```
+
+### Style Construction
+
+Build styles with the `Style` constructor for full control, or use `Style.Parse()` for a compact string syntax.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextStyleConstructorExample
+```
+
+## Properties
+
+Use `Length` and `Lines` to inspect text dimensions when building layouts or calculating sizes.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextPropertiesExample
+```
+
+## Working with Containers
+
+Text widgets work well as content inside panels, tables, and other container widgets.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextInContainersExample
+```
+
+## API Reference
+
+<WidgetApiReference TypeName="Spectre.Console.Text" />

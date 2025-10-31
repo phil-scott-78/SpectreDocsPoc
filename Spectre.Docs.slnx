@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/External Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".github/workflows/publish-to-gh-pages.yml" />
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+    <File Path="Remove-TagsFromMarkdown.ps1" />
+  </Folder>
+  <Project Path="Spectre.Docs.Examples/Spectre.Docs.Examples.csproj" />
+  <Project Path="Spectre.Docs/Spectre.Docs.csproj" />
+</Solution>

@@ -5,15 +5,13 @@ uid: "console-getting-started"
 order: 1030
 ---
 
-In this tutorial, we'll build your first application with Spectre.Console together. By the end, you'll have a working console app that displays colorful text, formatted tables, and animated progress bars.
+In this tutorial, we'll build a styled build-output display together. By the end, we'll have a complete status reporter that shows success messages in green, warnings in orange, errors in bold red, and includes clickable documentation links.
 
 ## What We're Building
 
-We're going to create a console application that displays:
-- Colorful text output with simple markup
-- A formatted data table
-- Styled text with multiple effects
-- Animated progress bars
+Here's the output we're creating:
+
+<Screenshot Src="/assets/getting-started-tutorial.svg" Alt="Getting Started Output" />
 
 ## Prerequisites
 
@@ -21,122 +19,165 @@ We're going to create a console application that displays:
 - Basic C# knowledge
 - A text editor or IDE (Visual Studio, VS Code, or JetBrains Rider)
 
-## Installation
+<Steps>
+<Step stepNumber="1">
+**Create a New Project**
 
-Let's start by creating a new console application and adding Spectre.Console:
+Let's start by creating a new console application:
 
 ```bash
 dotnet new console -n MySpectreApp
 cd MySpectreApp
-dotnet add package Spectre.Console
 ```
 
-<Steps>
-<Step stepNumber="1">
-**Adding Color to Your Output**
+You should see a new folder called `MySpectreApp` with a basic console application inside.
 
-Let's start by replacing the default "Hello World" with colored text:
-
-```csharp:xmldocid
-M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedExample.ShowColoredHelloWorld
-```
-
-Now run your application:
-
-```bash
-dotnet run
-```
-
-You should see "Hello" displayed in green and "World" in red, followed by an exclamation mark.
-
-Notice how we use square brackets like `[green]` to apply colors? That's Spectre.Console's markup syntax at work. The `[/]` closes the styling.
-
-Great! You've just created your first colorful console output.
+Our project is ready.
 
 </Step>
 <Step stepNumber="2">
-**Creating Your First Table**
+**Add Spectre.Console**
 
-Let's display some structured data in a table:
-
-```csharp:xmldocid
-M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedExample.ShowDataTable
-```
-
-Run it again:
+Now let's add the Spectre.Console package:
 
 ```bash
-dotnet run
+dotnet add package Spectre.Console
 ```
 
-You should see a neatly formatted table with three columns (Name, Language, Experience) and four rows of data, complete with borders.
-
-Notice how the columns are automatically aligned and the borders are drawn for you? Spectre.Console handles all the spacing and formatting.
-
-Well done! Your first table is rendering perfectly.
+You should see output confirming the package was installed. Now we're ready to write some code.
 
 </Step>
 <Step stepNumber="3">
-**Making Text Stand Out**
+**Display a Success Message**
 
-Let's make an important message stand out using combined styling:
+Let's start with a simple success message. We wrap text in color tags using `[green]text[/]`:
 
-```csharp:xmldocid
-M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedExample.ShowTextStyling
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedTutorial.ShowSuccessMessage
 ```
 
-Run your app once more:
+Run the code:
 
 ```bash
 dotnet run
 ```
 
-You should see multiple lines demonstrating different colors, bold and italic text, underlines, and even text with colored backgrounds.
+You should see "✓ Build completed successfully" displayed in green. Notice how `[/]` closes the style - any text after it returns to the default color.
 
-Notice how you can combine multiple effects like `[bold red on yellow]`? The styling flows naturally: decoration, foreground color, then `on` followed by background color.
-
-For a complete list of colors and styles, see the [Color Reference](/console/reference/color-reference) and [Text Styling How-To](/console/how--to/styling-text-with-markup-and-color).
-
-Excellent! You're now styling text like a pro.
+That's our first styled message.
 
 </Step>
 <Step stepNumber="4">
-**Showing Progress**
+**Add a Warning Message**
 
-Let's add animated progress bars to show work happening:
+Now let's add a warning. We'll use a hex color code `[#FFA500]` for the orange symbol, and mix styled and plain text on the same line:
 
-```csharp:xmldocid
-M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedExample.ShowProgressBar
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedTutorial.ShowWarningMessage(System.String)
 ```
 
-Run your application one final time:
+Run the code:
 
 ```bash
 dotnet run
 ```
 
-You should see three progress bars animating simultaneously: "Processing files" in green, "Uploading data" in blue, and "Finalizing" in yellow. Watch as they fill up at different speeds!
+You should see "⚠" in orange, "3 warnings" in yellow, and "in Authentication.cs" in the default color. Notice how we close each style with `[/]` before starting the next one.
 
-Notice how all three progress bars update at the same time? Each task runs independently, and Spectre.Console handles the rendering for you.
+Now we're mixing colors and plain text on a single line.
 
-Fantastic! You've built a complete console application with all the core Spectre.Console features.
+</Step>
+<Step stepNumber="5">
+**Show an Error Message**
+
+Errors need to stand out. Let's combine bold and red in a single tag by separating them with a space:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedTutorial.ShowErrorMessage(System.String)
+```
+
+Run the code:
+
+```bash
+dotnet run
+```
+
+You should see "✗ Error:" in bold red, followed by the dependency name in the default style. Notice how `[bold red]` applies both styles at once.
+
+Our error message really stands out now.
+
+</Step>
+<Step stepNumber="6">
+**Include a Documentation Link**
+
+Let's help users find more information by adding a clickable link. We use `[link=URL]text[/]` to show friendly text instead of a raw URL:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedTutorial.ShowDocumentationLink(System.String)
+```
+
+Run the code:
+
+```bash
+dotnet run
+```
+
+You should see "→ See: documentation" where "documentation" is a clickable link (in terminals that support it). The link opens the URL when clicked.
+
+We've added helpful navigation to our output.
+
+</Step>
+<Step stepNumber="7">
+**Handle Dynamic Content**
+
+Real build tools display filenames and counts that come from variables. Let's use `MarkupLineInterpolated()` to safely include dynamic values:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedTutorial.ShowDocumentationLink(System.String)
+```
+
+Run the code:
+
+```bash
+dotnet run
+```
+
+You should see the same warning message as before, but now the filename and count come from variables. `MarkupLineInterpolated()` automatically escapes any brackets in the interpolated values, preventing markup parsing errors.
+
+See the [Markup Widget](/console/widgets/markup) reference for more on escaping.
+
+</Step>
+<Step stepNumber="8">
+**Complete Build Output**
+
+Now let's combine everything into our final build-output display:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.GettingStartedTutorial.Run(Spectre.Console.IAnsiConsole)
+```
+
+Run the code:
+
+```bash
+dotnet run
+```
+
+You should see all four lines of our build output: the green success message, the orange/yellow warning with the filename, the bold red error with the dependency name, and the clickable documentation link.
+
+That's our complete build-output display.
 
 </Step>
 </Steps>
 
-## What You've Learned
+## Congratulations!
 
-You've successfully created a console application that uses:
-- Colored text with markup syntax
-- Formatted tables with automatic alignment
-- Combined text styling (colors, decorations, backgrounds)
-- Animated progress bars with multiple tasks
+We've built a styled build-output display from scratch. Our reporter shows success in green, warnings in custom orange, errors in bold red, and includes clickable documentation links - all with safe handling of dynamic content.
 
-## Continue Your Journey
+These same techniques work for any console application: log viewers, deployment scripts, test runners, and more.
 
-Ready for more? Try these tutorials next:
+## Next Steps
 
-- [Asking User Questions](/console/tutorials/interactive-prompts-tutorial) - Ask for names, numbers, and let users choose from lists (15 minutes)
-- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated spinners while work is happening (10 minutes)
-
-You can also explore the [Widget Reference](/console/widgets/table) to see what else Spectre.Console can do.
+- [Asking User Questions](/console/tutorials/interactive-prompts-tutorial) - Add interactive prompts to collect user input
+- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated spinners while work is happening
+- [Color Reference](/console/reference/color-reference) - Explore all available color names and formats
+- [Markup Widget](/console/widgets/markup) - Full API reference for the Markup class

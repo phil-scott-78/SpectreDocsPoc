@@ -5,55 +5,119 @@ uid: "console-status-spinners"
 order: 1050
 ---
 
-## Overview
-
-In this tutorial, we'll learn to show the user that work is happening. We'll display an animated spinner with a status message while a task runs.
+In this tutorial, we'll build a coffee brewing simulation that shows animated spinners while work happens. By the end, you'll know how to display status messages, update them as work progresses, and customize the spinner style.
 
 ## What We're Building
 
-A simple program that:
-- Shows a spinner while "processing" happens
-- Updates the status message during the work
-- Shows a success message when done
+Here's what our coffee brewing simulation will look like:
 
-## Topics to be Covered
-
-A complete version of this tutorial would include:
-
-<Steps>
-<Step stepNumber="1">
-**Your First Status Spinner**
-
-- Using `AnsiConsole.Status()` to show work is happening
-- Running a task inside the status context
-- Seeing the spinner animate automatically
-
-</Step>
-<Step stepNumber="2">
-**Updating Status Text**
-
-- Changing the status message as work progresses
-- Using `ctx.Status()` to update the text
-- Showing different stages of work
-
-</Step>
-<Step stepNumber="3">
-**Trying Different Spinners**
-
-- Changing the spinner style (dots, lines, etc.)
-- Picking a spinner that matches your app's style
-- See the [Spinner Reference](/console/reference/spinner-reference) for all available styles
-
-</Step>
-</Steps>
+<Screenshot Src="/assets/status-spinners-tutorial.svg" Alt="Status Spinner Tutorial" />
 
 ## Prerequisites
 
 - .NET 6.0 or later
 - Basic C# knowledge
-- Completion of the [Getting Started tutorial](/console/tutorials/getting-started-building-rich-console-app)
+- Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
+
+<Steps>
+<Step stepNumber="1">
+**Show a Basic Spinner**
+
+Let's start by showing a spinner while our "coffee grinder" runs. The `Status()` method displays an animated spinner with a message:
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.ShowBasicSpinner
+```
+
+Run the code:
+
+```bash
+dotnet run
+```
+
+You should see an animated spinner next to "Grinding beans..." that runs for a few seconds, then "Done!" appears.
+
+Notice how the spinner animates automatically? Spectre.Console handles the animation loop for you - just put your work inside the callback.
+
+That's your first status spinner.
+
+</Step>
+<Step stepNumber="2">
+**Update the Status Text**
+
+Real tasks have multiple stages. Let's update the status message as our coffee progresses through grinding, brewing, and pouring:
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.UpdateStatusText
+```
+
+Run it:
+
+```bash
+dotnet run
+```
+
+You should see the message change from "Grinding beans..." to "Brewing coffee..." to "Pouring into cup..." - all while the spinner keeps animating.
+
+Notice how we use `ctx.Status()` to change the message? The `ctx` parameter gives you control over the status display while it's running.
+
+Your status now reflects what's actually happening.
+
+</Step>
+<Step stepNumber="3">
+**Try Different Spinners**
+
+Spectre.Console includes many spinner styles. Let's try a few to see the difference:
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.TryDifferentSpinners
+```
+
+Run it:
+
+```bash
+dotnet run
+```
+
+You should see two different spinner animations - the smooth `Dots` spinner for grinding, then the lively `Star` spinner (in yellow) for brewing.
+
+Notice how `.Spinner()` sets the style and `.SpinnerStyle()` sets the color? You can match the spinner to your app's personality.
+
+You can now customize the look and feel of your spinners.
+
+</Step>
+<Step stepNumber="4">
+**Complete Coffee Brew**
+
+Let's put it all together into a complete brewing experience that changes both the message and spinner style at each stage:
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.ShowCompleteCoffeeBrew
+```
+
+Run the complete application:
+
+```bash
+dotnet run
+```
+
+You should see "Time for coffee!" followed by an animated brewing sequence: yellow dots while grinding, blue stars while brewing, and a green arc while pouring - then the final success message.
+
+Notice how we change both the spinner and its color using `ctx.Spinner()` and `ctx.SpinnerStyle()`? This creates a dynamic, engaging experience.
+
+That's a polished status display with some personality.
+
+</Step>
+</Steps>
+
+## Congratulations!
+
+We've built a coffee brewing simulation that demonstrates all the core status features. Our application shows animated spinners, updates messages as work progresses, and customizes the spinner style to match each stage.
+
+These same techniques work for any long-running operation: file uploads, API calls, database queries, build processes, and more.
 
 ## Next Steps
 
-After completing this tutorial:
-- [Multiple Progress Bars](/console/how--to/showing-progress-bars-and-spinners) - Track several operations at once
+- [Showing Progress Bars](/console/how--to/showing-progress-bars-and-spinners) - Track multiple operations with progress bars
+- [Status Reference](/console/live/status) - Explore async operations, return values, and manual refresh
+- [Spinner Reference](/console/reference/spinner-reference) - See all available spinner styles

@@ -6,11 +6,17 @@ using MyLittleContentEngine.MonorailCss;
 using MyLittleContentEngine.Services.Content.CodeAnalysis.Configuration;
 using MyLittleContentEngine.UI.Components;
 using Spectre.Docs.Components;
+using Spectre.Docs.Components.Layouts;
 using Spectre.Docs.Components.Reference;
+using Spectre.Docs.Components.Shared;
+using Spectre.Docs.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents();
+
+// Register XML documentation service for API reference
+builder.Services.AddSingleton<XmlDocumentationService>();
 
 // configures site wide settings
 builder.Services.AddContentEngineService(_ => new ContentEngineOptions
@@ -44,19 +50,23 @@ builder.Services.AddContentEngineService(_ => new ContentEngineOptions
     })
     .WithConnectedRoslynSolution(_ => new CodeAnalysisOptions
     {
-        SolutionPath = "../Spectre.Docs.sln",
+        SolutionPath = "../Spectre.Docs.slnx",
     })
     // this allows us to use blazor components within Markdown.
     // see https://phil-scott-78.github.io/MyLittleContentEngine/guides/markdown-extensions#blazor-within-markdown
     .AddMdazor()
     .AddMdazorComponent<Step>()
     .AddMdazorComponent<Steps>()
+    .AddMdazorComponent<Screenshot>()
     .AddMdazorComponent<BoxBorderList>()
     .AddMdazorComponent<ColorList>()
     .AddMdazorComponent<EmojiList>()
     .AddMdazorComponent<SpinnerList>()
     .AddMdazorComponent<TableBorderList>()
     .AddMdazorComponent<TreeGuideList>()
+    .AddMdazorComponent<WidgetApiReference>()
+    .AddMdazorComponent<TwoColumn>()
+    .AddMdazorComponent<Column>()
     .AddMonorailCss(_ => new MonorailCssOptions
     {
         ColorScheme = new AlgorithmicColorScheme()

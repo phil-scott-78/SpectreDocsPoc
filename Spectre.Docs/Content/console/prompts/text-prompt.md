@@ -5,19 +5,143 @@ uid: "console-prompt-text"
 order: 5000
 ---
 
-The TextPrompt widget prompts users to enter text input with support for validation, default values, secret input masking, and custom styling. It's the foundation for gathering user input in interactive console applications.
+The TextPrompt prompts users to enter text input with validation, default values, and secret input masking.
 
-**Key Topics Covered:**
+## When to Use
 
-* **Basic text prompts** - Using `AnsiConsole.Ask<T>()` or `new TextPrompt<T>()` to prompt for input
-* **Type conversion** - Automatically converting input to target types (int, decimal, custom types, etc.)
-* **Default values** - Providing defaults with `DefaultValue()` that users can accept by pressing Enter
-* **Validation** - Adding validation rules with `Validate()` to ensure input meets requirements
-* **Custom validation messages** - Providing clear error messages when validation fails
-* **Optional vs required** - Making prompts optional with `AllowEmpty()` for nullable types
-* **Secret input** - Masking sensitive input like passwords with `Secret()` or custom mask characters
-* **Prompt styling** - Customizing colors and formatting of prompts and user input
-* **Validation function** - Writing custom validation logic for complex requirements
-* **Choices** - Restricting input to specific allowed values
+Use TextPrompt when you need to **collect user input** from the console. Common scenarios:
 
-Examples show prompting for usernames and passwords, asking for numeric input with range validation, collecting email addresses with format validation, building configuration wizards with validated input, creating interactive setup scripts, and handling complex multi-step input flows. The guide covers user experience best practices for prompts and validation messaging.
+- **Free-form text input**: Collecting names, email addresses, or any text data
+- **Numeric input**: Getting ages, quantities, or measurements with automatic type conversion
+- **Secure input**: Requesting passwords or API keys with masked display
+- **Validated input**: Ensuring input meets specific requirements before accepting it
+
+For **selecting from a predefined list of options**, use [SelectionPrompt](/console/prompts/selection) instead, which provides a better user experience with arrow key navigation.
+
+## Basic Usage
+
+Use `AnsiConsole.Ask<T>()` for the simplest way to prompt for user input.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.BasicAskExample
+```
+
+## Default Values
+
+### Using Ask with Default
+
+You can provide a default value that users can accept by pressing Enter.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.AskWithDefaultExample
+```
+
+### Configuring Default Display
+
+Use `DefaultValue()` to set a default and control whether it's shown to the user.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.DefaultValueExample
+```
+
+## Type Conversion
+
+TextPrompt automatically converts input to your target type using built-in type converters.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.TypeConversionExample
+```
+
+This works with any type that has a `TypeConverter`, including `int`, `decimal`, `DateTime`, `Guid`, and custom types.
+
+## Direct TextPrompt Usage
+
+For more control over prompt behavior, create a `TextPrompt<T>` instance directly instead of using `Ask()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.TextPromptBasicExample
+```
+
+## Secret Input
+
+### Password Masking
+
+Use `Secret()` to mask sensitive input with asterisks by default.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.SecretInputExample
+```
+
+### Custom Mask Characters
+
+Specify a custom mask character or use `null` to completely hide input.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.CustomMaskExample
+```
+
+## Validation
+
+### Simple Validation
+
+Use `Validate()` with a boolean function to check if input is acceptable.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.SimpleValidationExample
+```
+
+### Rich Validation
+
+For more complex validation with custom error messages, use `ValidationResult`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.RichValidationExample
+```
+
+## Restricting to Choices
+
+### Showing Choices
+
+Use `AddChoices()` to restrict input to specific values, displayed as options to the user.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.ChoicesExample
+```
+
+This is useful for limited options where users can type their choice. For better UX with many options, use [SelectionPrompt](/console/prompts/selection) instead.
+
+### Hidden Choices
+
+Use `HideChoices()` when you want to validate against specific values without revealing them.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.HiddenChoicesExample
+```
+
+## Optional Input
+
+Use `AllowEmpty()` to make input optional, allowing users to press Enter without typing anything.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.AllowEmptyExample
+```
+
+## Styling
+
+Customize the appearance of your prompts with different colors for the prompt text, default values, and choices.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.StylingExample
+```
+
+## Custom Converters
+
+Use `WithConverter()` to control how choices are displayed to users while keeping their underlying values.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.CustomConverterExample
+```
+
+## API Reference
+
+<WidgetApiReference TypeName="Spectre.Console.TextPrompt`1" />
