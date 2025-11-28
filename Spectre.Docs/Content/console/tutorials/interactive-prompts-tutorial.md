@@ -35,9 +35,9 @@ Run the code:
 dotnet run
 ```
 
-You should see "What's your name?" with a cursor waiting for input. Type your name and press Enter. The program then greets you by name.
+"What's your name?" appears with a cursor waiting for input. Type your name and press Enter. The program then greets you by name.
 
-Notice how we used `[green]` markup in the prompt? You can style your prompts just like any other Spectre.Console output.
+See how we used `[green]` markup in the prompt? You can style your prompts just like any other Spectre.Console output.
 
 You've captured your first user input.
 
@@ -57,11 +57,11 @@ Run it:
 dotnet run
 ```
 
-You should see a list of pizza sizes with one highlighted. Use the up/down arrow keys to move between options, then press Enter to select.
+A list of pizza sizes appears with one highlighted. Use the up/down arrow keys to move between options, then press Enter to select.
 
-Notice how the prompt handles all the keyboard interaction for you? No need to parse input or validate choices - Spectre.Console takes care of it.
+The prompt handles all the keyboard interaction - no need to parse input or validate choices. Spectre.Console takes care of it.
 
-That's an interactive menu with just a few lines of code.
+An interactive menu with just a few lines of code.
 
 </Step>
 <Step stepNumber="3">
@@ -79,9 +79,9 @@ Run it:
 dotnet run
 ```
 
-You should see a list of toppings with checkboxes. Press Space to select or deselect items, use arrow keys to navigate, and press Enter when you're done.
+A list of toppings appears with checkboxes. Press Space to select or deselect items, use arrow keys to navigate, and press Enter when you're done.
 
-Notice the `NotRequired()` call? That allows the user to select zero items (for a plain cheese pizza). Without it, at least one selection would be required.
+The `NotRequired()` call allows zero items to be selected (for a plain cheese pizza). Without it, at least one selection would be required.
 
 Your users can now make multiple selections.
 
@@ -101,9 +101,9 @@ Run it:
 dotnet run
 ```
 
-You should see "Place this order? [y/n]" with options to type `y` or `n`. The method returns `true` for yes and `false` for no.
+"Place this order? [y/n]" appears with options to type `y` or `n`. The method returns `true` for yes and `false` for no.
 
-Notice how the `[y/n]` hint is automatically added? Spectre.Console handles the common UX patterns for you.
+The `[y/n]` hint is automatically added - Spectre.Console handles common UX patterns for you.
 
 Now you can get confirmation before important actions.
 
@@ -123,20 +123,20 @@ Run the complete application:
 dotnet run
 ```
 
-You should see the full ordering experience: enter your name, pick a size, select toppings, review the summary in a styled panel, and confirm your order.
+The full ordering experience unfolds: enter your name, pick a size, select toppings, review the summary in a styled panel, and confirm your order.
 
-Notice how we used a `Panel` to display the order summary? Combining prompts with other Spectre.Console widgets creates polished, professional interfaces.
+We used a `Panel` to display the order summary - combining prompts with other Spectre.Console widgets creates polished, professional interfaces.
 
-That's a complete interactive ordering flow.
+A complete interactive ordering flow.
 
 </Step>
 </Steps>
 
 ## Congratulations!
 
-We've built a pizza ordering system that demonstrates all the core prompting features. Our application asks for text input, presents single-choice and multiple-choice menus, displays a styled summary, and confirms the order before processing.
+You've created a pizza ordering system that demonstrates all the core prompting features. Your application asks for text input, presents single-choice and multiple-choice menus, displays a styled summary, and confirms the order before processing.
 
-These same techniques work for any interactive console application: configuration wizards, CLI tools, installation scripts, and more.
+Use these prompts in configuration wizards, CLI tools, installation scripts, and anywhere you need user input.
 
 ## Next Steps
 

@@ -30,7 +30,7 @@ dotnet new console -n MySpectreApp
 cd MySpectreApp
 ```
 
-You should see a new folder called `MySpectreApp` with a basic console application inside.
+A new folder called `MySpectreApp` appears with a basic console application inside.
 
 Our project is ready.
 
@@ -44,7 +44,7 @@ Now let's add the Spectre.Console package:
 dotnet add package Spectre.Console
 ```
 
-You should see output confirming the package was installed. Now we're ready to write some code.
+The output confirms the package was installed. Now we're ready to write some code.
 
 </Step>
 <Step stepNumber="3">
@@ -62,9 +62,9 @@ Run the code:
 dotnet run
 ```
 
-You should see "✓ Build completed successfully" displayed in green. Notice how `[/]` closes the style - any text after it returns to the default color.
+"✓ Build completed successfully" appears in green. See how `[/]` closes the style? Any text after it returns to the default color.
 
-That's our first styled message.
+Done - our first styled message.
 
 </Step>
 <Step stepNumber="4">
@@ -82,7 +82,7 @@ Run the code:
 dotnet run
 ```
 
-You should see "⚠" in orange, "3 warnings" in yellow, and "in Authentication.cs" in the default color. Notice how we close each style with `[/]` before starting the next one.
+The "⚠" appears in orange, "3 warnings" in yellow, and "in Authentication.cs" in the default color. Each style closes with `[/]` before the next one begins.
 
 Now we're mixing colors and plain text on a single line.
 
@@ -102,7 +102,7 @@ Run the code:
 dotnet run
 ```
 
-You should see "✗ Error:" in bold red, followed by the dependency name in the default style. Notice how `[bold red]` applies both styles at once.
+"✗ Error:" appears in bold red, followed by the dependency name in the default style. The `[bold red]` tag applies both styles at once.
 
 Our error message really stands out now.
 
@@ -122,7 +122,7 @@ Run the code:
 dotnet run
 ```
 
-You should see "→ See: documentation" where "documentation" is a clickable link (in terminals that support it). The link opens the URL when clicked.
+Look for "→ See: documentation" where "documentation" is a clickable link (in terminals that support it). The link opens the URL when clicked.
 
 We've added helpful navigation to our output.
 
@@ -142,7 +142,7 @@ Run the code:
 dotnet run
 ```
 
-You should see the same warning message as before, but now the filename and count come from variables. `MarkupLineInterpolated()` automatically escapes any brackets in the interpolated values, preventing markup parsing errors.
+The same warning message appears, but now the filename and count come from variables. `MarkupLineInterpolated()` automatically escapes any brackets in the interpolated values, preventing markup parsing errors.
 
 See the [Markup Widget](/console/widgets/markup) reference for more on escaping.
 
@@ -162,18 +162,18 @@ Run the code:
 dotnet run
 ```
 
-You should see all four lines of our build output: the green success message, the orange/yellow warning with the filename, the bold red error with the dependency name, and the clickable documentation link.
+All four lines of our build output appear: the green success message, the orange/yellow warning with the filename, the bold red error with the dependency name, and the clickable documentation link.
 
-That's our complete build-output display.
+Our build-output display is complete.
 
 </Step>
 </Steps>
 
 ## Congratulations!
 
-We've built a styled build-output display from scratch. Our reporter shows success in green, warnings in custom orange, errors in bold red, and includes clickable documentation links - all with safe handling of dynamic content.
+You've created a styled build-output display from scratch. Your reporter shows success in green, warnings in custom orange, errors in bold red, and includes clickable documentation links - all with safe handling of dynamic content.
 
-These same techniques work for any console application: log viewers, deployment scripts, test runners, and more.
+Apply these patterns to any console application: log viewers, deployment scripts, test runners, and more.
 
 ## Next Steps
 
