@@ -1,14 +1,45 @@
 ---
-title: "Rendering ASCII Art and Figlet Text"
-description: "How to add decorative text and art to the console"
-uid: "console-ascii-art"
+title: "How to Render ASCII Art"
+description: "Create large text banners and add emoji to console output"
+uid: "console-howto-rendering-ascii-art"
 order: 2350
 ---
 
-When you want to make your console application stand out with eye-catching headers, banners, or decorated section titles, use the `Figlet` text renderer to generate large ASCII-art text from strings. Choose from various fonts and apply colors to match your branding or create visual hierarchy in output.
+When you want eye-catching headers or decorative text, use `FigletText`.
 
-Add personality and clarity with emoji shortcodes (`:shortcode:`) to insert icons that enrich messages. Combine Figlet banners with `Rule` separators to create distinct sections that guide users through your tool's output. Spectre.Console handles font compatibility automatically with fallbacks, ensuring your decorative text displays correctly across different terminal environments.
+## Render Large Text
+
+To create ASCII art text, use `FigletText`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.RenderingAsciiArtHowTo.RenderFigletText
+```
+
+## Center the Text
+
+To center figlet output, call `.Centered()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.RenderingAsciiArtHowTo.CenterFigletText
+```
+
+## Add Emoji
+
+To add emoji, use `:shortcode:` syntax in markup.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.RenderingAsciiArtHowTo.AddEmoji
+```
+
+## Create a Banner
+
+To make a title banner, combine figlet with a rule.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.RenderingAsciiArtHowTo.CreateBanner
+```
 
 ## See Also
 
-- [Emoji Reference](/console/reference/emoji-reference) - Complete list of all available emoji shortcodes
+- [FigletText](/console/widgets/figlet) - FigletText widget reference
+- [Emoji Reference](/console/reference/emoji-reference) - All available emoji

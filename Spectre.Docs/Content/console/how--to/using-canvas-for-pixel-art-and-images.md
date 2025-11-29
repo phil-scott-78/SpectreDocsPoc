@@ -1,10 +1,45 @@
 ---
-title: "Using Canvas for Pixel Art and Images"
-description: "How to draw graphics in the console using the Canvas and CanvasImage widgets"
-uid: "console-canvas-pixel-art"
+title: "How to Draw with Canvas"
+description: "Create pixel graphics and display images in the console"
+uid: "console-howto-using-canvas"
 order: 2550
 ---
 
-When you need to add simple graphics—like logos, diagrams, or visual indicators—directly in the terminal, use the `Canvas` widget to plot colored "pixels" and draw basic shapes. Create a canvas with specific dimensions and set individual pixels to build simple images like icons or low-resolution logos.
+When you need simple graphics in the terminal, use `Canvas`.
 
-For converting actual images to console output, use `CanvasImage` to render pictures as ASCII representations with appropriate color approximation. Configure color fidelity based on terminal capabilities (from 3-bit to 24-bit colors) and adjust scaling or dithering to improve how images appear in the console. This lets you include visual branding or graphical elements alongside text, enhancing your tool's visual identity.
+## Draw Pixels
+
+To draw pixels, create a canvas and call `SetPixel()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.UsingCanvasHowTo.DrawPixels
+```
+
+## Draw a Pattern
+
+To create shapes, set pixels in loops.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.UsingCanvasHowTo.DrawPattern
+```
+
+## Show an Image
+
+To display an image file, use `CanvasImage`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.UsingCanvasHowTo.ShowImage
+```
+
+## Control Quality
+
+To adjust scaling quality, use a resampler.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.UsingCanvasHowTo.ControlImageQuality
+```
+
+## See Also
+
+- [Canvas](/console/widgets/canvas) - Canvas widget reference
+- [CanvasImage](/console/widgets/canvas-image) - CanvasImage widget reference

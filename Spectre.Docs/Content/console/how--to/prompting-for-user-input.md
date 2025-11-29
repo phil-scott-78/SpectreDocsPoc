@@ -1,10 +1,46 @@
 ---
-title: "Prompting for User Input"
-description: "How to interactively prompt the user for input using Spectre.Console"
-uid: "console-user-input"
+title: "How to Prompt for User Input"
+description: "Collect input from users with text prompts, confirmations, and selection menus"
+uid: "console-howto-prompting-for-user-input"
 order: 2150
 ---
 
-When your tool needs user input—like collecting configuration values, confirming destructive actions, or selecting from options—use the interactive prompts. Call `AnsiConsole.Ask<T>` to collect typed input (strings, numbers, etc.) with validation and optional defaults. Use `Confirm` for yes/no questions that require explicit user acknowledgment.
+When your application needs user input, use the interactive prompts.
 
-For choices, present a `SelectionPrompt` with arrow-key navigation when users should pick one option, or `MultiSelectionPrompt` with checkboxes when they can select multiple items. Configure `TextPrompt` with validation rules or masking for sensitive inputs like passwords. These prompts create polished, intuitive interactions that guide users through decisions and data entry without requiring custom input handling.
+## Ask for Text
+
+To get text input, use `AnsiConsole.Ask<T>()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AskForText
+```
+
+## Ask for Confirmation
+
+To get a yes/no answer, use `AnsiConsole.Confirm()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AskForConfirmation
+```
+
+## Present Choices
+
+To let users pick from options, use `SelectionPrompt`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.PresentChoices
+```
+
+## Allow Multiple Selections
+
+To let users select multiple items, use `MultiSelectionPrompt`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AllowMultipleSelections
+```
+
+## See Also
+
+- [Text Prompt](/console/prompts/text-prompt) - Full text prompt API
+- [Selection Prompt](/console/prompts/selection-prompt) - Selection prompt options
+- [Multi-Selection Prompt](/console/prompts/multi-selection-prompt) - Multi-selection options

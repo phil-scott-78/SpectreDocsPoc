@@ -1,14 +1,47 @@
 ---
-title: "Organizing Layout with Panels and Grids"
-description: "How to arrange multiple pieces of output using layout widgets such as Panel, Grid, Columns, Rows, and Align"
-uid: "console-panels-grids"
+title: "How to Organize Layout"
+description: "Arrange content using panels, columns, grids, and alignment"
+uid: "console-howto-organizing-layout"
 order: 2200
 ---
 
-When your console output contains multiple sections that need organized placement—like side-by-side comparisons, highlighted messages, or centered headings—use layout widgets to structure the display. Wrap important messages in `Panel` to draw attention with borders, or use `Align` and `Padder` to position content precisely within regions.
+When you need to structure console output, use layout widgets.
 
-For multi-section layouts, use `Grid` to arrange content in rows and columns, or `Columns` and `Rows` containers to place widgets side-by-side or stacked. Center banners or art with `Align.Center` to create professional-looking headers. These layout tools let you compose complex console UIs from smaller widgets, keeping output organized and scannable even when displaying multiple data sources simultaneously.
+## Wrap in a Panel
+
+To emphasize content with a border, use `Panel`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.WrapInPanel
+```
+
+## Arrange Side by Side
+
+To place content horizontally, use `Columns`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.ArrangeSideBySide
+```
+
+## Create a Grid
+
+To arrange content in rows and columns, use `Grid`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.CreateGrid
+```
+
+## Center Content
+
+To center content horizontally, use `Align.Center()`.
+
+```csharp:xmldocid
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.CenterContent
+```
 
 ## See Also
 
-- [Box Border Reference](/console/reference/box-border-reference) - Visual guide to all available border styles for panels
+- [Panel](/console/widgets/panel) - Panel widget reference
+- [Grid](/console/widgets/grid) - Grid widget reference
+- [Columns](/console/widgets/columns) - Columns widget reference
+- [Box Border Reference](/console/reference/box-border-reference) - All border styles
