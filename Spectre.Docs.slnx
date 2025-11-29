@@ -9,7 +9,6 @@
     <File Path=".github/workflows/publish-to-gh-pages.yml" />
     <File Path=".gitignore" />
     <File Path="README.md" />
-    <File Path="Remove-TagsFromMarkdown.ps1" />
   </Folder>
   <Project Path="Spectre.Docs.Examples/Spectre.Docs.Examples.csproj" />
   <Project Path="Spectre.Docs/Spectre.Docs.csproj" />

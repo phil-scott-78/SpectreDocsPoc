@@ -5,6 +5,19 @@ namespace Spectre.Docs.Services;
 
 public class XmlDocumentationService
 {
+    private static readonly (string PackageName, string XmlFileName, Type MarkerType)[] _packages =
+    [
+        ("spectre.console", "Spectre.Console.xml", typeof(Console.AnsiConsole)),
+        ("spectre.console.json", "Spectre.Console.Json.xml", typeof(Console.Json.JsonText)),
+        ("spectre.console.imagesharp", "Spectre.Console.ImageSharp.xml", typeof(Console.CanvasImage)),
+        ("spectre.console.cli", "Spectre.Console.Cli.xml", typeof(Console.Cli.CommandApp))
+    ];
+
+    public static IReadOnlyList<Assembly> Assemblies { get; } = _packages
+        .Select(p => p.MarkerType.Assembly)
+        .Distinct()
+        .ToArray();
+
     private readonly Dictionary<string, XmlDocumentation> _documentation = new();
     private bool _isLoaded;
 
@@ -15,7 +28,7 @@ public class XmlDocumentationService
 
     public XmlDocumentation? GetDocumentation(string memberName)
     {
-        return _documentation.TryGetValue(memberName, out var doc) ? doc : null;
+        return _documentation.GetValueOrDefault(memberName);
     }
 
     public XmlDocumentation? GetDocumentation(Type type)
@@ -46,28 +59,29 @@ public class XmlDocumentationService
     {
         if (_isLoaded) return;
 
-        try
+        foreach (var (packageName, xmlFileName, markerType) in _packages)
         {
-            var xmlPath = FindXmlDocumentationPath();
-            if (xmlPath == null || !File.Exists(xmlPath))
+            try
             {
-                // XML documentation file not found - service will return null for all lookups
-                return;
+                var xmlPath = FindXmlDocumentationPath(packageName, xmlFileName, markerType);
+                if (xmlPath != null && File.Exists(xmlPath))
+                {
+                    ParseXmlDocumentation(xmlPath);
+                }
             }
+            catch (Exception)
+            {
+                // Error loading XML documentation for this package - continue with next
+            }
+        }
 
-            ParseXmlDocumentation(xmlPath);
-            _isLoaded = true;
-        }
-        catch (Exception)
-        {
-            // Error loading XML documentation - service will return null for all lookups
-        }
+        _isLoaded = true;
     }
 
-    private string? FindXmlDocumentationPath()
+    private string? FindXmlDocumentationPath(string packageName, string xmlFileName, Type markerType)
     {
         // Strategy 1: Check assembly location (works when XML is copied to output)
-        var assembly = typeof(Spectre.Console.AnsiConsole).Assembly;
+        var assembly = markerType.Assembly;
         var assemblyPath = assembly.Location;
 
         if (!string.IsNullOrEmpty(assemblyPath))
@@ -80,7 +94,7 @@ public class XmlDocumentationService
         }
 
         // Strategy 2: Search NuGet global packages folder
-        var nugetPath = FindInNuGetCache();
+        var nugetPath = FindInNuGetCache(packageName, xmlFileName);
         if (nugetPath != null && File.Exists(nugetPath))
         {
             return nugetPath;
@@ -89,11 +103,11 @@ public class XmlDocumentationService
         return null;
     }
 
-    private string? FindInNuGetCache()
+    private string? FindInNuGetCache(string packageName, string xmlFileName)
     {
         // Get NuGet global packages folder (cross-platform)
         var userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        var nugetFolder = Path.Combine(userProfile, ".nuget", "packages", "spectre.console");
+        var nugetFolder = Path.Combine(userProfile, ".nuget", "packages", packageName);
 
         if (!Directory.Exists(nugetFolder))
         {
@@ -122,7 +136,7 @@ public class XmlDocumentationService
 
             foreach (var tfmDir in tfmDirs)
             {
-                var xmlPath = Path.Combine(tfmDir, "Spectre.Console.xml");
+                var xmlPath = Path.Combine(tfmDir, xmlFileName);
                 if (File.Exists(xmlPath))
                 {
                     return xmlPath;

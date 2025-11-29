@@ -1,5 +1,4 @@
 @using System.Reflection
-@using Spectre.Console
 @using Spectre.Docs.Services
 @inject XmlDocumentationService XmlDocs
 
@@ -245,13 +244,17 @@
                 return;
             }
 
-            // Get the type from Spectre.Console assembly
-            var assembly = typeof(AnsiConsole).Assembly;
-            var type = assembly.GetType(TypeName);
+            // Get the type from Spectre assemblies
+            Type? type = null;
+            foreach (var assembly in XmlDocumentationService.Assemblies)
+            {
+                type = assembly.GetType(TypeName);
+                if (type != null) break;
+            }
 
             if (type == null)
             {
-                _error = $"Type '{TypeName}' not found in Spectre.Console assembly";
+                _error = $"Type '{TypeName}' not found in Spectre assemblies";
                 return;
             }
 
@@ -364,8 +367,8 @@
 
     private void LoadExtensionMethods(Type type)
     {
-        var assembly = typeof(AnsiConsole).Assembly;
-        var extensionMethods = assembly.GetTypes()
+        var extensionMethods = XmlDocumentationService.Assemblies
+            .SelectMany(GetLoadableTypes)
             .Where(t => t.IsSealed && !t.IsGenericType && !t.IsNested)
             .SelectMany(t => t.GetMethods(BindingFlags.Static | BindingFlags.Public))
             .Where(m => m.IsDefined(typeof(System.Runtime.CompilerServices.ExtensionAttribute), false))
@@ -401,6 +404,18 @@
                 doc?.Returns,
                 paramInfos,
                 method.DeclaringType?.FullName ?? "Unknown"));
+        }
+    }
+
+    private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
+    {
+        try
+        {
+            return assembly.GetTypes();
+        }
+        catch (ReflectionTypeLoadException ex)
+        {
+            return ex.Types.Where(t => t != null)!;
         }
     }
 
