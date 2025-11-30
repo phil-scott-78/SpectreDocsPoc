@@ -24,7 +24,7 @@ For **tabular data with rows and columns**, use [Table](/console/widgets/table) 
 
 Create a tree with a root label and add child nodes using `AddNode()`. The method returns the added node, allowing you to chain further children.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.BasicTreeExample
 ```
 
@@ -32,7 +32,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.BasicTreeE
 
 Call `AddNode()` on returned nodes to create deeper hierarchies. Each node can have its own children, creating multi-level trees.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.NestedTreeExample
 ```
 
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.NestedTree
 
 Use markup in node labels to apply colors, styles, and formatting to individual nodes.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.MarkupTreeExample
 ```
 
@@ -50,7 +50,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.MarkupTree
 
 Use `Style()` to apply a consistent style to all tree guide lines, which helps create a cohesive visual appearance.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeStylingExample
 ```
 
@@ -62,7 +62,7 @@ The tree guide controls the appearance of the connecting lines between nodes. Ch
 
 Use `TreeGuide.Ascii` for maximum compatibility with terminals that don't support Unicode, or when output needs to be plain text.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeAsciiGuideExample
 ```
 
@@ -70,7 +70,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeAsciiG
 
 Use `TreeGuide.Line` (the default) for clean Unicode box-drawing characters that work in most modern terminals.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeLineGuideExample
 ```
 
@@ -78,7 +78,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeLineGu
 
 Use `TreeGuide.DoubleLine` for a more prominent appearance with double-line Unicode characters.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeDoubleLineGuideExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeDouble
 
 Use `TreeGuide.BoldLine` for heavy Unicode characters that stand out in dense tree structures.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeBoldLineGuideExample
 ```
 
@@ -99,7 +99,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeBoldLi
 
 Use `Collapse()` on individual nodes to hide their children, which is useful for large trees where you want to show only top-level structure initially.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeExpansionExample
 ```
 
@@ -107,7 +107,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeExpans
 
 Set `Expanded = false` on the tree itself to collapse all nodes, showing only the root.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeCollapseAllExample
 ```
 
@@ -117,7 +117,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeCollap
 
 Use `AddNodes()` to add several sibling nodes at once, which is more concise than multiple `AddNode()` calls.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeAddNodesExample
 ```
 
@@ -125,7 +125,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeAddNod
 
 Add any `IRenderable` (panels, tables, text) as node content to create rich, composite visualizations.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeWithRenderablesExample
 ```
 
@@ -133,7 +133,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeWithRe
 
 Dynamically construct trees from dictionaries, file systems, or other hierarchical data sources.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeFromDataExample
 ```
 

@@ -23,7 +23,7 @@ For **plain text without path semantics**, use [Text](/console/widgets/text) or 
 
 Pass a file path string to the constructor. TextPath normalizes separators automatically.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.BasicTextPathExample
 ```
 
@@ -39,7 +39,7 @@ TextPath lets you style four distinct components independently:
 
 Use convenience methods to set foreground colors for each component.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPathColorsExample
 ```
 
@@ -47,7 +47,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPa
 
 Apply complete styles including background colors, decorations like bold or underline.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPathStylesExample
 ```
 
@@ -55,7 +55,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPa
 
 Control text alignment with `LeftJustified()`, `Centered()`, or `RightJustified()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPathAlignmentExample
 ```
 
@@ -68,7 +68,7 @@ When a path exceeds available width, TextPath intelligently truncates by:
 
 This ensures the most important parts—where the file is rooted and what file it is—remain visible.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPathTruncationExample
 ```
 
@@ -76,7 +76,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPa
 
 TextPath handles both Windows and Unix path formats, normalizing separators for consistent display.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPathUnixExample
 ```
 

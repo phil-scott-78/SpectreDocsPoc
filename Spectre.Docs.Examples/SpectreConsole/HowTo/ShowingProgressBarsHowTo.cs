@@ -12,7 +12,7 @@ internal static class ShowingProgressBarsHowTo
         AnsiConsole.Progress()
             .Start(ctx =>
             {
-                var task = ctx.AddTask("Processing files");
+                var task = ctx.AddTask("Processing files", maxValue: 125);
 
                 while (!ctx.IsFinished)
                 {
@@ -30,9 +30,9 @@ internal static class ShowingProgressBarsHowTo
         AnsiConsole.Progress()
             .Start(ctx =>
             {
-                var download = ctx.AddTask("Downloading");
-                var extract = ctx.AddTask("Extracting");
-                var install = ctx.AddTask("Installing");
+                var download = ctx.AddTask("Downloading", maxValue: 125);
+                var extract = ctx.AddTask("Extracting", maxValue: 150);
+                var install = ctx.AddTask("Installing"); // maxValue defaults to 100
 
                 while (!ctx.IsFinished)
                 {

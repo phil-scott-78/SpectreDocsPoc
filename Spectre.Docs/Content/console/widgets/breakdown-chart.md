@@ -23,7 +23,7 @@ For **comparing independent values** (where items don't sum to a meaningful tota
 
 Add items with a label, value, and color. The bar automatically scales segments proportionally.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BasicBreakdownChartExample
 ```
 
@@ -33,7 +33,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.
 
 Use `ShowPercentage()` when relative proportions matter more than absolute numbers.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartPercentageExample
 ```
 
@@ -41,7 +41,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.
 
 Use `UseValueFormatter()` to add units or custom formatting.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartFormattingExample
 ```
 
@@ -49,7 +49,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.
 
 The legend (tags) below the chart shows labels and values. Control visibility when space is limited or when the chart speaks for itself.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartTagsExample
 ```
 
@@ -59,7 +59,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.
 
 Use `Compact()` (default) for tight layouts. Use `FullSize()` to add spacing between the bar and legend for better readability.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartCompactExample
 ```
 
@@ -67,7 +67,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.
 
 By default the chart expands to fill available width. Use `Width()` to constrain it.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartWidthExample
 ```
 
@@ -75,7 +75,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.
 
 Use `AddItems()` to add multiple items from a collection of `BreakdownChartItem` objects.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartAddItemsExample
 ```
 

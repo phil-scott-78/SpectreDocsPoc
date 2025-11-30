@@ -12,7 +12,7 @@ internal static class ProgressExamples
         AnsiConsole.Progress()
             .Start(ctx =>
             {
-                var task = ctx.AddTask("Processing files");
+                var task = ctx.AddTask("Processing files", maxValue: 100);
 
                 while (!ctx.IsFinished)
                 {
@@ -30,9 +30,9 @@ internal static class ProgressExamples
         AnsiConsole.Progress()
             .Start(ctx =>
             {
-                var task1 = ctx.AddTask("Downloading images");
-                var task2 = ctx.AddTask("Processing documents");
-                var task3 = ctx.AddTask("Compiling code");
+                var task1 = ctx.AddTask("Downloading images", maxValue: 125);
+                var task2 = ctx.AddTask("Processing documents", maxValue: 50);
+                var task3 = ctx.AddTask("Compiling code"); // maxValue defaults to 100
 
                 while (!ctx.IsFinished)
                 {

@@ -14,7 +14,7 @@ When you need to update output without scrolling, use `AnsiConsole.Live()`.
 
 To modify content and refresh the display, call `ctx.Refresh()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.UpdateInPlace
 ```
 
@@ -22,7 +22,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.UpdateInPlace
 
 To swap the entire display, use `ctx.UpdateTarget()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.ReplaceContent
 ```
 
@@ -30,7 +30,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.ReplaceContent
 
 If you want the display cleared after, use `.AutoClear(true)`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.AutoClearOnComplete
 ```
 
@@ -38,7 +38,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.AutoClearOnCompl
 
 To use with async operations, call `.StartAsync()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.UseAsync
 ```
 

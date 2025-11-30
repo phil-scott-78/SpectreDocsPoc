@@ -23,7 +23,7 @@ For **centering content horizontally or vertically**, use [Align](/console/widge
 
 Wrap any renderable with `new Padder(content)`. By default, adds 1 space padding on all sides.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.BasicPadderExample
 ```
 
@@ -33,7 +33,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.BasicPad
 
 Pass a single value to `new Padding()` to apply the same padding on all four sides.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderUniformPaddingExample
 ```
 
@@ -41,7 +41,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderUn
 
 Use the two-parameter constructor to set horizontal (left/right) and vertical (top/bottom) padding independently.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderHorizontalVerticalPaddingExample
 ```
 
@@ -49,7 +49,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderHo
 
 Use the four-parameter constructor to control each side precisely when you need asymmetric spacing.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderIndividualSidesExample
 ```
 
@@ -57,7 +57,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderIn
 
 Use the fluent `PadLeft()`, `PadRight()`, `PadTop()`, and `PadBottom()` extension methods to adjust individual sides after construction.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderFluentExtensionsExample
 ```
 
@@ -67,7 +67,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderFl
 
 Wrap panels with padding to add outer spacing when the panel's internal padding isn't sufficient.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderWithPanelExample
 ```
 
@@ -75,7 +75,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderWi
 
 Add padding around tables to separate them from surrounding content or create margins.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderWithTableExample
 ```
 
@@ -83,7 +83,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderWi
 
 By default, Padder automatically calculates width based on content. Set `Expand = true` to fill the available width, which affects how padding appears.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderExpandExample
 ```
 
@@ -93,7 +93,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderEx
 
 Nest multiple Padder instances to create compound spacing effects or complex layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderNestedExample
 ```
 
@@ -101,7 +101,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderNe
 
 Use targeted padding on specific sides to build structured layouts with headers, body content, and footers.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderVisualSeparationExample
 ```
 

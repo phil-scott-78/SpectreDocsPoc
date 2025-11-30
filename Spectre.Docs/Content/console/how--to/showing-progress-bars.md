@@ -14,7 +14,7 @@ When you have operations with measurable progress, use `AnsiConsole.Progress()`.
 
 To show progress, call `ctx.AddTask()` and update with `task.Increment()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.CreateProgressBar
 ```
 
@@ -22,7 +22,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.CreateProg
 
 To track several operations at once, add multiple tasks to the context.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.TrackMultipleTasks
 ```
 
@@ -30,7 +30,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.TrackMulti
 
 If you want different columns, use `.Columns()` to configure the display.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.CustomizeColumns
 ```
 
@@ -38,7 +38,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.CustomizeC
 
 To change colors, set styles on `ProgressBarColumn`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.StyleProgressBar
 ```
 

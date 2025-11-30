@@ -24,7 +24,7 @@ For **displaying existing images**, use [CanvasImage](/console/widgets/canvas-im
 
 Create a canvas with specified dimensions and set individual pixels using `SetPixel(x, y, color)`. Pixels use zero-based coordinates starting from the top-left corner.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.BasicCanvasExample
 ```
 
@@ -34,7 +34,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.BasicCan
 
 Use loops to create repeating patterns across the canvas.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasPatternExample
 ```
 
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasPa
 
 Create smooth color transitions by calculating pixel colors based on position.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasGradientExample
 ```
 
@@ -52,7 +52,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasGr
 
 Use `MaxWidth` to constrain the rendered canvas width. The canvas automatically scales while maintaining the aspect ratio.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasScalingExample
 ```
 
@@ -60,7 +60,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasSc
 
 Use `PixelWidth` to control how many console characters each pixel occupies. Larger values create wider, more visible pixels.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasPixelWidthExample
 ```
 
@@ -68,7 +68,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasPi
 
 Set `Scale = false` to prevent automatic resizing when the canvas exceeds available space. This ensures pixel-perfect rendering but may cause clipping.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasNoScalingExample
 ```
 
@@ -78,7 +78,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasNo
 
 Combine pixel operations to create custom data visualizations like bar charts or graphs.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasBarVisualizationExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasBa
 
 Create line patterns by calculating pixel positions along a path.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasDiagonalLineExample
 ```
 
@@ -94,7 +94,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasDi
 
 Build sophisticated graphics by combining multiple drawing operations with helper methods.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasComplexPatternExample
 ```
 

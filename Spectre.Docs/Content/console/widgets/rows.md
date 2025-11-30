@@ -24,7 +24,7 @@ For **horizontal arrangement**, use [Columns](/console/widgets/columns) instead.
 
 Pass any collection of renderables to stack them vertically. Each item is rendered on a new line.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.BasicRowsExample
 ```
 
@@ -34,7 +34,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.BasicRowsE
 
 Stack panels or other container widgets to create visually distinct sections.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsPanelsExample
 ```
 
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsPanels
 
 Combine different widget types (tables, charts, rules) to build rich information displays.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsMixedContentExample
 ```
 
@@ -50,7 +50,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsMixedC
 
 Use the `Expand` property to control whether rows fill the available console width or fit to their content. When `Expand` is `false`, each row's width matches its content.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsExpandExample
 ```
 
@@ -58,7 +58,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsExpand
 
 Build rows dynamically from a collection of renderables, useful when the number of items varies.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsFromCollectionExample
 ```
 
@@ -68,7 +68,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsFromCo
 
 Nest Rows and Columns to create complex grid-like layouts without using Grid's more verbose API.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsWithColumnsExample
 ```
 
@@ -76,7 +76,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsWithCo
 
 Create multi-section status dashboards by stacking different types of information displays.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsDashboardExample
 ```
 

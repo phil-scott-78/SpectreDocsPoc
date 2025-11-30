@@ -23,7 +23,7 @@ For **adding spacing around content**, use [Padder](/console/widgets/padder) ins
 
 Create aligned content using the static factory methods `Align.Left()`, `Align.Center()`, or `Align.Right()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.BasicAlignExample
 ```
 
@@ -31,7 +31,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.BasicAlig
 
 Position content on the left, center, or right. Left alignment is the default for most widgets.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.HorizontalAlignmentExample
 ```
 
@@ -41,7 +41,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.Horizonta
 
 Use vertical alignment with a specified height to position content vertically within a defined space.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.VerticalAlignmentExample
 ```
 
@@ -49,7 +49,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.VerticalA
 
 Combine horizontal and vertical alignment to position content in both dimensions simultaneously.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.CombinedAlignmentExample
 ```
 
@@ -57,7 +57,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.CombinedA
 
 Use the fluent extension methods like `TopAligned()`, `MiddleAligned()`, and `BottomAligned()` for more readable code.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.FluentExtensionsExample
 ```
 
@@ -67,7 +67,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.FluentExt
 
 By default, Align uses the content's natural width. Use `Width()` to define the alignment container's width.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.WidthControlExample
 ```
 
@@ -81,7 +81,7 @@ Set an explicit height with `Height()` when using vertical alignment to define t
 
 Create layouts with different horizontal alignments for visual variety or functional purpose.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.MultipleAlignmentsExample
 ```
 
@@ -89,7 +89,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.MultipleA
 
 Center tables to draw focus and improve presentation for data displays.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.AlignTableExample
 ```
 
@@ -99,7 +99,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.AlignTabl
 
 Combine Align with containers like Panel to create multi-level alignment for complex layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.NestedAlignExample
 ```
 
@@ -107,7 +107,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.NestedAli
 
 Use centered alignment for application splash screens or welcome messages.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.TitleScreenExample
 ```
 

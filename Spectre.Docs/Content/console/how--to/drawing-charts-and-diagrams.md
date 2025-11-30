@@ -11,7 +11,7 @@ When you need to visualize data in the terminal, use chart widgets.
 
 To compare values, use `BarChart`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.CreateBarChart
 ```
 
@@ -19,7 +19,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.CreateBarChart
 
 To show proportions, use `BreakdownChart`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.CreateBreakdownChart
 ```
 
@@ -27,7 +27,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.CreateBreakdownC
 
 To highlight dates, use `Calendar`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.ShowCalendar
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.ShowCalendar
 
 To draw a separator, use `Rule`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.AddRule
 ```
 

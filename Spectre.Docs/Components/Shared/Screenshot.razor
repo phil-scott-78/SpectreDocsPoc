@@ -7,137 +7,15 @@
             <div class="w-2 h-2 lg:w-3 lg:h-3 rounded-sm bg-accent-200/90 dark:bg-accent-500/60 border border-account-600 dark:border-accent-600"></div>
         </div>
         <div class="rounded-lg inner-shadow py-2 px-2 lg:px-6 bg-base-800 dark:bg-black/25 [background-image:repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)]">
-            <img defer src="@Src" alt="@Alt" loading="lazy" style="@GetImageStyle()" />
+            <img defer src="@Src" alt="@Alt" loading="lazy" style="width: 100%;" />
         </div>
     </div>
 </div>
 
-@inject IWebHostEnvironment WebHostEnvironment
-@inject ILogger<Screenshot> Logger
-
 @code {
-
     [Parameter]
     public string Src { get; set; } = null!;
 
-    [Parameter] public string Alt { get; set; } = "Screenshot";
-
-    private string? AspectRatio { get; set; }
-
-    protected override void OnParametersSet()
-    {
-        AspectRatio = CalculateAspectRatio();
-    }
-
-    private string GetImageStyle()
-    {
-        if (!string.IsNullOrEmpty(AspectRatio))
-        {
-            return $"width: 100%; aspect-ratio: {AspectRatio};";
-        }
-        return "width: 100%;";
-    }
-
-    private string? CalculateAspectRatio()
-    {
-        try
-        {
-            // Only process /assets/ paths
-            if (string.IsNullOrEmpty(Src) || !Src.StartsWith("/assets/"))
-                return null;
-
-            // Try to find the file using WebRootFileProvider
-            var relativePath = Src.TrimStart('/');
-            var fileInfo = FindFileInProviders(relativePath);
-
-            if (fileInfo == null)
-            {
-                Logger.LogWarning("File not found through any file provider: {RelativePath}", relativePath);
-                return null;
-            }
-
-            var extension = Path.GetExtension(fileInfo.Name).ToLowerInvariant();
-
-            // Handle SVG files by parsing viewBox
-            if (extension == ".svg")
-            {
-                string svgContent;
-                using (var stream = fileInfo.CreateReadStream())
-                using (var reader = new StreamReader(stream))
-                {
-                    svgContent = reader.ReadToEnd();
-                }
-
-                var viewBoxMatch = System.Text.RegularExpressions.Regex.Match(
-                    svgContent,
-                    @"viewBox\s*=\s*""[^""]*?\s+[^""]*?\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s*""",
-                    System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-
-                if (viewBoxMatch.Success &&
-                    double.TryParse(viewBoxMatch.Groups[1].Value, out var width) &&
-                    double.TryParse(viewBoxMatch.Groups[2].Value, out var height) &&
-                    height > 0)
-                {
-                    return $"{width} / {height}";
-                }
-                else
-                {
-                    Logger.LogWarning("Failed to parse viewBox from SVG {Src}. First 200 chars: {Preview}",
-                        Src, svgContent.Substring(0, Math.Min(200, svgContent.Length)));
-                }
-            }
-            // Handle raster images with ImageSharp
-            else if (extension is ".png" or ".jpg" or ".jpeg" or ".gif" or ".webp")
-            {
-                using var stream = fileInfo.CreateReadStream();
-                using var image = SixLabors.ImageSharp.Image.Load(stream);
-                if (image.Width > 0 && image.Height > 0)
-                {
-                    return $"{image.Width} / {image.Height}";
-                }
-                else
-                {
-                    Logger.LogWarning("Image {Src} has invalid dimensions: {Width}x{Height}", Src, image.Width, image.Height);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(ex, "Error calculating aspect ratio for {Src}", Src);
-        }
-
-        return null;
-    }
-
-    private Microsoft.Extensions.FileProviders.IFileInfo? FindFileInProviders(string relativePath)
-    {
-        // Try WebRootFileProvider first
-        var fileInfo = WebHostEnvironment.WebRootFileProvider.GetFileInfo(relativePath);
-        if (fileInfo.Exists)
-            return fileInfo;
-
-        // If WebRootFileProvider is a composite, search all providers
-        if (WebHostEnvironment.WebRootFileProvider is Microsoft.Extensions.FileProviders.CompositeFileProvider composite)
-        {
-            foreach (var provider in composite.FileProviders)
-            {
-                fileInfo = provider.GetFileInfo(relativePath);
-                if (fileInfo.Exists)
-                    return fileInfo;
-            }
-        }
-
-        // Also try ContentRootFileProvider as a fallback
-        fileInfo = WebHostEnvironment.ContentRootFileProvider.GetFileInfo(relativePath);
-        if (fileInfo.Exists)
-            return fileInfo;
-
-        // Try with "Content/" prefix since that's where the assets actually are
-        var contentPath = $"Content/{relativePath}";
-        fileInfo = WebHostEnvironment.ContentRootFileProvider.GetFileInfo(contentPath);
-        if (fileInfo.Exists)
-            return fileInfo;
-
-        return null;
-    }
+    [Parameter]
+    public string Alt { get; set; } = "Screenshot";
 }

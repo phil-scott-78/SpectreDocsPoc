@@ -22,7 +22,7 @@ For **drawing custom graphics programmatically** (shapes, lines, patterns), use 
 
 Load an image from a file path. The widget automatically handles color conversion and scaling.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.BasicCanvasImageExample
 ```
 
@@ -32,7 +32,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Bas
 
 The simplest approach loads an image directly from the filesystem.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.BasicCanvasImageExample
 ```
 
@@ -40,7 +40,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Bas
 
 Use byte arrays when working with images from memory, databases, or network sources.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageFromBytesExample
 ```
 
@@ -48,7 +48,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use streams for efficient processing of large images or when reading from network resources.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageFromStreamExample
 ```
 
@@ -58,7 +58,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use `MaxWidth()` to constrain images to fit within your console layout while maintaining aspect ratio.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageMaxWidthExample
 ```
 
@@ -66,7 +66,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use `NoMaxWidth()` to remove size constraints and display the image at full resolution (limited by console dimensions).
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageNoMaxWidthExample
 ```
 
@@ -74,7 +74,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use `PixelWidth()` to control the character-to-pixel ratio. Lower values create taller, narrower images; higher values create shorter, wider ones.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImagePixelWidthExample
 ```
 
@@ -86,7 +86,7 @@ When images are scaled, different resampling algorithms affect quality and perfo
 
 Use `BicubicResampler()` for the highest quality when scaling images. This is the default and works well for most scenarios.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageBicubicResamplerExample
 ```
 
@@ -94,7 +94,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use `BilinearResampler()` for a balance between quality and performance when rendering many images.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageBilinearResamplerExample
 ```
 
@@ -102,7 +102,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use `NearestNeighborResampler()` for the fastest scaling, which creates a pixelated effect. Good for retro aesthetics or pixel art.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageNearestNeighborResamplerExample
 ```
 
@@ -110,7 +110,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Compare the visual differences between resampling methods to choose the right one for your needs.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageResamplerComparisonExample
 ```
 
@@ -120,7 +120,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Use `Mutate()` to apply ImageSharp transformations like rotation, flipping, or cropping before rendering.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageMutateExample
 ```
 
@@ -128,7 +128,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Chain multiple mutations together for complex image processing effects.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageAdvancedMutateExample
 ```
 
@@ -136,7 +136,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 Combine sizing, resampling, and mutations for complete control over image appearance.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageCompleteExample
 ```
 

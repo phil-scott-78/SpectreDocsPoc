@@ -1,4 +1,6 @@
-﻿using Mdazor;
+﻿using System.Collections.Immutable;
+using Mdazor;
+using MonorailCss.Parser.Custom;
 using MonorailCss.Theme;
 using Spectre.Console;
 using MyLittleContentEngine;
@@ -74,6 +76,41 @@ builder.Services.AddContentEngineService(_ => new ContentEngineOptions
             PrimaryHue = 200,
             ColorSchemeGenerator = i => (i + 260, i + 15, i -15),
             BaseColorName = ColorNames.Neutral,
+        },
+        CustomCssFrameworkSettings = settings =>
+        {
+            return settings = settings with { CustomUtilities =  [
+                new UtilityDefinition()
+                {
+                    Pattern = "scrollbar-thin",
+                    Declarations = ImmutableList.Create(
+                        new CssDeclaration("scrollbar-width", "thin")
+                    )
+                },
+                new UtilityDefinition
+                {
+                    Pattern = "scrollbar-thumb-*",
+                    IsWildcard = true,
+                    Declarations = ImmutableList.Create(
+                        new CssDeclaration("--tw-scrollbar-thumb-color", "--value(--color-*)")
+                    )
+                },
+                new UtilityDefinition
+                {
+                    Pattern = "scrollbar-track-*",
+                    IsWildcard = true,
+                    Declarations = ImmutableList.Create(
+                        new CssDeclaration("--tw-scrollbar-track-color", "--value(--color-*)")
+                    )
+                },
+                new UtilityDefinition
+                {
+                    Pattern = "scrollbar-color",
+                    Declarations = ImmutableList.Create(
+                        new CssDeclaration("scrollbar-color", "var(--tw-scrollbar-thumb-color) var(--tw-scrollbar-track-color)")
+                    )
+                }
+            ]};
         }
     });
 

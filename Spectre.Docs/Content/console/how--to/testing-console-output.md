@@ -11,7 +11,7 @@ When you need to test console output, use `TestConsole` from `Spectre.Console.Te
 
 To enable testing, accept `IAnsiConsole` as a parameter.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.AcceptConsoleAsParameter(Spectre.Console.IAnsiConsole)
 ```
 
@@ -19,7 +19,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.AcceptCon
 
 To test code, pass `TestConsole` instead of the real console.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.StructureForTestability
 ```
 
@@ -27,7 +27,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.Structure
 
 To make methods testable, have them accept `IAnsiConsole`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.PrintGreeting(Spectre.Console.IAnsiConsole,System.String)
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.PrintGree
 
 To test prompts, queue input with `console.Input.PushTextWithEnter()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.TestingConsoleOutputHowTo.GetUserName(Spectre.Console.IAnsiConsole)
 ```
 

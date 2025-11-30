@@ -23,7 +23,7 @@ For **emphasized section headers with decorative borders**, use [Panel](/console
 
 Create a simple horizontal divider that spans the full console width.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.BasicRuleExample
 ```
 
@@ -31,7 +31,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.BasicRuleE
 
 Use titles to identify what comes after the rule, turning it into a section header.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleTitleExample
 ```
 
@@ -39,7 +39,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleTitleE
 
 Position titles on the left, center, or right to match your layout needs.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleTitleAlignmentExample
 ```
 
@@ -47,7 +47,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleTitleA
 
 Choose a line style to match your application's visual tone or to indicate different section types.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleBorderStylesExample
 ```
 
@@ -60,7 +60,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleBorder
 
 Apply colors to emphasize importance or categorize sections by type.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleColorExample
 ```
 
@@ -68,7 +68,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleColorE
 
 Use dim or muted colors for subtle dividers that don't distract from content.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleSubtleSeparatorExample
 ```
 
@@ -78,7 +78,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleSubtle
 
 Use rules to organize multi-section output like system reports or status dashboards.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleSectionDividersExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleSectio
 
 Combine extension methods for concise rule creation.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleFluentExample
 ```
 

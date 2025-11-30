@@ -24,7 +24,7 @@ For **precise control over column widths and alignment**, use [Grid](/console/wi
 
 Pass any collection of renderables to create columns. Columns automatically calculates how many items fit per row based on available width.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.BasicColumnsExample
 ```
 
@@ -34,7 +34,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.BasicCo
 
 Create columns directly from strings, which are automatically converted to markup.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsFromStringsExample
 ```
 
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 Combine different renderable types (panels, tables, markup) in a single column layout.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsMixedContentExample
 ```
 
@@ -52,7 +52,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 Use `Expand` (default: `true`) to fill available width with evenly distributed columns. Use `Collapse()` to fit columns to their content width.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsExpandExample
 ```
 
@@ -60,7 +60,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 Adjust the `Padding` property to control the gap between columns. Default padding is 1 space on the right.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsPaddingExample
 ```
 
@@ -68,7 +68,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 Columns automatically wraps items to new rows when they exceed available console width, adjusting the column count dynamically.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsWrappingExample
 ```
 
@@ -78,7 +78,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 Combine multiple Columns widgets to create complex multi-row dashboard layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsDashboardExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 Use extension methods like `Collapse()` and `Expand()` for cleaner configuration.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.ColumnsFluentExample
 ```
 

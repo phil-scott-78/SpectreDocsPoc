@@ -24,7 +24,7 @@ For **structured data with visible borders**, use [Table](/console/widgets/table
 
 Add columns first, then populate rows with content. Each row must have the same number of cells as columns.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.BasicGridExample
 ```
 
@@ -34,7 +34,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.BasicGridE
 
 Use fixed widths to control column sizing precisely, or omit width for auto-sizing based on content.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridColumnWidthExample
 ```
 
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridColumn
 
 Align content within columns using `Justify.Left`, `Justify.Right`, or `Justify.Center`. Right-align numeric data for easier comparison.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridAlignmentExample
 ```
 
@@ -50,7 +50,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridAlignm
 
 Control spacing between columns with custom padding. Adjust the right padding to increase or decrease column separation.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridPaddingExample
 ```
 
@@ -58,7 +58,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridPaddin
 
 Use `NoWrap` when content should be truncated rather than wrapped to multiple lines.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridNoWrapExample
 ```
 
@@ -68,7 +68,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridNoWrap
 
 Use `Expand = true` to make the grid fill available console width—useful for dashboards or full-width layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridExpandExample
 ```
 
@@ -76,7 +76,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridExpand
 
 Constrain the entire grid to a specific width when you need precise sizing.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridWidthExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridWidthE
 
 Insert empty rows to create visual separation between groups of content.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridEmptyRowsExample
 ```
 
@@ -94,7 +94,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridEmptyR
 
 Use the `AddColumns()` extension method to quickly add several columns at once.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridAddColumnsExample
 ```
 
@@ -104,7 +104,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridAddCol
 
 Embed other widgets like Panels, Charts, or Progress bars within grid cells for rich layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridNestedContentExample
 ```
 
@@ -112,7 +112,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridNested
 
 Combine multiple features to create sophisticated layouts with mixed content types.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridComplexLayoutExample
 ```
 
@@ -120,7 +120,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridComple
 
 Create multi-level layouts by nesting grids to build complex dashboard-style interfaces.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridDashboardExample
 ```
 

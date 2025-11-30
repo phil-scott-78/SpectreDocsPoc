@@ -24,7 +24,7 @@ For **multiple selections**, use [MultiSelectionPrompt](/console/prompts/multi-s
 
 The simplest selection prompt needs a title and choices.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.BasicSelectionExample
 ```
 
@@ -32,7 +32,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use markup to style the title and draw attention to key information.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.SelectionWithTitleExample
 ```
 
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 You can add choices using params arrays, IEnumerable collections, or individual AddChoice calls.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.AddChoicesVariationsExample
 ```
 
@@ -50,7 +50,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `AddChoiceGroup()` to organize choices into categories with parent-child relationships.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.HierarchicalChoicesExample
 ```
 
@@ -60,7 +60,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `PageSize()` to control how many items display at once, and customize the hint text shown when more choices exist.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.PageSizeExample
 ```
 
@@ -68,7 +68,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Enable `WrapAround()` for circular navigation - pressing up at the top jumps to the bottom, and vice versa.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.WrapAroundExample
 ```
 
@@ -78,7 +78,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `EnableSearch()` to let users type and filter the list instantly - essential for long lists.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.SearchEnabledExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Customize how matched characters are highlighted during search with `SearchHighlightStyle()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.SearchHighlightStyleExample
 ```
 
@@ -96,7 +96,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `HighlightStyle()` to customize the appearance of the currently selected item.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.HighlightStyleExample
 ```
 
@@ -104,7 +104,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `DisabledStyle()` to style non-selectable items like group headers.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.DisabledStyleExample
 ```
 
@@ -114,7 +114,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `SelectionMode.Leaf` to only allow selecting leaf nodes - parent group headers become non-selectable.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.SelectionModeLeafExample
 ```
 
@@ -122,7 +122,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `SelectionMode.Independent` to allow selecting both parent groups and their children.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.SelectionModeIndependentExample
 ```
 
@@ -130,7 +130,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 Use `UseConverter()` to display custom formatted text for complex objects while returning the actual object.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.CustomConverterExample
 ```
 
@@ -138,7 +138,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 This comprehensive example combines search, pagination, wrap-around, custom styling, and complex objects for a realistic project selection menu.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.CompleteExampleWithAllFeatures
 ```
 

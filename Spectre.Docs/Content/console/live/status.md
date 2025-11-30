@@ -27,7 +27,7 @@ For **operations with measurable progress** (file downloads, batch processing), 
 
 Create a status display by calling `AnsiConsole.Status().Start()` with a message and a callback containing your work.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.BasicStatusExample
 ```
 
@@ -37,7 +37,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.BasicStatus
 
 Select a spinner animation that matches your application's style or the type of operation being performed.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinnerExample
 ```
 
@@ -48,7 +48,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinn
 
 Apply colors and styles to the spinner to convey meaning or match your application's theme.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinnerStyleExample
 ```
 
@@ -56,7 +56,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinn
 
 Use `StartAsync()` when working with asynchronous code to avoid blocking the UI thread.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusAsyncExample
 ```
 
@@ -64,7 +64,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusAsync
 
 Status operations can return values from the callback, allowing you to retrieve results after completion.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusWithReturnValueExample
 ```
 
@@ -74,7 +74,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusWithR
 
 Update the status message as your operation progresses through different stages.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusDynamicUpdateExample
 ```
 
@@ -82,7 +82,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusDynam
 
 Switch spinner animations at runtime to indicate different types of activity.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinnerChangeExample
 ```
 
@@ -90,7 +90,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinn
 
 Disable automatic refresh when you need precise control over when the status display updates.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusManualRefreshExample
 ```
 
@@ -98,7 +98,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusManua
 
 Use Spectre.Console's markup syntax in status text to add colors, styles, and emphasis.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusWithMarkupExample
 ```
 

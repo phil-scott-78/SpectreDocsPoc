@@ -14,7 +14,7 @@ When your application needs user input, use the interactive prompts.
 
 To get text input, use `AnsiConsole.Ask<T>()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AskForText
 ```
 
@@ -22,7 +22,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AskForTe
 
 To get a yes/no answer, use `AnsiConsole.Confirm()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AskForConfirmation
 ```
 
@@ -30,7 +30,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AskForCo
 
 To let users pick from options, use `SelectionPrompt`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.PresentChoices
 ```
 
@@ -38,7 +38,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.PresentC
 
 To let users select multiple items, use `MultiSelectionPrompt`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AllowMultipleSelections
 ```
 

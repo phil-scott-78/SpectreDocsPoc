@@ -19,16 +19,13 @@ Here's what our coffee brewing simulation will look like:
 - Basic C# knowledge
 - Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
 
-> [!CAUTION]
-> Status spinners are not thread safe. Using them together with other interactive components such as prompts, progress displays, or other status displays is not supported.
-
 <Steps>
 <Step stepNumber="1">
 **Show a Basic Spinner**
 
 Let's start by showing a spinner while our "coffee grinder" runs. The `Status()` method displays an animated spinner with a message:
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.ShowBasicSpinner
 ```
 
@@ -50,7 +47,7 @@ Your first status spinner.
 
 Real tasks have multiple stages. Let's update the status message as our coffee progresses through grinding, brewing, and pouring:
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.UpdateStatusText
 ```
 
@@ -72,7 +69,7 @@ Your status now reflects what's actually happening.
 
 Spectre.Console includes many spinner styles. Let's try a few to see the difference:
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.TryDifferentSpinners
 ```
 
@@ -94,7 +91,7 @@ You can now customize the look and feel of your spinners.
 
 Let's put it all together into a complete brewing experience that changes both the message and spinner style at each stage:
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.ShowCompleteCoffeeBrew
 ```
 

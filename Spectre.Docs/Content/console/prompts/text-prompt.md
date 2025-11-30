@@ -25,7 +25,7 @@ For **selecting from a predefined list of options**, use [SelectionPrompt](/cons
 
 Use `AnsiConsole.Ask<T>()` for the simplest way to prompt for user input.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.BasicAskExample
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Basi
 
 You can provide a default value that users can accept by pressing Enter.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.AskWithDefaultExample
 ```
 
@@ -43,7 +43,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.AskW
 
 Use `DefaultValue()` to set a default and control whether it's shown to the user.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.DefaultValueExample
 ```
 
@@ -51,7 +51,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Defa
 
 TextPrompt automatically converts input to your target type using built-in type converters.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.TypeConversionExample
 ```
 
@@ -61,7 +61,7 @@ This works with any type that has a `TypeConverter`, including `int`, `decimal`,
 
 For more control over prompt behavior, create a `TextPrompt<T>` instance directly instead of using `Ask()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.TextPromptBasicExample
 ```
 
@@ -71,7 +71,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Text
 
 Use `Secret()` to mask sensitive input with asterisks by default.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.SecretInputExample
 ```
 
@@ -79,7 +79,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Secr
 
 Specify a custom mask character or use `null` to completely hide input.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.CustomMaskExample
 ```
 
@@ -89,7 +89,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Cust
 
 Use `Validate()` with a boolean function to check if input is acceptable.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.SimpleValidationExample
 ```
 
@@ -97,7 +97,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Simp
 
 For more complex validation with custom error messages, use `ValidationResult`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.RichValidationExample
 ```
 
@@ -107,7 +107,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Rich
 
 Use `AddChoices()` to restrict input to specific values, displayed as options to the user.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.ChoicesExample
 ```
 
@@ -117,7 +117,7 @@ This is useful for limited options where users can type their choice. For better
 
 Use `HideChoices()` when you want to validate against specific values without revealing them.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.HiddenChoicesExample
 ```
 
@@ -125,7 +125,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Hidd
 
 Use `AllowEmpty()` to make input optional, allowing users to press Enter without typing anything.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.AllowEmptyExample
 ```
 
@@ -133,7 +133,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Allo
 
 Customize the appearance of your prompts with different colors for the prompt text, default values, and choices.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.StylingExample
 ```
 
@@ -141,7 +141,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Styl
 
 Use `WithConverter()` to control how choices are displayed to users while keeping their underlying values.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.CustomConverterExample
 ```
 

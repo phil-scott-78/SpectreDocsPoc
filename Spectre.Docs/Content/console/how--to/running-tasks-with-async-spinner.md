@@ -11,7 +11,7 @@ When you have an async operation, use the `.Spinner()` extension.
 
 To display a spinner during an await, call `.Spinner()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.ShowSpinnerWhileWaiting
 ```
 
@@ -19,7 +19,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.ShowSp
 
 To use a different spinner, pass a `Spinner.Known` value.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.ChangeSpin­nerAnimation
 ```
 
@@ -27,7 +27,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.Change
 
 To get a value back, call `.Spinner()` on a `Task<T>`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.GetResultWithSpinner
 ```
 

@@ -21,7 +21,7 @@ For **programmatic control over styling** or when styles are determined at runti
 
 Use `AnsiConsole.MarkupLine()` for quick styled output.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.BasicMarkupExample
 ```
 
@@ -29,7 +29,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.BasicMar
 
 Create `Markup` objects when you need to embed styled text in containers like panels, tables, or layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupObjectExample
 ```
 
@@ -37,7 +37,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupOb
 
 Use `Markup.Escape()` when working with user-provided or dynamic content that might contain bracket characters. Without escaping, brackets are interpreted as markup tags.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupEscapeExample
 ```
 
@@ -45,7 +45,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupEs
 
 Markup objects work well as content inside panels, tables, and other container widgets.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupInContainersExample
 ```
 
@@ -53,7 +53,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupIn
 
 Use `Markup.Remove()` to strip all markup tags from a string, leaving only plain text.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupRemoveExample
 ```
 

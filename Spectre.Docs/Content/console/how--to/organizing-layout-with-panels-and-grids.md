@@ -11,7 +11,7 @@ When you need to structure console output, use layout widgets.
 
 To emphasize content with a border, use `Panel`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.WrapInPanel
 ```
 
@@ -19,7 +19,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.WrapInPanel
 
 To place content horizontally, use `Columns`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.ArrangeSideBySide
 ```
 
@@ -27,7 +27,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.ArrangeSideBy
 
 To arrange content in rows and columns, use `Grid`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.CreateGrid
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.CreateGrid
 
 To center content horizontally, use `Align.Center()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.CenterContent
 ```
 

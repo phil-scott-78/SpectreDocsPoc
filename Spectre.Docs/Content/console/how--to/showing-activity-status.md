@@ -14,7 +14,7 @@ When you have an operation without measurable progress, use `AnsiConsole.Status(
 
 To indicate activity, wrap your operation in a status context.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.ShowSpinner
 ```
 
@@ -22,7 +22,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.ShowSpin
 
 To show what's happening, call `ctx.Status()` with new text.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.UpdateStatusMessage
 ```
 
@@ -30,7 +30,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.UpdateSt
 
 If you want a different animation, use `.Spinner()` and `.SpinnerStyle()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.ChangeSpinnerStyle
 ```
 
@@ -38,7 +38,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.ChangeSp
 
 To use with async operations, call `.StartAsync()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.UseAsync
 ```
 

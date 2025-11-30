@@ -23,7 +23,7 @@ For **simple key-value pairs**, consider using a table with hidden headers or a 
 
 Add columns first, then rows. Each row must have the same number of cells as columns.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.BasicTableExample
 ```
 
@@ -33,7 +33,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.BasicTabl
 
 Choose from 18 built-in border styles. Use `RoundedBorder()` for a modern look or `AsciiBorder()` for maximum compatibility.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableBordersExample
 ```
 
@@ -44,7 +44,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableBord
 
 Use `BorderColor()` to match your application's theme. Combine with markup in headers for emphasis.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableColorsExample
 ```
 
@@ -54,7 +54,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableColo
 
 Align column content with `LeftAligned()`, `Centered()`, or `RightAligned()`. Right-align numeric data for easier comparison.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableAlignmentExample
 ```
 
@@ -62,7 +62,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableAlig
 
 Fix column widths with `Width()`, adjust spacing with `PadLeft()` and `PadRight()`, or prevent wrapping with `NoWrap()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.ColumnConfigurationExample
 ```
 
@@ -70,7 +70,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.ColumnCon
 
 Headers display by default. Add footers for totals or summaries. Use `HideHeaders()` for key-value style layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.HeadersAndFootersExample
 ```
 
@@ -78,7 +78,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.HeadersAn
 
 Tables without headers work well for configuration or property displays.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.HiddenHeadersExample
 ```
 
@@ -86,7 +86,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.HiddenHea
 
 Add context with a title above the table and a caption below. Both support markup.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TitlesAndCaptionsExample
 ```
 
@@ -96,7 +96,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TitlesAnd
 
 Use `ShowRowSeparators()` to add horizontal lines between rows, improving readability for dense data.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.RowSeparatorsExample
 ```
 
@@ -104,7 +104,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.RowSepara
 
 Insert empty rows to group related data visually.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.EmptyRowsExample
 ```
 
@@ -112,7 +112,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.EmptyRows
 
 By default, tables use minimum width. Use `Expand()` to fill available console width—useful for reports or dashboards.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.ExpandModeExample
 ```
 
@@ -122,7 +122,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.ExpandMod
 
 Embed tables within cells for hierarchical data or sub-groupings.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.NestedTablesExample
 ```
 
@@ -130,7 +130,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.NestedTab
 
 Cells accept any `IRenderable`—combine Markup, Panels, and other widgets for rich layouts.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.MixedContentExample
 ```
 
@@ -138,7 +138,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.MixedCont
 
 Modify tables at runtime with `UpdateCell()`, `InsertRow()`, and `RemoveRow()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.DynamicTableExample
 ```
 

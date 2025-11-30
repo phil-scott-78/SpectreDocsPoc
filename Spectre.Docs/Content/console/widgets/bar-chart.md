@@ -23,7 +23,7 @@ For **part-to-whole relationships** (showing how pieces make up a total), use [B
 
 Add items with a label, value, and optional color.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BasicBarChartExample
 ```
 
@@ -31,13 +31,13 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BasicB
 
 Use `Label()` to add context above the chart. Supports markup for styling.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartLabelExample
 ```
 
 Align the label with `LeftAlignLabel()`, `CenterLabel()`, or `RightAlignLabel()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartLabelAlignmentExample
 ```
 
@@ -47,7 +47,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarCha
 
 When displaying currency, percentages, or units, use `UseValueFormatter()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartFormattingExample
 ```
 
@@ -55,7 +55,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarCha
 
 Use `HideValues()` when the visual comparison matters more than exact numbers.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartValuesExample
 ```
 
@@ -63,7 +63,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarCha
 
 By default, bars scale relative to the largest value. Use `WithMaxValue()` to set a fixed scale—useful when comparing against a target or showing progress toward a goal.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartMaxValueExample
 ```
 
@@ -71,7 +71,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarCha
 
 Use `AddItems()` to add multiple items from a collection of `BarChartItem` objects.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartAddItemsExample
 ```
 

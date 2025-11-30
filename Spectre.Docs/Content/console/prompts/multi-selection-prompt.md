@@ -25,7 +25,7 @@ For **single-item selection**, use [SelectionPrompt](/console/prompts/selection-
 
 Create a multi-selection prompt by specifying the type and adding choices. Users navigate with arrow keys, toggle selections with spacebar, and confirm with enter. The result is a `List<T>` of selected items.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.BasicMultiSelectionPromptExample
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `AddChoices()` to add multiple options at once from a collection.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.AddChoicesExample
 ```
 
@@ -43,7 +43,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `AddChoiceGroup()` to organize related choices into labeled sections, making it easier for users to understand the structure of available options.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.GroupedChoicesExample
 ```
 
@@ -51,7 +51,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `Select()` to mark specific items as checked by default. This is useful when you want to suggest recommended options while still allowing users to customize their selection.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.PreSelectItemsExample
 ```
 
@@ -61,7 +61,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `Required()` to enforce that users must select at least one item before they can confirm. Use `NotRequired()` to allow an empty selection (no items checked).
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.RequiredSelectionExample
 ```
 
@@ -71,7 +71,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `AddChild()` to create nested tree structures with parent and child items. This is ideal for organizing permissions, file systems, or any hierarchical data.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.HierarchicalChoicesExample
 ```
 
@@ -81,13 +81,13 @@ The `Mode()` method controls which items in a hierarchy can be selected:
 
 **Leaf Mode (Default)**: Only leaf nodes (items without children) can be selected. Use this when you want users to select specific items, not categories.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.SelectionModeLeafExample
 ```
 
 **Independent Mode**: Any node can be selected, whether it has children or not. Use this when selecting a parent folder should be different from selecting all its contents.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.SelectionModeIndependentExample
 ```
 
@@ -97,7 +97,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `PageSize()` to control how many items are visible at once. This improves readability for long lists by showing a scrollable window.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.PageSizeExample
 ```
 
@@ -105,7 +105,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `WrapAround()` to enable circular navigation where pressing down on the last item jumps to the first item, and pressing up on the first item jumps to the last.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.WrapAroundExample
 ```
 
@@ -115,7 +115,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `HighlightStyle()` to customize the appearance of the currently focused item with colors and text decorations.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.HighlightStyleExample
 ```
 
@@ -123,7 +123,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `InstructionsText()` and `MoreChoicesText()` to provide clearer guidance to users about how to interact with the prompt.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.CustomInstructionsExample
 ```
 
@@ -133,7 +133,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 Use `UseConverter()` to control how complex objects are displayed in the prompt while still working with the actual object type in your code.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.UseConverterExample
 ```
 
@@ -141,7 +141,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 This example demonstrates working with custom record types, including display conversion, pre-selection, and processing the selected results.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.ComplexObjectExample
 ```
 

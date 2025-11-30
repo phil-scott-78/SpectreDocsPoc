@@ -1,5 +1,5 @@
 ---
-title: "Getting Started: Building a Rich Console App"
+title: "Building a Rich Console App"
 description: "A beginner-friendly tutorial that walks through creating a simple console application using Spectre.Console"
 uid: "console-getting-started"
 order: 1030
