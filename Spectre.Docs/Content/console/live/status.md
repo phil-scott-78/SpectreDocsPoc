@@ -20,6 +20,9 @@ Use Status when you need to **indicate ongoing work without tracking specific pr
 
 For **operations with measurable progress** (file downloads, batch processing), use [Progress](/console/live/progress) instead.
 
+> [!CAUTION]
+> Status display is not thread safe. Using it together with other interactive components such as prompts, progress displays, or other status displays is not supported.
+
 ## Basic Usage
 
 Create a status display by calling `AnsiConsole.Status().Start()` with a message and a callback containing your work.

@@ -17,6 +17,9 @@ Use SelectionPrompt when you need to **present a clear set of mutually exclusive
 
 For **multiple selections**, use [MultiSelectionPrompt](/console/prompts/multi-selection-prompt) instead. For **free-form text input**, use [TextPrompt](/console/prompts/text-prompt) instead.
 
+> [!CAUTION]
+> Selection prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
+
 ## Basic Usage
 
 The simplest selection prompt needs a title and choices.

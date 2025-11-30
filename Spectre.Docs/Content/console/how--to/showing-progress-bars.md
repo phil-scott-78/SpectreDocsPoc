@@ -7,6 +7,9 @@ order: 2100
 
 When you have operations with measurable progress, use `AnsiConsole.Progress()`.
 
+> [!CAUTION]
+> Progress bars are not thread safe. Using them together with other interactive components such as prompts, status displays, or other progress displays is not supported.
+
 ## Create a Progress Bar
 
 To show progress, call `ctx.AddTask()` and update with `task.Increment()`.

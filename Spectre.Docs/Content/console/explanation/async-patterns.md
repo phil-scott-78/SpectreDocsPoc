@@ -7,6 +7,9 @@ order: 6200
 
 This guide covers patterns and best practices for combining Spectre.Console's live rendering features (Progress, Status, Live Display) with asynchronous programming in .NET, enabling responsive console applications that handle multiple concurrent operations effectively.
 
+> [!CAUTION]
+> Live rendering features (Progress, Status, Live Display) and prompts are not thread safe. Using them together with other interactive components is not supported.
+
 **Key Topics Covered:**
 
 * **Async contexts** - Using `StartAsync()` methods for progress, status, and live displays with async operations

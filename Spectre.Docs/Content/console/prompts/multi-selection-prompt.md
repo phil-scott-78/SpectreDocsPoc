@@ -18,6 +18,9 @@ Use MultiSelectionPrompt when you need to **allow users to select multiple items
 
 For **single-item selection**, use [SelectionPrompt](/console/prompts/selection-prompt) instead.
 
+> [!CAUTION]
+> Multi-selection prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
+
 ## Basic Usage
 
 Create a multi-selection prompt by specifying the type and adding choices. Users navigate with arrow keys, toggle selections with spacebar, and confirm with enter. The result is a `List<T>` of selected items.

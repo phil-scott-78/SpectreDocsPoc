@@ -18,6 +18,9 @@ Use TextPrompt when you need to **collect user input** from the console. Common 
 
 For **selecting from a predefined list of options**, use [SelectionPrompt](/console/prompts/selection) instead, which provides a better user experience with arrow key navigation.
 
+> [!CAUTION]
+> Text prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
+
 ## Basic Usage
 
 Use `AnsiConsole.Ask<T>()` for the simplest way to prompt for user input.

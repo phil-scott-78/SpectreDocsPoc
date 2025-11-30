@@ -7,6 +7,9 @@ order: 2101
 
 When you have an operation without measurable progress, use `AnsiConsole.Status()`.
 
+> [!CAUTION]
+> Status spinners are not thread safe. Using them together with other interactive components such as prompts, progress displays, or other status displays is not supported.
+
 ## Show a Spinner
 
 To indicate activity, wrap your operation in a status context.

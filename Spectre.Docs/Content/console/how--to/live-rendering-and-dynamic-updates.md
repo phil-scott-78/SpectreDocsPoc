@@ -7,6 +7,9 @@ order: 2300
 
 When you need to update output without scrolling, use `AnsiConsole.Live()`.
 
+> [!CAUTION]
+> Live rendering is not thread safe. Using it together with other interactive components such as prompts, progress displays, or status displays is not supported.
+
 ## Update in Place
 
 To modify content and refresh the display, call `ctx.Refresh()`.

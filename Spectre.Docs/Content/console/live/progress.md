@@ -20,6 +20,9 @@ Use Progress when you need to **track completion status for long-running operati
 
 For **simple status messages without progress tracking**, use [Status](/console/live/status) instead. For **real-time data updates**, consider [Live Display](/console/live/live-display).
 
+> [!CAUTION]
+> Progress display is not thread safe. Using it together with other interactive components such as prompts, status displays, or other progress displays is not supported.
+
 ## Basic Usage
 
 Create a progress context and add tasks to track their completion.

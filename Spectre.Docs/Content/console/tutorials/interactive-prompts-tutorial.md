@@ -19,6 +19,9 @@ Here's what our pizza order flow will look like:
 - Basic C# knowledge
 - Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
 
+> [!CAUTION]
+> Prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
+
 <Steps>
 <Step stepNumber="1">
 **Ask for the Customer's Name**

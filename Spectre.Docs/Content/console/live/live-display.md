@@ -20,6 +20,9 @@ Use LiveDisplay when you need to **update arbitrary content in place without cre
 
 For **progress tracking with multiple tasks**, use [Progress](/console/live/progress) instead. For **simple spinner animations**, use [Status](/console/live/status).
 
+> [!CAUTION]
+> Live display is not thread safe. Using it together with other interactive components such as prompts, progress displays, or status displays is not supported.
+
 ## Basic Usage
 
 Create a live display by passing any renderable to `AnsiConsole.Live()`, then update it within the context.

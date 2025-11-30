@@ -7,6 +7,9 @@ order: 2150
 
 When your application needs user input, use the interactive prompts.
 
+> [!CAUTION]
+> Prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
+
 ## Ask for Text
 
 To get text input, use `AnsiConsole.Ask<T>()`.

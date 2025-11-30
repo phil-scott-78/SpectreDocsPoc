@@ -19,6 +19,9 @@ Here's what our coffee brewing simulation will look like:
 - Basic C# knowledge
 - Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
 
+> [!CAUTION]
+> Status spinners are not thread safe. Using them together with other interactive components such as prompts, progress displays, or other status displays is not supported.
+
 <Steps>
 <Step stepNumber="1">
 **Show a Basic Spinner**
