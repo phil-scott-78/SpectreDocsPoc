@@ -79,6 +79,13 @@ Use `AddItems()` to add multiple items from a collection of `BreakdownChartItem`
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BreakdownChartExamples.BreakdownChartAddItemsExample
 ```
 
+## See Also
+
+- [How to Draw Charts and Diagrams](/console/how--to/drawing-charts-and-diagrams) - Step-by-step guide for creating charts
+- [BarChart Widget](/console/widgets/bar-chart) - For comparing independent values
+- [Color Reference](/console/reference/color-reference) - Available colors for segments
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.BreakdownChart" />

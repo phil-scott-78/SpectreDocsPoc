@@ -140,6 +140,13 @@ Combine sizing, resampling, and mutations for complete control over image appear
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.CanvasImageCompleteExample
 ```
 
+## See Also
+
+- [How to Use Canvas for Pixel Art and Images](/console/how--to/using-canvas-for-pixel-art-and-images) - Step-by-step guide
+- [Canvas Widget](/console/widgets/canvas) - Draw custom graphics programmatically
+- [FigletText Widget](/console/widgets/figlet) - ASCII art text banners
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Color support by terminal
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.CanvasImage" />

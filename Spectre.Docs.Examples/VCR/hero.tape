@@ -8,4 +8,4 @@ Set Cols 82
 Set Rows 16
 Set EndBuffer 2s
 
-Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build hero"
+Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build showcase hero"

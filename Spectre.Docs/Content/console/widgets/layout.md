@@ -113,6 +113,14 @@ Update section content in response to events or state changes for interactive in
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.LayoutExamples.LayoutDynamicUpdateExample
 ```
 
+## See Also
+
+- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
+- [How to Live Rendering and Dynamic Updates](/console/how--to/live-rendering-and-dynamic-updates) - Real-time layout updates
+- [Columns Widget](/console/widgets/columns) - Simple side-by-side content
+- [Grid Widget](/console/widgets/grid) - Tabular layouts with borders
+- [Live Display](/console/live/live-display) - Updating layouts in real-time
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Layout" />

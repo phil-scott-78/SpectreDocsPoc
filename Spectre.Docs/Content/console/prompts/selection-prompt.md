@@ -139,6 +139,14 @@ This comprehensive example combines search, pagination, wrap-around, custom styl
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples.CompleteExampleWithAllFeatures
 ```
 
+## See Also
+
+- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Step-by-step guide
+- [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
+- [MultiSelectionPrompt](/console/prompts/multi-selection-prompt) - Select multiple items
+- [TextPrompt](/console/prompts/text-prompt) - Free-form text input
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Interactive mode support
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.SelectionPrompt`1" />

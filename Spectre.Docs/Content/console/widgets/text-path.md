@@ -80,6 +80,14 @@ TextPath handles both Windows and Unix path formats, normalizing separators for 
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPathUnixExample
 ```
 
+## See Also
+
+- [Text Widget](/console/widgets/text) - Plain styled text
+- [Markup Widget](/console/widgets/markup) - Inline markup syntax
+- [Tree Widget](/console/widgets/tree) - Directory tree structures
+- [Color Reference](/console/reference/color-reference) - Colors for path components
+- [Text Style Reference](/console/reference/text-style-reference) - Style decorations
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.TextPath" />

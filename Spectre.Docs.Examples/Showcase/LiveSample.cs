@@ -2,78 +2,324 @@ using Spectre.Console;
 
 namespace Spectre.Docs.Examples.Showcase;
 
-internal class LiveSample : BaseSample
+/// <summary>Demonstrates live display with scripted failure/recovery narrative.</summary>
+public class LiveSample : BaseSample
 {
+    private const int Cluster = 0;
+    private const int Backup = 1;
+    private const int Mainframe = 2;
+    private const int DevEnv = 3;
+    private const int TestEnv = 4;
+    private const int TheCloud = 5;
+
+    private static readonly Random _random = new();
+
+    private static readonly string[] _subsystemNames =
+    [
+        "Core Cluster",
+        "Emergency Backup",
+        "Heritage Mainframe",
+        "Prototype Lab",
+        "Verification Zone",
+        "The Cloud™"
+    ];
+
+    /// <inheritdoc />
     public override void Run(IAnsiConsole console)
     {
-        var table = new Table();
+        var table = CreateMonitorTable();
+        var states = CreateInitialStates();
+        var keyframes = ExpandNarrative(CreateNarrativeKeyframes());
 
-        // Animate
         console.Live(table)
             .AutoClear(false)
-            .Overflow(VerticalOverflow.Ellipsis)
-            .Cropping(VerticalOverflowCropping.Top)
             .Start(ctx =>
             {
-                void Update(int delay, Action action)
+                // Run through the narrative twice
+                for (var loop = 0; loop < 2; loop++)
                 {
-                    action();
-                    ctx.Refresh();
-                    Thread.Sleep(delay);
+                    foreach (var keyframe in keyframes)
+                    {
+                        ApplyKeyframe(states, keyframe);
+                        RenderTable(table, states);
+                        ctx.Refresh();
+                        Thread.Sleep(keyframe.Duration);
+                    }
                 }
-
-                // Columns
-                Update(230, () => table.AddColumn("Release date"));
-                Update(230, () => table.AddColumn("Title"));
-                Update(230, () => table.AddColumn("Budget"));
-                Update(230, () => table.AddColumn("Opening Weekend"));
-                Update(230, () => table.AddColumn("Box office"));
-
-                // Rows
-                Update(70, () => table.AddRow("May 25, 1977", "[yellow]Star Wars[/] [grey]Ep.[/] [u]IV[/]", "$11,000,000", "$1,554,475", "$775,398,007"));
-                Update(70, () => table.AddRow("May 21, 1980", "[yellow]Star Wars[/] [grey]Ep.[/] [u]V[/]", "$18,000,000", "$4,910,483", "$547,969,004"));
-                Update(70, () => table.AddRow("May 25, 1983", "[yellow]Star Wars[/] [grey]Ep.[/] [u]VI[/]", "$32,500,000", "$23,019,618", "$475,106,177"));
-                Update(70, () => table.AddRow("May 19, 1999", "[yellow]Star Wars[/] [grey]Ep.[/] [u]I[/]", "$115,000,000", "$64,810,870", "$1,027,044,677"));
-                Update(70, () => table.AddRow("May 16, 2002", "[yellow]Star Wars[/] [grey]Ep.[/] [u]II[/]", "$115,000,000", "$80,027,814", "$649,436,358"));
-                Update(70, () => table.AddRow("May 19, 2005", "[yellow]Star Wars[/] [grey]Ep.[/] [u]III[/]", "$113,000,000", "$108,435,841", "$850,035,635"));
-                Update(70, () => table.AddRow("Dec 18, 2015", "[yellow]Star Wars[/] [grey]Ep.[/] [u]VII[/]", "$245,000,000", "$247,966,675", "$2,068,223,624"));
-                Update(70, () => table.AddRow("Dec 15, 2017", "[yellow]Star Wars[/] [grey]Ep.[/] [u]VIII[/]", "$317,000,000", "$220,009,584", "$1,333,539,889"));
-                Update(70, () => table.AddRow("Dec 20, 2019", "[yellow]Star Wars[/] [grey]Ep.[/] [u]IX[/]", "$245,000,000", "$177,383,864", "$1,074,114,248"));
-
-                // Column footer
-                Update(230, () => table.Columns[2].Footer("$1,633,000,000"));
-                Update(230, () => table.Columns[3].Footer("$928,119,224"));
-                Update(400, () => table.Columns[4].Footer("$10,318,030,576"));
-
-                // Column alignment
-                Update(230, () => table.Columns[2].RightAligned());
-                Update(230, () => table.Columns[3].RightAligned());
-                Update(400, () => table.Columns[4].RightAligned());
-
-                // Column titles
-                Update(70, () => table.Columns[0].Header("[bold]Release date[/]"));
-                Update(70, () => table.Columns[1].Header("[bold]Title[/]"));
-                Update(70, () => table.Columns[2].Header("[red bold]Budget[/]"));
-                Update(70, () => table.Columns[3].Header("[green bold]Opening Weekend[/]"));
-                Update(400, () => table.Columns[4].Header("[blue bold]Box office[/]"));
-
-                // Footers
-                Update(70, () => table.Columns[2].Footer("[red bold]$1,633,000,000[/]"));
-                Update(70, () => table.Columns[3].Footer("[green bold]$928,119,224[/]"));
-                Update(400, () => table.Columns[4].Footer("[blue bold]$10,318,030,576[/]"));
-
-                // Title
-                Update(500, () => table.Title("Star Wars Movies"));
-                Update(400, () => table.Title("[[ [yellow]Star Wars Movies[/] ]]"));
-
-                // Borders
-                Update(230, () => table.BorderColor(Color.Yellow));
-                Update(230, () => table.MinimalBorder());
-                Update(230, () => table.SimpleBorder());
-                Update(230, () => table.SimpleHeavyBorder());
-
-                // Caption
-                Update(400, () => table.Caption("[[ [blue]THE END[/] ]]"));
             });
+    }
+
+    private static Table CreateMonitorTable()
+    {
+        var table = new Table()
+            .Title("[bold blue]SYSTEMS MONITORING DASHBOARD v2.3.7[/]")
+            .Caption("[dim]Uptime: 4,291 days (unverified)[/]")
+            .Border(TableBorder.Rounded)
+            .BorderColor(Color.Blue)
+            .Width(78);
+
+        table.AddColumn(new TableColumn("[bold]Subsystem[/]").Width(18));
+        table.AddColumn(new TableColumn("[bold]Status[/]").Width(14).Centered());
+        table.AddColumn(new TableColumn("[bold]Load[/]").Width(14).Centered());
+        table.AddColumn(new TableColumn("[bold]Message[/]").Width(20));
+
+        return table;
+    }
+
+    private static SubsystemState[] CreateInitialStates()
+    {
+        return
+        [
+            new() { Status = "Online", Load = 45 },  // Primary Cluster
+            new() { Status = "Standby", Load = 5 },  // Failover Array
+            new() { Status = "Online", Load = 65 },  // Legacy Mainframe
+            new() { Status = "Online", Load = 30 },  // Sector 7-G
+            new() { Status = "Online", Load = 12 },  // Test Environment
+            new() { Status = "Online", Load = 55 },  // The Cloud
+        ];
+    }
+
+    private static List<Keyframe> CreateNarrativeKeyframes()
+    {
+        return
+        [
+            // Act 1: All is well - subtle fluctuations
+            new Keyframe(600) { Changes = {
+                [Cluster] = ("Online", 47, null),
+                [TheCloud] = ("Online", 52, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 68, null),
+                [TestEnv] = ("Online", 15, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Cluster] = ("Online", 44, null),
+                [DevEnv] = ("Online", 32, null),
+            }},
+
+            // Act 2: Legacy Mainframe starts struggling
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 72, null),
+                [TheCloud] = ("Online", 57, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 78, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 85, "Load increasing"),
+                [Cluster] = ("Online", 48, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 91, "Load increasing"),
+            }},
+            new Keyframe(600) { Changes = {
+                [Mainframe] = ("Warning", 95, "Thermal limits"),
+            }},
+            new Keyframe(400) { Changes = {
+                [Mainframe] = ("Warning", 98, "Thermal limits"),
+                [DevEnv] = ("Online", 35, null),
+            }},
+
+            // Act 3: Cascade failure
+            new Keyframe(700) { Changes = {
+                [Mainframe] = ("Offline", 0, "UNRESPONSIVE"),
+                [DevEnv] = ("Warning", 42, "Lost upstream"),
+            }},
+            new Keyframe(500) { Changes = {
+                [DevEnv] = ("Warning", 48, "Lost upstream"),
+                [Cluster] = ("Online", 55, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [TheCloud] = ("Warning", 68, "Rerouting..."),
+                [Cluster] = ("Online", 62, "Compensating"),
+            }},
+            new Keyframe(400) { Changes = {
+                [TheCloud] = ("Warning", 73, "Rerouting..."),
+                [Cluster] = ("Online", 67, "Compensating"),
+            }},
+
+            // Act 4: Failover kicks in
+            new Keyframe(600) { Changes = {
+                [Backup] = ("Activating", 15, "Spinning up"),
+            }},
+            new Keyframe(400) { Changes = {
+                [Backup] = ("Activating", 28, "Spinning up"),
+                [TheCloud] = ("Warning", 75, "Rerouting..."),
+            }},
+            new Keyframe(500) { Changes = {
+                [Backup] = ("Activating", 45, "Spinning up"),
+            }},
+            new Keyframe(500) { Changes = {
+                [Backup] = ("Online", 58, "Taking load"),
+                [DevEnv] = ("Online", 38, "Rerouted"),
+            }},
+            new Keyframe(400) { Changes = {
+                [Backup] = ("Online", 65, "Taking load"),
+                [TheCloud] = ("Online", 62, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Recovering", 5, "Rebooting..."),
+                [TheCloud] = ("Online", 55, null),
+                [Cluster] = ("Online", 58, null),
+            }},
+
+            // Act 5: Recovery
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Recovering", 15, "Rebooting..."),
+                [Backup] = ("Online", 62, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Recovering", 30, "Self-test..."),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Recovering", 45, "Self-test OK"),
+                [Backup] = ("Online", 55, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 55, "Back online"),
+                [Backup] = ("Online", 48, "Shedding load"),
+            }},
+            new Keyframe(400) { Changes = {
+                [Mainframe] = ("Online", 60, null),
+                [Backup] = ("Online", 35, "Shedding load"),
+                [Cluster] = ("Online", 50, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Backup] = ("Online", 20, "Shedding load"),
+            }},
+            new Keyframe(500) { Changes = {
+                [Backup] = ("Standby", 5, null),
+                [Cluster] = ("Online", 46, null),
+            }},
+
+            // Act 6: All clear - settle back to normal
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 63, null),
+                [TheCloud] = ("Online", 53, null),
+            }},
+            new Keyframe(500) { Changes = {
+                [Mainframe] = ("Online", 65, null),
+                [DevEnv] = ("Online", 30, null),
+            }},
+            new Keyframe(800), // Pause before loop
+        ];
+    }
+
+    private static List<Keyframe> ExpandNarrative(List<Keyframe> keyframes, int tweenInterval = 225)
+    {
+        var expanded = new List<Keyframe>();
+        var currentStates = CreateInitialStates();
+
+        foreach (var keyframe in keyframes)
+        {
+            var tweenCount = (keyframe.Duration - 1) / tweenInterval;
+            var remainingDuration = keyframe.Duration - (tweenCount * tweenInterval);
+
+            // Generate tween frames with subtle load variations
+            for (var t = 0; t < tweenCount; t++)
+            {
+                var tweenFrame = new Keyframe(tweenInterval);
+                for (var i = 0; i < currentStates.Length; i++)
+                {
+                    var state = currentStates[i];
+                    // Skip Offline and Standby states
+                    if (state.Status is "Offline" or "Standby")
+                        continue;
+
+                    var variedLoad = VaryLoad(state.Load);
+                    if (variedLoad != state.Load)
+                    {
+                        tweenFrame.Changes[i] = (state.Status, variedLoad, state.Message);
+                        currentStates[i].Load = variedLoad;
+                    }
+                }
+                expanded.Add(tweenFrame);
+            }
+
+            // Apply the original keyframe's changes to current state
+            foreach (var (index, change) in keyframe.Changes)
+            {
+                currentStates[index].Status = change.Status;
+                currentStates[index].Load = change.Load;
+                currentStates[index].Message = change.Message;
+            }
+
+            // Add the original keyframe with remaining duration
+            var finalFrame = new Keyframe(remainingDuration > 0 ? remainingDuration : tweenInterval);
+            foreach (var (index, change) in keyframe.Changes)
+            {
+                finalFrame.Changes[index] = change;
+            }
+            expanded.Add(finalFrame);
+        }
+
+        return expanded;
+    }
+
+    private static int VaryLoad(int load, int variance = 3)
+    {
+        var delta = _random.Next(-variance, variance + 1);
+        return Math.Clamp(load + delta, 0, 100);
+    }
+
+    private static void ApplyKeyframe(SubsystemState[] states, Keyframe keyframe)
+    {
+        foreach (var (index, change) in keyframe.Changes)
+        {
+            states[index].Status = change.Status;
+            states[index].Load = change.Load;
+            states[index].Message = change.Message;
+        }
+    }
+
+    private static void RenderTable(Table table, SubsystemState[] states)
+    {
+        table.Rows.Clear();
+        for (var i = 0; i < _subsystemNames.Length; i++)
+        {
+            table.AddRow(
+                _subsystemNames[i],
+                FormatStatus(states[i].Status),
+                CreateLoadBar(states[i].Load),
+                states[i].Message ?? "[dim]-[/]");
+        }
+    }
+
+    private static string FormatStatus(string status) => status switch
+    {
+        "Online" => "[green]● Online[/]",
+        "Standby" => "[dim]○ Standby[/]",
+        "Warning" => "[yellow]● Warning[/]",
+        "Activating" => "[cyan]◐ Activating[/]",
+        "Recovering" => "[blue]● Recovering[/]",
+        "Offline" => "[red]● Offline[/]",
+        _ => "[grey]? Unknown[/]"
+    };
+
+    private static string CreateLoadBar(int load)
+    {
+        if (load == 0) return "[dim]----------[/]";
+        var filled = Math.Max(1, load / 10);
+        var empty = 10 - filled;
+        var color = load switch
+        {
+            > 85 => "red",
+            > 60 => "yellow",
+            _ => "green"
+        };
+        return $"[{color}]{new string('█', filled)}[/][dim]{new string('░', empty)}[/]";
+    }
+
+    private class SubsystemState
+    {
+        public string Status { get; set; } = "Online";
+        public int Load { get; set; }
+        public string? Message { get; set; }
+    }
+
+    private class Keyframe(int duration)
+    {
+        public int Duration { get; } = duration;
+        public Dictionary<int, (string Status, int Load, string? Message)> Changes { get; } = new();
     }
 }

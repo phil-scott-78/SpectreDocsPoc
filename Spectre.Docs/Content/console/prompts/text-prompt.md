@@ -142,6 +142,14 @@ Use `WithConverter()` to control how choices are displayed to users while keepin
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.CustomConverterExample
 ```
 
+## See Also
+
+- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Step-by-step guide
+- [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
+- [SelectionPrompt](/console/prompts/selection-prompt) - Choose from predefined options
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Interactive mode support
+- [Testing Console Output](/console/how--to/testing-console-output) - Test prompts in CI
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.TextPrompt`1" />

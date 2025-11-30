@@ -90,6 +90,14 @@ Combine extension methods for concise rule creation.
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleFluentExample
 ```
 
+## See Also
+
+- [Box Border Reference](/console/reference/box-border-reference) - Line styles for rules
+- [Color Reference](/console/reference/color-reference) - Colors for rule styling
+- [Panel Widget](/console/widgets/panel) - Bordered sections with headers
+- [FigletText Widget](/console/widgets/figlet) - Large decorative text banners
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Rule" />

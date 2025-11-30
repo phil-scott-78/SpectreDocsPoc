@@ -6,3 +6,10 @@ order: 6000
 ---
 
 A conceptual comparison that explains what Spectre.Console offers over standard `System.Console`. It briefly outlines the shortcomings of basic console printing (no built-in color, manual spacing for tables, etc.) and how Spectre.Console addresses those with higher-level abstractions (markup, panels, tables, etc.). It might highlight the inspiration from the Python Rich library, explaining how Spectre.Console takes similar approaches in a .NET context. This is more of a background discussion, giving context on why to use Spectre.Console and how it fits into building modern CLI applications.
+
+## See Also
+
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Build your first app
+- [Markup Reference](/console/reference/markup-reference) - Rich text formatting
+- [Table Widget](/console/widgets/table) - Structured data display
+- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How rendering works

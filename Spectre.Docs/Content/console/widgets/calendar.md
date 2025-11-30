@@ -111,6 +111,13 @@ Display several months together using the [Columns](/console/widgets/columns) wi
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CalendarExamples.MultipleCalendarsExample
 ```
 
+## See Also
+
+- [Table Border Reference](/console/reference/table-border-reference) - Border styles for calendar display
+- [Color Reference](/console/reference/color-reference) - Colors for event highlighting
+- [Columns Widget](/console/widgets/columns) - Display multiple calendars side by side
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Calendar" />

@@ -80,6 +80,14 @@ Create multi-section status dashboards by stacking different types of informatio
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsDashboardExample
 ```
 
+## See Also
+
+- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
+- [Columns Widget](/console/widgets/columns) - Horizontal arrangement
+- [Grid Widget](/console/widgets/grid) - Precise row and column control
+- [Layout Widget](/console/widgets/layout) - Complex multi-section layouts
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Rows" />

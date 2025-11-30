@@ -141,5 +141,6 @@ Use these prompts in configuration wizards, CLI tools, installation scripts, and
 ## Next Steps
 
 - [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated feedback while operations run
+- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Task-focused prompting guide
 - [Text Prompts Reference](/console/prompts/text-prompt) - Explore validation, secrets, and default values
 - [Selection Prompts Reference](/console/prompts/selection-prompt) - Learn about grouping, search, and styling options

@@ -108,6 +108,13 @@ Display configuration files with colors that make the structure easy to understa
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.JsonTextExamples.JsonTextConfigurationExample
 ```
 
+## See Also
+
+- [Tree Widget](/console/widgets/tree) - Hierarchical data without JSON syntax
+- [Panel Widget](/console/widgets/panel) - Wrap JSON in bordered containers
+- [Color Reference](/console/reference/color-reference) - Colors for syntax highlighting
+- [Text Style Reference](/console/reference/text-style-reference) - Style decorations
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Json.JsonText" />

@@ -2,66 +2,49 @@ using Spectre.Console;
 
 namespace Spectre.Docs.Examples.Showcase;
 
-internal class StatusSample : BaseSample
+/// <summary>Demonstrates status spinner for data processing operations.</summary>
+public class StatusSample : BaseSample
 {
-    private static void WriteLogMessage(string message)
-    {
-        AnsiConsole.MarkupLine($"[grey]LOG:[/] {message}[grey]...[/]");
-    }
-
+    /// <inheritdoc />
     public override void Run(IAnsiConsole console)
     {
         console.Status()
-            .AutoRefresh(true)
-            .Spinner(Spinner.Known.Default)
-            .Start("[yellow]Initializing warp drive[/]", ctx =>
+            .Spinner(Spinner.Known.Dots)
+            .SpinnerStyle(Style.Parse("blue"))
+            .Start("Waking up the hamsters...", ctx =>
             {
-                // Initialize
-                Thread.Sleep(3000);
-                WriteLogMessage("Starting gravimetric field displacement manifold");
                 Thread.Sleep(1000);
-                WriteLogMessage("Warming up deuterium chamber");
-                Thread.Sleep(2000);
-                WriteLogMessage("Generating antideuterium");
 
-                // Warp nacelles
-                Thread.Sleep(3000);
-                ctx.Spinner(Spinner.Known.BouncingBar);
-                ctx.Status("[bold blue]Unfolding warp nacelles[/]");
-                WriteLogMessage("Unfolding left warp nacelle");
-                Thread.Sleep(2000);
-                WriteLogMessage("Left warp nacelle [green]online[/]");
-                WriteLogMessage("Unfolding right warp nacelle");
-                Thread.Sleep(1000);
-                WriteLogMessage("Right warp nacelle [green]online[/]");
+                ctx.Status("[blue]Locating remote endpoints...[/]");
+                ctx.Spinner(Spinner.Known.Dots2);
+                Thread.Sleep(1200);
 
-                // Warp bubble
-                Thread.Sleep(3000);
-                ctx.Spinner(Spinner.Known.Star2);
-                ctx.Status("[bold blue]Generating warp bubble[/]");
-                Thread.Sleep(3000);
+                ctx.Status("[cyan]Convincing firewall...[/]");
                 ctx.Spinner(Spinner.Known.Star);
-                ctx.Status("[bold blue]Stabilizing warp bubble[/]");
-
-                // Safety
-                ctx.Spinner(Spinner.Known.Monkey);
-                ctx.Status("[bold blue]Performing safety checks[/]");
-                WriteLogMessage("Enabling interior dampening");
-                Thread.Sleep(2000);
-                WriteLogMessage("Interior dampening [green]enabled[/]");
-
-                // Warp!
-                Thread.Sleep(3000);
-                ctx.Spinner(Spinner.Known.Moon);
-                WriteLogMessage("Preparing for warp");
+                ctx.SpinnerStyle(Style.Parse("cyan"));
                 Thread.Sleep(1000);
-                for (var warp = 1; warp < 10; warp++)
-                {
-                    ctx.Status($"[bold blue]Warp {warp}[/]");
-                    Thread.Sleep(500);
-                }
+
+                ctx.Status("[green]Parsing reluctant data...[/]");
+                ctx.Spinner(Spinner.Known.Arrow3);
+                ctx.SpinnerStyle(Style.Parse("green"));
+                Thread.Sleep(1400);
+
+                ctx.Status("[yellow]Coercing legacy formats...[/]");
+                ctx.Spinner(Spinner.Known.BouncingBar);
+                ctx.SpinnerStyle(Style.Parse("yellow"));
+                Thread.Sleep(1200);
+
+                ctx.Status("[magenta]Untangling dependencies...[/]");
+                ctx.Spinner(Spinner.Known.Pipe);
+                ctx.SpinnerStyle(Style.Parse("magenta"));
+                Thread.Sleep(1100);
+
+                ctx.Status("[green bold]Archiving for posterity...[/]");
+                ctx.Spinner(Spinner.Known.Dots12);
+                ctx.SpinnerStyle(Style.Parse("green bold"));
+                Thread.Sleep(1000);
             });
 
-        // Done
-        AnsiConsole.MarkupLine("[bold green]Crusing at Warp 9.8[/]");        }
+        console.MarkupLine("[green]Data ingestion complete.[/] [dim]2,847.3 records processed.[/]");
+    }
 }

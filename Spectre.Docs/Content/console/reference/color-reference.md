@@ -29,3 +29,10 @@ AnsiConsole.Write("Styled text", style);
 ## Available Colors
 
 <ColorList />
+
+## See Also
+
+- [Markup Reference](/console/reference/markup-reference) - Using colors in markup syntax
+- [Text Widget](/console/widgets/text) - Programmatic color styling
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn color basics
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Color support by terminal

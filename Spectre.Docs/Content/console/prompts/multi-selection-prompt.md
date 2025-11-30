@@ -142,6 +142,14 @@ This example demonstrates working with custom record types, including display co
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExamples.ComplexObjectExample
 ```
 
+## See Also
+
+- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Step-by-step guide
+- [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
+- [SelectionPrompt](/console/prompts/selection-prompt) - Single-item selection
+- [TextPrompt](/console/prompts/text-prompt) - Free-form text input
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Interactive mode support
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.MultiSelectionPrompt`1" />

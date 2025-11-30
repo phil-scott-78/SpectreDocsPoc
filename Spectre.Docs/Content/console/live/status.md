@@ -7,6 +7,9 @@ order: 4050
 
 The Status display renders an animated spinner with a status message for long-running operations.
 
+<Screenshot src="/assets/status.svg" />
+
+
 ## When to Use
 
 Use Status when you need to **indicate ongoing work without tracking specific progress**. Common scenarios:
@@ -95,6 +98,14 @@ Use Spectre.Console's markup syntax in status text to add colors, styles, and em
 ```csharp:xmldocid
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusWithMarkupExample
 ```
+
+## See Also
+
+- [How to Show Activity Status](/console/how--to/showing-activity-status) - Step-by-step guide
+- [Showing Status and Spinners Tutorial](/console/tutorials/status-spinners-tutorial) - Learn status basics
+- [Progress Display](/console/live/progress) - For operations with measurable progress
+- [Spinner Reference](/console/reference/spinner-reference) - Available spinner animations
+- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
 
 ## API Reference
 

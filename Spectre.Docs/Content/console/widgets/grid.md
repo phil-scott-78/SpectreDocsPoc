@@ -124,6 +124,14 @@ Create multi-level layouts by nesting grids to build complex dashboard-style int
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridDashboardExample
 ```
 
+## See Also
+
+- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
+- [Table Widget](/console/widgets/table) - When you need visible borders
+- [Columns Widget](/console/widgets/columns) - Auto-flowing column layouts
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How layout widgets work
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Grid" />

@@ -137,6 +137,14 @@ Dynamically construct trees from dictionaries, file systems, or other hierarchic
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeFromDataExample
 ```
 
+## See Also
+
+- [How to Display Hierarchical Data](/console/how--to/displaying-hierarchical-data) - Step-by-step guide for tree tasks
+- [Tree Guide Reference](/console/reference/tree-guide-reference) - All guide styles with visual examples
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support for tree characters
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How widgets measure and render
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Tree" />

@@ -8,4 +8,4 @@ Set Cols 82
 Set Rows 14
 Set EndBuffer 5s
 
-Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build breakdown-chart"
+Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build showcase breakdown-chart"

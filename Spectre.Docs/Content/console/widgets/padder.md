@@ -105,6 +105,13 @@ Use targeted padding on specific sides to build structured layouts with headers,
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderVisualSeparationExample
 ```
 
+## See Also
+
+- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
+- [Align Widget](/console/widgets/align) - Position content horizontally and vertically
+- [Panel Widget](/console/widgets/panel) - Bordered containers with built-in padding
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Padder" />

@@ -8,4 +8,4 @@ Set Cols 82
 Set Rows 25
 Set EndBuffer 5s
 
-Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build layout"
+Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build showcase layout"

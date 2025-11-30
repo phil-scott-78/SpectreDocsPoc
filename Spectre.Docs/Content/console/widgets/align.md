@@ -111,6 +111,14 @@ Use centered alignment for application splash screens or welcome messages.
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.TitleScreenExample
 ```
 
+## See Also
+
+- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
+- [Padder Widget](/console/widgets/padder) - Add spacing around content
+- [Panel Widget](/console/widgets/panel) - Bordered containers with headers
+- [Columns Widget](/console/widgets/columns) - Side-by-side layouts
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Align" />

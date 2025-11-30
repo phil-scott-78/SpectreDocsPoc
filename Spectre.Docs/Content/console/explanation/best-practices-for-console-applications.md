@@ -11,3 +11,11 @@ General guidance and recommended practices when using Spectre.Console, distilled
 * **Live rendering best practices**: Use a single thread for rendering updates, do not run two live animations (e.g. Progress and Status) at once, and keep the UI responsive by doing heavy work on background threads but rendering on the main thread.
 * **Prompting and input**: Suggest injecting an `IAnsiConsole` into business logic so that it can be mocked for testing, and avoiding calling `AnsiConsole` statically inside commands (as shown in the unit testing example).
   This section reads as a set of guidelines and rationales, helping developers avoid common pitfalls and write robust console apps.
+
+## See Also
+
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Feature support by terminal
+- [Testing Console Output](/console/how--to/testing-console-output) - Unit testing with IAnsiConsole
+- [Color Reference](/console/reference/color-reference) - Safe color choices
+- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Build your first app

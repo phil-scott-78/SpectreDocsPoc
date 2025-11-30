@@ -8,4 +8,4 @@ Set Cols 82
 Set Rows 16
 Set EndBuffer 5s
 
-Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build calendar"
+Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build showcase calendar"

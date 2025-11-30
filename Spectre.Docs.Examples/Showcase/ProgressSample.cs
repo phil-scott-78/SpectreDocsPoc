@@ -2,69 +2,59 @@ using Spectre.Console;
 
 namespace Spectre.Docs.Examples.Showcase;
 
-/// <summary>Demonstrates progress bars with multiple tasks.</summary>
+/// <summary>Demonstrates multi-task progress tracking for deployments.</summary>
 public class ProgressSample : BaseSample
 {
     /// <inheritdoc />
     public override void Run(IAnsiConsole console)
     {
-        // Show progress
         console.Progress()
             .AutoClear(false)
-            .Columns(new TaskDescriptionColumn(), new ProgressBarColumn(), new PercentageColumn(), new RemainingTimeColumn(), new SpinnerColumn())
+            .Columns(
+                new TaskDescriptionColumn(),
+                new ProgressBarColumn(),
+                new PercentageColumn(),
+                new RemainingTimeColumn(),
+                new SpinnerColumn())
             .Start(ctx =>
             {
-                var random = new Random(122978);
+                var random = new Random(42);
 
-                // Create some tasks
-                var tasks = CreateTasks(ctx, random);
-                var warpTask = ctx.AddTask("Going to warp", autoStart: false).IsIndeterminate();
+                var tasks = new List<(ProgressTask Task, double Speed)>
+                {
+                    (ctx.AddTask("Reticulating splines"), random.NextDouble() * 2 + 1.1),
+                    (ctx.AddTask("Hydrating caches"), random.NextDouble() * 2 + 1),
+                    (ctx.AddTask("Consulting the oracle"), random.NextDouble() * 2 + 1.2),
+                    (ctx.AddTask("Negotiating with upstream"), random.NextDouble() * 2 + 1.05),
+                    (ctx.AddTask("Defenestrating legacy code"), random.NextDouble() * 2 + 1.4),
+                };
 
-                // Wait for all tasks (except the indeterminate one) to complete
+                var launchTask = ctx.AddTask("Preparing for descent", autoStart: false);
+                launchTask.IsIndeterminate();
+
                 while (!ctx.IsFinished)
                 {
-                    // Increment progress
-                    foreach (var (task, increment) in tasks)
+                    foreach (var (task, speed) in tasks)
                     {
-                        task.Increment(random.NextDouble() * increment);
+                        if (!task.IsFinished)
+                        {
+                            task.Increment(random.NextDouble() * speed);
+                        }
                     }
 
-                    // Simulate some delay
-                    Thread.Sleep(100);
-                }
+                    if (tasks.All(t => t.Task.IsFinished) && !launchTask.IsStarted)
+                    {
+                        launchTask.StartTask();
+                        launchTask.IsIndeterminate(false);
+                    }
 
-                // Now start the "warp" task
-                warpTask.StartTask();
-                warpTask.IsIndeterminate(false);
-                while (!ctx.IsFinished)
-                {
-                    warpTask.Increment(12 * random.NextDouble());
+                    if (launchTask is { IsStarted: true, IsFinished: false })
+                    {
+                        launchTask.Increment(random.NextDouble() * 3 + 1);
+                    }
 
-                    // Simulate some delay
-                    Thread.Sleep(100);
+                    Thread.Sleep(80);
                 }
             });
-    }
-
-    /// <summary>Creates sample progress tasks.</summary>
-    /// <param name="progress">The progress context.</param>
-    /// <param name="random">Random generator for delays.</param>
-    /// <returns>List of tasks with their delay values.</returns>
-    public List<(ProgressTask Task, int Delay)> CreateTasks(ProgressContext progress, Random random)
-    {
-        var tasks = new List<(ProgressTask, int)>();
-
-        var names = new[]
-        {
-            "Retriculating algorithms", "Colliding splines", "Solving quarks", "Folding data structures",
-            "Rerouting capacitators "
-        };
-
-        for (var i = 0; i < 5; i++)
-        {
-            tasks.Add((progress.AddTask(names[i]), random.Next(2, 10)));
-        }
-
-        return tasks;
     }
 }

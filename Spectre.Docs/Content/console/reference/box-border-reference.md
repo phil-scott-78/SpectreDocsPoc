@@ -26,3 +26,10 @@ AnsiConsole.Write(panel);
 ## Available Box Borders
 
 <BoxBorderList />
+
+## See Also
+
+- [Panel Widget](/console/widgets/panel) - Bordered containers using box borders
+- [Rule Widget](/console/widgets/rule) - Horizontal dividers using box borders
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support by terminal
+- [Table Border Reference](/console/reference/table-border-reference) - Borders for tables

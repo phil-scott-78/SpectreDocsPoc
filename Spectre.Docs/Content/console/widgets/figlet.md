@@ -89,6 +89,13 @@ Build multi-line welcome messages by combining figlet text with regular text wid
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.FigletTextExamples.FigletTextWelcomeExample
 ```
 
+## See Also
+
+- [How to Render ASCII Art and Figlet Text](/console/how--to/rendering-ascii-art-and-figlet-text) - Step-by-step guide
+- [Rule Widget](/console/widgets/rule) - Simple horizontal dividers
+- [Panel Widget](/console/widgets/panel) - Wrap figlet text in borders
+- [Color Reference](/console/reference/color-reference) - Available colors
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.FigletText" />

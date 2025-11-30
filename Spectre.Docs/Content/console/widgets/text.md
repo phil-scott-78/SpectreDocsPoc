@@ -132,6 +132,14 @@ Text widgets work well as content inside panels, tables, and other container wid
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextInContainersExample
 ```
 
+## See Also
+
+- [Markup Widget](/console/widgets/markup) - Inline markup syntax alternative
+- [Color Reference](/console/reference/color-reference) - All available colors
+- [Text Style Reference](/console/reference/text-style-reference) - Decoration options (bold, italic, etc.)
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn markup and styling basics
+- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How text rendering works
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.Text" />

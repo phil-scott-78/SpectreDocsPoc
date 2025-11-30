@@ -6,43 +6,88 @@ uid: "console-index"
 
 Welcome to the Spectre.Console documentation! Spectre.Console is a .NET library that makes it easier to create beautiful, cross-platform console applications.
 
-## What is Spectre.Console?
+## Start Here
 
-Spectre.Console is a library that helps you create rich, interactive console applications with features like:
+Get Spectre.Console running in seconds:
 
-- **Rich Text Formatting**: Colors, styles, and markup language
-- **Tables and Trees**: Display structured data beautifully
-- **Charts and Visualizations**: Bar charts, breakdown charts, and more
-- **Progress Indicators**: Progress bars, spinners, and status displays
-- **Interactive Prompts**: User input with validation and selection menus
-- **Layout System**: Panels, grids, and alignment controls
+```bash
+dotnet add package Spectre.Console
+```
 
-## Getting Started
+Then try this quick example that demonstrates styled text, a table, and a status spinner:
 
-Choose your learning path:
+```csharp
+using Spectre.Console;
 
-### Tutorials
-Start here if you're new to Spectre.Console:
-- [Getting Started: Building a Rich Console App](/console/tutorials/getting-started-building-rich-console-app)
-- [Asking User Questions](/console/tutorials/interactive-prompts-tutorial)
-- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial)
+// Styled text with markup
+AnsiConsole.MarkupLine("[bold blue]Welcome[/] to [green]Spectre.Console[/]!");
 
-### How-To Guides
-Learn how to accomplish specific tasks:
-- [Displaying Tables and Trees](/console/how--to/displaying-tables-and-trees)
-- [Showing Progress Bars and Spinners](/console/how--to/showing-progress-bars-and-spinners)
+// A simple table
+var table = new Table()
+    .AddColumn("Feature")
+    .AddColumn("Description")
+    .AddRow("[green]Markup[/]", "Rich text with colors and styles")
+    .AddRow("[blue]Tables[/]", "Structured data display")
+    .AddRow("[yellow]Progress[/]", "Spinners and progress bars");
+AnsiConsole.Write(table);
 
-### Reference
-Quick lookups and API details:
-- [Color Reference](/console/reference/color-reference)
-- [Text Style Reference](/console/reference/text-style-reference)
+// Status spinner for async work
+await AnsiConsole.Status()
+    .StartAsync("Processing...", async ctx =>
+    {
+        await Task.Delay(2000);
+    });
 
-### Explanation
-Understand the concepts and design:
-- [Spectre.Console vs Traditional Output](/console/explanation/spectre-console-vs-traditional-output)
-- [Understanding Spectre.Console's Rendering Model](/console/explanation/understanding-rendering-model)
-- [Best Practices for Console Applications](/console/explanation/best-practices-for-console-applications)
-- [Extending with Custom Renderables](/console/explanation/extending-with-custom-renderables)
+AnsiConsole.MarkupLine("[green]Done![/]");
+```
+
+**Having issues?** Check [Terminal Compatibility](/console/reference/compatibility-matrix) for ANSI support, Unicode rendering, and CI environment tips.
+
+---
+
+## Choose Your Learning Path
+
+### New to Spectre.Console?
+
+Start with the tutorials to build foundational skills:
+
+1. [Getting Started: Building a Rich Console App](/console/tutorials/getting-started-building-rich-console-app) - Learn markup, colors, and styles
+2. [Asking User Questions](/console/tutorials/interactive-prompts-tutorial) - Add interactive prompts
+3. [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display progress indicators
+
+### Know the Basics?
+
+Jump to task-focused how-to guides:
+
+- [Displaying Tabular Data](/console/how--to/displaying-tabular-data) - Tables with formatting and borders
+- [Showing Progress Bars](/console/how--to/showing-progress-bars) - Track long-running operations
+- [Live Rendering and Dynamic Updates](/console/how--to/live-rendering-and-dynamic-updates) - Real-time updating displays
+- [Testing Console Output](/console/how--to/testing-console-output) - Unit test your console apps
+
+### Building Something Specific?
+
+Browse the [Widget Documentation](#widget-documentation) below, or explore:
+
+- [How-To Guides](/console/how--to) - Step-by-step recipes for common tasks
+- [Reference](/console/reference) - Colors, styles, borders, spinners, and emoji lookups
+
+### Want to Understand How It Works?
+
+Dive into the concepts:
+
+- [Spectre.Console vs Traditional Output](/console/explanation/spectre-console-vs-traditional-output) - Why use Spectre.Console?
+- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How measure, layout, and render work
+- [Best Practices](/console/explanation/best-practices-for-console-applications) - Patterns for production apps
+- [Extending with Custom Renderables](/console/explanation/extending-with-custom-renderables) - Build your own widgets
+
+---
+
+## Quick Reference
+
+Essential lookups:
+
+- [Markup Reference](/console/reference/markup-reference) - Tags, colors, escaping, and nesting
+- [Color Reference](/console/reference/color-reference) - All named colors and hex formats
 
 ---
 

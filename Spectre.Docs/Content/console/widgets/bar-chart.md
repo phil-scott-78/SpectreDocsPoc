@@ -75,6 +75,13 @@ Use `AddItems()` to add multiple items from a collection of `BarChartItem` objec
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarChartAddItemsExample
 ```
 
+## See Also
+
+- [How to Draw Charts and Diagrams](/console/how--to/drawing-charts-and-diagrams) - Step-by-step guide for creating charts
+- [BreakdownChart Widget](/console/widgets/breakdown-chart) - For part-to-whole relationships
+- [Color Reference](/console/reference/color-reference) - Available colors for bars
+- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+
 ## API Reference
 
 <WidgetApiReference TypeName="Spectre.Console.BarChart" />

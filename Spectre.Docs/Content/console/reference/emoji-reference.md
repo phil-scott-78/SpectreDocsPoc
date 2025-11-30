@@ -25,3 +25,8 @@ AnsiConsole.Markup("[red]:x:[/] Error occurred [yellow]:warning:[/]");
 ## Complete Emoji Reference
 
 <EmojiList />
+
+## See Also
+
+- [Markup Reference](/console/reference/markup-reference) - Using emoji in markup syntax
+- [Markup Widget](/console/widgets/markup) - Rich text with embedded emoji

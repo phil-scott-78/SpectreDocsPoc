@@ -179,5 +179,6 @@ Apply these patterns to any console application: log viewers, deployment scripts
 
 - [Asking User Questions](/console/tutorials/interactive-prompts-tutorial) - Add interactive prompts to collect user input
 - [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated spinners while work is happening
+- [Markup Reference](/console/reference/markup-reference) - Complete markup syntax guide
 - [Color Reference](/console/reference/color-reference) - Explore all available color names and formats
-- [Markup Widget](/console/widgets/markup) - Full API reference for the Markup class
+- [Spectre.Console vs Traditional Output](/console/explanation/spectre-console-vs-traditional-output) - Why use Spectre.Console

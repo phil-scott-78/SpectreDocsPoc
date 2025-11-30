@@ -28,3 +28,10 @@ AnsiConsole.Write(table);
 ## Available Table Borders
 
 <TableBorderList />
+
+## See Also
+
+- [Table Widget](/console/widgets/table) - Display tabular data with borders
+- [How to Display Tabular Data](/console/how--to/displaying-tabular-data) - Table styling guide
+- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support by terminal
+- [Box Border Reference](/console/reference/box-border-reference) - Borders for panels and rules
