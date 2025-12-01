@@ -18,8 +18,6 @@ $tapeFiles = Get-ChildItem "Spectre.Docs.Examples\VCR\*.tape"
 $totalFiles = $tapeFiles.Count
 Write-Host "Found $totalFiles tape files to process`n" -ForegroundColor Green
 
-dotnet build B:\VcrSharp\
-
 $results = $tapeFiles | ForEach-Object -Parallel {
     $file = $_
     $fileName = $file.Name
@@ -28,9 +26,9 @@ $results = $tapeFiles | ForEach-Object -Parallel {
     try {
         Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Processing: $fileName" -ForegroundColor Yellow
 
-        
+
         # Execute VCR command
-        dotnet run --no-build --project b:/vcrsharp/src/VcrSharp.Cli -- -o $gifName $file.FullName   | Out-Null
+        vcr $file.FullName | Out-Null
 
         if ($LASTEXITCODE -eq 0) {
             Write-Host "[$(Get-Date -Format 'HH:mm:ss')] ✓ Completed: $fileName" -ForegroundColor Green
@@ -44,7 +42,7 @@ $results = $tapeFiles | ForEach-Object -Parallel {
         Write-Error "[$(Get-Date -Format 'HH:mm:ss')] ✗ Error processing $fileName : $_"
         return @{ Success = $false; File = $fileName; Error = $_.Exception.Message }
     }
-} -ThrottleLimit 1   
+} -ThrottleLimit 1
 # THEORETICALLY, this could be increased for more parallelism, but VCRSharp might have issues with concurrent runs.
 # Either we do or ttyd does. It seems an extra line feed gets added to the output (svg and gif) when run in parallel
 # and I don't even know how to begin debugging that.

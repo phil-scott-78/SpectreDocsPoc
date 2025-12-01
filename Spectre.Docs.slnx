@@ -8,6 +8,7 @@
     <File Path=".editorconfig" />
     <File Path=".github/workflows/publish-to-gh-pages.yml" />
     <File Path=".gitignore" />
+    <File Path="Generate-WidgetScreenshots.ps1" />
     <File Path="README.md" />
   </Folder>
   <Project Path="Spectre.Docs.Examples/Spectre.Docs.Examples.csproj" />
