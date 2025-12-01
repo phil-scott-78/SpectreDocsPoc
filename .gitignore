@@ -485,3 +485,5 @@ $RECYCLE.BIN/
 
 # MyLittleContentEngine files
 output/
+
+vcrsharp-logs/
