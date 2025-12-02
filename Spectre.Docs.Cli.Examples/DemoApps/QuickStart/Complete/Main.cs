@@ -7,12 +7,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.QuickStart.Complete;
 /// A greeting CLI application for the Quick Start tutorial.
 /// Demonstrates commands, arguments, and options.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "quick-start";
-    public string Description => "Quick Start tutorial: greeting CLI with arguments and options.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp<GreetCommand>();
         return await app.RunAsync(args);

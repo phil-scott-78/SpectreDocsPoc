@@ -7,12 +7,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.DependencyInjection.NoDI;
 /// Dependency Injection Tutorial - Step 1: No DI.
 /// Shows the starting point with greeting logic hard-coded in the command.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "di-tutorial";
-    public string Description => "DI tutorial: greeting CLI without dependency injection.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp<GreetCommand>();
         return await app.RunAsync(args);

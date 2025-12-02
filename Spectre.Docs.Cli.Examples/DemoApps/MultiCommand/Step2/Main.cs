@@ -7,12 +7,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.MultiCommand.Step2;
 /// Multi-Command CLI Tutorial - Step 2: Organizing commands with branches.
 /// Demonstrates using AddBranch() to create command hierarchies.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "multi-command";
-    public string Description => "Multi-Command tutorial: package manager CLI with branched commands.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp();
         app.Configure(config =>

@@ -7,12 +7,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.MultiCommand.Finished;
 /// Multi-Command CLI Tutorial - Complete: Full CLI with shared settings.
 /// Demonstrates settings inheritance for common options across all commands.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "multi-command";
-    public string Description => "Multi-Command tutorial: complete package manager CLI with shared settings.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp();
         app.Configure(config =>

@@ -11,23 +11,7 @@ In this tutorial, we'll build a package manager CLI together. By the end, we'll 
 
 Here's how our CLI will work when we're done:
 
-```bash
-dotnet run -- add package Newtonsoft.Json --version 13.0.1
-# Added package Newtonsoft.Json v13.0.1
-
-dotnet run -- add reference ../MyLib/MyLib.csproj
-# Added reference to ../MyLib/MyLib.csproj
-
-dotnet run -- list --verbose
-# Reading project file...
-# Packages:
-#   Newtonsoft.Json (13.0.1)
-# References:
-#   ../MyLib/MyLib.csproj
-
-dotnet run -- --help
-# Shows all available commands and subcommands
-```
+<Screenshot Src="/assets/cli-multi-command-tutorial.svg" Alt="Multi Command Tutorial Screen Recording" />
 
 ## Prerequisites
 

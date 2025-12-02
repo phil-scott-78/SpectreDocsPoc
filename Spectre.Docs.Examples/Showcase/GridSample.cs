@@ -32,7 +32,7 @@ internal class GridSample : BaseSample
         ];
 
         // Animate
-        console.Live(new Text("")).Start(context =>
+        AnsiConsole.Live(new Text("")).Start(context =>
         {
             foreach (var output in outputs)
             {

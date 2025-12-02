@@ -13,8 +13,6 @@ internal class ShowcaseCommand(IAnsiConsole console) : Command<ShowcaseCommand.S
         [CommandArgument(0, "[sample]")] public string Sample { get; } = sample;
     }
 
-    private readonly IAnsiConsole _console = console;
-
     protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellationToken)
     {
         var samples = typeof(BaseSample).Assembly
@@ -40,7 +38,7 @@ internal class ShowcaseCommand(IAnsiConsole console) : Command<ShowcaseCommand.S
                 samples.FirstOrDefault(i => i.Name().Equals(selectedSample, StringComparison.OrdinalIgnoreCase));
             if (desiredSample == null)
             {
-                _console.MarkupLine($"[red]Error:[/] could not find sample [blue]{selectedSample}[/]");
+                console.MarkupLine($"[red]Error:[/] could not find sample [blue]{selectedSample}[/]");
                 return -1;
             }
 
@@ -51,7 +49,7 @@ internal class ShowcaseCommand(IAnsiConsole console) : Command<ShowcaseCommand.S
         {
             try
             {
-                sample.Run(_console);
+                sample.Run(console);
             }
             catch (Exception e)
             {

@@ -11,18 +11,7 @@ In this tutorial, we'll build a greeting command-line application together. By t
 
 Here's how our CLI will work when we're done:
 
-```bash
-dotnet run -- Alice
-# Hello, Alice!
-
-dotnet run -- Alice --count 3
-# Hello, Alice!
-# Hello, Alice!
-# Hello, Alice!
-
-dotnet run -- --help
-# Shows usage and available options
-```
+<Screenshot Src="/assets/cli-quickstart.svg" Alt="Quickstart Tutorial" />
 
 ## Prerequisites
 

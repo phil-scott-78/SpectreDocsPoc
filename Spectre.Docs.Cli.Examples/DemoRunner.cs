@@ -1,81 +1,60 @@
 using System.Reflection;
-using System.Text;
 
 namespace Spectre.Docs.Cli.Examples;
 
 /// <summary>
-/// Discovers and runs demo applications using reflection.
+/// Runs demo methods by XmlDocId.
 /// </summary>
 public static class DemoRunner
 {
     /// <summary>
-    /// Discovers all IDemoApp implementations in the DemoApps namespace.
+    /// Runs a demo method identified by its XmlDocId.
     /// </summary>
-    public static Dictionary<string, Type> DiscoverDemos()
+    /// <param name="xmlDocId">The XmlDocId in format M:Namespace.Type.Method(System.String[])</param>
+    /// <param name="args">Arguments to pass to the method</param>
+    /// <returns>The exit code from the demo method</returns>
+    public static async Task<int> RunAsync(string xmlDocId, string[] args)
     {
-        return typeof(DemoRunner).Assembly
-            .GetTypes()
-            .Where(t => t is { IsClass: true, IsAbstract: false })
-            .Where(t => typeof(IDemoApp).IsAssignableFrom(t))
-            .Where(t => t.Namespace?.Contains("DemoApps") == true)
-            .ToDictionary(
-                GetDemoKey,
-                t => t,
-                StringComparer.OrdinalIgnoreCase
-            );
-    }
-
-    /// <summary>
-    /// Extracts the demo key from the type's namespace.
-    /// DemoApps/BasicCommand/Main.cs -> "basic-command"
-    /// </summary>
-    private static string GetDemoKey(Type type)
-    {
-        var ns = type.Namespace ?? string.Empty;
-        var parts = ns.Split('.');
-        var folder = parts.LastOrDefault() ?? type.Name;
-        return ToKebabCase(folder);
-    }
-
-    /// <summary>
-    /// Converts PascalCase to kebab-case.
-    /// </summary>
-    private static string ToKebabCase(string input)
-    {
-        if (string.IsNullOrEmpty(input))
-            return input;
-
-        var result = new StringBuilder();
-        for (var i = 0; i < input.Length; i++)
+        // Parse XmlDocId: M:Namespace.Type.Method(params)
+        if (!xmlDocId.StartsWith("M:"))
         {
-            var c = input[i];
-            if (char.IsUpper(c) && i > 0)
-            {
-                result.Append('-');
-            }
-            result.Append(char.ToLowerInvariant(c));
+            throw new ArgumentException($"XmlDocId must start with 'M:'. Got: {xmlDocId}");
         }
-        return result.ToString();
-    }
 
-    /// <summary>
-    /// Creates an instance of the demo.
-    /// </summary>
-    public static IDemoApp CreateInstance(Type demoType)
-        => (IDemoApp)Activator.CreateInstance(demoType)!;
-
-    /// <summary>
-    /// Lists all available demos with descriptions.
-    /// </summary>
-    public static void ListDemos(Dictionary<string, Type> demos)
-    {
-        System.Console.WriteLine("Available demos:");
-        System.Console.WriteLine();
-
-        foreach (var (key, type) in demos.OrderBy(d => d.Key))
+        var withoutPrefix = xmlDocId[2..]; // Remove "M:"
+        var parenIndex = withoutPrefix.IndexOf('(');
+        if (parenIndex < 0)
         {
-            var demo = CreateInstance(type);
-            System.Console.WriteLine($"  {key,-30} {demo.Description}");
+            throw new ArgumentException($"XmlDocId must contain parameters. Got: {xmlDocId}");
         }
+
+        var qualifiedName = withoutPrefix[..parenIndex];
+        var lastDot = qualifiedName.LastIndexOf('.');
+        if (lastDot < 0)
+        {
+            throw new ArgumentException($"XmlDocId must contain a type and method name. Got: {xmlDocId}");
+        }
+
+        var typeName = qualifiedName[..lastDot];
+        var methodName = qualifiedName[(lastDot + 1)..];
+
+        // Find the type in the assembly
+        var type = typeof(DemoRunner).Assembly.GetType(typeName)
+            ?? throw new InvalidOperationException($"Type not found: {typeName}");
+
+        // Find the static method
+        var method = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Static, [typeof(string[])])
+            ?? throw new InvalidOperationException($"Static method not found: {methodName}(string[]) on {typeName}");
+
+        // Invoke and return result
+        var result = method.Invoke(null, [args]);
+
+        return result switch
+        {
+            Task<int> taskInt => await taskInt,
+            Task task => throw new InvalidOperationException($"Method {methodName} returns Task but must return Task<int>"),
+            int exitCode => exitCode,
+            _ => throw new InvalidOperationException($"Method {methodName} must return Task<int> or int")
+        };
     }
 }

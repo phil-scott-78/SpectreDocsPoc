@@ -11,16 +11,7 @@ In this tutorial, we'll add dependency injection to a CLI application. By the en
 
 Here's how our CLI will work when we're done:
 
-```bash
-dotnet run -- Alice
-# Hello, Alice!
-
-dotnet run -- Alice --formal
-# Good day, Alice.
-
-dotnet run -- Alice --enthusiastic
-# Hey there, Alice! Great to see you!
-```
+<Screenshot Src="/assets/cli-di-tutorial.svg" Alt="Screencast of the Dependency Injection Tutorial" />
 
 The greeting logic lives in an injectable service, not hard-coded in the command.
 

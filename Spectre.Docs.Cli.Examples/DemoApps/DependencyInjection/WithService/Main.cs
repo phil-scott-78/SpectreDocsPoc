@@ -8,12 +8,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.DependencyInjection.WithService;
 /// Dependency Injection Tutorial - Step 2: With Service.
 /// Shows how to extract logic to a service and inject it using DI.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "di-tutorial";
-    public string Description => "DI tutorial: greeting CLI with dependency injection.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var services = new ServiceCollection();
         services.AddSingleton<IGreetingService, GreetingService>();

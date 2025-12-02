@@ -8,12 +8,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.DependencyInjection.DIComplete;
 /// Dependency Injection Tutorial - Complete: Full DI example with multiple greeting styles.
 /// Demonstrates the flexibility that DI provides for swapping implementations.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "di-tutorial";
-    public string Description => "DI tutorial: complete greeting CLI with multiple styles.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var services = new ServiceCollection();
         services.AddSingleton<IGreetingService, GreetingService>();

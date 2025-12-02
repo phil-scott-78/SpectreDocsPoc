@@ -6,12 +6,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.DefiningCommandsAndArguments;
 /// <summary>
 /// Demonstrates how to define commands, arguments, and options.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "defining-commands";
-    public string Description => "Demonstrates defining commands, arguments, and options.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp<FileCopyCommand>();
         return await app.RunAsync(args);

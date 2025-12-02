@@ -6,12 +6,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.MakingOptionsRequired;
 /// <summary>
 /// Demonstrates how to make options required.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "required-options";
-    public string Description => "Demonstrates making options required instead of optional.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp<DeployCommand>();
         return await app.RunAsync(args);

@@ -7,12 +7,9 @@ namespace Spectre.Docs.Cli.Examples.DemoApps.MultiCommand.Step1;
 /// Multi-Command CLI Tutorial - Step 1: Two top-level commands.
 /// Demonstrates using CommandApp with Configure() to add multiple commands.
 /// </summary>
-public class Demo : IDemoApp
+public class Demo
 {
-    public string Name => "multi-command";
-    public string Description => "Multi-Command tutorial: package manager CLI with multiple commands.";
-
-    public async Task<int> RunAsync(string[] args)
+    public static async Task<int> RunAsync(string[] args)
     {
         var app = new CommandApp();
         app.Configure(config =>
