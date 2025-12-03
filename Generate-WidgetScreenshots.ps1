@@ -2,8 +2,8 @@
 
 #Requires -Version 7.0
 
-# Build the project
-Write-Host "Building project..." -ForegroundColor Cyan
+# Build the projects
+Write-Host "Building projects..." -ForegroundColor Cyan
 dotnet build Spectre.Docs.Examples
 
 if ($LASTEXITCODE -ne 0) {
@@ -11,10 +11,20 @@ if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }
 
-# Generate all screenshots in parallel
-Write-Host "`nGenerating screenshots in parallel..." -ForegroundColor Cyan
+dotnet build Spectre.Docs.Cli.Examples
 
-$tapeFiles = Get-ChildItem "Spectre.Docs.Examples\VCR\*.tape"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Build failed with exit code $LASTEXITCODE"
+    exit $LASTEXITCODE
+}
+
+# Generate all screenshots
+Write-Host "`nGenerating screenshots..." -ForegroundColor Cyan
+
+$tapeFiles = @(
+    Get-ChildItem "Spectre.Docs.Examples\VCR\*.tape"
+    Get-ChildItem "Spectre.Docs.Cli.Examples\VCR\*.tape"
+)
 $totalFiles = $tapeFiles.Count
 Write-Host "Found $totalFiles tape files to process`n" -ForegroundColor Green
 

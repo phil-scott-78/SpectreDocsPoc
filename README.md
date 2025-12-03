@@ -56,10 +56,10 @@ Content/
 │   ├── reference/
 │   └── explanation/
 ├── blog/             # Blog posts and release notes
-└── assets/           # Images, WebP animations, etc.
+└── assets/           # Images, SVG animations, etc.
 ```
 
-Each section has its own content service and front matter model, configured in `Program.cs:28-40`.
+Each section has its own content service and front matter model, configured in `Program.cs`.
 
 ## Adding Documentation
 
@@ -123,70 +123,133 @@ Your blog content here...
 
 Blog posts are automatically sorted by date (newest first) and appear at `/blog/your-file-name`.
 
-## Creating WebP Animated Samples
+## Creating SVG Animated Samples
 
-Animated samples show your library features in action. Here's the complete workflow:
+Animated samples show your library features in action using VCR tape recordings. The project supports two types of samples: **Console samples** (widget demonstrations) and **CLI samples** (command-line application tutorials).
 
-### Step 1: Write a Sample Class
+### Prerequisites
 
-Create a new sample in `Spectre.Docs.Examples/AsciiCast/Samples/`:
+Install VCR from [GitHub](https://github.com/phil-scott-78/vcr).
+
+### Console Samples
+
+Console samples demonstrate Spectre.Console widgets and features. They run with no command-line arguments and assume the project has been built.
+
+#### Step 1: Write a Sample Class
+
+Create a new sample in `Spectre.Docs.Examples/Showcase/`:
 
 ```csharp
 public class MyFeatureSample : BaseSample
 {
-    // Optional: Customize console dimensions (default is 82x24)
-    public override (int Cols, int Rows) ConsoleSize => (82, 20);
-
-    // Your sample code
     public override void Run(IAnsiConsole console)
     {
         console.Write(
             new Panel("[bold yellow]Hello, Spectre![/]")
                 .BorderColor(Color.Blue));
 
-        // Simulate work
         Thread.Sleep(2000);
     }
 }
 ```
 
-The class name determines the output filename (`MyFeatureSample` → `my-feature.webp`).
+The class name determines the sample name (`MyFeatureSample` → `my-feature`).
 
-### Step 2: Install Prerequisites
+#### Step 2: Create a VCR Tape
 
-Install the required tools:
+Create a `.tape` file in `Spectre.Docs.Examples/VCR/`:
 
-- **agg**: `cargo install agg` or download from [GitHub](https://github.com/asciinema/agg)
-- **ffmpeg**: Download from [ffmpeg.org](https://ffmpeg.org/download.html)
+```
+Output "Spectre.Docs/Content/assets/my-feature.svg"
 
-Verify installation:
-```bash
-agg --version
-ffmpeg -version
+Set DisableCursor true
+Set FontSize 22
+Set Theme "one dark"
+Set TransparentBackground "true"
+Set Cols 82
+Set Rows 12
+Set EndBuffer 5s
+
+Exec "dotnet run --project .\Spectre.Docs.Examples\ --no-build showcase my-feature"
 ```
 
-### Step 3: Generate WebP Files
+**Key points:**
+- Use `--no-build` because the build script compiles the project first
+- The sample name in `showcase <name>` matches the kebab-case class name (minus "Sample")
 
-Run the build script from the `Spectre.Docs.Examples` directory:
+### CLI Samples
+
+CLI samples demonstrate Spectre.CLI command-line application patterns. They use an environment variable to select which demo to run from the compiled `example.exe`.
+
+#### Step 1: Create a Demo App
+
+Create a demo in `Spectre.Docs.Cli.Examples/DemoApps/[Tutorial]/[SubFolder]/`:
+
+```csharp
+namespace Spectre.Docs.Cli.Examples.DemoApps.MyTutorial.Complete;
+
+public class Demo
+{
+    public static async Task<int> RunAsync(string[] args)
+    {
+        var app = new CommandApp<MyCommand>();
+        return await app.RunAsync(args);
+    }
+}
+```
+
+#### Step 2: Create a VCR Tape
+
+Create a `.tape` file in `Spectre.Docs.Cli.Examples/VCR/`:
+
+```
+Output "Spectre.Docs/Content/assets/cli-my-tutorial.svg"
+
+Set Shell "pwsh"
+Set FontSize 22
+Set Theme "one dark"
+Set TransparentBackground "true"
+Set Cols 70
+Set Rows 12
+Set EndBuffer 5s
+Set WorkingDirectory "Spectre.Docs.Cli.Examples/bin/Debug/net10.0"
+Env SPECTRE_APP "M:Spectre.Docs.Cli.Examples.DemoApps.MyTutorial.Complete.Demo.RunAsync(System.String[])"
+
+Type "./example --help"
+Sleep 400ms
+Enter
+Sleep 2s
+
+Type "./example Alice"
+Sleep 400ms
+Enter
+Sleep 1s
+```
+
+**Key points:**
+- `SPECTRE_APP` is set to the XmlDocId of the demo's `RunAsync` method
+- Use `Type` and `Enter` commands to simulate interactive terminal input
+- The working directory points to the compiled binary location
+
+### Generate SVG Files
+
+Run the build script from the repository root:
 
 ```powershell
-.\Build-Samples.ps1
+.\Generate-WidgetScreenshots.ps1
 ```
 
 This script:
-1. Runs all `BaseSample` classes and captures output as `.cast` (AsciiCast JSON)
-2. Converts `.cast` → `.gif` using `agg` (Dracula theme, Cascadia Code font, 18px, 0.75x speed)
-3. Converts `.gif` → `.webp` using `ffmpeg` (lossy compression, quality 75)
-4. Cleans up intermediate `.cast` and `.gif` files
-5. Outputs final `.webp` files to `Content/assets/`
+1. Builds both `Spectre.Docs.Examples` and `Spectre.Docs.Cli.Examples`
+2. Finds all `.tape` files in both VCR directories
+3. Executes each tape with VCR to generate SVG files
+4. Outputs SVG files to `Spectre.Docs/Content/assets/`
 
-### Step 4: Reference in Documentation
+### Reference in Documentation
 
-Use standard markdown image syntax:
+Use the <Screenshot> razor component
 
-```markdown
-![Feature Demo](/assets/my-feature.webp)
-```
+<Screenshot Src="/assets/my-image.svg" Alt="Alt Text" />
 
 ## Linking to Code with xmldocid
 
