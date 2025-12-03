@@ -18,7 +18,7 @@ Use Status when you need to **indicate ongoing work without tracking specific pr
 - **Connection attempts**: Display feedback while connecting to services or loading resources
 - **Background processing**: Indicate that work is happening behind the scenes
 
-For **operations with measurable progress** (file downloads, batch processing), use [Progress](/console/live/progress) instead.
+For **operations with measurable progress** (file downloads, batch processing), use [Progress](xref:console-live-progress) instead.
 
 > [!CAUTION]
 > Status display is not thread safe. Using it together with other interactive components such as prompts, progress displays, or other status displays is not supported.
@@ -42,7 +42,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusSpinn
 ```
 
 > [!NOTE]
-> See the [Spinner Reference](/console/reference/spinner-reference) for a gallery of all available spinner animations.
+> See the [Spinner Reference](xref:console-spinner-styles) for a gallery of all available spinner animations.
 
 ### Styling the Spinner
 
@@ -104,11 +104,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusWithM
 
 ## See Also
 
-- [How to Show Activity Status](/console/how--to/showing-activity-status) - Step-by-step guide
-- [Showing Status and Spinners Tutorial](/console/tutorials/status-spinners-tutorial) - Learn status basics
-- [Progress Display](/console/live/progress) - For operations with measurable progress
-- [Spinner Reference](/console/reference/spinner-reference) - Available spinner animations
-- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
+- <xref:console-howto-showing-activity-status> - Step-by-step guide
+- <xref:console-status-spinners> - Learn status basics
+- <xref:console-live-progress> - For operations with measurable progress
+- <xref:console-spinner-styles> - Available spinner animations
+- <xref:console-explanation-async-patterns> - Best practices for async operations
 
 ## API Reference
 

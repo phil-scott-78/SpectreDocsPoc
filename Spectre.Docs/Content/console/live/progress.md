@@ -18,7 +18,7 @@ Use Progress when you need to **track completion status for long-running operati
 - **Build pipelines**: Track compilation, testing, and deployment steps
 - **Data processing**: Monitor record processing, imports, or transformations
 
-For **simple status messages without progress tracking**, use [Status](/console/live/status) instead. For **real-time data updates**, consider [Live Display](/console/live/live-display).
+For **simple status messages without progress tracking**, use [Status](xref:console-live-status) instead. For **real-time data updates**, consider [Live Display](xref:console-live-live-display).
 
 > [!CAUTION]
 > Progress display is not thread safe. Using it together with other interactive components such as prompts, status displays, or other progress displays is not supported.
@@ -164,11 +164,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressR
 
 ## See Also
 
-- [How to Show Progress Bars](/console/how--to/showing-progress-bars) - Step-by-step guide
-- [Showing Status and Spinners Tutorial](/console/tutorials/status-spinners-tutorial) - Learn progress basics
-- [Status Display](/console/live/status) - Simple spinner for indeterminate operations
-- [Spinner Reference](/console/reference/spinner-reference) - Available spinner animations
-- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
+- <xref:console-howto-showing-progress-bars> - Step-by-step guide
+- <xref:console-status-spinners> - Learn progress basics
+- <xref:console-live-status> - Simple spinner for indeterminate operations
+- <xref:console-spinner-styles> - Available spinner animations
+- <xref:console-explanation-async-patterns> - Best practices for async operations
 
 ## API Reference
 

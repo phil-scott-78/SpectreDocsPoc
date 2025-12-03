@@ -184,4 +184,4 @@ public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo
 
 ## See Also
 
-- [Attribute and Parameter Reference](/cli/reference/attribute-and-parameter-reference) - TypeConverterAttribute usage
+- <xref:cli-attributes-parameters> - TypeConverterAttribute usage

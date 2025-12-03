@@ -17,7 +17,7 @@ Use Layout when you need to **divide the console into distinct regions** with pr
 - **Multi-pane views**: Split screen layouts like file managers, IDE-style interfaces, or monitoring dashboards
 - **Responsive layouts**: Sections that adapt proportionally to available space using ratios
 
-For **simple side-by-side content** without nested regions, use [Columns](/console/widgets/columns) instead. For **tabular data with borders**, use [Grid](/console/widgets/grid).
+For **simple side-by-side content** without nested regions, use [Columns](xref:console-widget-columns) instead. For **tabular data with borders**, use [Grid](xref:console-widget-grid).
 
 ## Basic Usage
 
@@ -115,11 +115,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.LayoutExamples.LayoutDy
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [How to Live Rendering and Dynamic Updates](/console/how--to/live-rendering-and-dynamic-updates) - Real-time layout updates
-- [Columns Widget](/console/widgets/columns) - Simple side-by-side content
-- [Grid Widget](/console/widgets/grid) - Tabular layouts with borders
-- [Live Display](/console/live/live-display) - Updating layouts in real-time
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-howto-live-rendering> - Real-time layout updates
+- <xref:console-widget-columns> - Simple side-by-side content
+- <xref:console-widget-grid> - Tabular layouts with borders
+- <xref:console-live-live-display> - Updating layouts in real-time
 
 ## API Reference
 

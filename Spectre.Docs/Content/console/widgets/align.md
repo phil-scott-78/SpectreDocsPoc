@@ -17,7 +17,7 @@ Use Align when you need to **position content within available space**. Common s
 - **Right-aligned output**: Align status information, timestamps, or metadata to the right edge
 - **Vertical positioning**: Position headers at the top, footers at the bottom, or center dialogs
 
-For **adding spacing around content**, use [Padder](/console/widgets/padder) instead. For **side-by-side layouts**, use [Columns](/console/widgets/columns) or [Grid](/console/widgets/grid).
+For **adding spacing around content**, use [Padder](xref:console-widget-padder) instead. For **side-by-side layouts**, use [Columns](xref:console-widget-columns) or [Grid](xref:console-widget-grid).
 
 ## Basic Usage
 
@@ -113,11 +113,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.AlignExamples.TitleScre
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [Padder Widget](/console/widgets/padder) - Add spacing around content
-- [Panel Widget](/console/widgets/panel) - Bordered containers with headers
-- [Columns Widget](/console/widgets/columns) - Side-by-side layouts
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-widget-padder> - Add spacing around content
+- <xref:console-widget-panel> - Bordered containers with headers
+- <xref:console-widget-columns> - Side-by-side layouts
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

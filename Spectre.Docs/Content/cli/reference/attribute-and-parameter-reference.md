@@ -166,7 +166,7 @@ Apply to the property type definition, not the property itself.
 public enum LogLevel { Debug, Info, Warning, Error }
 ```
 
-See [Type Converters](/cli/reference/type-converters) for implementation details.
+See [Type Converters](xref:cli-type-converters) for implementation details.
 
 ## CommandSettings Base Class
 
@@ -218,5 +218,5 @@ public string Path { get; set; }
 
 ## See Also
 
-- [Type Converters](/cli/reference/type-converters) - Custom type conversion
-- [Quick Start Tutorial](/cli/tutorials/quick-start-your-first-cli-app) - Getting started with commands
+- <xref:cli-type-converters> - Custom type conversion
+- <xref:cli-quick-start> - Getting started with commands

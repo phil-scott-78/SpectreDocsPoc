@@ -15,7 +15,7 @@ Use Markup when you want **inline styling with readable syntax**. Common scenari
 - **Formatted output**: Mix styles naturally within text
 - **Static styling**: When styles are known at compile time
 
-For **programmatic control over styling** or when styles are determined at runtime, use [Text](/console/widgets/text) instead.
+For **programmatic control over styling** or when styles are determined at runtime, use [Text](xref:console-widget-text) instead.
 
 ## Basic Usage
 
@@ -59,10 +59,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.MarkupExamples.MarkupRe
 
 ## See Also
 
-- [Text Widget](/console/widgets/text) - Programmatic styling with Style objects
-- [Color Reference](/console/reference/color-reference) - All available color names
-- [Text Style Reference](/console/reference/text-style-reference) - All decoration options (bold, italic, etc.)
-- [Getting Started](/console/tutorials/getting-started-building-rich-console-app) - Tutorial for learning the markup language
+- <xref:console-widget-text> - Programmatic styling with Style objects
+- <xref:console-color-reference> - All available color names
+- <xref:console-text-styles> - All decoration options (bold, italic, etc.)
+- <xref:console-getting-started> - Tutorial for learning the markup language
 
 ## API Reference
 

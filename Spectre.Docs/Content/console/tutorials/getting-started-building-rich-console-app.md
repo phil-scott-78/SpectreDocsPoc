@@ -144,7 +144,7 @@ dotnet run
 
 The same warning message appears, but now the filename and count come from variables. `MarkupLineInterpolated()` automatically escapes any brackets in the interpolated values, preventing markup parsing errors.
 
-See the [Markup Widget](/console/widgets/markup) reference for more on escaping.
+See the [Markup Widget](xref:console-widget-markup) reference for more on escaping.
 
 </Step>
 <Step stepNumber="8">
@@ -177,8 +177,8 @@ Apply these patterns to any console application: log viewers, deployment scripts
 
 ## Next Steps
 
-- [Asking User Questions](/console/tutorials/interactive-prompts-tutorial) - Add interactive prompts to collect user input
-- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated spinners while work is happening
-- [Markup Reference](/console/reference/markup-reference) - Complete markup syntax guide
-- [Color Reference](/console/reference/color-reference) - Explore all available color names and formats
+- <xref:console-interactive-prompts> - Add interactive prompts to collect user input
+- <xref:console-status-spinners> - Display animated spinners while work is happening
+- <xref:console-markup-reference> - Complete markup syntax guide
+- <xref:console-color-reference> - Explore all available color names and formats
 - [Spectre.Console vs Traditional Output](/console/explanation/spectre-console-vs-traditional-output) - Why use Spectre.Console

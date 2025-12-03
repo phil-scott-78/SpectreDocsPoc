@@ -212,6 +212,6 @@ Common reasons to override:
 
 ## See Also
 
-- <xref:console-custom-renderables> - Complete list of capabilities, environment variables, and CI detection
-- [Extending with Custom Renderables](/console/explanation/extending-with-custom-renderables) - Build custom widgets
-- [Live Display](/console/live/live-display) - Real-time rendering in practice
+- <xref:console-capabilities-reference> - Complete list of capabilities, environment variables, and CI detection
+- <xref:console-custom-renderables> - Build custom widgets
+- <xref:console-live-live-display> - Real-time rendering in practice

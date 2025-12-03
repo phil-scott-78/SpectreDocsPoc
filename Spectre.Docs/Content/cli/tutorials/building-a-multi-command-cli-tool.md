@@ -15,7 +15,7 @@ Here's how our CLI will work when we're done:
 
 ## Prerequisites
 
-- Completed the [Quick Start tutorial](/cli/tutorials/quick-start-your-first-cli-app)
+- Completed the [Quick Start tutorial](xref:cli-quick-start)
 - .NET 8.0 or later
 
 <Steps>
@@ -178,13 +178,13 @@ These same patterns scale to CLIs with dozens of commands and deep nesting.
 
 ## Next Steps
 
-- [Configuring CommandApp and Commands](/cli/how--to/configuring-commandapp-and-commands) - Customize application behavior, add aliases, and set examples
-- [Working with Multiple Command Hierarchies](/cli/how--to/working-with-multiple-command-hierarchies) - Build even deeper command structures
-- [Async Commands and Cancellation](/cli/how--to/async-commands-and-cancellation) - Handle long-running operations with proper cancellation support
+- <xref:cli-app-configuration> - Customize application behavior, add aliases, and set examples
+- <xref:cli-command-hierarchies> - Build even deeper command structures
+- <xref:cli-async-commands> - Handle long-running operations with proper cancellation support
 
 ## Related Console Tutorials
 
 Looking to enhance your CLI output? Check out these Spectre.Console tutorials:
 
-- [Getting Started: Building a Rich Console App](/console/tutorials/getting-started-building-rich-console-app) - Add tables, colors, and formatting to your command output
-- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display progress while packages install
+- <xref:console-getting-started> - Add tables, colors, and formatting to your command output
+- <xref:console-status-spinners> - Display progress while packages install

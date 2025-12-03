@@ -32,4 +32,4 @@ This approach requires more code but gives you complete flexibility. You can cat
 
 ## See Also
 
-- [Async Commands and Cancellation](/cli/how--to/async-commands-and-cancellation) - Handle cancellation gracefully
+- <xref:cli-async-commands> - Handle cancellation gracefully

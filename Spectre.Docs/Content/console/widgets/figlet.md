@@ -17,7 +17,7 @@ Use FigletText when you need to **make text stand out dramatically** in console 
 - **Section headers**: Create visual separation between major sections
 - **Status announcements**: Highlight important events like "SUCCESS" or "ERROR"
 
-For **simple horizontal dividers**, use [Rule](/console/widgets/rule) instead. For **regular styled text**, use [Text](/console/widgets/text).
+For **simple horizontal dividers**, use [Rule](xref:console-widget-rule) instead. For **regular styled text**, use [Text](xref:console-widget-text).
 
 ## Basic Usage
 
@@ -91,9 +91,9 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.FigletTextExamples.Figl
 
 ## See Also
 
-- [Rule Widget](/console/widgets/rule) - Simple horizontal dividers
-- [Panel Widget](/console/widgets/panel) - Wrap figlet text in borders
-- [Color Reference](/console/reference/color-reference) - Available colors
+- <xref:console-widget-rule> - Simple horizontal dividers
+- <xref:console-widget-panel> - Wrap figlet text in borders
+- <xref:console-color-reference> - Available colors
 
 ## API Reference
 

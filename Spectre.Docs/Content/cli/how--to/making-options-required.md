@@ -50,5 +50,5 @@ This gives you full control over error messages and allows for validation logic 
 
 ## See Also
 
-- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Basic argument and option patterns
-- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Custom error handling
+- <xref:cli-commands-arguments> - Basic argument and option patterns
+- <xref:cli-error-handling> - Custom error handling

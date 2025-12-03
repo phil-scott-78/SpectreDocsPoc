@@ -127,4 +127,4 @@ The context is read-only during command execution. You cannot modify `Name`, `Ar
 
 ## See Also
 
-- [Built-in Command Behaviors](/cli/reference/built-in-command-behaviors) - Parsing rules for remaining arguments
+- <xref:cli-built-in-behaviors> - Parsing rules for remaining arguments

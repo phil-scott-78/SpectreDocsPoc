@@ -16,9 +16,9 @@ Use Rows when you need to **arrange multiple widgets vertically in a single rend
 - **Multi-section layouts**: Stack headers, content, and footers in a logical flow
 - **Status dashboards**: Organize different information panels vertically
 - **Form-like displays**: Present related information in a top-to-bottom sequence
-- **Combining with other layouts**: Create grid-like structures by nesting Rows within [Columns](/console/widgets/columns)
+- **Combining with other layouts**: Create grid-like structures by nesting Rows within [Columns](xref:console-widget-columns)
 
-For **horizontal arrangement**, use [Columns](/console/widgets/columns) instead. For **precise control over rows and columns with cell alignment**, use [Grid](/console/widgets/grid) instead.
+For **horizontal arrangement**, use [Columns](xref:console-widget-columns) instead. For **precise control over rows and columns with cell alignment**, use [Grid](xref:console-widget-grid) instead.
 
 ## Basic Usage
 
@@ -82,11 +82,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RowsExamples.RowsDashbo
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [Columns Widget](/console/widgets/columns) - Horizontal arrangement
-- [Grid Widget](/console/widgets/grid) - Precise row and column control
-- [Layout Widget](/console/widgets/layout) - Complex multi-section layouts
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-widget-columns> - Horizontal arrangement
+- <xref:console-widget-grid> - Precise row and column control
+- <xref:console-widget-layout> - Complex multi-section layouts
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

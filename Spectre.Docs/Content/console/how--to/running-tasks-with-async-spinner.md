@@ -33,4 +33,4 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.GetRes
 
 ## See Also
 
-- [Spinner Reference](/console/reference/spinner-reference) - All spinner animations
+- <xref:console-spinner-styles> - All spinner animations

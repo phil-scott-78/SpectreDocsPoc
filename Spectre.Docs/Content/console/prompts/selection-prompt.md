@@ -15,7 +15,7 @@ Use SelectionPrompt when you need to **present a clear set of mutually exclusive
 - **Categorical selection**: Countries, languages, categories with defined options
 - **Mode switching**: Environment selection (Dev/Stage/Prod), output formats, themes
 
-For **multiple selections**, use [MultiSelectionPrompt](/console/prompts/multi-selection-prompt) instead. For **free-form text input**, use [TextPrompt](/console/prompts/text-prompt) instead.
+For **multiple selections**, use [MultiSelectionPrompt](xref:console-prompt-multi-selection) instead. For **free-form text input**, use [TextPrompt](xref:console-prompt-text) instead.
 
 > [!CAUTION]
 > Selection prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
@@ -144,10 +144,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.SelectionPromptExamples
 
 ## See Also
 
-- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Step-by-step guide
-- [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
-- [MultiSelectionPrompt](/console/prompts/multi-selection-prompt) - Select multiple items
-- [TextPrompt](/console/prompts/text-prompt) - Free-form text input
+- <xref:console-howto-prompting-for-user-input> - Step-by-step guide
+- <xref:console-interactive-prompts> - Learn prompts basics
+- <xref:console-prompt-multi-selection> - Select multiple items
+- <xref:console-prompt-text> - Free-form text input
 
 ## API Reference
 

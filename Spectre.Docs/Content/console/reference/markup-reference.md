@@ -31,7 +31,7 @@ AnsiConsole.MarkupLine("[deepskyblue1]Sky blue text[/]");
 AnsiConsole.MarkupLine("[grey]Muted text[/]");
 ```
 
-See [Color Reference](/console/reference/color-reference) for the complete list.
+See [Color Reference](xref:console-color-reference) for the complete list.
 
 ### Hex Colors
 
@@ -183,7 +183,7 @@ AnsiConsole.MarkupLine(":warning: Proceed with caution");
 AnsiConsole.MarkupLine(":rocket: Deploying...");
 ```
 
-See [Emoji Reference](/console/reference/emoji-reference) for available shortcodes.
+See [Emoji Reference](xref:console-emoji-reference) for available shortcodes.
 
 ## Common Pitfalls
 
@@ -255,8 +255,8 @@ AnsiConsole.MarkupLine("[red]text[/]");
 
 ## See Also
 
-- [Color Reference](/console/reference/color-reference) - Complete list of named colors
-- [Text Style Reference](/console/reference/text-style-reference) - All text decorations
-- [Emoji Reference](/console/reference/emoji-reference) - Emoji shortcodes
-- [Markup Widget](/console/widgets/markup) - API reference and advanced usage
+- <xref:console-color-reference> - Complete list of named colors
+- <xref:console-text-styles> - All text decorations
+- <xref:console-emoji-reference> - Emoji shortcodes
+- <xref:console-widget-markup> - API reference and advanced usage
 - [Terminal Compatibility](/console/reference/compatibility-matrix) - Feature support by terminal

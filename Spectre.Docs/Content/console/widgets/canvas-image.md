@@ -16,7 +16,7 @@ Use CanvasImage when you need to **display visual content from image files** in 
 - **Preview functionality**: Show thumbnails or previews of image files
 - **Visual feedback**: Display icons or status images during operations
 
-For **drawing custom graphics programmatically** (shapes, lines, patterns), use [Canvas](/console/widgets/canvas) instead. For **ASCII art from text**, use the [FigletText](/console/widgets/figlet) widget.
+For **drawing custom graphics programmatically** (shapes, lines, patterns), use [Canvas](xref:console-widget-canvas) instead. For **ASCII art from text**, use the [FigletText](xref:console-widget-figlet) widget.
 
 ## Basic Usage
 
@@ -142,8 +142,8 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasImageExamples.Can
 
 ## See Also
 
-- [Canvas Widget](/console/widgets/canvas) - Draw custom graphics programmatically
-- [FigletText Widget](/console/widgets/figlet) - ASCII art text banners
+- <xref:console-widget-canvas> - Draw custom graphics programmatically
+- <xref:console-widget-figlet> - ASCII art text banners
 
 ## API Reference
 

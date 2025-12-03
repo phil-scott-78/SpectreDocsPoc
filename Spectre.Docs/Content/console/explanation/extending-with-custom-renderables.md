@@ -9,7 +9,7 @@ An explanation of how developers can create their own widgets or renderable comp
 
 ## See Also
 
-- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How rendering works
-- [Canvas Widget](/console/widgets/canvas) - Pixel-level rendering example
-- [Panel Widget](/console/widgets/panel) - Container widget example
-- [Live Display](/console/live/live-display) - Rendering dynamic content
+- <xref:console-rendering-model> - How rendering works
+- <xref:console-widget-canvas> - Pixel-level rendering example
+- <xref:console-widget-panel> - Container widget example
+- <xref:console-live-live-display> - Rendering dynamic content

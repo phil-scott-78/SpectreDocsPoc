@@ -64,5 +64,5 @@ GitHub Actions receives special treatment: Spectre.Console enables ANSI colors s
 
 ## See Also
 
-- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How capability detection influences rendering
-- [Color Reference](/console/reference/color-reference) - Available colors at each color system level
+- <xref:console-rendering-model> - How capability detection influences rendering
+- <xref:console-color-reference> - Available colors at each color system level

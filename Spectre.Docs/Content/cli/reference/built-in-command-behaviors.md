@@ -149,4 +149,4 @@ myapp <command> --help
 
 ## See Also
 
-- [CommandContext Reference](/cli/reference/command-context) - Runtime command information
+- <xref:cli-command-context> - Runtime command information

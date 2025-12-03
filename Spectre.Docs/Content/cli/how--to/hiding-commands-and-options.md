@@ -29,5 +29,5 @@ The `--skip-hooks` option won't appear in `deploy --help`, but users can still p
 
 ## See Also
 
-- [Customizing Help Text and Usage](/cli/how--to/customizing-help-text-and-usage) - Control what appears in help output
-- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Command and option basics
+- <xref:cli-help-customization> - Control what appears in help output
+- <xref:cli-commands-arguments> - Command and option basics

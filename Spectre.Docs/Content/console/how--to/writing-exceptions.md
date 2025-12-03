@@ -41,4 +41,4 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.WritingExceptionsHowTo.CustomizeCol
 
 ## See Also
 
-- [Markup Reference](/console/reference/markup-reference) - Style syntax for colors and decorations
+- <xref:console-markup-reference> - Style syntax for colors and decorations

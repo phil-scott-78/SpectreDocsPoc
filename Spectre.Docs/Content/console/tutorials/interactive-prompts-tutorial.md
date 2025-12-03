@@ -17,7 +17,7 @@ Here's what our pizza order flow will look like:
 
 - .NET 6.0 or later
 - Basic C# knowledge
-- Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
+- Completion of the [Getting Started](xref:console-getting-started) tutorial
 
 > [!CAUTION]
 > Prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
@@ -143,7 +143,7 @@ Use these prompts in configuration wizards, CLI tools, installation scripts, and
 
 ## Next Steps
 
-- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated feedback while operations run
-- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Task-focused prompting guide
-- [Text Prompts Reference](/console/prompts/text-prompt) - Explore validation, secrets, and default values
-- [Selection Prompts Reference](/console/prompts/selection-prompt) - Learn about grouping, search, and styling options
+- <xref:console-status-spinners> - Display animated feedback while operations run
+- <xref:console-howto-prompting-for-user-input> - Task-focused prompting guide
+- <xref:console-prompt-text> - Explore validation, secrets, and default values
+- <xref:console-prompt-selection> - Learn about grouping, search, and styling options

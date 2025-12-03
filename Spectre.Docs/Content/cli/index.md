@@ -58,18 +58,18 @@ Run it with `dotnet run -- World --count 3` to see typed argument parsing in act
 
 Start with the tutorials to build foundational skills:
 
-1. [Quick Start: Your First CLI App](/cli/tutorials/quick-start-your-first-cli-app) - Create your first command with arguments and options
-2. [Building a Multi-Command CLI Tool](/cli/tutorials/building-a-multi-command-cli-tool) - Add multiple commands with shared settings
-3. [Dependency Injection in CLI Apps](/cli/tutorials/dependency-injection-in-cli-apps) - Integrate with DI containers
+1. <xref:cli-quick-start> - Create your first command with arguments and options
+2. <xref:cli-multi-command-tutorial> - Add multiple commands with shared settings
+3. <xref:cli-di-tutorial> - Integrate with DI containers
 
 ### Know the Basics?
 
 Jump to task-focused how-to guides:
 
-- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Use attributes for type-safe parameters
-- [Making Options Required](/cli/how--to/making-options-required) - Enforce required options and validate input
-- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Graceful error handling and custom exit codes
-- [Testing Command-Line Applications](/cli/how--to/testing-command-line-applications) - Unit test your CLI apps
+- <xref:cli-commands-arguments> - Use attributes for type-safe parameters
+- <xref:cli-required-options> - Enforce required options and validate input
+- <xref:cli-error-handling> - Graceful error handling and custom exit codes
+- <xref:cli-testing> - Unit test your CLI apps
 
 ### Building Something Specific?
 
@@ -82,8 +82,8 @@ Browse the complete [How-To Guides](#how-to-guides) below, or explore:
 
 Dive into the concepts:
 
-- [Design Philosophy: Convention over Configuration](/cli/explanation/design-philosophy-convention-over-configuration) - Why Spectre.Console.Cli works the way it does
-- [Command Lifecycle and Execution Flow](/cli/explanation/command-lifecycle-and-execution-flow) - How parsing, validation, and execution work
+- <xref:cli-design-philosophy> - Why Spectre.Console.Cli works the way it does
+- <xref:cli-command-lifecycle> - How parsing, validation, and execution work
 
 ---
 
@@ -91,8 +91,8 @@ Dive into the concepts:
 
 Essential lookups:
 
-- [Attribute and Parameter Reference](/cli/reference/attribute-and-parameter-reference) - All attributes and their options
-- [Type Converters](/cli/reference/type-converters) - Built-in types and custom converters
+- <xref:cli-attributes-parameters> - All attributes and their options
+- <xref:cli-type-converters> - Built-in types and custom converters
 
 ---
 
@@ -101,20 +101,20 @@ Essential lookups:
 Practical guides for specific tasks:
 
 ### Defining and Configuring Commands
-- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Use `[CommandArgument]` and `[CommandOption]` attributes
-- [Making Options Required](/cli/how--to/making-options-required) - Enforce required options with the `required` keyword
-- [Configuring CommandApp and Commands](/cli/how--to/configuring-commandapp-and-commands) - Register commands, set aliases, and configure global settings
-- [Working with Multiple Command Hierarchies](/cli/how--to/working-with-multiple-command-hierarchies) - Create nested command structures with `AddBranch`
+- <xref:cli-commands-arguments> - Use `[CommandArgument]` and `[CommandOption]` attributes
+- <xref:cli-required-options> - Enforce required options with the `required` keyword
+- <xref:cli-app-configuration> - Register commands, set aliases, and configure global settings
+- <xref:cli-command-hierarchies> - Create nested command structures with `AddBranch`
 
 ### Advanced Features
-- [Async Commands and Cancellation](/cli/how--to/async-commands-and-cancellation) - Use `AsyncCommand<T>` and handle Ctrl+C gracefully
-- [Customizing Help Text and Usage](/cli/how--to/customizing-help-text-and-usage) - Application name, examples, and custom help providers
-- [Intercepting Command Execution](/cli/how--to/intercepting-command-execution) - Implement `ICommandInterceptor` for cross-cutting concerns
-- [Hiding Commands and Options](/cli/how--to/hiding-commands-and-options) - Hide internal commands from help output
+- <xref:cli-async-commands> - Use `AsyncCommand<T>` and handle Ctrl+C gracefully
+- <xref:cli-help-customization> - Application name, examples, and custom help providers
+- <xref:cli-command-interception> - Implement `ICommandInterceptor` for cross-cutting concerns
+- <xref:cli-hidden-commands> - Hide internal commands from help output
 
 ### Error Handling and Testing
-- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Exception handling and custom exit codes
-- [Testing Command-Line Applications](/cli/how--to/testing-command-line-applications) - Use `CommandAppTester` for unit testing
+- <xref:cli-error-handling> - Exception handling and custom exit codes
+- <xref:cli-testing> - Use `CommandAppTester` for unit testing
 
 ---
 
@@ -122,10 +122,10 @@ Practical guides for specific tasks:
 
 API documentation and quick lookups:
 
-- [Attribute and Parameter Reference](/cli/reference/attribute-and-parameter-reference) - Complete reference for `[CommandArgument]`, `[CommandOption]`, and more
-- [Type Converters](/cli/reference/type-converters) - Built-in type support and custom type conversion
-- [CommandContext Reference](/cli/reference/command-context) - Properties and usage of the `CommandContext` class
-- [Built-in Command Behaviors](/cli/reference/built-in-command-behaviors) - The `version`, `explain`, `xmldoc`, and `opencli` commands
+- <xref:cli-attributes-parameters> - Complete reference for `[CommandArgument]`, `[CommandOption]`, and more
+- <xref:cli-type-converters> - Built-in type support and custom type conversion
+- <xref:cli-command-context> - Properties and usage of the `CommandContext` class
+- <xref:cli-built-in-behaviors> - The `version`, `explain`, `xmldoc`, and `opencli` commands
 
 ---
 
@@ -133,5 +133,5 @@ API documentation and quick lookups:
 
 Understand how Spectre.Console.Cli works:
 
-- [Design Philosophy: Convention over Configuration](/cli/explanation/design-philosophy-convention-over-configuration) - The rationale behind library design choices
-- [Command Lifecycle and Execution Flow](/cli/explanation/command-lifecycle-and-execution-flow) - Deep-dive into parsing, validation, and execution phases
+- <xref:cli-design-philosophy> - The rationale behind library design choices
+- <xref:cli-command-lifecycle> - Deep-dive into parsing, validation, and execution phases

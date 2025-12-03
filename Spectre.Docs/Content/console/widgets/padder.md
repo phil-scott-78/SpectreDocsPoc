@@ -17,7 +17,7 @@ Use Padder when you need to **control whitespace and spacing around content**. C
 - **Indentation and hierarchy**: Create visual structure by indenting nested content
 - **Fine-tuned layout**: Achieve precise spacing when containers like Panel have fixed padding
 
-For **centering content horizontally or vertically**, use [Align](/console/widgets/align) instead. For **content with a border and built-in padding**, use [Panel](/console/widgets/panel) instead.
+For **centering content horizontally or vertically**, use [Align](xref:console-widget-align) instead. For **content with a border and built-in padding**, use [Panel](xref:console-widget-panel) instead.
 
 ## Basic Usage
 
@@ -107,10 +107,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PadderExamples.PadderVi
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [Align Widget](/console/widgets/align) - Position content horizontally and vertically
-- [Panel Widget](/console/widgets/panel) - Bordered containers with built-in padding
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-widget-align> - Position content horizontally and vertically
+- <xref:console-widget-panel> - Bordered containers with built-in padding
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

@@ -15,7 +15,7 @@ Use Text when you need **programmatic control over styling** or when styles are 
 - **Computed styles**: Build styles dynamically from variables or configuration
 - **Container content**: Embed styled text inside panels, tables, or other widgets
 
-For **inline markup syntax** like `[bold red]text[/]`, use [Markup](/console/widgets/markup) instead.
+For **inline markup syntax** like `[bold red]text[/]`, use [Markup](xref:console-widget-markup) instead.
 
 ## Basic Usage
 
@@ -84,7 +84,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextColors
 ```
 
 > [!NOTE]
-> See the [Color Reference](/console/reference/color-reference) for all available colors and the [Text Style Reference](/console/reference/text-style-reference) for decoration options.
+> See the [Color Reference](xref:console-color-reference) for all available colors and the [Text Style Reference](xref:console-text-styles) for decoration options.
 
 ### Decorations
 
@@ -134,11 +134,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextExamples.TextInCont
 
 ## See Also
 
-- [Markup Widget](/console/widgets/markup) - Inline markup syntax alternative
-- [Color Reference](/console/reference/color-reference) - All available colors
-- [Text Style Reference](/console/reference/text-style-reference) - Decoration options (bold, italic, etc.)
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn markup and styling basics
-- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How text rendering works
+- <xref:console-widget-markup> - Inline markup syntax alternative
+- <xref:console-color-reference> - All available colors
+- <xref:console-text-styles> - Decoration options (bold, italic, etc.)
+- <xref:console-getting-started> - Learn markup and styling basics
+- <xref:console-rendering-model> - How text rendering works
 
 ## API Reference
 

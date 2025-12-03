@@ -47,5 +47,5 @@ This creates deeply nested commands like `myapp cloud storage upload`.
 
 ## See Also
 
-- [Configuring CommandApp and Commands](/cli/how--to/configuring-commandapp-and-commands) - Basic command registration
-- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Settings class patterns
+- <xref:cli-app-configuration> - Basic command registration
+- <xref:cli-commands-arguments> - Settings class patterns

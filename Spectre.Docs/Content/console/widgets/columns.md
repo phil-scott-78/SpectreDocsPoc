@@ -18,7 +18,7 @@ Use Columns when you need to **display multiple items horizontally with automati
 - **Comparison views**: Place related information side-by-side for easy comparison
 - **Responsive content**: Let items automatically wrap to new rows based on available width
 
-For **precise control over column widths and alignment**, use [Grid](/console/widgets/grid) instead. For **dividing a fixed height into proportional sections**, use [Layout](/console/widgets/layout) instead.
+For **precise control over column widths and alignment**, use [Grid](xref:console-widget-grid) instead. For **dividing a fixed height into proportional sections**, use [Layout](xref:console-widget-layout) instead.
 
 ## Basic Usage
 
@@ -92,11 +92,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.ColumnsExamples.Columns
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [Grid Widget](/console/widgets/grid) - Precise control over column widths
-- [Rows Widget](/console/widgets/rows) - Vertical stacking
-- [Layout Widget](/console/widgets/layout) - Complex multi-section layouts
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-widget-grid> - Precise control over column widths
+- <xref:console-widget-rows> - Vertical stacking
+- <xref:console-widget-layout> - Complex multi-section layouts
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

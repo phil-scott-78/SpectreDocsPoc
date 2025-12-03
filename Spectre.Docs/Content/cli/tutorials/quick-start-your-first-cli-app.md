@@ -129,14 +129,14 @@ These same patterns scale to larger applications with multiple commands, complex
 
 ## Next Steps
 
-- [Building a Multi-Command CLI Tool](/cli/tutorials/building-a-multi-command-cli-tool) - Add subcommands like `add`, `list`, and `remove`
-- [Command Settings Reference](/cli/reference/attribute-and-parameter-reference) - All available attributes and options
-- [Type Converters](/cli/reference/type-converters) - Parse custom types from command-line arguments
+- <xref:cli-multi-command-tutorial> - Add subcommands like `add`, `list`, and `remove`
+- <xref:cli-attributes-parameters> - All available attributes and options
+- <xref:cli-type-converters> - Parse custom types from command-line arguments
 
 ## Related Console Tutorials
 
 Looking to enhance your CLI app with rich console features? Check out these Spectre.Console tutorials:
 
-- [Getting Started: Building a Rich Console App](/console/tutorials/getting-started-building-rich-console-app) - Add colorful text, tables, and progress bars to your CLI commands
-- [Asking User Questions](/console/tutorials/interactive-prompts-tutorial) - Ask for names, numbers, and let users choose from lists
-- [Showing Status and Spinners](/console/tutorials/status-spinners-tutorial) - Display animated spinners while work is happening
+- <xref:console-getting-started> - Add colorful text, tables, and progress bars to your CLI commands
+- <xref:console-interactive-prompts> - Ask for names, numbers, and let users choose from lists
+- <xref:console-status-spinners> - Display animated spinners while work is happening

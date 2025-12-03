@@ -47,5 +47,5 @@ Use `PushKey` for arrow keys and enter, `PushTextWithEnter` for text input.
 
 ## See Also
 
-- [Dependency Injection in CLI Apps](/cli/tutorials/dependency-injection-in-cli-apps) - Inject IAnsiConsole via DI
-- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Test error scenarios
+- <xref:cli-di-tutorial> - Inject IAnsiConsole via DI
+- <xref:cli-error-handling> - Test error scenarios

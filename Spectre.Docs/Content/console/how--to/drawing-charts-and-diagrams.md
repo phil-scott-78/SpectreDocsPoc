@@ -41,6 +41,6 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DrawingChartsHowTo.AddRule
 
 ## See Also
 
-- [BarChart](/console/widgets/bar-chart) - Bar chart reference
-- [BreakdownChart](/console/widgets/breakdown-chart) - Breakdown chart reference
-- [Calendar](/console/widgets/calendar) - Calendar reference
+- <xref:console-widget-bar-chart> - Bar chart reference
+- <xref:console-widget-breakdown-chart> - Breakdown chart reference
+- <xref:console-widget-calendar> - Calendar reference

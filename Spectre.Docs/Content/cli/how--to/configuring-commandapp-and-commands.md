@@ -59,5 +59,5 @@ During development, enable additional validation:
 
 ## See Also
 
-- [Working with Multiple Command Hierarchies](/cli/how--to/working-with-multiple-command-hierarchies) - Nested commands with `AddBranch`
-- [Customizing Help Text and Usage](/cli/how--to/customizing-help-text-and-usage) - Further help customization
+- <xref:cli-command-hierarchies> - Nested commands with `AddBranch`
+- <xref:cli-help-customization> - Further help customization

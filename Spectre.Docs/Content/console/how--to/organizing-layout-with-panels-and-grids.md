@@ -41,7 +41,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.OrganizingLayoutHowTo.CenterContent
 
 ## See Also
 
-- [Panel](/console/widgets/panel) - Panel widget reference
-- [Grid](/console/widgets/grid) - Grid widget reference
-- [Columns](/console/widgets/columns) - Columns widget reference
-- [Box Border Reference](/console/reference/box-border-reference) - All border styles
+- <xref:console-widget-panel> - Panel widget reference
+- <xref:console-widget-grid> - Grid widget reference
+- <xref:console-widget-columns> - Columns widget reference
+- <xref:console-box-border-reference> - All border styles

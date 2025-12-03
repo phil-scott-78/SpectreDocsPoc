@@ -17,7 +17,7 @@ Use BarChart when you need to **compare discrete values across categories**. Com
 - **Progress tracking**: Display completion percentages or metrics against targets
 - **Survey results**: Visualize response counts or ratings
 
-For **part-to-whole relationships** (showing how pieces make up a total), use [BreakdownChart](/console/widgets/breakdown-chart) instead.
+For **part-to-whole relationships** (showing how pieces make up a total), use [BreakdownChart](xref:console-widget-breakdown-chart) instead.
 
 ## Basic Usage
 
@@ -77,10 +77,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.BarChartExamples.BarCha
 
 ## See Also
 
-- [How to Draw Charts and Diagrams](/console/how--to/drawing-charts-and-diagrams) - Step-by-step guide for creating charts
-- [BreakdownChart Widget](/console/widgets/breakdown-chart) - For part-to-whole relationships
-- [Color Reference](/console/reference/color-reference) - Available colors for bars
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-howto-drawing-charts> - Step-by-step guide for creating charts
+- <xref:console-widget-breakdown-chart> - For part-to-whole relationships
+- <xref:console-color-reference> - Available colors for bars
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

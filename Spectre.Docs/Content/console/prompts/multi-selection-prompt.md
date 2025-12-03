@@ -16,7 +16,7 @@ Use MultiSelectionPrompt when you need to **allow users to select multiple items
 - **Permission configuration**: Grant multiple permissions or roles to a user
 - **Multi-target deployment**: Choose multiple environments or servers for deployment
 
-For **single-item selection**, use [SelectionPrompt](/console/prompts/selection-prompt) instead.
+For **single-item selection**, use [SelectionPrompt](xref:console-prompt-selection) instead.
 
 > [!CAUTION]
 > Multi-selection prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
@@ -147,10 +147,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 
 ## See Also
 
-- [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Step-by-step guide
-- [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
-- [SelectionPrompt](/console/prompts/selection-prompt) - Single-item selection
-- [TextPrompt](/console/prompts/text-prompt) - Free-form text input
+- <xref:console-howto-prompting-for-user-input> - Step-by-step guide
+- <xref:console-interactive-prompts> - Learn prompts basics
+- <xref:console-prompt-selection> - Single-item selection
+- <xref:console-prompt-text> - Free-form text input
 
 ## API Reference
 

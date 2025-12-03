@@ -44,5 +44,5 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingActivityStatusHowTo.UseAsync
 
 ## See Also
 
-- [Status](/console/live/status) - Full Status API reference
-- [Spinner Reference](/console/reference/spinner-reference) - All spinner animations
+- <xref:console-live-status> - Full Status API reference
+- <xref:console-spinner-styles> - All spinner animations

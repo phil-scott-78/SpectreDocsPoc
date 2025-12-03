@@ -18,7 +18,7 @@ Use JsonText when you need to **display structured JSON data in the console**. C
 - **Debug output**: Pretty-print JSON data structures during development
 - **Logging**: Output structured log data in JSON format with visual distinction
 
-For **hierarchical data** without JSON syntax, use [Tree](/console/widgets/tree) instead. For **plain text with styling**, use [Text](/console/widgets/text) instead.
+For **hierarchical data** without JSON syntax, use [Tree](xref:console-widget-tree) instead. For **plain text with styling**, use [Text](xref:console-widget-text) instead.
 
 ## Basic Usage
 
@@ -110,10 +110,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.JsonTextExamples.JsonTe
 
 ## See Also
 
-- [Tree Widget](/console/widgets/tree) - Hierarchical data without JSON syntax
-- [Panel Widget](/console/widgets/panel) - Wrap JSON in bordered containers
-- [Color Reference](/console/reference/color-reference) - Colors for syntax highlighting
-- [Text Style Reference](/console/reference/text-style-reference) - Style decorations
+- <xref:console-widget-tree> - Hierarchical data without JSON syntax
+- <xref:console-widget-panel> - Wrap JSON in bordered containers
+- <xref:console-color-reference> - Colors for syntax highlighting
+- <xref:console-text-styles> - Style decorations
 
 ## API Reference
 

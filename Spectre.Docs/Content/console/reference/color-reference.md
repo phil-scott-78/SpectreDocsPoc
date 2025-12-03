@@ -32,7 +32,7 @@ AnsiConsole.Write("Styled text", style);
 
 ## See Also
 
-- [Markup Reference](/console/reference/markup-reference) - Using colors in markup syntax
-- [Text Widget](/console/widgets/text) - Programmatic color styling
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn color basics
+- <xref:console-markup-reference> - Using colors in markup syntax
+- <xref:console-widget-text> - Programmatic color styling
+- <xref:console-getting-started> - Learn color basics
 - [Terminal Compatibility](/console/reference/compatibility-matrix) - Color support by terminal

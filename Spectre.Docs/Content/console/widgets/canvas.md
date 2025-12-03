@@ -18,7 +18,7 @@ Use Canvas when you need to **create custom graphics or visualizations** at the 
 - **Simple graphics**: Draw shapes, lines, or pixel art
 - **Algorithm visualization**: Show the output of image processing or generation algorithms
 
-For **displaying existing images**, use [CanvasImage](/console/widgets/canvas-image) instead, which handles image file loading and conversion automatically.
+For **displaying existing images**, use [CanvasImage](xref:console-widget-canvas-image) instead, which handles image file loading and conversion automatically.
 
 ## Basic Usage
 
@@ -100,8 +100,8 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasCo
 
 ## See Also
 
-- [CanvasImage Widget](/console/widgets/canvas-image) - Display existing image files
-- [Color Reference](/console/reference/color-reference) - Available colors for pixels
+- <xref:console-widget-canvas-image> - Display existing image files
+- <xref:console-color-reference> - Available colors for pixels
 
 ## API Reference
 

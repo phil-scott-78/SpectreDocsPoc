@@ -17,7 +17,7 @@ Here's what our coffee brewing simulation will look like:
 
 - .NET 6.0 or later
 - Basic C# knowledge
-- Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
+- Completion of the [Getting Started](xref:console-getting-started) tutorial
 
 <Steps>
 <Step stepNumber="1">
@@ -118,7 +118,7 @@ Add these spinners to file uploads, API calls, database queries, build processes
 
 ## Next Steps
 
-- [How to Show Progress Bars](/console/how--to/showing-progress-bars) - Track multiple operations with progress bars
-- [Status Reference](/console/live/status) - Explore async operations, return values, and manual refresh
-- [Spinner Reference](/console/reference/spinner-reference) - See all available spinner styles
-- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
+- <xref:console-howto-showing-progress-bars> - Track multiple operations with progress bars
+- <xref:console-live-status> - Explore async operations, return values, and manual refresh
+- <xref:console-spinner-styles> - See all available spinner styles
+- <xref:console-explanation-async-patterns> - Best practices for async operations

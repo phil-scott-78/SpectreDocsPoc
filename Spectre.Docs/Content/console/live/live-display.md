@@ -18,7 +18,7 @@ Use LiveDisplay when you need to **update arbitrary content in place without cre
 - **Status transitions**: Show multi-step processes with changing panels or formatted text
 - **Real-time data**: Update charts, gauges, or custom visualizations continuously
 
-For **progress tracking with multiple tasks**, use [Progress](/console/live/progress) instead. For **simple spinner animations**, use [Status](/console/live/status).
+For **progress tracking with multiple tasks**, use [Progress](xref:console-live-progress) instead. For **simple spinner animations**, use [Status](xref:console-live-status).
 
 > [!CAUTION]
 > Live display is not thread safe. Using it together with other interactive components such as prompts, progress displays, or status displays is not supported.
@@ -139,11 +139,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDi
 
 ## See Also
 
-- [How to Live Rendering and Dynamic Updates](/console/how--to/live-rendering-and-dynamic-updates) - Step-by-step guide
-- [Progress Display](/console/live/progress) - Tracking task progress
-- [Status Display](/console/live/status) - Simple spinner animations
-- [Layout Widget](/console/widgets/layout) - Complex dashboard layouts
-- [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
+- <xref:console-howto-live-rendering> - Step-by-step guide
+- <xref:console-live-progress> - Tracking task progress
+- <xref:console-live-status> - Simple spinner animations
+- <xref:console-widget-layout> - Complex dashboard layouts
+- <xref:console-explanation-async-patterns> - Best practices for async operations
 
 ## API Reference
 

@@ -41,5 +41,5 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.Emb
 
 ## See Also
 
-- [Tree Widget](/console/widgets/tree) - Full tree API reference
-- [Tree Guide Reference](/console/reference/tree-guide-reference) - All tree line styles
+- <xref:console-widget-tree> - Full tree API reference
+- <xref:console-tree-guide-reference> - All tree line styles

@@ -18,7 +18,7 @@ Here's the loading screen we're creating:
 
 - .NET 9.0 or later
 - Basic C# knowledge
-- Completion of the [Getting Started](/console/tutorials/getting-started-building-rich-console-app) tutorial
+- Completion of the [Getting Started](xref:console-getting-started) tutorial
 
 <Steps>
 <Step stepNumber="1">
@@ -163,6 +163,6 @@ Add progress bars to file downloads, data processing, build pipelines, deploymen
 
 ## Next Steps
 
-- [Progress Reference](/console/live/progress) - Explore indeterminate progress, dynamic tasks, and async patterns
-- [How to Show Progress Bars](/console/how--to/showing-progress-bars) - Quick recipes for common progress scenarios
-- [Status and Spinners](/console/live/status) - Simpler alternative when you don't have measurable progress
+- <xref:console-live-progress> - Explore indeterminate progress, dynamic tasks, and async patterns
+- <xref:console-howto-showing-progress-bars> - Quick recipes for common progress scenarios
+- <xref:console-live-status> - Simpler alternative when you don't have measurable progress

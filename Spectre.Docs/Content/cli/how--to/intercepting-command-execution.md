@@ -35,5 +35,5 @@ The `InterceptResult` method receives the exit code by reference (`ref int resul
 
 ## See Also
 
-- [Dependency Injection in CLI Apps](/cli/tutorials/dependency-injection-in-cli-apps) - Inject services into interceptors
-- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Custom error handling
+- <xref:cli-di-tutorial> - Inject services into interceptors
+- <xref:cli-error-handling> - Custom error handling

@@ -33,5 +33,5 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.EscapingMarkupHowTo.StripMarkupForL
 
 ## See Also
 
-- [Markup Reference](/console/reference/markup-reference) - Complete markup syntax including escaping rules
-- [Markup Widget](/console/widgets/markup) - Markup API reference
+- <xref:console-markup-reference> - Complete markup syntax including escaping rules
+- <xref:console-widget-markup> - Markup API reference

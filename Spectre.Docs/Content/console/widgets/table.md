@@ -17,7 +17,7 @@ Use Table when you need to display **structured, multi-column data**. Common sce
 - **Comparison**: Side-by-side feature comparisons or specifications
 - **Reports**: Formatted output with headers, totals, and alignment
 
-For **simple key-value pairs**, consider using a table with hidden headers or a [Grid](/console/widgets/grid). For **proportional data visualization**, use [BarChart](/console/widgets/bar-chart) or [BreakdownChart](/console/widgets/breakdown-chart).
+For **simple key-value pairs**, consider using a table with hidden headers or a [Grid](xref:console-widget-grid). For **proportional data visualization**, use [BarChart](xref:console-widget-bar-chart) or [BreakdownChart](xref:console-widget-breakdown-chart).
 
 ## Basic Usage
 
@@ -38,7 +38,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.TableBord
 ```
 
 > [!NOTE]
-> See the [Table Border Reference](/console/reference/table-border-reference) for a visual guide to all border styles.
+> See the [Table Border Reference](xref:console-table-border-reference) for a visual guide to all border styles.
 
 ### Border Colors
 
@@ -144,11 +144,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TableExamples.DynamicTa
 
 ## See Also
 
-- [How to Display Tabular Data](/console/how--to/displaying-tabular-data) - Step-by-step guide for common table tasks
-- [Table Border Reference](/console/reference/table-border-reference) - All 18 border styles with visual examples
-- [Color Reference](/console/reference/color-reference) - Available colors for borders and cells
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
-- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How tables measure and layout
+- <xref:console-howto-displaying-tabular-data> - Step-by-step guide for common table tasks
+- <xref:console-table-border-reference> - All 18 border styles with visual examples
+- <xref:console-color-reference> - Available colors for borders and cells
+- <xref:console-getting-started> - Learn Spectre.Console basics
+- <xref:console-rendering-model> - How tables measure and layout
 
 ## API Reference
 

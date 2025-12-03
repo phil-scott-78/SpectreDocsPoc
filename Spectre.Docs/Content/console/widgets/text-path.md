@@ -17,7 +17,7 @@ Use TextPath when you need to **display file system paths** with intelligent for
 - **File browsers**: Display paths that may exceed available width
 - **Breadcrumb navigation**: Render hierarchical location indicators
 
-For **plain text without path semantics**, use [Text](/console/widgets/text) or [Markup](/console/widgets/markup) instead. For **directory tree structures**, use [Tree](/console/widgets/tree).
+For **plain text without path semantics**, use [Text](xref:console-widget-text) or [Markup](xref:console-widget-markup) instead. For **directory tree structures**, use [Tree](xref:console-widget-tree).
 
 ## Basic Usage
 
@@ -82,11 +82,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TextPathExamples.TextPa
 
 ## See Also
 
-- [Text Widget](/console/widgets/text) - Plain styled text
-- [Markup Widget](/console/widgets/markup) - Inline markup syntax
-- [Tree Widget](/console/widgets/tree) - Directory tree structures
-- [Color Reference](/console/reference/color-reference) - Colors for path components
-- [Text Style Reference](/console/reference/text-style-reference) - Style decorations
+- <xref:console-widget-text> - Plain styled text
+- <xref:console-widget-markup> - Inline markup syntax
+- <xref:console-widget-tree> - Directory tree structures
+- <xref:console-color-reference> - Colors for path components
+- <xref:console-text-styles> - Style decorations
 
 ## API Reference
 

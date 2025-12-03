@@ -18,7 +18,7 @@ Use Tree when you need to display **hierarchical data with parent-child relation
 - **Data exploration**: Visualize nested JSON, XML documents, or object graphs
 - **Menu systems**: Represent nested navigation menus or configuration options
 
-For **tabular data with rows and columns**, use [Table](/console/widgets/table) instead. For **structured JSON visualization**, consider [Json](/console/widgets/json) which provides syntax highlighting.
+For **tabular data with rows and columns**, use [Table](xref:console-widget-table) instead. For **structured JSON visualization**, consider [Json](xref:console-widget-json) which provides syntax highlighting.
 
 ## Basic Usage
 
@@ -91,7 +91,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeBoldLi
 ```
 
 > [!NOTE]
-> See the [Tree Guide Reference](/console/reference/tree-guide-reference) for a complete visual comparison of all available guide styles.
+> See the [Tree Guide Reference](xref:console-tree-guide-reference) for a complete visual comparison of all available guide styles.
 
 ## Controlling Node Expansion
 
@@ -139,10 +139,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeFromDa
 
 ## See Also
 
-- [How to Display Hierarchical Data](/console/how--to/displaying-hierarchical-data) - Step-by-step guide for tree tasks
-- [Tree Guide Reference](/console/reference/tree-guide-reference) - All guide styles with visual examples
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
-- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How widgets measure and render
+- <xref:console-howto-displaying-hierarchical-data> - Step-by-step guide for tree tasks
+- <xref:console-tree-guide-reference> - All guide styles with visual examples
+- <xref:console-getting-started> - Learn Spectre.Console basics
+- <xref:console-rendering-model> - How widgets measure and render
 
 ## API Reference
 

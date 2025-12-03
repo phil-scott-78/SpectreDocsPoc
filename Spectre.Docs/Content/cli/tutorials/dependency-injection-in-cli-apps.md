@@ -17,7 +17,7 @@ The greeting logic lives in an injectable service, not hard-coded in the command
 
 ## Prerequisites
 
-- Completed the [Quick Start tutorial](/cli/tutorials/quick-start-your-first-cli-app)
+- Completed the [Quick Start tutorial](xref:cli-quick-start)
 - .NET 8.0 or later
 - Basic familiarity with dependency injection concepts
 
@@ -152,5 +152,5 @@ This same pattern works for any service: loggers, database connections, HTTP cli
 
 ## Next Steps
 
-- [Async Commands and Cancellation](/cli/how--to/async-commands-and-cancellation) - Handle long-running operations with async/await
-- [Configuring CommandApp and Commands](/cli/how--to/configuring-commandapp-and-commands) - Add descriptions, examples, and aliases
+- <xref:cli-async-commands> - Handle long-running operations with async/await
+- <xref:cli-app-configuration> - Add descriptions, examples, and aliases

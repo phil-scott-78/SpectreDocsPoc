@@ -41,5 +41,5 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.AddTitle
 
 ## See Also
 
-- [Table Widget](/console/widgets/table) - Full table API reference
-- [Table Border Reference](/console/reference/table-border-reference) - All border styles
+- <xref:console-widget-table> - Full table API reference
+- <xref:console-table-border-reference> - All border styles

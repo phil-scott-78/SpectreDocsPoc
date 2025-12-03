@@ -17,7 +17,7 @@ Use Rule when you need to **visually separate sections of output**. Common scena
 - **Content dividers**: Separate distinct blocks of information for better readability
 - **Visual hierarchy**: Create clear boundaries between different output types
 
-For **emphasized section headers with decorative borders**, use [Panel](/console/widgets/panel) instead. For **large decorative text banners**, use [FigletText](/console/widgets/figlet).
+For **emphasized section headers with decorative borders**, use [Panel](xref:console-widget-panel) instead. For **large decorative text banners**, use [FigletText](xref:console-widget-figlet).
 
 ## Basic Usage
 
@@ -52,7 +52,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleBorder
 ```
 
 > [!NOTE]
-> See the [Box Border Reference](/console/reference/box-border-reference) for all available border styles.
+> See the [Box Border Reference](xref:console-box-border-reference) for all available border styles.
 
 ## Styling
 
@@ -92,11 +92,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.RuleExamples.RuleFluent
 
 ## See Also
 
-- [Box Border Reference](/console/reference/box-border-reference) - Line styles for rules
-- [Color Reference](/console/reference/color-reference) - Colors for rule styling
-- [Panel Widget](/console/widgets/panel) - Bordered sections with headers
-- [FigletText Widget](/console/widgets/figlet) - Large decorative text banners
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-box-border-reference> - Line styles for rules
+- <xref:console-color-reference> - Colors for rule styling
+- <xref:console-widget-panel> - Bordered sections with headers
+- <xref:console-widget-figlet> - Large decorative text banners
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

@@ -25,5 +25,5 @@ T:Spectre.Docs.Cli.Examples.DemoApps.AsyncCommandsAndCancellation.FetchCommand
 
 ## See Also
 
-- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Custom exception handling
-- [Dependency Injection in CLI Apps](/cli/tutorials/dependency-injection-in-cli-apps) - Inject services like HttpClient
+- <xref:cli-error-handling> - Custom exception handling
+- <xref:cli-di-tutorial> - Inject services like HttpClient

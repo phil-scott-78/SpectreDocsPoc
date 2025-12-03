@@ -29,7 +29,7 @@ AnsiConsole.Write(panel);
 
 ## See Also
 
-- [Panel Widget](/console/widgets/panel) - Bordered containers using box borders
-- [Rule Widget](/console/widgets/rule) - Horizontal dividers using box borders
+- <xref:console-widget-panel> - Bordered containers using box borders
+- <xref:console-widget-rule> - Horizontal dividers using box borders
 - [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support by terminal
-- [Table Border Reference](/console/reference/table-border-reference) - Borders for tables
+- <xref:console-table-border-reference> - Borders for tables

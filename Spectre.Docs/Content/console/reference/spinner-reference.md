@@ -31,7 +31,7 @@ await AnsiConsole.Status()
 
 ## See Also
 
-- [Status Display](/console/live/status) - Use spinners with status messages
-- [Progress Display](/console/live/progress) - Add spinners to progress bars
-- [Showing Status and Spinners Tutorial](/console/tutorials/status-spinners-tutorial) - Learn spinner basics
+- <xref:console-live-status> - Use spinners with status messages
+- <xref:console-live-progress> - Add spinners to progress bars
+- <xref:console-status-spinners> - Learn spinner basics
 - [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support for spinner characters

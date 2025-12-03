@@ -44,4 +44,4 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.LiveRenderingHowTo.UseAsync
 
 ## See Also
 
-- [Live Display](/console/live/live-display) - Full Live API reference
+- <xref:console-live-live-display> - Full Live API reference

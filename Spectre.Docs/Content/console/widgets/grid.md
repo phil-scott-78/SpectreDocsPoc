@@ -18,7 +18,7 @@ Use Grid when you need to **arrange content in invisible columns** without the v
 - **Form-like output**: Labels aligned with corresponding data
 - **Multi-column text**: Side-by-side content without table borders
 
-For **structured data with visible borders**, use [Table](/console/widgets/table) instead. For **automatically flowing items into columns**, use [Columns](/console/widgets/columns) which handles wrapping and sizing automatically.
+For **structured data with visible borders**, use [Table](xref:console-widget-table) instead. For **automatically flowing items into columns**, use [Columns](xref:console-widget-columns) which handles wrapping and sizing automatically.
 
 ## Basic Usage
 
@@ -126,11 +126,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.GridExamples.GridDashbo
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [Table Widget](/console/widgets/table) - When you need visible borders
-- [Columns Widget](/console/widgets/columns) - Auto-flowing column layouts
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
-- [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How layout widgets work
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-widget-table> - When you need visible borders
+- <xref:console-widget-columns> - Auto-flowing column layouts
+- <xref:console-getting-started> - Learn Spectre.Console basics
+- <xref:console-rendering-model> - How layout widgets work
 
 ## API Reference
 

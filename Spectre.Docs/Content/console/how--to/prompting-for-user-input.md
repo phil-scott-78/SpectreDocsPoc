@@ -44,6 +44,6 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.PromptingForUserInputHowTo.AllowMul
 
 ## See Also
 
-- [Text Prompt](/console/prompts/text-prompt) - Full text prompt API
-- [Selection Prompt](/console/prompts/selection-prompt) - Selection prompt options
-- [Multi-Selection Prompt](/console/prompts/multi-selection-prompt) - Multi-selection options
+- <xref:console-prompt-text> - Full text prompt API
+- <xref:console-prompt-selection> - Selection prompt options
+- <xref:console-prompt-multi-selection> - Multi-selection options

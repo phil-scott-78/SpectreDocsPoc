@@ -56,5 +56,5 @@ Invalid values produce a clear error message listing the allowed options.
 
 ## See Also
 
-- [Making Options Required](/cli/how--to/making-options-required) - Force users to provide specific options
-- [Attribute and Parameter Reference](/cli/reference/attribute-and-parameter-reference) - Complete attribute documentation
+- <xref:cli-required-options> - Force users to provide specific options
+- <xref:cli-attributes-parameters> - Complete attribute documentation

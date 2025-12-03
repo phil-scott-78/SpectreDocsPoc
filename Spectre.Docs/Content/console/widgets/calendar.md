@@ -18,7 +18,7 @@ Use Calendar when you need to **visualize dates and events in a month view**. Co
 - **Date selection interfaces**: Show available or unavailable dates in CLI tools
 - **Multi-month comparisons**: Display several months side by side to show patterns
 
-For **displaying dates inline within text**, use [Markup](/console/widgets/markup) with formatted date strings. For **progress over time**, use [BarChart](/console/widgets/bar-chart) to show metrics across time periods.
+For **displaying dates inline within text**, use [Markup](xref:console-widget-markup) with formatted date strings. For **progress over time**, use [BarChart](xref:console-widget-bar-chart) to show metrics across time periods.
 
 ## Basic Usage
 
@@ -89,7 +89,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CalendarExamples.Calend
 ```
 
 > [!NOTE]
-> See the [Table Border Reference](/console/reference/table-border-reference) for all available border styles.
+> See the [Table Border Reference](xref:console-table-border-reference) for all available border styles.
 
 ## Localization
 
@@ -105,7 +105,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CalendarExamples.Calend
 
 ### Multiple Calendars
 
-Display several months together using the [Columns](/console/widgets/columns) widget. This is useful for showing quarterly views or comparing date ranges.
+Display several months together using the [Columns](xref:console-widget-columns) widget. This is useful for showing quarterly views or comparing date ranges.
 
 ```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CalendarExamples.MultipleCalendarsExample
@@ -113,10 +113,10 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CalendarExamples.Multip
 
 ## See Also
 
-- [Table Border Reference](/console/reference/table-border-reference) - Border styles for calendar display
-- [Color Reference](/console/reference/color-reference) - Colors for event highlighting
-- [Columns Widget](/console/widgets/columns) - Display multiple calendars side by side
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-table-border-reference> - Border styles for calendar display
+- <xref:console-color-reference> - Colors for event highlighting
+- <xref:console-widget-columns> - Display multiple calendars side by side
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

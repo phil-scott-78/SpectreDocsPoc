@@ -25,8 +25,8 @@ Examples show downloading multiple files concurrently with progress bars, callin
 
 ## See Also
 
-- [Progress Display](/console/live/progress) - Track async task progress
-- [Status Display](/console/live/status) - Show spinners during async work
-- [Live Display](/console/live/live-display) - Real-time content updates
-- [How to Show Progress Bars](/console/how--to/showing-progress-bars) - Practical examples
+- <xref:console-live-progress> - Track async task progress
+- <xref:console-live-status> - Show spinners during async work
+- <xref:console-live-live-display> - Real-time content updates
+- <xref:console-howto-showing-progress-bars> - Practical examples
 - [Best Practices](/console/explanation/best-practices-for-console-applications) - Production guidelines

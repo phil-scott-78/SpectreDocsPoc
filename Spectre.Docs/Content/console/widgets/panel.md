@@ -17,7 +17,7 @@ Use Panel when you need to **visually group or highlight content**. Common scena
 - **Section headers**: Group related information with a titled border
 - **Emphasized content**: Draw attention to specific output
 
-For **tabular data with rows and columns**, use [Table](/console/widgets/table) instead. For **side-by-side content**, use [Columns](/console/widgets/columns).
+For **tabular data with rows and columns**, use [Table](xref:console-widget-table) instead. For **side-by-side content**, use [Columns](xref:console-widget-columns).
 
 ## Basic Usage
 
@@ -54,7 +54,7 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PanelExamples.PanelBord
 ```
 
 > [!NOTE]
-> See the [Box Border Reference](/console/reference/box-border-reference) for all available border styles.
+> See the [Box Border Reference](xref:console-box-border-reference) for all available border styles.
 
 ### Removing the Border
 
@@ -126,11 +126,11 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.PanelExamples.PanelFull
 
 ## See Also
 
-- [How to Organize Layout with Panels and Grids](/console/how--to/organizing-layout-with-panels-and-grids) - Layout patterns and recipes
-- [Box Border Reference](/console/reference/box-border-reference) - All panel border styles
-- [Color Reference](/console/reference/color-reference) - Colors for borders and headers
-- [Table Widget](/console/widgets/table) - For tabular data with rows and columns
-- [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
+- <xref:console-howto-organizing-layout> - Layout patterns and recipes
+- <xref:console-box-border-reference> - All panel border styles
+- <xref:console-color-reference> - Colors for borders and headers
+- <xref:console-widget-table> - For tabular data with rows and columns
+- <xref:console-getting-started> - Learn Spectre.Console basics
 
 ## API Reference
 

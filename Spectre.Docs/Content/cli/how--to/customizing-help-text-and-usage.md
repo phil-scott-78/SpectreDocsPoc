@@ -60,4 +60,4 @@ The built-in `HelpProvider` class can also be extended if you only need to overr
 
 ## See Also
 
-- [Hiding Commands and Options](/cli/how--to/hiding-commands-and-options) - Keep commands functional but hidden from help
+- <xref:cli-hidden-commands> - Keep commands functional but hidden from help

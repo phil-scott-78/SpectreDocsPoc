@@ -44,5 +44,5 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.ShowingProgressBarsHowTo.StyleProgr
 
 ## See Also
 
-- [Progress](/console/live/progress) - Full Progress API reference
-- [Spinner Reference](/console/reference/spinner-reference) - All spinner animations
+- <xref:console-live-progress> - Full Progress API reference
+- <xref:console-spinner-styles> - All spinner animations
