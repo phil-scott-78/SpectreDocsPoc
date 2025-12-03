@@ -1,5 +1,5 @@
 ---
-title: "How to Draw Charts"
+title: "Draw Charts"
 description: "Visualize data with bar charts, breakdown charts, and calendars"
 uid: "console-howto-drawing-charts"
 order: 2150

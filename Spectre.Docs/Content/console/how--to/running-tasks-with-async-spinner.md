@@ -1,5 +1,5 @@
 ---
-title: "How to Run Tasks with a Spinner"
+title: "Run Tasks with a Spinner"
 description: "Show a spinner animation while awaiting async operations"
 uid: "console-howto-async-spinner"
 order: 2140

@@ -1,5 +1,5 @@
 ---
-title: "How to Prompt for User Input"
+title: "Prompt for User Input"
 description: "Collect input from users with text prompts, confirmations, and selection menus"
 uid: "console-howto-prompting-for-user-input"
 order: 2050

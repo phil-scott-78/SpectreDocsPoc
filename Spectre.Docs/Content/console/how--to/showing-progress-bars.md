@@ -1,5 +1,5 @@
 ---
-title: "How to Show Progress Bars"
+title: "Show Progress Bars"
 description: "Display progress bars for long-running operations with percentage completion"
 uid: "console-howto-showing-progress-bars"
 order: 2070

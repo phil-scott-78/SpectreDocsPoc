@@ -9,17 +9,21 @@ internal class PanelSample : BaseSample
     {
         IRenderable[] outputs =
         [
-            new Panel("[bold]Basic Panel[/]\n[dim]Default rounded border[/]"),
+            new Panel("[bold]Basic Panel[/]\n[dim]Default border[/]"),
+
+            new Panel("[bold]Rounded Border Style[/]\n[dim]Uses BoxBorder.Rounded[/]")
+                .RoundedBorder()
+                .BorderColor(Color.Green),
+
+            new Panel("[bold]Double Border Style[/]\n[dim]Uses BoxBorder.Double[/]")
+                .Border(BoxBorder.Double)
+                .BorderColor(Color.Blue),
 
             new Panel("[bold]Panel with Header[/]\n[dim]Shows title at top[/]")
                 .Header("[yellow]My Title[/]"),
 
             new Panel("[bold]Centered Header[/]\n[dim]Title positioned center[/]")
                 .Header(new PanelHeader("[yellow]═══ Centered ═══[/]", Justify.Center)),
-
-            new Panel("[bold]Double Border Style[/]\n[dim]Uses BoxBorder.Double[/]")
-                .Border(BoxBorder.Double)
-                .BorderColor(Color.Blue),
 
             new Panel("[bold]Padded Content[/]\n[dim]Extra spacing inside: 2,1,2,1[/]")
                 .Padding(2, 1, 2, 1)

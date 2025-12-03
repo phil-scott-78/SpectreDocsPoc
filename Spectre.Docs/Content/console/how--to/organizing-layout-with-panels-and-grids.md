@@ -1,5 +1,5 @@
 ---
-title: "How to Organize Layout"
+title: "Organize Layout"
 description: "Arrange content using panels, columns, grids, and alignment"
 uid: "console-howto-organizing-layout"
 order: 2120

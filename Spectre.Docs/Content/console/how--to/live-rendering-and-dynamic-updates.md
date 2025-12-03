@@ -1,5 +1,5 @@
 ---
-title: "How to Update Content Live"
+title: "Update Content Live"
 description: "Update console output in-place without scrolling"
 uid: "console-howto-live-rendering"
 order: 2130

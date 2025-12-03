@@ -1,5 +1,5 @@
 ---
-title: "How to Write Exceptions"
+title: "Write Exceptions"
 description: "Display formatted exception details with stack traces, colors, and clickable links"
 uid: "console-howto-writing-exceptions"
 order: 2100

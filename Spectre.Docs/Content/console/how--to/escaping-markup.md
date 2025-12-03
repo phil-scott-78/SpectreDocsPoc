@@ -1,5 +1,5 @@
 ---
-title: "How to Escape Markup"
+title: "Escape Markup"
 description: "Safely display user input, array indexers, and JSON without markup parsing errors"
 uid: "console-howto-escaping-markup"
 order: 2090

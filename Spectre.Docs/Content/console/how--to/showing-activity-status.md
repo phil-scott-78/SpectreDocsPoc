@@ -1,5 +1,5 @@
 ---
-title: "How to Show Activity Status"
+title: "Show Activity Status"
 description: "Display a spinner for operations without measurable progress"
 uid: "console-howto-showing-activity-status"
 order: 2080

@@ -1,5 +1,5 @@
 ---
-title: "How to Display Hierarchical Data"
+title: "Display Hierarchical Data"
 description: "Visualize nested structures using tree views with customizable styling"
 uid: "console-howto-displaying-hierarchical-data"
 order: 2110

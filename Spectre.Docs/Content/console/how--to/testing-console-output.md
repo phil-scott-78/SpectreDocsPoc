@@ -1,5 +1,5 @@
 ---
-title: "How to Test Console Output"
+title: "Test Console Output"
 description: "Write unit tests for console applications using TestConsole"
 uid: "console-howto-testing-console-output"
 order: 2160

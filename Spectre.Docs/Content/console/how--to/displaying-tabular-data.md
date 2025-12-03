@@ -1,5 +1,5 @@
 ---
-title: "How to Display Tabular Data"
+title: "Display Tabular Data"
 description: "Display structured data in tables with borders, alignment, and styling"
 uid: "console-howto-displaying-tabular-data"
 order: 2060
