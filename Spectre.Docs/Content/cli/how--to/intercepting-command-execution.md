@@ -5,6 +5,35 @@ uid: "cli-command-interception"
 order: 2080
 ---
 
-When you need to apply cross-cutting concerns like logging, timing, or resource initialization across all commands without duplicating code, implement a command interceptor. Create a class implementing `ICommandInterceptor` and register it via `config.SetInterceptor(...)` or through your DI container.
+When you need cross-cutting concerns like logging, timing, or authentication across all commands without duplicating code, implement a command interceptor. The interceptor runs before and after every command, keeping individual commands focused on their core logic.
 
-Use the `Intercept` method to run setup logic before command execution—configure logging scopes, initialize databases, or modify settings. Then use `InterceptResult` after execution to perform cleanup, flush logs, or adjust exit codes based on the command outcome. This keeps individual commands focused on their core logic while centralizing concerns like instrumentation, authentication checks, or performance monitoring.
+## Create an Interceptor
+
+Implement `ICommandInterceptor` with two methods: `Intercept` runs before execution, `InterceptResult` runs after. The same instance handles both, so you can store state between them.
+
+```csharp:xmldocid
+T:Spectre.Docs.Cli.Examples.DemoApps.InterceptingCommandExecution.TimingInterceptor
+```
+
+## Register the Interceptor
+
+Use `SetInterceptor` in your configuration:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Cli.Examples.DemoApps.InterceptingCommandExecution.Demo.RunAsync(System.String[])
+```
+
+## Common Use Cases
+
+- **Logging**: Configure log scopes in `Intercept`, flush logs in `InterceptResult`
+- **Timing**: Start a stopwatch before, report duration after
+- **Authentication**: Validate credentials before any command runs
+- **Resource management**: Initialize connections before, clean up after
+- **Exit code adjustment**: Modify the result based on post-execution checks
+
+The `InterceptResult` method receives the exit code by reference (`ref int result`), allowing you to modify it based on the command outcome.
+
+## See Also
+
+- [Dependency Injection in CLI Commands](/cli/how--to/dependency-injection-in-cli-commands) - Inject services into interceptors
+- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Custom error handling

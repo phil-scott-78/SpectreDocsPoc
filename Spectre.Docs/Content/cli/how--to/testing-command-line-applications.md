@@ -5,6 +5,47 @@ uid: "cli-testing"
 order: 2090
 ---
 
-When you need to verify that your CLI correctly parses arguments and produces expected output, use `CommandAppTester` from Spectre.Console.Testing to run commands in-memory. Set up your test by configuring the tester with your commands and DI registrations, then call `app.Run(args)` to capture the result.
+To test CLI applications, use `CommandAppTester` from `Spectre.Console.Cli.Testing`. It runs commands in-memory and captures exit codes and output for assertions.
 
-Assert on both the exit code and output string to verify behavior—for example, that a greeting command with `--name Bob` returns exit code 0 and outputs "Hello Bob". For interactive commands with prompts, use `TestConsole` to queue input responses. Make your commands testable by injecting `IAnsiConsole` instead of using the static `AnsiConsole` directly, allowing you to capture all output in tests and catch regressions early.
+## Make Commands Testable
+
+Inject `IAnsiConsole` instead of using the static `AnsiConsole` directly. This allows tests to capture output:
+
+```csharp:xmldocid
+T:Spectre.Docs.Cli.Examples.DemoApps.TestingCommands.GreetCommand
+```
+
+## Test with CommandAppTester
+
+Install the testing package:
+
+```bash
+dotnet add package Spectre.Console.Cli.Testing
+```
+
+Configure the tester like a regular `CommandApp`, then call `Run` with arguments. The result provides `ExitCode`, `Output`, and `Settings` for assertions:
+
+```csharp:xmldocid
+M:Spectre.Docs.Cli.Examples.DemoApps.TestingCommands.GreetCommandTests.Greet_WithName_ReturnsZeroAndOutputsGreeting
+```
+
+You can also verify that command-line arguments were parsed correctly:
+
+```csharp:xmldocid
+M:Spectre.Docs.Cli.Examples.DemoApps.TestingCommands.GreetCommandTests.Greet_WithCount_ParsesSettingsCorrectly
+```
+
+## Test Interactive Prompts
+
+For commands with prompts, use `TestConsole` to queue input before running:
+
+```csharp:xmldocid
+M:Spectre.Docs.Cli.Examples.DemoApps.TestingCommands.InteractiveCommandTests.Interactive_WithQueuedInput_ProcessesCorrectly
+```
+
+Use `PushKey` for arrow keys and enter, `PushTextWithEnter` for text input.
+
+## See Also
+
+- [Dependency Injection in CLI Commands](/cli/how--to/dependency-injection-in-cli-commands) - Inject IAnsiConsole via DI
+- [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Test error scenarios

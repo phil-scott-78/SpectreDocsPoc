@@ -74,3 +74,81 @@ internal class FileCopyCommand : Command<FileCopyCommand.Settings>
         return 0;
     }
 }
+
+/// <summary>
+/// Demonstrates accepting multiple values with array arguments and options.
+/// </summary>
+internal class MultiFileCommand : Command<MultiFileCommand.Settings>
+{
+    public class Settings : CommandSettings
+    {
+        // Array argument captures all remaining positional values
+        // Must be the last argument (highest position index)
+        [CommandArgument(0, "<files>")]
+        [Description("One or more files to process")]
+        public string[] Files { get; init; } = [];
+
+        // Array option - specify multiple times: --tag api --tag v2
+        [CommandOption("-t|--tag <TAG>")]
+        [Description("Tags to apply (can be specified multiple times)")]
+        public string[] Tags { get; init; } = [];
+    }
+
+    protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellation)
+    {
+        System.Console.WriteLine($"Files: {string.Join(", ", settings.Files)}");
+        System.Console.WriteLine($"Tags: {string.Join(", ", settings.Tags)}");
+        return 0;
+    }
+}
+
+/// <summary>
+/// Log level for output verbosity.
+/// </summary>
+public enum LogLevel
+{
+    Quiet,
+    Normal,
+    Verbose,
+    Debug
+}
+
+/// <summary>
+/// Demonstrates using enum types for constrained option values.
+/// </summary>
+internal class BuildCommand : Command<BuildCommand.Settings>
+{
+    public class Settings : CommandSettings
+    {
+        [CommandArgument(0, "[project]")]
+        [Description("The project to build")]
+        public string? Project { get; init; }
+
+        // Enum option - framework validates and shows allowed values in help
+        [CommandOption("-l|--log-level")]
+        [Description("Set the logging verbosity")]
+        [DefaultValue(LogLevel.Normal)]
+        public LogLevel LogLevel { get; init; } = LogLevel.Normal;
+
+        // Enum option for build configuration
+        [CommandOption("-c|--configuration")]
+        [Description("Build configuration")]
+        [DefaultValue(Configuration.Debug)]
+        public Configuration Configuration { get; init; } = Configuration.Debug;
+    }
+
+    public enum Configuration
+    {
+        Debug,
+        Release
+    }
+
+    protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellation)
+    {
+        var project = settings.Project ?? "current directory";
+        System.Console.WriteLine($"Building {project}");
+        System.Console.WriteLine($"Configuration: {settings.Configuration}");
+        System.Console.WriteLine($"Log level: {settings.LogLevel}");
+        return 0;
+    }
+}

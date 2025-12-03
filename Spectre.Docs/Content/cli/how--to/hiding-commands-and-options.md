@@ -5,6 +5,29 @@ uid: "cli-hidden-commands"
 order: 2045
 ---
 
-Sometimes you need commands or options that work but shouldn't appear in help output—internal debugging tools, deprecated features you're phasing out, or advanced options that would overwhelm typical users. Spectre.Console.Cli supports this through the `IsHidden` property.
+Sometimes you need commands or options that work but shouldn't appear in help output—internal debugging tools, deprecated features you're phasing out, or advanced options that would overwhelm typical users. Hidden items remain fully functional; users who know about them can still use them.
 
-For commands, use `.IsHidden()` when configuring your command in the `CommandApp`. For options, set `IsHidden = true` on the `[CommandOption]` attribute. Hidden commands and options remain fully functional—users who know about them can still use them—but they won't appear in `--help` output or command listings. This is useful for maintaining backward compatibility while discouraging use, or for providing power-user features without cluttering the interface.
+## Hide a Command
+
+To hide a command from help output, chain `.IsHidden()` when configuring it:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Cli.Examples.DemoApps.HidingCommandsAndOptions.Demo.RunAsync(System.String[])
+```
+
+Running `--help` shows only `deploy` and `status`, but `diagnostics` still works when invoked directly.
+
+## Hide an Option
+
+For options, set `IsHidden = true` on the attribute:
+
+```csharp:xmldocid
+T:Spectre.Docs.Cli.Examples.DemoApps.HidingCommandsAndOptions.DeployCommand.Settings
+```
+
+The `--skip-hooks` option won't appear in `deploy --help`, but users can still pass it.
+
+## See Also
+
+- [Customizing Help Text and Usage](/cli/how--to/customizing-help-text-and-usage) - Control what appears in help output
+- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Command and option basics

@@ -5,6 +5,47 @@ uid: "cli-command-hierarchies"
 order: 2070
 ---
 
-When you're building a CLI with grouped commands that share common options (like `dotnet tool install` and `dotnet tool uninstall`, or `git remote add` and `git remote remove`), use command branching to create hierarchies. Call `AddBranch<TSettings>("name", branch => { ... })` to define a parent command that groups related subcommands together.
+When building a CLI with grouped commands like `git remote add` and `git remote remove`, use `AddBranch` to create command hierarchies. The branch groups related subcommands together and can share common options through settings inheritance.
 
-The branch uses a base settings class containing shared options (like a `--verbose` flag), and each subcommand's settings class inherits from it to add command-specific options. This approach keeps your CLI organized and lets you reuse common parameters without duplication. You can nest branches multiple levels deep for complex command structures, making your CLI intuitive for users familiar with tools like Git or Docker.
+## Create a Command Branch
+
+Use `AddBranch<TSettings>("name", ...)` to define a parent command with nested subcommands:
+
+```csharp:xmldocid,bodyonly
+M:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.Demo.RunAsync(System.String[])
+```
+
+This creates commands like `myapp remote add`, `myapp remote remove`, and `myapp remote list`. Running `myapp remote --help` shows all subcommands.
+
+## Share Options with Settings Inheritance
+
+Define a base settings class for the branch, then inherit from it in subcommand settings:
+
+```csharp:xmldocid
+T:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.RemoteSettings
+T:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.RemoteAddSettings
+```
+
+The `--verbose` flag is now available on all remote subcommands: `myapp remote add origin https://... --verbose`.
+
+## Nest Multiple Levels
+
+For complex CLIs, branches can contain other branches:
+
+```csharp
+config.AddBranch("cloud", cloud =>
+{
+    cloud.AddBranch("storage", storage =>
+    {
+        storage.AddCommand<UploadCommand>("upload");
+        storage.AddCommand<DownloadCommand>("download");
+    });
+});
+```
+
+This creates deeply nested commands like `myapp cloud storage upload`.
+
+## See Also
+
+- [Configuring CommandApp and Commands](/cli/how--to/configuring-commandapp-and-commands) - Basic command registration
+- [Defining Commands and Arguments](/cli/how--to/defining-commands-and-arguments) - Settings class patterns

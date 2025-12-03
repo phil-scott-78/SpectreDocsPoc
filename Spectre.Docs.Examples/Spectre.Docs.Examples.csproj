@@ -15,9 +15,4 @@
       <PackageReference Include="Spectre.Console.ImageSharp" Version="0.54.1-alpha.0.7" />
       <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.7" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="SpectreConsole\Reference\Widgets\" />
-    </ItemGroup>
-
 </Project>
