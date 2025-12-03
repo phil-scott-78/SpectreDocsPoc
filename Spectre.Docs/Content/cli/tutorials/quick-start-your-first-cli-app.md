@@ -15,7 +15,7 @@ Here's how our CLI will work when we're done:
 
 ## Prerequisites
 
-- .NET 8.0 or later
+- .NET 6.0 or later
 - Basic C# knowledge
 - A terminal or command prompt
 

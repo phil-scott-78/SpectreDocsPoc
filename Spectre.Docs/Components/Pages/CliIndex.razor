@@ -1,0 +1,108 @@
+@page "/cli"
+@using Spectre.Console
+@inject IMarkdownContentService<SpectreConsoleCliFrontMatter> CliContentServices
+@inject ContentEngineOptions ContentEngineOptions
+
+<PageTitle>Spectre.Console.Cli Documentation - @ContentEngineOptions.SiteTitle</PageTitle>
+
+<article class="prose dark:prose-invert max-w-none">
+    <h1>Spectre.Console.Cli Documentation</h1>
+    <p class="lead text-lg text-base-600 dark:text-base-400">
+        Build powerful command-line applications with Spectre.Console.Cli, a modern framework with a focus on type safety and developer experience.
+    </p>
+
+    <h2>Start Here</h2>
+    <p>Get Spectre.Console.Cli running in seconds:</p>
+    <CodeBlock Language="bash">dotnet add package Spectre.Console.Cli</CodeBlock>
+
+    <p>Then try this quick example that creates a simple greeting command:</p>
+    <CodeBlock Language="csharp:xmldocid">
+        T:Spectre.Docs.Cli.Examples.DemoApps.QuickStart.GreetSettings
+        T:Spectre.Docs.Cli.Examples.DemoApps.QuickStart.GreetCommand
+    </CodeBlock>
+
+    <p>In your Program.cs, wire it up:</p>
+    <CodeBlock Language="csharp:xmldocid,bodyonly">M:Spectre.Docs.Cli.Examples.DemoApps.QuickStart.HomePageExample.Run(System.String[])</CodeBlock>
+
+
+    <p>Run it with <code>dotnet run -- World --count 3</code> to see typed argument parsing in action.</p>
+
+    <p>You should see something like this:</p>
+
+    <Screenshot Src="/assets/cli-quickstart.svg" Alt="Screencast of Spectre.Console in action"></Screenshot>
+
+    <hr />
+
+    <h2>Explore the Documentation</h2>
+    <p>
+        From simple single-command tools to complex CLI applications with nested commands and dependency injection,
+        we've got you covered. The tutorials will walk you through the fundamentals, while the how-to guides
+        tackle specific scenarios you'll encounter in real projects.
+    </p>
+
+    @foreach (var group in _groupedPages.OrderBy(g => GetSectionOrder(g.Key)))
+    {
+        <div class="mb-8">
+            <h2>@group.Key</h2>
+            <ul>
+                @foreach (var page in group.Value.OrderBy(p => p.FrontMatter.Order).ThenBy(p => p.FrontMatter.Title))
+                {
+                    <li>
+                        <a href="@(page.Url)">@(page.FrontMatter.Title)</a>
+                        @if (!string.IsNullOrWhiteSpace(page.FrontMatter.Description))
+                        {
+                            <span class="text-base-500 dark:text-base-400"> - @(page.FrontMatter.Description)</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</article>
+
+@code {
+    private Dictionary<string, List<MarkdownContentPage<SpectreConsoleCliFrontMatter>>> _groupedPages = new();
+
+    private static readonly Dictionary<string, string> SectionNames = new()
+    {
+        { "tutorials", "Tutorials" },
+        { "how--to", "How-To Guides" },
+        { "reference", "Reference" },
+        { "explanation", "Explanation" }
+    };
+
+    private static readonly Dictionary<string, int> SectionOrder = new()
+    {
+        { "Tutorials", 1 },
+        { "How-To Guides", 2 },
+        { "Explanation", 3 },
+        { "Reference", 4 }
+    };
+
+    private static int GetSectionOrder(string sectionName) =>
+        SectionOrder.GetValueOrDefault(sectionName, 99);
+
+    protected override async Task OnInitializedAsync()
+    {
+        var allPages = await CliContentServices.GetAllContentPagesAsync();
+
+        // Group pages by their first path segment after /cli/
+        foreach (var page in allPages)
+        {
+            var pathParts = page.Url.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            if (pathParts.Length >= 2)
+            {
+                var sectionKey = pathParts[1]; // e.g., "tutorials", "how--to"
+                var sectionName = SectionNames.GetValueOrDefault(sectionKey, sectionKey);
+
+                if (!_groupedPages.ContainsKey(sectionName))
+                {
+                    _groupedPages[sectionName] = new List<MarkdownContentPage<SpectreConsoleCliFrontMatter>>();
+                }
+                _groupedPages[sectionName].Add(page);
+            }
+        }
+
+        await base.OnInitializedAsync();
+    }
+}

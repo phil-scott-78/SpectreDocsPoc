@@ -18,7 +18,7 @@ The greeting logic lives in an injectable service, not hard-coded in the command
 ## Prerequisites
 
 - Completed the [Quick Start tutorial](xref:cli-quick-start)
-- .NET 8.0 or later
+- .NET 6.0 or later
 - Basic familiarity with dependency injection concepts
 
 <Steps>

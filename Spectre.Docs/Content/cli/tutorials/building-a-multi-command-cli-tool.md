@@ -16,7 +16,7 @@ Here's how our CLI will work when we're done:
 ## Prerequisites
 
 - Completed the [Quick Start tutorial](xref:cli-quick-start)
-- .NET 8.0 or later
+- .NET 6.0 or later
 
 <Steps>
 <Step stepNumber="1">

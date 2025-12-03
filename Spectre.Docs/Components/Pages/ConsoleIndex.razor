@@ -1,0 +1,105 @@
+@page "/console"
+@using Spectre.Console
+@inject IMarkdownContentService<SpectreConsoleFrontMatter> ConsoleContentServices
+@inject ContentEngineOptions ContentEngineOptions
+
+<PageTitle>Spectre.Console Documentation - @ContentEngineOptions.SiteTitle</PageTitle>
+
+<article class="prose dark:prose-invert max-w-none">
+    <h1>Spectre.Console Documentation</h1>
+    <p class="lead text-lg text-base-600 dark:text-base-400">
+        Create beautiful, cross-platform console applications with Spectre.Console.
+    </p>
+
+    <h2>Start Here</h2>
+    <p>Get Spectre.Console running in seconds:</p>
+    <CodeBlock Language="bash">dotnet add package Spectre.Console</CodeBlock>
+
+    <p>Then try this quick example that demonstrates styled text, a table, and a status spinner:</p>
+    <CodeBlock Language="csharp:xmldocid,bodyonly">M:Spectre.Docs.Examples.Showcase.QuickStartSample.Run(Spectre.Console.IAnsiConsole)</CodeBlock>
+
+    <p>You're application should look something like this:</p>
+
+    <Screenshot Src="/assets/quickstart.svg" Alt="Screencast of Spectre.Console in action"></Screenshot>
+
+    <hr />
+
+    <h2>Explore the Documentation</h2>
+    <p>
+        Whether you're just getting started or looking to master advanced features, we've organized everything
+        to help you find what you need. Start with the tutorials to build a solid foundation, then dive into
+        specific topics as your projects grow.
+    </p>
+
+    @foreach (var group in _groupedPages.OrderBy(g => GetSectionOrder(g.Key)))
+    {
+        <div class="mb-8">
+            <h2>@group.Key</h2>
+            <ul>
+                @foreach (var page in group.Value.OrderBy(p => p.FrontMatter.Order).ThenBy(p => p.FrontMatter.Title))
+                {
+                    <li>
+                        <a href="@(page.Url)">@(page.FrontMatter.Title)</a>
+                        @if (!string.IsNullOrWhiteSpace(page.FrontMatter.Description))
+                        {
+                            <span class="text-base-500 dark:text-base-400"> - @(page.FrontMatter.Description)</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</article>
+
+@code {
+    private Dictionary<string, List<MarkdownContentPage<SpectreConsoleFrontMatter>>> _groupedPages = new();
+
+    private static readonly Dictionary<string, string> SectionNames = new()
+    {
+        { "tutorials", "Tutorials" },
+        { "how--to", "How-To Guides" },
+        { "widgets", "Widgets" },
+        { "live", "Live Rendering" },
+        { "prompts", "Prompts" },
+        { "reference", "Reference" },
+        { "explanation", "Explanation" }
+    };
+
+    private static readonly Dictionary<string, int> SectionOrder = new()
+    {
+        { "Tutorials", 1 },
+        { "How-To Guides", 2 },
+        { "Widgets", 3 },
+        { "Prompts", 4 },
+        { "Live Rendering", 5 },
+        { "Explanation", 6 },
+        { "Reference", 7 },
+    };
+
+    private static int GetSectionOrder(string sectionName) =>
+        SectionOrder.GetValueOrDefault(sectionName, 99);
+
+    protected override async Task OnInitializedAsync()
+    {
+        var allPages = await ConsoleContentServices.GetAllContentPagesAsync();
+
+        // Group pages by their first path segment after /console/
+        foreach (var page in allPages)
+        {
+            var pathParts = page.Url.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            if (pathParts.Length >= 2)
+            {
+                var sectionKey = pathParts[1]; // e.g., "tutorials", "how--to", "widgets"
+                var sectionName = SectionNames.GetValueOrDefault(sectionKey, sectionKey);
+
+                if (!_groupedPages.ContainsKey(sectionName))
+                {
+                    _groupedPages[sectionName] = [];
+                }
+                _groupedPages[sectionName].Add(page);
+            }
+        }
+
+        await base.OnInitializedAsync();
+    }
+}

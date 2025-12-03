@@ -16,7 +16,7 @@ Here's the loading screen we're creating:
 
 ## Prerequisites
 
-- .NET 9.0 or later
+- .NET 6.0 or later
 - Basic C# knowledge
 - Completion of the [Getting Started](xref:console-getting-started) tutorial
 
