@@ -2,7 +2,7 @@
 title: "How to Organize Layout"
 description: "Arrange content using panels, columns, grids, and alignment"
 uid: "console-howto-organizing-layout"
-order: 2200
+order: 2120
 ---
 
 When you need to structure console output, use layout widgets.

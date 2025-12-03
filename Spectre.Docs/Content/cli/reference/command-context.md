@@ -128,5 +128,3 @@ The context is read-only during command execution. You cannot modify `Name`, `Ar
 ## See Also
 
 - [Built-in Command Behaviors](/cli/reference/built-in-command-behaviors) - Parsing rules for remaining arguments
-- [Extensibility Points](/cli/reference/extensibility-points) - Command interceptors
-- [Configuration API Reference](/cli/reference/configuration-api-reference) - WithData configuration

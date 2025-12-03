@@ -9,7 +9,6 @@ An in-depth explanation of how Spectre.Console renders text and widgets to the t
 
 ## See Also
 
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Capabilities detection details
 - [Extending with Custom Renderables](/console/explanation/extending-with-custom-renderables) - Build custom widgets
 - [Live Display](/console/live/live-display) - Real-time rendering in practice
 - [Best Practices](/console/explanation/best-practices-for-console-applications) - Production guidelines

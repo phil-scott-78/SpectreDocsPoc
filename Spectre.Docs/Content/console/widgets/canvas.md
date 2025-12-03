@@ -100,10 +100,8 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.CanvasExamples.CanvasCo
 
 ## See Also
 
-- [How to Use Canvas for Pixel Art and Images](/console/how--to/using-canvas-for-pixel-art-and-images) - Step-by-step guide
 - [CanvasImage Widget](/console/widgets/canvas-image) - Display existing image files
 - [Color Reference](/console/reference/color-reference) - Available colors for pixels
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode and color support
 
 ## API Reference
 

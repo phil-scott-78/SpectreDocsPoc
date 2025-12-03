@@ -219,5 +219,4 @@ public string Path { get; set; }
 ## See Also
 
 - [Type Converters](/cli/reference/type-converters) - Custom type conversion
-- [Configuration API Reference](/cli/reference/configuration-api-reference) - Application configuration
 - [Quick Start Tutorial](/cli/tutorials/quick-start-your-first-cli-app) - Getting started with commands

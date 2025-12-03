@@ -2,7 +2,7 @@
 title: "Handling Errors and Exit Codes"
 description: "How Spectre.Console.Cli deals with exceptions and how to customize error handling"
 uid: "cli-error-handling"
-order: 2050
+order: 2070
 ---
 
 By default, Spectre.Console.Cli catches exceptions, displays a user-friendly message, and returns exit code `-1`. When you need more control—different exit codes for different error types, custom formatting, or integration with logging—you have two options: `SetExceptionHandler` for centralized handling within the framework, or `PropagateExceptions` for full manual control with try-catch blocks.
@@ -33,4 +33,3 @@ This approach requires more code but gives you complete flexibility. You can cat
 ## See Also
 
 - [Async Commands and Cancellation](/cli/how--to/async-commands-and-cancellation) - Handle cancellation gracefully
-- [CommandApp Configuration](/cli/reference/commandapp-reference) - Full configuration options

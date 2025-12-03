@@ -2,7 +2,7 @@
 title: "Intercepting Command Execution"
 description: "How to use command interceptors to run logic before or after any command executes"
 uid: "cli-command-interception"
-order: 2080
+order: 2140
 ---
 
 When you need cross-cutting concerns like logging, timing, or authentication across all commands without duplicating code, implement a command interceptor. The interceptor runs before and after every command, keeping individual commands focused on their core logic.
@@ -35,5 +35,5 @@ The `InterceptResult` method receives the exit code by reference (`ref int resul
 
 ## See Also
 
-- [Dependency Injection in CLI Commands](/cli/how--to/dependency-injection-in-cli-commands) - Inject services into interceptors
+- [Dependency Injection in CLI Apps](/cli/tutorials/dependency-injection-in-cli-apps) - Inject services into interceptors
 - [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Custom error handling

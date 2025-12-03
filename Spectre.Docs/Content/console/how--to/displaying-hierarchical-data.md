@@ -2,7 +2,7 @@
 title: "How to Display Hierarchical Data"
 description: "Visualize nested structures using tree views with customizable styling"
 uid: "console-howto-displaying-hierarchical-data"
-order: 2052
+order: 2110
 ---
 
 When you need to show parent-child relationships, use `Tree`.
@@ -11,7 +11,7 @@ When you need to show parent-child relationships, use `Tree`.
 
 To create a tree, pass a root label and call `.AddNode()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.CreateBasicTree
 ```
 
@@ -19,7 +19,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.Cre
 
 To nest deeper, call `.AddNode()` on child nodes.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.AddNestedLevels
 ```
 
@@ -27,7 +27,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.Add
 
 If you want colored nodes, use markup. To change line style, call `.Guide()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.StyleTheTree
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.Sty
 
 To embed panels or other widgets, pass them to `.AddNode()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingHierarchicalDataHowTo.EmbedRichContent
 ```
 

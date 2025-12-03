@@ -16,7 +16,7 @@ Use TextPrompt when you need to **collect user input** from the console. Common 
 - **Secure input**: Requesting passwords or API keys with masked display
 - **Validated input**: Ensuring input meets specific requirements before accepting it
 
-For **selecting from a predefined list of options**, use [SelectionPrompt](/console/prompts/selection) instead, which provides a better user experience with arrow key navigation.
+For **selecting from a predefined list of options**, use [SelectionPrompt](/console/prompts/selection-prompt) instead, which provides a better user experience with arrow key navigation.
 
 > [!CAUTION]
 > Text prompts are not thread safe. Using them together with other interactive components such as progress displays, status displays, or other prompts is not supported.
@@ -111,7 +111,7 @@ Use `AddChoices()` to restrict input to specific values, displayed as options to
 M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.ChoicesExample
 ```
 
-This is useful for limited options where users can type their choice. For better UX with many options, use [SelectionPrompt](/console/prompts/selection) instead.
+This is useful for limited options where users can type their choice. For better UX with many options, use [SelectionPrompt](/console/prompts/selection-prompt) instead.
 
 ### Hidden Choices
 
@@ -150,7 +150,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.TextPromptExamples.Cust
 - [How to Prompt for User Input](/console/how--to/prompting-for-user-input) - Step-by-step guide
 - [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
 - [SelectionPrompt](/console/prompts/selection-prompt) - Choose from predefined options
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Interactive mode support
 - [Testing Console Output](/console/how--to/testing-console-output) - Test prompts in CI
 
 ## API Reference

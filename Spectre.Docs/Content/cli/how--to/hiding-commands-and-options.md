@@ -2,7 +2,7 @@
 title: "Hiding Commands and Options"
 description: "How to hide commands and options from help output while keeping them functional"
 uid: "cli-hidden-commands"
-order: 2045
+order: 2130
 ---
 
 Sometimes you need commands or options that work but shouldn't appear in help output—internal debugging tools, deprecated features you're phasing out, or advanced options that would overwhelm typical users. Hidden items remain fully functional; users who know about them can still use them.

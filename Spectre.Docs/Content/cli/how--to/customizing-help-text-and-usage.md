@@ -2,7 +2,7 @@
 title: "Customizing Help Text and Usage"
 description: "How to tailor the automatically generated help output of Spectre.Console.Cli"
 uid: "cli-help-customization"
-order: 2040
+order: 2100
 ---
 
 Spectre.Console.Cli generates help text automatically from your commands and settings. When the defaults don't match your needs—whether for branding, accessibility, or clarity—you can customize the application name, add usage examples, adjust styling, or disable styling entirely for plain text output.
@@ -61,4 +61,3 @@ The built-in `HelpProvider` class can also be extended if you only need to overr
 ## See Also
 
 - [Hiding Commands and Options](/cli/how--to/hiding-commands-and-options) - Keep commands functional but hidden from help
-- [CommandApp Configuration](/cli/reference/commandapp-reference) - Full configuration options

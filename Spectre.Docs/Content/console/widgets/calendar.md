@@ -18,7 +18,7 @@ Use Calendar when you need to **visualize dates and events in a month view**. Co
 - **Date selection interfaces**: Show available or unavailable dates in CLI tools
 - **Multi-month comparisons**: Display several months side by side to show patterns
 
-For **displaying dates inline within text**, use [Markup](/console/markup) with formatted date strings. For **progress over time**, use [BarChart](/console/widgets/bar-chart) to show metrics across time periods.
+For **displaying dates inline within text**, use [Markup](/console/widgets/markup) with formatted date strings. For **progress over time**, use [BarChart](/console/widgets/bar-chart) to show metrics across time periods.
 
 ## Basic Usage
 

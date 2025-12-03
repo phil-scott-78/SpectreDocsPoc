@@ -2,7 +2,7 @@
 title: "How to Run Tasks with a Spinner"
 description: "Show a spinner animation while awaiting async operations"
 uid: "console-howto-async-spinner"
-order: 2500
+order: 2140
 ---
 
 When you have an async operation, use the `.Spinner()` extension.

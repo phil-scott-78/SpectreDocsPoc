@@ -149,6 +149,4 @@ myapp <command> --help
 
 ## See Also
 
-- [Configuration API Reference](/cli/reference/configuration-api-reference) - Application settings
-- [Extensibility Points](/cli/reference/extensibility-points) - Custom help providers
 - [CommandContext Reference](/cli/reference/command-context) - Runtime command information

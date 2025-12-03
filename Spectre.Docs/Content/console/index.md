@@ -41,8 +41,6 @@ await AnsiConsole.Status()
 AnsiConsole.MarkupLine("[green]Done![/]");
 ```
 
-**Having issues?** Check [Terminal Compatibility](/console/reference/compatibility-matrix) for ANSI support, Unicode rendering, and CI environment tips.
-
 ---
 
 ## Choose Your Learning Path

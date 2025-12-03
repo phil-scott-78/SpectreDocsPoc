@@ -2,7 +2,7 @@
 title: "How to Draw Charts"
 description: "Visualize data with bar charts, breakdown charts, and calendars"
 uid: "console-howto-drawing-charts"
-order: 2450
+order: 2150
 ---
 
 When you need to visualize data in the terminal, use chart widgets.

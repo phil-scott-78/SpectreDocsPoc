@@ -2,7 +2,7 @@
 title: "How to Show Activity Status"
 description: "Display a spinner for operations without measurable progress"
 uid: "console-howto-showing-activity-status"
-order: 2101
+order: 2080
 ---
 
 When you have an operation without measurable progress, use `AnsiConsole.Status()`.

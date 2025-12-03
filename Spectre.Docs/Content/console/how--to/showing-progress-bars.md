@@ -2,7 +2,7 @@
 title: "How to Show Progress Bars"
 description: "Display progress bars for long-running operations with percentage completion"
 uid: "console-howto-showing-progress-bars"
-order: 2100
+order: 2070
 ---
 
 When you have operations with measurable progress, use `AnsiConsole.Progress()`.

@@ -91,7 +91,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.FigletTextExamples.Figl
 
 ## See Also
 
-- [How to Render ASCII Art and Figlet Text](/console/how--to/rendering-ascii-art-and-figlet-text) - Step-by-step guide
 - [Rule Widget](/console/widgets/rule) - Simple horizontal dividers
 - [Panel Widget](/console/widgets/panel) - Wrap figlet text in borders
 - [Color Reference](/console/reference/color-reference) - Available colors

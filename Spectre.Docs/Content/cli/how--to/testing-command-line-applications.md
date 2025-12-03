@@ -2,7 +2,7 @@
 title: "Testing Command-Line Applications"
 description: "How to test CLI apps built with Spectre.Console.Cli to ensure they parse and execute correctly"
 uid: "cli-testing"
-order: 2090
+order: 2120
 ---
 
 To test CLI applications, use `CommandAppTester` from `Spectre.Console.Cli.Testing`. It runs commands in-memory and captures exit codes and output for assertions.
@@ -47,5 +47,5 @@ Use `PushKey` for arrow keys and enter, `PushTextWithEnter` for text input.
 
 ## See Also
 
-- [Dependency Injection in CLI Commands](/cli/how--to/dependency-injection-in-cli-commands) - Inject IAnsiConsole via DI
+- [Dependency Injection in CLI Apps](/cli/tutorials/dependency-injection-in-cli-apps) - Inject IAnsiConsole via DI
 - [Handling Errors and Exit Codes](/cli/how--to/handling-errors-and-exit-codes) - Test error scenarios

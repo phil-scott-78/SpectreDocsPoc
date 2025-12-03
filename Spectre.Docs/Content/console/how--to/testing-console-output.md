@@ -2,7 +2,7 @@
 title: "How to Test Console Output"
 description: "Write unit tests for console applications using TestConsole"
 uid: "console-howto-testing-console-output"
-order: 2650
+order: 2160
 ---
 
 When you need to test console output, use `TestConsole` from `Spectre.Console.Testing`.

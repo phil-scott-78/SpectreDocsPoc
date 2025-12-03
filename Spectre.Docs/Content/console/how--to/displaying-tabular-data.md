@@ -2,7 +2,7 @@
 title: "How to Display Tabular Data"
 description: "Display structured data in tables with borders, alignment, and styling"
 uid: "console-howto-displaying-tabular-data"
-order: 2051
+order: 2060
 ---
 
 When you need to display data in rows and columns, use `Table`.
@@ -11,7 +11,7 @@ When you need to display data in rows and columns, use `Table`.
 
 To create a table, add columns then rows.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.CreateBasicTable
 ```
 
@@ -19,7 +19,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.CreateBa
 
 If you want rounded borders, call `.RoundedBorder()`.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.ApplyBorderStyle
 ```
 
@@ -27,7 +27,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.ApplyBor
 
 To right-align a column, use `.RightAligned()` in the column configuration.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.AlignColumns
 ```
 
@@ -35,7 +35,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.AlignCol
 
 If you need a title, use `.Title()`. For totals, set column footers.
 
-```csharp:xmldocid
+```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Examples.SpectreConsole.HowTo.DisplayingTabularDataHowTo.AddTitleAndFooter
 ```
 

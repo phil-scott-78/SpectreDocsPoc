@@ -2,7 +2,7 @@
 title: "How to Update Content Live"
 description: "Update console output in-place without scrolling"
 uid: "console-howto-live-rendering"
-order: 2300
+order: 2130
 ---
 
 When you need to update output without scrolling, use `AnsiConsole.Live()`.

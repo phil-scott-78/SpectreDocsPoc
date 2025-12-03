@@ -152,6 +152,5 @@ This same pattern works for any service: loggers, database connections, HTTP cli
 
 ## Next Steps
 
-- [Generic Host Integration](/cli/how--to/generic-host-integration) - Use `IHostBuilder` for full ASP.NET-style hosting
 - [Async Commands and Cancellation](/cli/how--to/async-commands-and-cancellation) - Handle long-running operations with async/await
 - [Configuring CommandApp and Commands](/cli/how--to/configuring-commandapp-and-commands) - Add descriptions, examples, and aliases

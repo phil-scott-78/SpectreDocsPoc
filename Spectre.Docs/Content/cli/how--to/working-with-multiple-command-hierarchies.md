@@ -2,7 +2,7 @@
 title: "Working with Multiple Command Hierarchies"
 description: "How to create hierarchical (nested) commands using branching"
 uid: "cli-command-hierarchies"
-order: 2070
+order: 2110
 ---
 
 When building a CLI with grouped commands like `git remote add` and `git remote remove`, use `AddBranch` to create command hierarchies. The branch groups related subcommands together and can share common options through settings inheritance.

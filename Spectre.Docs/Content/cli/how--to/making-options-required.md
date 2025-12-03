@@ -2,7 +2,7 @@
 title: "Making Options Required"
 description: "How to make command-line options required instead of optional in Spectre.Console.Cli"
 uid: "cli-required-options"
-order: 2015
+order: 2060
 ---
 
 By design, options (flags like `--name` or `-n`) are optional—that's why they're called "options." However, there are cases where you want a named option that users must provide, such as specifying a target environment or API key.

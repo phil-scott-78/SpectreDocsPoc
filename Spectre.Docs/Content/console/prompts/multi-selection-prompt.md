@@ -151,7 +151,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Prompts.MultiSelectionPromptExa
 - [Asking User Questions Tutorial](/console/tutorials/interactive-prompts-tutorial) - Learn prompts basics
 - [SelectionPrompt](/console/prompts/selection-prompt) - Single-item selection
 - [TextPrompt](/console/prompts/text-prompt) - Free-form text input
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Interactive mode support
 
 ## API Reference
 

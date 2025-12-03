@@ -18,7 +18,7 @@ Use Tree when you need to display **hierarchical data with parent-child relation
 - **Data exploration**: Visualize nested JSON, XML documents, or object graphs
 - **Menu systems**: Represent nested navigation menus or configuration options
 
-For **tabular data with rows and columns**, use [Table](/console/widgets/table) instead. For **structured JSON visualization**, consider [JsonText](/console/widgets/json-text) which provides syntax highlighting.
+For **tabular data with rows and columns**, use [Table](/console/widgets/table) instead. For **structured JSON visualization**, consider [Json](/console/widgets/json) which provides syntax highlighting.
 
 ## Basic Usage
 
@@ -141,7 +141,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Widgets.TreeExamples.TreeFromDa
 
 - [How to Display Hierarchical Data](/console/how--to/displaying-hierarchical-data) - Step-by-step guide for tree tasks
 - [Tree Guide Reference](/console/reference/tree-guide-reference) - All guide styles with visual examples
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support for tree characters
 - [Getting Started Tutorial](/console/tutorials/getting-started-building-rich-console-app) - Learn Spectre.Console basics
 - [Understanding the Rendering Model](/console/explanation/understanding-rendering-model) - How widgets measure and render
 

@@ -185,5 +185,3 @@ public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo
 ## See Also
 
 - [Attribute and Parameter Reference](/cli/reference/attribute-and-parameter-reference) - TypeConverterAttribute usage
-- [Configuration API Reference](/cli/reference/configuration-api-reference) - Culture settings
-- [Extensibility Points](/cli/reference/extensibility-points) - DI registration

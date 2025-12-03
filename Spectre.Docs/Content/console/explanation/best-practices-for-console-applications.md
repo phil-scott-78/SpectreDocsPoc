@@ -14,7 +14,6 @@ General guidance and recommended practices when using Spectre.Console, distilled
 
 ## See Also
 
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Feature support by terminal
 - [Testing Console Output](/console/how--to/testing-console-output) - Unit testing with IAnsiConsole
 - [Color Reference](/console/reference/color-reference) - Safe color choices
 - [Async Patterns](/console/explanation/async-patterns) - Best practices for async operations
