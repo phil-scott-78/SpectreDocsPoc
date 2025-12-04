@@ -20,7 +20,7 @@ M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.ShowSp
 To use a different spinner, pass a `Spinner.Known` value.
 
 ```csharp:xmldocid,bodyonly
-M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.ChangeSpin­nerAnimation
+M:Spectre.Docs.Examples.SpectreConsole.HowTo.RunningTasksWithSpinnerHowTo.ChangeSpinnerAnimation
 ```
 
 ## Get a Result

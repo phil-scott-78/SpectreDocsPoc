@@ -16,7 +16,7 @@ internal static class RunningTasksWithSpinnerHowTo
     /// <summary>
     /// Use a different spinner animation.
     /// </summary>
-    public static async Task ChangeSpin­nerAnimation()
+    public static async Task ChangeSpinnerAnimation()
     {
         await Task.Delay(2000).Spinner(Spinner.Known.BouncingBar);
     }
