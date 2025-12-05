@@ -1,4 +1,6 @@
-﻿<div class="not-prose bg-base-950/80 dark:bg-base-800 border-1 dark:border-base-500/10 border-base-500/50 rounded-lg lg:rounded-xl p-1 lg:p-2 mt-4 -mx-3 lg:mx-0 shadow-sm lg:shadow-xl">
+@inject IWebHostEnvironment Environment
+
+<div class="not-prose bg-base-950/80 dark:bg-base-800 border-1 dark:border-base-500/10 border-base-500/50 rounded-lg lg:rounded-xl p-1 lg:p-2 mt-4 -mx-3 lg:mx-0 shadow-sm lg:shadow-xl">
     <div class="not-prose flex flex-col rounded-lg lg:rounded-xl">
         <!-- Terminal buttons -->
         <div class="flex justify-end-safe gap-2 py-2 px-4">
@@ -7,7 +9,12 @@
             <div class="w-2 h-2 lg:w-3 lg:h-3 rounded-sm bg-accent-200/90 dark:bg-accent-500/60 border border-accent-900/50 dark:border-accent-600"></div>
         </div>
         <div class="rounded-lg inner-shadow py-2 px-2 lg:px-6 bg-base-950/40 dark:bg-base-900 [background-image:repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)]">
-            <img defer src="@Src" alt="@Alt" loading="lazy" style="width: 100%;" />
+            @{
+                var imgStyle = _aspectRatio != null
+                    ? $"width: 100%; aspect-ratio: {_aspectRatio};"
+                    : "width: 100%;";
+            }
+            <img fetchpriority="high" src="@Src" alt="@Alt" style="@imgStyle" />
         </div>
     </div>
 </div>
@@ -18,4 +25,69 @@
 
     [Parameter]
     public string Alt { get; set; } = "Screenshot";
+
+    private string? _aspectRatio;
+
+    protected override void OnParametersSet()
+    {
+        _aspectRatio = null;
+
+        // Only process SVG files from /assets/
+        if (!string.IsNullOrEmpty(Src) &&
+            Src.StartsWith("/assets/", StringComparison.OrdinalIgnoreCase) &&
+            Src.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+        {
+            _aspectRatio = TryGetAspectRatio(Src);
+        }
+    }
+
+    private string? TryGetAspectRatio(string srcUrl)
+    {
+        try
+        {
+            // Map URL /assets/file.svg to Content/assets/file.svg
+            var relativePath = srcUrl.TrimStart('/');
+
+            // Handle both Windows and Unix path separators
+            if (Path.DirectorySeparatorChar != '/')
+            {
+                relativePath = relativePath.Replace('/', Path.DirectorySeparatorChar);
+            }
+
+            var contentPath = Path.Combine(Environment.ContentRootPath, "Content", relativePath);
+
+            if (!File.Exists(contentPath))
+            {
+                return null;
+            }
+
+            // Read only first 1KB - viewBox should be in opening <svg> tag
+            using var stream = new FileStream(contentPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using var reader = new StreamReader(stream);
+            var buffer = new char[1024];
+            var charsRead = reader.Read(buffer, 0, buffer.Length);
+            var content = new string(buffer, 0, charsRead);
+
+            // Parse viewBox="minX minY width height" - captures the last two numbers (width and height)
+            var match = System.Text.RegularExpressions.Regex.Match(
+                content,
+                @"viewBox\s*=\s*[""'][\d.\-]+\s+[\d.\-]+\s+([\d.]+)\s+([\d.]+)[""']");
+
+            if (match.Success &&
+                double.TryParse(match.Groups[1].Value, System.Globalization.NumberStyles.Float,
+                    System.Globalization.CultureInfo.InvariantCulture, out var width) &&
+                double.TryParse(match.Groups[2].Value, System.Globalization.NumberStyles.Float,
+                    System.Globalization.CultureInfo.InvariantCulture, out var height) &&
+                height > 0 && width > 0)
+            {
+                return FormattableString.Invariant($"{width} / {height}");
+            }
+        }
+        catch
+        {
+            // Any error - fall back to no aspect ratio
+        }
+
+        return null;
+    }
 }
