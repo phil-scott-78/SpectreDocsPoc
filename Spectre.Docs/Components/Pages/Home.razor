@@ -25,17 +25,10 @@
     </div>
     <!-- Console Output Showcase -->
     <section class="w-full">
-        <div class="transition-all bg-base-800  border border-base-700 p-1 md:p-4 rounded-sm md:rounded-2xl shadow-2xl">
             <div class="max-w-5xl mx-auto">
-                <div class="overflow-hidden rounded">
+                <Screenshot src="/assets/hero.svg" />
 
-                        <img src="/assets/hero.svg"
-                             alt="Spectre.Console rich terminal output demonstration"
-                             class="w-full h-auto block"
-                             loading="lazy">
-                </div>
             </div>
-        </div>
     </section>
 
     <!-- Feature Cards -->
@@ -46,15 +39,15 @@
             <div class="p-6 md:p-8">
                 <div class="flex items-center mb-4">
                     <div class="p-3 bg-tertiary-two-600 dark:bg-tertiary-two-500 rounded-lg text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <h2 class="text-2xl font-bold ml-4"><a href="/console">Console Documentation</a></h2>
+                    <h2 class="text-xl md:text-2xl font-bold ml-4"><a href="/console">Console Documentation</a></h2>
                 </div>
 
-                <p class="text-base-600 dark:text-tertiary-two-100 mb-6">
+                <p class="text-sm md:text-base text-base-600 dark:text-tertiary-two-100 mb-6">
                     Learn how to create beautiful console output with tables, charts, progress bars, and rich text
                     formatting.
                 </p>
@@ -75,7 +68,7 @@
                                               d="M9 5l7 7-7 7"></path>
                                     </svg>
                                     <span
-                                        class="group-hover:translate-x-1 transition-transform">@p.FrontMatter.Title</span>
+                                        class="text-sm md:text-base group-hover:translate-x-1 transition-transform">@p.FrontMatter.Title</span>
                                 </a>
                             </li>
                         }
@@ -83,7 +76,7 @@
                 </div>
 
                 <a href="/console"
-                   class="inline-flex items-center text-tertiary-two-700 dark:text-tertiary-two-200 font-medium hover:text-tertiary-two-800 dark:hover:text-tertiary-two-300 group/link">
+                   class="inline-flex items-center text-sm md:text-base text-tertiary-two-700 dark:text-tertiary-two-200 font-medium hover:text-tertiary-two-800 dark:hover:text-tertiary-two-300 group/link">
                     View all Console docs
                     <svg class="ml-1 w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none"
                          stroke="currentColor" viewBox="0 0 24 24">
@@ -99,15 +92,15 @@
             <div class="p-6 md:p-8">
                 <div class="flex items-center mb-4">
                     <div class="p-3 bg-tertiary-one-600 dark:bg-tertiary-one-500 rounded-lg text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                         </svg>
                     </div>
-                    <h2 class="text-2xl font-bold ml-4"><a href="/cli">CLI Documentation</a></h2>
+                    <h2 class="text-xl md:text-2xl font-bold ml-4"><a href="/cli">CLI Documentation</a></h2>
                 </div>
 
-                <p class="text-base-600 dark:text-tertiary-one-100 mb-6">
+                <p class="text-sm md:text-base text-base-600 dark:text-tertiary-one-100 mb-6">
                     Build powerful command-line applications with type-safe commands, argument parsing, and dependency
                     injection.
                 </p>
@@ -122,14 +115,14 @@
                         {
                             <li>
                                 <a href="@p.Url"
-                                   class="flex items-center text-tertiary-one-700 dark:text-tertiary-one-400 hover:text-tertiary-one-800 dark:hover:text-tertiary-one-300 group/link">
+                                   class="flex items-center  text-tertiary-one-700 dark:text-tertiary-one-400 hover:text-tertiary-one-800 dark:hover:text-tertiary-one-300 group/link">
                                     <svg class="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"
                                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M9 5l7 7-7 7"></path>
                                     </svg>
                                     <span
-                                        class="group-hover:translate-x-1 transition-transform transition-300">@p.FrontMatter.Title</span>
+                                        class="group-hover:translate-x-1 text-sm md:text-base transition-transform transition-300">@p.FrontMatter.Title</span>
                                 </a>
                             </li>
                         }
@@ -137,7 +130,7 @@
                 </div>
 
                 <a href="/cli"
-                   class="inline-flex items-center text-tertiary-one-700 dark:text-tertiary-one-400 font-medium hover:text-tertiary-one-800 dark:hover:text-tertiary-one-300 group/link">
+                   class="text-sm md:text-base inline-flex items-center text-tertiary-one-700 dark:text-tertiary-one-400 font-medium hover:text-tertiary-one-800 dark:hover:text-tertiary-one-300 group/link">
                     View all CLI docs
                     <svg class="ml-1 w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none"
                          stroke="currentColor" viewBox="0 0 24 24">
