@@ -108,18 +108,18 @@
                 <!-- Search Box (only show if ShowSearch is true) -->
                 @if (ShowSearch)
                 {
-                    <div class="relative hidden md:block">
+                    <div class="relative w-8 md:w-32 lg:w-64 bg-base-100 dark:bg-base-800/50 border border-base-200 dark:border-base-700 rounded-full lg:rounded-md ">
                         <input
                             id="search-input"
                             type="text"
-                            placeholder="Search..."
-                            class="transition-all w-32 lg:w-64 px-3 py-2 pl-10 pr-4 text-sm bg-base-100 dark:bg-base-800 border border-base-200 dark:border-base-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent text-base-900 dark:text-base-100 placeholder-base-500 dark:placeholder-base-400"
+                            class="transition-all text-xs lg:text-sm w-full h-8 lg:h-10 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 focus:border-transparent"
                             readonly
                         />
-                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-base-500 dark:text-base-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="transition-all absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-base-500 dark:text-base-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="M21 21l-4.35-4.35"></path>
                         </svg>
+                        <div class="transition-all text-xs md:text-sm hidden md:block absolute left-10 top-1/2 transform -translate-y-1/2 text-base-600 dark:text-base-400  pointer-events-none">Search</div>
                     </div>
                 }
 
