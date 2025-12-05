@@ -5,6 +5,10 @@
 @inject ContentEngineOptions ContentEngineOptions
 @inject ITableOfContentService TableOfContentService
 
+<HeadContent>
+    <meta name="description" content="@_description" />
+</HeadContent>
+
 <DocumentationPageContent
     PostContent="@_postContent"
     Outline="@_outline"
