@@ -22,12 +22,12 @@ internal class DeployCommand : Command<DeployCommand.Settings>
 {
     public class Settings : CommandSettings
     {
-        // Use C#'s required keyword - simplest approach
-        [CommandOption("-e|--environment")]
+        // Use `isRequired` parameter on `CommandOption`
+        [CommandOption("-e|--environment <TARGET>", isRequired: true)]
         [Description("Target environment")]
         public required string Environment { get; init; }
 
-        [CommandOption("-v|--version")]
+        [CommandOption("-v|--version <VERSION>", isRequired: true)]
         [Description("Version to deploy")]
         public required string Version { get; init; }
 

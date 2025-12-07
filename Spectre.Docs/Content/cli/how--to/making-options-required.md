@@ -7,26 +7,20 @@ order: 2060
 
 By design, options (flags like `--name` or `-n`) are optional—that's why they're called "options." However, there are cases where you want a named option that users must provide, such as specifying a target environment or API key.
 
-## Use the `required` Keyword
+## Use the `isRequired` Parameter
 
-The simplest approach is to use C#'s `required` keyword on the property. Spectre.Console.Cli detects this and enforces the option, displaying "Required" in help output and showing a clear error when omitted.
+The simplest approach is to use the `isRequired` parameter on the `CommandOption` attribute.
 
 ```csharp:xmldocid
 T:Spectre.Docs.Cli.Examples.DemoApps.MakingOptionsRequired.DeployCommand.Settings
-```
-
-When users omit a required option:
-
-```
-Error: Option '--environment' is required.
 ```
 
 Help output marks these options clearly:
 
 ```
 OPTIONS:
-    -e, --environment    Target environment (Required)
-    -v, --version        Version to deploy (Required)
+    -e, --environment    Target environment. Required
+    -v, --version        Version to deploy. Required
         --dry-run        Preview changes without applying them
 ```
 
