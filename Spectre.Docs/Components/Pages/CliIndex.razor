@@ -70,7 +70,7 @@
     private static readonly Dictionary<string, string> SectionNames = new()
     {
         { "tutorials", "Tutorials" },
-        { "how--to", "How-To Guides" },
+        { "how-to", "How-To Guides" },
         { "reference", "Reference" },
         { "explanation", "Explanation" }
     };
@@ -96,7 +96,7 @@
             var pathParts = page.Url.Split('/', StringSplitOptions.RemoveEmptyEntries);
             if (pathParts.Length >= 2)
             {
-                var sectionKey = pathParts[1]; // e.g., "tutorials", "how--to"
+                var sectionKey = pathParts[1]; // e.g., "tutorials", "how-to"
                 var sectionName = SectionNames.GetValueOrDefault(sectionKey, sectionKey);
 
                 if (!_groupedPages.ContainsKey(sectionName))

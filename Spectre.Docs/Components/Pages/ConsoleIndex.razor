@@ -61,7 +61,7 @@
     private static readonly Dictionary<string, string> SectionNames = new()
     {
         { "tutorials", "Tutorials" },
-        { "how--to", "How-To Guides" },
+        { "how-to", "How-To Guides" },
         { "widgets", "Widgets" },
         { "live", "Live Rendering" },
         { "prompts", "Prompts" },
@@ -93,7 +93,7 @@
             var pathParts = page.Url.Split('/', StringSplitOptions.RemoveEmptyEntries);
             if (pathParts.Length >= 2)
             {
-                var sectionKey = pathParts[1]; // e.g., "tutorials", "how--to", "widgets"
+                var sectionKey = pathParts[1]; // e.g., "tutorials", "how-to", "widgets"
                 var sectionName = SectionNames.GetValueOrDefault(sectionKey, sectionKey);
 
                 if (!_groupedPages.ContainsKey(sectionName))
