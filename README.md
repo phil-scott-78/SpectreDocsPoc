@@ -44,7 +44,7 @@ The site uses a multi-service content architecture with three main sections:
 ```
 Content/
 ├── console/          # Spectre.Console documentation
-│   ├── how--to/
+│   ├── how-to/
 │   ├── tutorials/
 │   ├── widgets/
 │   ├── live/
@@ -52,7 +52,7 @@ Content/
 │   ├── reference/
 │   └── explanation/
 ├── cli/              # Spectre.CLI documentation
-│   ├── how--to/
+│   ├── how-to/
 │   ├── tutorials/
 │   ├── reference/
 │   └── explanation/
@@ -66,7 +66,7 @@ Each section has its own content service and front matter model, configured in `
 
 ### Console or CLI Documentation
 
-Create a `.md` file in the appropriate subdirectory (e.g., `Content/console/how--to/my-guide.md`):
+Create a `.md` file in the appropriate subdirectory (e.g., `Content/console/how-to/my-guide.md`):
 
 ```markdown
 ---
@@ -92,7 +92,7 @@ Start writing your documentation using standard markdown...
 - `uid` - Unique identifier for cross-referencing
 
 The file path determines the URL:
-- `Content/console/how--to/example.md` → `/console/how--to/example`
+- `Content/console/how-to/example.md` → `/console/how-to/example`
 
 ### Blog Posts
 
