@@ -11,6 +11,8 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0" />
       <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.11" />
       <PackageReference Include="Spectre.Console.Cli.Testing" Version="1.0.0-alpha.0.11" />
       <PackageReference Include="xunit.v3.assert" Version="3.2.1" />
