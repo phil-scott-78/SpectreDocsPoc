@@ -111,7 +111,14 @@ builder.Services.AddContentEngineService(_ => new ContentEngineOptions
                     )
                 }
             ]};
-        }
+        },
+        // .net 10.0.101 has a bug flash grey on all content change and not removing it.
+        // this hides empty error messages on hot reload
+        ExtraStyles = """
+                      #dotnet-compile-error:empty {
+                          display: none;
+                      }
+                      """
     });
 
 var app = builder.Build();

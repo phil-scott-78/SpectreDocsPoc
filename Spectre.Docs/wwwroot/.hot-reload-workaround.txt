@@ -1,0 +1,5 @@
+.net 10 as of 10.0.101 has a bug thinking anything out
+of the wwwroot folder is a code change. this is a placeholder to keep
+this folder alive and allow some tomfoolery from MyLittleContentEngine
+to trick it to keep hot reload working for Markdown files and static content
+in the Content folder working.
