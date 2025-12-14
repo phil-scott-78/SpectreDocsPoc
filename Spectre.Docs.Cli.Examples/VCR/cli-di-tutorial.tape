@@ -5,7 +5,7 @@ Set FontSize 22
 Set Theme "one dark"
 Set TransparentBackground "true"
 Set Cols 70
-Set Rows 12
+Set Rows 16
 Set EndBuffer 5s
 Set WorkingDirectory "Spectre.Docs.Cli.Examples/bin/Debug/net10.0"
 Env SPECTRE_APP "M:Spectre.Docs.Cli.Examples.DemoApps.DependencyInjection.DIComplete.Demo.RunAsync(System.String[])"
@@ -20,12 +20,12 @@ Sleep 400ms
 Enter
 Sleep 1s
 
-Type "./example Alice --formal"
+Type "./example Alice --style Formal"
 Sleep 400ms
 Enter
 Sleep 1s
 
-Type "./example Alice --enthusiastic"
+Type "./example Alice --style Enthusiastic"
 Sleep 400ms
 Enter
 Sleep 3s

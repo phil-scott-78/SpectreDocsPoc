@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Spectre.Docs.Cli.Examples.DemoApps.DependencyInjection.WithService;
@@ -45,79 +46,52 @@ public class GreetingService : IGreetingService
 /// <summary>
 /// Bridges Microsoft.Extensions.DependencyInjection with Spectre.Console.Cli.
 /// </summary>
-public sealed class TypeRegistrar : ITypeRegistrar
+public sealed class TypeRegistrar(IServiceCollection services) : ITypeRegistrar
 {
-    private readonly IServiceCollection _services;
+    public ITypeResolver Build() => new TypeResolver(services.BuildServiceProvider());
 
-    public TypeRegistrar(IServiceCollection services)
-    {
-        _services = services;
-    }
+    public void Register(Type service, Type implementation) => services.AddSingleton(service, implementation);
 
-    public ITypeResolver Build()
-    {
-        return new TypeResolver(_services.BuildServiceProvider());
-    }
+    public void RegisterInstance(Type service, object implementation) => services.AddSingleton(service, implementation);
 
-    public void Register(Type service, Type implementation)
-    {
-        _services.AddSingleton(service, implementation);
-    }
-
-    public void RegisterInstance(Type service, object implementation)
-    {
-        _services.AddSingleton(service, implementation);
-    }
-
-    public void RegisterLazy(Type service, Func<object> factory)
-    {
-        _services.AddSingleton(service, _ => factory());
-    }
+    public void RegisterLazy(Type service, Func<object> factory) => services.AddSingleton(service, _ => factory());
 }
 
 /// <summary>
 /// Resolves services from the built service provider.
 /// </summary>
-public sealed class TypeResolver : ITypeResolver
+public sealed class TypeResolver(IServiceProvider provider) : ITypeResolver
 {
-    private readonly IServiceProvider _provider;
-
-    public TypeResolver(IServiceProvider provider)
-    {
-        _provider = provider;
-    }
-
-    public object? Resolve(Type? type)
-    {
-        return type == null ? null : _provider.GetService(type);
-    }
+    public object? Resolve(Type? type) => type == null ? null : provider.GetService(type);
 }
 
-internal class GreetCommand : Command<GreetCommand.Settings>
+public class GreetSettings : CommandSettings
+{
+    [CommandArgument(0, "<name>")]
+    [Description("The name to greet")]
+    public string Name { get; init; } = string.Empty;
+
+    [CommandOption("-f|--formal")]
+    [Description("Use formal greeting")]
+    [DefaultValue(false)]
+    public bool Formal { get; init; }
+}
+
+internal class GreetCommand : Command<GreetSettings>
 {
     private readonly IGreetingService _greetingService;
+    private readonly IAnsiConsole _console;
 
-    public GreetCommand(IGreetingService greetingService)
+    public GreetCommand(IGreetingService greetingService, IAnsiConsole console)
     {
         _greetingService = greetingService;
+        _console = console;
     }
 
-    public class Settings : CommandSettings
-    {
-        [CommandArgument(0, "<name>")]
-        [Description("The name to greet")]
-        public string Name { get; init; } = string.Empty;
-
-        [CommandOption("-f|--formal")]
-        [Description("Use formal greeting")]
-        [DefaultValue(false)]
-        public bool Formal { get; init; }
-    }
-
-    protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellation)
+    protected override int Execute(CommandContext context, GreetSettings settings, CancellationToken cancellation)
     {
         var greeting = _greetingService.GetGreeting(settings.Name, settings.Formal);
-        System.Console.WriteLine(greeting);
+        _console.WriteLine(greeting);
         return 0;
     }
 }

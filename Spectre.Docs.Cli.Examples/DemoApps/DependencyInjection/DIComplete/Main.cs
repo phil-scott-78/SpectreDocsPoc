@@ -1,19 +1,28 @@
 using System.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Spectre.Docs.Cli.Examples.DemoApps.DependencyInjection.DIComplete;
 
 /// <summary>
-/// Dependency Injection Tutorial - Complete: Full DI example with multiple greeting styles.
-/// Demonstrates the flexibility that DI provides for swapping implementations.
+/// Dependency Injection Tutorial - Complete: Keyed services with factory pattern.
+/// Demonstrates how to use .NET 8+ keyed services to register multiple implementations
+/// of the same interface and resolve them at runtime using a factory.
 /// </summary>
 public class Demo
 {
     public static async Task<int> RunAsync(string[] args)
     {
         var services = new ServiceCollection();
-        services.AddSingleton<IGreetingService, GreetingService>();
+
+        // Register keyed greeting services - each style gets its own implementation
+        services.AddKeyedSingleton<IGreetingService, CasualGreetingService>(GreetingStyle.Casual);
+        services.AddKeyedSingleton<IGreetingService, FormalGreetingService>(GreetingStyle.Formal);
+        services.AddKeyedSingleton<IGreetingService, EnthusiasticGreetingService>(GreetingStyle.Enthusiastic);
+
+        // Register the factory that resolves the appropriate service based on settings
+        services.AddScoped<IGreetingFactory, GreetingFactory>();
 
         var registrar = new TypeRegistrar(services);
         var app = new CommandApp<GreetCommand>(registrar);
@@ -36,83 +45,85 @@ public enum GreetingStyle
 /// </summary>
 public interface IGreetingService
 {
-    string GetGreeting(string name, GreetingStyle style);
+    string GetGreeting(string name);
 }
 
 /// <summary>
-/// Default implementation of the greeting service with multiple styles.
+/// Casual greeting service - friendly and simple.
 /// </summary>
-public class GreetingService : IGreetingService
+public class CasualGreetingService : IGreetingService
 {
-    public string GetGreeting(string name, GreetingStyle style)
+    public string GetGreeting(string name) => $"Hello, {name}!";
+}
+
+/// <summary>
+/// Formal greeting service - professional and polite.
+/// </summary>
+public class FormalGreetingService : IGreetingService
+{
+    public string GetGreeting(string name) => $"Good day, {name}.";
+}
+
+/// <summary>
+/// Enthusiastic greeting service - energetic and welcoming.
+/// </summary>
+public class EnthusiasticGreetingService : IGreetingService
+{
+    public string GetGreeting(string name) => $"Hey there, {name}! Great to see you!";
+}
+
+/// <summary>
+/// Factory interface for creating greeting services.
+/// </summary>
+public interface IGreetingFactory
+{
+    IGreetingService Create();
+}
+
+/// <summary>
+/// Factory that resolves the appropriate keyed greeting service based on command settings.
+/// Receives the parsed Settings via DI - Spectre.Console.Cli registers them automatically.
+/// </summary>
+public class GreetingFactory(IServiceProvider serviceProvider, GreetCommand.Settings settings)
+    : IGreetingFactory
+{
+    public IGreetingService Create()
     {
-        return style switch
-        {
-            GreetingStyle.Formal => $"Good day, {name}.",
-            GreetingStyle.Enthusiastic => $"Hey there, {name}! Great to see you!",
-            _ => $"Hello, {name}!"
-        };
+        return serviceProvider.GetRequiredKeyedService<IGreetingService>(settings.Style);
     }
 }
 
 /// <summary>
 /// Bridges Microsoft.Extensions.DependencyInjection with Spectre.Console.Cli.
 /// </summary>
-public sealed class TypeRegistrar : ITypeRegistrar
+public sealed class TypeRegistrar(IServiceCollection services) : ITypeRegistrar
 {
-    private readonly IServiceCollection _services;
+    public ITypeResolver Build() => new TypeResolver(services.BuildServiceProvider());
 
-    public TypeRegistrar(IServiceCollection services)
-    {
-        _services = services;
-    }
+    public void Register(Type service, Type implementation) => services.AddSingleton(service, implementation);
 
-    public ITypeResolver Build()
-    {
-        return new TypeResolver(_services.BuildServiceProvider());
-    }
+    public void RegisterInstance(Type service, object implementation) => services.AddSingleton(service, implementation);
 
-    public void Register(Type service, Type implementation)
-    {
-        _services.AddSingleton(service, implementation);
-    }
-
-    public void RegisterInstance(Type service, object implementation)
-    {
-        _services.AddSingleton(service, implementation);
-    }
-
-    public void RegisterLazy(Type service, Func<object> factory)
-    {
-        _services.AddSingleton(service, _ => factory());
-    }
+    public void RegisterLazy(Type service, Func<object> factory) => services.AddSingleton(service, _ => factory());
 }
 
 /// <summary>
 /// Resolves services from the built service provider.
 /// </summary>
-public sealed class TypeResolver : ITypeResolver
+public sealed class TypeResolver(IServiceProvider provider) : ITypeResolver
 {
-    private readonly IServiceProvider _provider;
-
-    public TypeResolver(IServiceProvider provider)
-    {
-        _provider = provider;
-    }
-
-    public object? Resolve(Type? type)
-    {
-        return type == null ? null : _provider.GetService(type);
-    }
+    public object? Resolve(Type? type) => type == null ? null : provider.GetService(type);
 }
 
-internal class GreetCommand : Command<GreetCommand.Settings>
+public class GreetCommand : Command<GreetCommand.Settings>
 {
-    private readonly IGreetingService _greetingService;
+    private readonly IGreetingFactory _greetingFactory;
+    private readonly IAnsiConsole _console;
 
-    public GreetCommand(IGreetingService greetingService)
+    public GreetCommand(IGreetingFactory greetingFactory, IAnsiConsole console)
     {
-        _greetingService = greetingService;
+        _greetingFactory = greetingFactory;
+        _console = console;
     }
 
     public class Settings : CommandSettings
@@ -121,25 +132,17 @@ internal class GreetCommand : Command<GreetCommand.Settings>
         [Description("The name to greet")]
         public string Name { get; init; } = string.Empty;
 
-        [CommandOption("-f|--formal")]
-        [Description("Use formal greeting style")]
-        [DefaultValue(false)]
-        public bool Formal { get; init; }
-
-        [CommandOption("-e|--enthusiastic")]
-        [Description("Use enthusiastic greeting style")]
-        [DefaultValue(false)]
-        public bool Enthusiastic { get; init; }
+        [CommandOption("-s|--style")]
+        [Description("The greeting style to use (Casual, Formal, or Enthusiastic)")]
+        [DefaultValue(GreetingStyle.Casual)]
+        public GreetingStyle Style { get; init; }
     }
 
     protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellation)
     {
-        var style = settings.Formal ? GreetingStyle.Formal
-            : settings.Enthusiastic ? GreetingStyle.Enthusiastic
-            : GreetingStyle.Casual;
-
-        var greeting = _greetingService.GetGreeting(settings.Name, style);
-        System.Console.WriteLine(greeting);
+        var service = _greetingFactory.Create();
+        var greeting = service.GetGreeting(settings.Name);
+        _console.WriteLine(greeting);
         return 0;
     }
 }
