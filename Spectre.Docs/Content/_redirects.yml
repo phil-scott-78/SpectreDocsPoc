@@ -1,0 +1,67 @@
+# Redirect mappings for Spectre.Console
+# Maps old spectreconsole.net URLs to new Diátaxis-structured content
+
+redirects:
+  # Widgets Section
+  /widgets/table: /console/widgets/table
+  /widgets/tree: /console/widgets/tree
+  /widgets/barchart: /console/widgets/bar-chart
+  /widgets/breakdownchart: /console/widgets/breakdown-chart
+  /widgets/calendar: /console/widgets/calendar
+  /widgets/grid: /console/widgets/grid
+  /widgets/layout: /console/widgets/layout
+  /widgets/figlet: /console/widgets/figlet
+  /widgets/padder: /console/widgets/padder
+  /widgets/canvas: /console/widgets/canvas
+  /widgets/canvas-image: /console/widgets/canvas-image
+  /widgets/json: /console/widgets/json
+  /widgets/text-path: /console/widgets/text-path
+  /widgets/rule: /console/widgets/rule
+  /widgets/rows: /console/widgets/rows
+  /widgets: /console/
+
+  # Prompts Section
+  /prompts/text: /console/prompts/text-prompt
+  /prompts/selection: /console/prompts/selection-prompt
+  /prompts/multiselection: /console/prompts/multi-selection-prompt
+  /prompts: /console/
+
+  # Live Rendering Section
+  /live/live-display: /console/live/live-display
+  /live/progress: /console/live/progress
+  /live/status: /console/live/status
+  /live/async: /console/explanation/async-patterns
+  /live: /console/
+
+  # CLI Section
+  /cli/getting-started: /cli/tutorials/quick-start-your-first-cli-app
+  /cli/introduction: /cli/tutorials/quick-start-your-first-cli-app
+  /cli/commandapp: /cli/how-to/configuring-commandapp-and-commands
+  /cli/settings: /cli/reference/attribute-and-parameter-reference
+  /cli/commands: /cli/how-to/defining-commands-and-arguments
+  /cli/composing: /cli/how-to/working-with-multiple-command-hierarchies
+  /cli/exceptions: /cli/how-to/handling-errors-and-exit-codes
+  /cli/command-help: /cli/how-to/customizing-help-text-and-usage
+  /cli/unit-testing: /cli/how-to/testing-command-line-applications
+  /cli/migration: /cli/
+  /cli/opencli: /cli/
+  /cli: /cli/tutorials/quick-start-your-first-cli-app
+
+  # Appendix Section
+  /appendix/styles: /console/reference/text-style-reference
+  /appendix/borders: /console/reference/box-border-reference
+  /appendix/emojis: /console/reference/emoji-reference
+  /appendix/spinners: /console/reference/spinner-reference
+  /appendix: /console/reference/text-style-reference
+
+  # Root-Level Pages
+  /quick-start: /console/tutorials/getting-started-building-rich-console-app
+  /markup: /console/reference/markup-reference
+  /exceptions: /console/how-to/writing-exceptions
+  /best-practices: /
+  /unit-testing: /console/how-to/testing-console-output
+  /analyzer/rules: /
+
+  # Blog Section
+  /blog/news: /blog
+  /blog/category: /blog
