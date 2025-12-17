@@ -213,5 +213,5 @@ Common reasons to override:
 ## See Also
 
 - <xref:console-capabilities-reference> - Complete list of capabilities, environment variables, and CI detection
-- <xref:console-custom-renderables> - Build custom widgets
+- <xref:console-howto-creating-custom-renderables> - Build custom widgets
 - <xref:console-live-live-display> - Real-time rendering in practice
