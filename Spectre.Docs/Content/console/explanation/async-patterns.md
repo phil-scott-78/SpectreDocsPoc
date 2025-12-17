@@ -3,6 +3,7 @@ title: "Async Patterns"
 description: "Best practices for using live rendering with asynchronous operations"
 uid: "console-explanation-async-patterns"
 order: 6200
+is_draft: true
 ---
 
 This guide covers patterns and best practices for combining Spectre.Console's live rendering features (Progress, Status, Live Display) with asynchronous programming in .NET, enabling responsive console applications that handle multiple concurrent operations effectively.
