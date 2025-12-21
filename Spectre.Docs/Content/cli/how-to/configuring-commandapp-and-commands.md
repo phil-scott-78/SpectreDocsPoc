@@ -2,7 +2,7 @@
 title: "Configuring CommandApp and Commands"
 description: "How to register commands with the CommandApp and configure global settings"
 uid: "cli-app-configuration"
-order: 2090
+order: 2050
 ---
 
 When building a CLI with multiple commands, use `CommandApp.Configure` to register commands, set up aliases, and customize how your application appears in help output.

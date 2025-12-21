@@ -2,7 +2,7 @@
 title: "Async Commands and Cancellation"
 description: "How to create asynchronous commands and handle cancellation in Spectre.Console.Cli"
 uid: "cli-async-commands"
-order: 2080
+order: 2040
 ---
 
 When your command performs I/O-bound operations like HTTP requests, database queries, or file operations, use `AsyncCommand<TSettings>` instead of `Command<TSettings>`. This lets you use `async/await` and enables graceful shutdown when users press Ctrl+C.

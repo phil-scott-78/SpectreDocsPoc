@@ -2,7 +2,7 @@
 title: "Defining Commands and Arguments"
 description: "How to declare command-line parameters (arguments and options) using Spectre.Console.Cli's attributes and settings classes"
 uid: "cli-commands-arguments"
-order: 2050
+order: 2010
 ---
 
 Every command in Spectre.Console.Cli receives its input through a `CommandSettings` class. Decorate properties with `[CommandArgument]` for positional parameters and `[CommandOption]` for named flags and options. The framework handles parsing, validation, and help generation automatically.
@@ -56,5 +56,8 @@ Invalid values produce a clear error message listing the allowed options.
 
 ## See Also
 
+- <xref:cli-flag-arguments> - Optional flag values with FlagValue
+- <xref:cli-dictionary-options> - Key-value pair options with dictionaries
+- <xref:cli-custom-type-converters> - Custom type conversion for complex types
 - <xref:cli-required-options> - Force users to provide specific options
 - <xref:cli-attributes-parameters> - Complete attribute documentation

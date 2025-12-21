@@ -2,7 +2,7 @@
 title: "Testing Command-Line Applications"
 description: "How to test CLI apps built with Spectre.Console.Cli to ensure they parse and execute correctly"
 uid: "cli-testing"
-order: 2120
+order: 2110
 ---
 
 To test CLI applications, use `CommandAppTester` from `Spectre.Console.Cli.Testing`. It runs commands in-memory and captures exit codes and output for assertions.

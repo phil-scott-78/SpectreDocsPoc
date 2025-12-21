@@ -2,7 +2,7 @@
 title: "Intercepting Command Execution"
 description: "How to use command interceptors to run logic before or after any command executes"
 uid: "cli-command-interception"
-order: 2140
+order: 2130
 ---
 
 When you need cross-cutting concerns like logging, timing, or authentication across all commands without duplicating code, implement a command interceptor. The interceptor runs before and after every command, keeping individual commands focused on their core logic.
