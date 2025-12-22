@@ -16,9 +16,9 @@
     library where if you don't reference it directly they don't include the BuildHost folders. Include for now.
     -->
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="5.0.0" />
-    <PackageReference Include="MyLittleContentEngine" Version="0.0.0-alpha.0.267" />
-    <PackageReference Include="MyLittleContentEngine.MonorailCss" Version="0.0.0-alpha.0.267" />
-    <PackageReference Include="MyLittleContentEngine.UI" Version="0.0.0-alpha.0.267" />
+    <PackageReference Include="MyLittleContentEngine" Version="0.0.0-alpha.0.270" />
+    <PackageReference Include="MyLittleContentEngine.MonorailCss" Version="0.0.0-alpha.0.270" />
+    <PackageReference Include="MyLittleContentEngine.UI" Version="0.0.0-alpha.0.270" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
     <PackageReference Include="Spectre.Console" Version="0.54.1-alpha.0.7" />
     <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.11" />
