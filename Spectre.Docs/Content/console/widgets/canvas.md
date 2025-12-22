@@ -7,8 +7,6 @@ order: 3850
 
 The Canvas widget enables pixel-level drawing in the console, where you can set individual pixels with specific colors to create graphics, patterns, and visualizations.
 
-<Screenshot src="/assets/canvas.svg" />
-
 ## When to Use
 
 Use Canvas when you need to **create custom graphics or visualizations** at the pixel level. Common scenarios:
