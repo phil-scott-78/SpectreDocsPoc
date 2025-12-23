@@ -1,4 +1,4 @@
-using SixLabors.ImageSharp.Processing;
+using System.Reflection;
 using Spectre.Console;
 
 namespace Spectre.Docs.Examples.Showcase;
@@ -7,20 +7,18 @@ internal class CanvasImageSample : BaseSample
 {
     public override void Run(IAnsiConsole console)
     {
-        var image = new CanvasImage("../../../examples/Console/Canvas/cake.png");
-        image.MaxWidth(16);
-        console.Write(image);
-    }
-}
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream("Spectre.Docs.Examples.spectre-logo.png")!;
+        using var ms = new MemoryStream();
+        stream.CopyTo(ms);
 
-internal class CanvasImageManipulationSample : BaseSample
-{
-    public override void Run(IAnsiConsole console)
-    {
-        var image = new CanvasImage("../../../examples/Console/Canvas/cake.png");
-        image.MaxWidth(24);
-        image.BilinearResampler();
-        image.Mutate(ctx => ctx.Grayscale().Rotate(-45).EntropyCrop());
-        console.Write(image);
+        var image = new CanvasImage(ms.ToArray());
+        image.MaxWidth(22);
+
+        var panel = new Panel(image).Padding(8,1,8,1)
+            .Header("[yellow]Canvas Image[/]")
+            .BorderColor(Color.Blue);
+
+        console.Write(panel);
     }
 }

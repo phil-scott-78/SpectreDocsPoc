@@ -12,6 +12,9 @@ The CanvasImage widget loads and displays image files in the console by converti
 > part of Spectre.Console. The Six Labors Split License covers all other usage,
 > see: https://github.com/SixLabors/ImageSharp/blob/master/LICENSE
 
+<Screenshot src="/assets/canvas-image.svg" />
+
+
 ## When to Use
 
 Use CanvasImage when you need to **display visual content from image files** in your console application. Common
