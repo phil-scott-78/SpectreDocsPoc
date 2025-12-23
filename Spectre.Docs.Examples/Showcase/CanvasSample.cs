@@ -7,29 +7,30 @@ internal class CanvasSample : BaseSample
 {
     public override void Run(IAnsiConsole console)
     {
+        var defaultPadding = new Padding(8, 1);
         IRenderable[] outputs =
         [
-            new Rows(
-                CreateSinglePixelCanvas(),
-                new Text("Single pixel").LeftJustified()),
-            new Rows(
-                CreateDiagonalLineCanvas(),
-                new Text("Diagonal line").LeftJustified()),
-            new Rows(
-                CreateCrossPatternCanvas(),
-                new Text("Cross pattern").LeftJustified()),
-            new Rows(
-                CreateBorderCanvas(),
-                new Text("Border").LeftJustified()),
-            new Rows(
-                CreateColoredBordersCanvas(),
-                new Text("Colored borders").LeftJustified()),
-            new Rows(
-                CreateGridPatternCanvas(),
-                new Text("Grid pattern").LeftJustified()),
-            new Rows(
-                CreateCheckerboardCanvas(),
-                new Text("Checkerboard").LeftJustified())
+            new Panel(CreateSinglePixelCanvas())
+                .Header("Single pixel")
+                .Padding(defaultPadding),
+            new Panel(CreateDiagonalLineCanvas())
+                .Header("Diagonal line")
+                .Padding(defaultPadding),
+            new Panel(CreateCrossPatternCanvas())
+                .Header("Cross pattern")
+                .Padding(defaultPadding),
+            new Panel(CreateBorderCanvas())
+                .Header("Border")
+                .Padding(defaultPadding),
+            new Panel(CreateColoredBordersCanvas())
+                .Header("Colored borders")
+                .Padding(defaultPadding),
+            new Panel(CreateGridPatternCanvas())
+                .Header("Grid pattern")
+                .Padding(defaultPadding),
+            new Panel(CreateCheckerboardCanvas())
+                .Header("Checkerboard")
+                .Padding(defaultPadding)
         ];
 
         // Animate

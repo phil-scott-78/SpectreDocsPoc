@@ -9,8 +9,8 @@ The CanvasImage widget loads and displays image files in the console by converti
 
 > [!IMPORTANT]  
 > SixLabors.ImageSharp, a library which Spectre.Console relies upon, is licensed under Apache 2.0 when distributed as
-> part of Spectre.Console. The Six Labors Split License covers all other usage,
-> see: https://github.com/SixLabors/ImageSharp/blob/master/LICENSE
+> part of Spectre.Console. The [Six Labors Split License](https://github.com/SixLabors/ImageSharp/blob/master/LICENSE) 
+> covers all other usage.
 
 <Screenshot src="/assets/canvas-image.svg" />
 
