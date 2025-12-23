@@ -7,6 +7,12 @@ order: 2120
 
 Sometimes you need commands or options that work but shouldn't appear in help output—internal debugging tools, deprecated features you're phasing out, or advanced options that would overwhelm typical users. Hidden items remain fully functional; users who know about them can still use them.
 
+## What We're Building
+
+Notice `diagnostics` doesn't appear in help but still works when invoked directly. The `--skip-hooks` option on `deploy` is similarly hidden:
+
+<Screenshot Src="/assets/cli-hiding-commands.svg" Alt="Hiding commands and options demonstration" />
+
 ## Hide a Command
 
 To hide a command from help output, chain `.IsHidden()` when configuring it:

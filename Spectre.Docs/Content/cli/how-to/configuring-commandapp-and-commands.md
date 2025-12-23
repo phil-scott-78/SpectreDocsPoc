@@ -7,6 +7,12 @@ order: 2050
 
 When building a CLI with multiple commands, use `CommandApp.Configure` to register commands, set up aliases, and customize how your application appears in help output.
 
+## What We're Building
+
+A multi-command CLI with `add`, `remove`, and `list`—each with aliases (like `a` for `add`) and descriptions shown in help:
+
+<Screenshot Src="/assets/cli-configuring-app.svg" Alt="Configuring CommandApp demonstration" />
+
 ## Register Commands with Metadata
 
 Use `AddCommand<T>("name")` to register each command, then chain methods to add descriptions, aliases, and examples:

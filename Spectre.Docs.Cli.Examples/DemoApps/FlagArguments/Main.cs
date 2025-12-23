@@ -25,17 +25,15 @@ internal class ServerCommand : Command<ServerCommand.Settings>
     /// </summary>
     public class Settings : CommandSettings
     {
-        // FlagValue<int> - can be used as --port (uses default) or --port 8080 (uses specified)
         [CommandOption("--port [PORT]")]
         [Description("The port to listen on (default: 3000 if flag present)")]
+        [DefaultValue(3000)]
         public required FlagValue<int> Port { get; init; }
 
-        // FlagValue<int?> - nullable inner type for truly optional values
         [CommandOption("--timeout [SECONDS]")]
         [Description("Connection timeout in seconds")]
         public required FlagValue<int?> Timeout { get; init; }
 
-        // Regular option for comparison
         [CommandOption("-h|--host")]
         [Description("The host to bind to")]
         [DefaultValue("localhost")]
@@ -47,11 +45,9 @@ internal class ServerCommand : Command<ServerCommand.Settings>
         System.Console.WriteLine($"Host: {settings.Host}");
 
         // Check if --port flag was provided
-        if (settings.Port?.IsSet == true)
+        if (settings.Port.IsSet)
         {
-            // Value is the parsed port number (or default if none specified)
-            var port = settings.Port.Value;
-            System.Console.WriteLine($"Port: {port}");
+            System.Console.WriteLine($"Port: {settings.Port.Value}");
         }
         else
         {
@@ -59,20 +55,17 @@ internal class ServerCommand : Command<ServerCommand.Settings>
         }
 
         // Check if --timeout flag was provided
-        if (settings.Timeout?.IsSet == true)
+        if (settings.Timeout is { IsSet: true, Value: not null })
         {
-            if (settings.Timeout.Value.HasValue)
-            {
-                System.Console.WriteLine($"Timeout: {settings.Timeout.Value} seconds");
-            }
-            else
-            {
-                System.Console.WriteLine("Timeout: enabled (no specific value)");
-            }
+            System.Console.WriteLine($"Timeout: {settings.Timeout.Value} seconds");
+        }
+        else if (settings.Timeout.IsSet)
+        {
+            System.Console.WriteLine($"Timeout: system default seconds");
         }
         else
         {
-            System.Console.WriteLine("Timeout: not specified");
+            System.Console.WriteLine("Timeout: disabled");
         }
 
         return 0;

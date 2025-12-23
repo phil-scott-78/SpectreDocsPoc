@@ -7,6 +7,12 @@ order: 2020
 
 By design, options (flags like `--name` or `-n`) are optional—that's why they're called "options." However, there are cases where you want a named option that users must provide, such as specifying a target environment or API key.
 
+## What We're Building
+
+A deployment command where `--environment` and `--version` are mandatory. Missing one produces a clear error:
+
+<Screenshot Src="/assets/cli-required-options.svg" Alt="Required options demonstration" />
+
 ## Use the `isRequired` Parameter
 
 The simplest approach is to use the `isRequired` parameter on the `CommandOption` attribute.

@@ -7,6 +7,12 @@ order: 2060
 
 Spectre.Console.Cli generates help text automatically from your commands and settings. When the defaults don't match your needs—whether for branding, accessibility, or clarity—you can customize the application name, add usage examples, adjust styling, or disable styling entirely for plain text output.
 
+## What We're Building
+
+Customized help output with a branded application name and usage examples showing common invocation patterns:
+
+<Screenshot Src="/assets/cli-customizing-help.svg" Alt="Customizing help text demonstration" />
+
 ## Set Application Name and Add Examples
 
 By default, help text shows the executable name (often ending in `.dll` during development). Use `SetApplicationName` to display a cleaner name, and `AddExample` to show users how to invoke your CLI with common argument patterns.

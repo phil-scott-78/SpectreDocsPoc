@@ -7,6 +7,12 @@ order: 2100
 
 When your command needs to accept complex types that aren't built-in—like points, colors, or domain-specific values—create a custom `TypeConverter` to parse the string input into your type.
 
+## What We're Building
+
+A drawing command accepting `Point` values in `X,Y` format. The converter parses `--point 10,20` into a strongly-typed struct:
+
+<Screenshot Src="/assets/cli-custom-type-converters.svg" Alt="Custom type converters demonstration" />
+
 ## Create a Type Converter
 
 Inherit from `System.ComponentModel.TypeConverter` and override `CanConvertFrom` and `ConvertFrom`:

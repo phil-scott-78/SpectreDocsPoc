@@ -7,6 +7,12 @@ order: 2130
 
 When you need cross-cutting concerns like logging, timing, or authentication across all commands without duplicating code, implement a command interceptor. The interceptor runs before and after every command, keeping individual commands focused on their core logic.
 
+## What We're Building
+
+A timing interceptor wrapping every command, reporting execution duration automatically—no timing code in the commands themselves:
+
+<Screenshot Src="/assets/cli-intercepting-execution.svg" Alt="Command interception demonstration" />
+
 ## Create an Interceptor
 
 Implement `ICommandInterceptor` with two methods: `Intercept` runs before execution, `InterceptResult` runs after. The same instance handles both, so you can store state between them.

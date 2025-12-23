@@ -7,6 +7,12 @@ order: 2010
 
 Every command in Spectre.Console.Cli receives its input through a `CommandSettings` class. Decorate properties with `[CommandArgument]` for positional parameters and `[CommandOption]` for named flags and options. The framework handles parsing, validation, and help generation automatically.
 
+## What We're Building
+
+A file copy command with a required source path, optional destination, and various flags like `--force` and `--buffer-size`:
+
+<Screenshot Src="/assets/cli-defining-arguments.svg" Alt="Defining commands and arguments demonstration" />
+
 ## Define Arguments and Options
 
 Use `[CommandArgument]` with a position index and template: angle brackets `<name>` for required arguments, square brackets `[name]` for optional ones. For named parameters, use `[CommandOption]` with short and/or long forms separated by `|`.

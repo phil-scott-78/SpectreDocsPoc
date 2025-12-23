@@ -7,6 +7,12 @@ order: 2090
 
 When your command needs to accept configuration values, environment variables, or other key-value pairs, use dictionary-based option types. Spectre.Console.Cli supports `IDictionary<TKey, TValue>`, `ILookup<TKey, TValue>`, and `IReadOnlyDictionary<TKey, TValue>`.
 
+## What We're Building
+
+A configuration command accepting key-value pairs like `--value port=8080`, plus lookups where one key can have multiple values:
+
+<Screenshot Src="/assets/cli-dictionary-options.svg" Alt="Dictionary and lookup options demonstration" />
+
 ## Accept Key-Value Pairs
 
 Use `IDictionary<string, T>` to collect key-value pairs. Users specify values in `key=value` format:

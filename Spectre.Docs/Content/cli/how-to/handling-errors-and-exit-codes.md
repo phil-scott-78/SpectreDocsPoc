@@ -7,6 +7,12 @@ order: 2030
 
 By default, Spectre.Console.Cli catches exceptions, displays a user-friendly message, and returns exit code `-1`. When you need more control—different exit codes for different error types, custom formatting, or integration with logging—you have two options: `SetExceptionHandler` for centralized handling within the framework, or `PropagateExceptions` for full manual control with try-catch blocks.
 
+## What We're Building
+
+A file processor returning specific exit codes—scripts can distinguish "file not found" (exit 3) from general errors (exit 1):
+
+<Screenshot Src="/assets/cli-error-handling.svg" Alt="Error handling and exit codes demonstration" />
+
 ## Centralize Error Handling with SetExceptionHandler
 
 For most applications, `SetExceptionHandler` provides the cleanest approach. It intercepts exceptions from both the parsing phase and command execution, letting you format errors consistently and return specific exit codes.

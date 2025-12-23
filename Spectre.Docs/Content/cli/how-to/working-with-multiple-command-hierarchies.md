@@ -7,6 +7,12 @@ order: 2070
 
 When building a CLI with grouped commands like `git remote add` and `git remote remove`, use `AddBranch` to create command hierarchies. The branch groups related subcommands together and can share common options through settings inheritance.
 
+## What We're Building
+
+A git-style CLI with nested `remote` subcommands—`add`, `remove`, and `list`—all sharing a `--verbose` flag inherited from the branch:
+
+<Screenshot Src="/assets/cli-command-hierarchies.svg" Alt="Command hierarchies demonstration" />
+
 ## Create a Command Branch
 
 Use `AddBranch<TSettings>("name", ...)` to define a parent command with nested subcommands:
