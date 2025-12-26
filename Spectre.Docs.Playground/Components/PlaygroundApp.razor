@@ -1,0 +1,111 @@
+@inject CompilationService CompilationService
+@inject ExecutionService ExecutionService
+@inject IJSRuntime JSRuntime
+
+<div class="playground-container">
+    <div class="editor-panel">
+        <div class="panel-header">
+            <span>Code Editor</span>
+            <button class="run-button" @onclick="RunCode" disabled="@_isRunning">
+                @if (_isRunning)
+                {
+                    <span>Running...</span>
+                }
+                else
+                {
+                    <span>Run</span>
+                }
+            </button>
+        </div>
+        <div class="panel-content">
+            <PlaygroundEditor @ref="_codeEditor" />
+        </div>
+        @if (_compilationErrors.Count > 0)
+        {
+            <div class="error-panel">
+                @foreach (var error in _compilationErrors)
+                {
+                    <div>@error</div>
+                }
+            </div>
+        }
+    </div>
+    <div class="terminal-panel">
+        <div class="panel-header">
+            <span>Terminal Output</span>
+            <button class="clear-button" @onclick="ClearTerminal">Clear</button>
+        </div>
+        <div class="panel-content">
+            <Terminal @ref="_terminal" />
+        </div>
+    </div>
+</div>
+
+@code {
+    private PlaygroundEditor? _codeEditor;
+    private Terminal? _terminal;
+    private bool _isRunning;
+    private List<string> _compilationErrors = new();
+    private CancellationTokenSource? _executionCts;
+
+    private async Task RunCode()
+    {
+        if (_isRunning || _codeEditor == null || _terminal == null)
+            return;
+
+        _isRunning = true;
+        _compilationErrors.Clear();
+        StateHasChanged();
+
+        try
+        {
+            await _terminal.Clear();
+
+            var code = await _codeEditor.GetCode();
+
+            // Compile the code
+            var compilationResult = await CompilationService.CompileAsync(code);
+
+            if (!compilationResult.Success)
+            {
+                _compilationErrors = compilationResult.Diagnostics
+                    .Where(d => d.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error)
+                    .Select(d => $"({d.Location.GetLineSpan().StartLinePosition.Line + 1},{d.Location.GetLineSpan().StartLinePosition.Character + 1}): {d.GetMessage()}")
+                    .ToList();
+                return;
+            }
+
+            // Execute the compiled assembly
+            _executionCts = new CancellationTokenSource();
+            await ExecutionService.ExecuteAsync(
+                compilationResult.Assembly!,
+                _terminal,
+                _executionCts.Token);
+        }
+        catch (Exception ex)
+        {
+            await _terminal.WriteLine($"\x1b[31mError: {ex.Message}\x1b[0m");
+        }
+        finally
+        {
+            _isRunning = false;
+            _executionCts?.Dispose();
+            _executionCts = null;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ClearTerminal()
+    {
+        if (_terminal != null)
+        {
+            await _terminal.Clear();
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _executionCts?.Cancel();
+        _executionCts?.Dispose();
+    }
+}

@@ -1,0 +1,179 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JSRuntime
+
+<div id="@_containerId" class="terminal-container"></div>
+
+<style>
+    .terminal-container {
+        width: 100%;
+        height: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    .terminal-container .xterm {
+        height: 100%;
+    }
+
+    .terminal-container .xterm-viewport {
+        overflow-y: auto !important;
+    }
+</style>
+
+@code {
+    private readonly string _containerId = $"terminal-{Guid.NewGuid():N}";
+    private string? _terminalId;
+    private DotNetObjectReference<Terminal>? _dotNetRef;
+    private readonly System.Threading.Channels.Channel<TerminalKeyInfo> _inputChannel =
+        System.Threading.Channels.Channel.CreateUnbounded<TerminalKeyInfo>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            _terminalId = await JSRuntime.InvokeAsync<string>(
+                "terminalInterop.init",
+                _containerId,
+                _dotNetRef);
+        }
+    }
+
+    [JSInvokable]
+    public void OnTerminalInput(string data)
+    {
+        // Parse the input data into key info
+        foreach (var c in data)
+        {
+            var keyInfo = ParseKeyFromChar(c);
+            _inputChannel.Writer.TryWrite(keyInfo);
+        }
+    }
+
+    [JSInvokable]
+    public void OnTerminalKey(TerminalKeyEvent keyEvent)
+    {
+        // Handle special keys from xterm
+        var keyInfo = ParseKeyEvent(keyEvent);
+        if (keyInfo != null)
+        {
+            _inputChannel.Writer.TryWrite(keyInfo);
+        }
+    }
+
+    private TerminalKeyInfo ParseKeyFromChar(char c)
+    {
+        return c switch
+        {
+            '\r' or '\n' => new TerminalKeyInfo(ConsoleKey.Enter, '\r', false, false, false),
+            '\t' => new TerminalKeyInfo(ConsoleKey.Tab, '\t', false, false, false),
+            '\b' or '\x7f' => new TerminalKeyInfo(ConsoleKey.Backspace, '\b', false, false, false),
+            '\x1b' => new TerminalKeyInfo(ConsoleKey.Escape, '\x1b', false, false, false),
+            _ when c >= 'a' && c <= 'z' => new TerminalKeyInfo((ConsoleKey)(ConsoleKey.A + (c - 'a')), c, false, false, false),
+            _ when c >= 'A' && c <= 'Z' => new TerminalKeyInfo((ConsoleKey)(ConsoleKey.A + (c - 'A')), c, true, false, false),
+            _ when c >= '0' && c <= '9' => new TerminalKeyInfo((ConsoleKey)(ConsoleKey.D0 + (c - '0')), c, false, false, false),
+            ' ' => new TerminalKeyInfo(ConsoleKey.Spacebar, ' ', false, false, false),
+            _ => new TerminalKeyInfo(ConsoleKey.NoName, c, false, false, false)
+        };
+    }
+
+    private TerminalKeyInfo? ParseKeyEvent(TerminalKeyEvent keyEvent)
+    {
+        // Handle escape sequences for arrow keys etc.
+        return keyEvent.DomEvent.Code switch
+        {
+            "ArrowUp" => new TerminalKeyInfo(ConsoleKey.UpArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "ArrowDown" => new TerminalKeyInfo(ConsoleKey.DownArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "ArrowLeft" => new TerminalKeyInfo(ConsoleKey.LeftArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "ArrowRight" => new TerminalKeyInfo(ConsoleKey.RightArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "Home" => new TerminalKeyInfo(ConsoleKey.Home, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "End" => new TerminalKeyInfo(ConsoleKey.End, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "PageUp" => new TerminalKeyInfo(ConsoleKey.PageUp, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "PageDown" => new TerminalKeyInfo(ConsoleKey.PageDown, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "Delete" => new TerminalKeyInfo(ConsoleKey.Delete, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            "Insert" => new TerminalKeyInfo(ConsoleKey.Insert, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
+            _ => null // Already handled by OnTerminalInput
+        };
+    }
+
+    public async Task Write(string text)
+    {
+        if (_terminalId != null)
+        {
+            await JSRuntime.InvokeVoidAsync("terminalInterop.write", _terminalId, text);
+        }
+    }
+
+    public async Task WriteLine(string text = "")
+    {
+        if (_terminalId != null)
+        {
+            await JSRuntime.InvokeVoidAsync("terminalInterop.writeLine", _terminalId, text);
+        }
+    }
+
+    public async Task Clear()
+    {
+        if (_terminalId != null)
+        {
+            await JSRuntime.InvokeVoidAsync("terminalInterop.clear", _terminalId);
+        }
+        // Clear the input channel
+        while (_inputChannel.Reader.TryRead(out _)) { }
+    }
+
+    public async Task Focus()
+    {
+        if (_terminalId != null)
+        {
+            await JSRuntime.InvokeVoidAsync("terminalInterop.focus", _terminalId);
+        }
+    }
+
+    public async Task<(int Cols, int Rows)> GetSize()
+    {
+        if (_terminalId != null)
+        {
+            var size = await JSRuntime.InvokeAsync<TerminalSize>("terminalInterop.getSize", _terminalId);
+            return (size.Cols, size.Rows);
+        }
+        return (80, 24);
+    }
+
+    public async ValueTask<TerminalKeyInfo> ReadKeyAsync(CancellationToken cancellationToken = default)
+    {
+        return await _inputChannel.Reader.ReadAsync(cancellationToken);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_terminalId != null)
+        {
+            await JSRuntime.InvokeVoidAsync("terminalInterop.dispose", _terminalId);
+        }
+        _dotNetRef?.Dispose();
+    }
+
+    public record TerminalKeyInfo(ConsoleKey Key, char KeyChar, bool Shift, bool Alt, bool Control);
+
+    public class TerminalKeyEvent
+    {
+        public string Key { get; set; } = "";
+        public DomEventInfo DomEvent { get; set; } = new();
+    }
+
+    public class DomEventInfo
+    {
+        public string Key { get; set; } = "";
+        public string Code { get; set; } = "";
+        public bool CtrlKey { get; set; }
+        public bool AltKey { get; set; }
+        public bool ShiftKey { get; set; }
+    }
+
+    public class TerminalSize
+    {
+        public int Cols { get; set; }
+        public int Rows { get; set; }
+    }
+}

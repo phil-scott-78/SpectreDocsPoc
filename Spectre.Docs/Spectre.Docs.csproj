@@ -24,5 +24,9 @@
     <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.11" />
     <PackageReference Include="Spectre.Console.ImageSharp" Version="0.54.1-alpha.0.7" />
     <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0-*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Spectre.Docs.Playground\Spectre.Docs.Playground.csproj" />
   </ItemGroup>
 </Project>

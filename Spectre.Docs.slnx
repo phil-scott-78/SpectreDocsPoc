@@ -13,5 +13,6 @@
   </Folder>
   <Project Path="Spectre.Docs.Cli.Examples/Spectre.Docs.Cli.Examples.csproj" />
   <Project Path="Spectre.Docs.Examples/Spectre.Docs.Examples.csproj" />
+  <Project Path="Spectre.Docs.Playground/Spectre.Docs.Playground.csproj" />
   <Project Path="Spectre.Docs/Spectre.Docs.csproj" />
 </Solution>

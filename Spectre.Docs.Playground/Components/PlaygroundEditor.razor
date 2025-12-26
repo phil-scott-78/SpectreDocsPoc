@@ -1,0 +1,89 @@
+@using BlazorMonaco
+@using BlazorMonaco.Editor
+
+<StandaloneCodeEditor @ref="_editor"
+                      Id="code-editor"
+                      CssClass="editor-instance"
+                      ConstructionOptions="EditorConstructionOptions" />
+
+<style>
+    .editor-instance {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+@code {
+    private StandaloneCodeEditor? _editor;
+
+    private const string DefaultCode = @"using Spectre.Console;
+
+// Welcome to the Spectre.Console Playground!
+// Write your code below and click Run to see it in action.
+
+// Figlet text with color
+AnsiConsole.Write(
+    new FigletText(""Hello!"")
+        .Color(Color.Green));
+
+AnsiConsole.WriteLine();
+
+// Markup text with colors and styles
+AnsiConsole.MarkupLine(""[bold yellow]Welcome[/] to [blue]Spectre.Console[/]!"");
+AnsiConsole.MarkupLine(""You can use [underline]various[/] [italic]styles[/] and [red]colors[/]."");
+AnsiConsole.WriteLine();
+
+// A colorful table
+var table = new Table();
+table.Border(TableBorder.Rounded);
+table.AddColumn(""[cyan]Feature[/]"");
+table.AddColumn(""[cyan]Description[/]"");
+table.AddRow(""[green]Markup[/]"", ""Rich text with colors and styles"");
+table.AddRow(""[green]Tables[/]"", ""Beautiful formatted tables"");
+table.AddRow(""[green]Figlet[/]"", ""ASCII art text banners"");
+table.AddRow(""[green]Rules[/]"", ""Horizontal dividers"");
+AnsiConsole.Write(table);
+
+AnsiConsole.WriteLine();
+
+// A rule (horizontal divider)
+var rule = new Rule(""[yellow]That's Spectre.Console![/]"");
+rule.Justification = Justify.Center;
+AnsiConsole.Write(rule);
+";
+
+    private StandaloneEditorConstructionOptions EditorConstructionOptions(StandaloneCodeEditor editor)
+    {
+        return new StandaloneEditorConstructionOptions
+        {
+            AutomaticLayout = true,
+            Language = "csharp",
+            Theme = "vs-dark",
+            Value = DefaultCode,
+            FontSize = 14,
+            FontFamily = "\"Cascadia Code\", \"Fira Code\", Consolas, monospace",
+            Minimap = new EditorMinimapOptions { Enabled = false },
+            ScrollBeyondLastLine = false,
+            RenderLineHighlight = "all",
+            WordWrap = "on",
+            TabSize = 4,
+            InsertSpaces = true
+        };
+    }
+
+    public async Task<string> GetCode()
+    {
+        if (_editor == null)
+            return string.Empty;
+
+        return await _editor.GetValue();
+    }
+
+    public async Task SetCode(string code)
+    {
+        if (_editor != null)
+        {
+            await _editor.SetValue(code);
+        }
+    }
+}

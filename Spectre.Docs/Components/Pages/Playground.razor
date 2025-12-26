@@ -1,0 +1,19 @@
+@page "/playground"
+@layout PlaygroundLayout
+
+<PageTitle>Playground - Spectre.Console</PageTitle>
+
+<HeadContent>
+    <meta name="description" content="Interactive playground for Spectre.Console - write and run C# code with rich console output directly in your browser." />
+</HeadContent>
+
+<iframe src="/playground/index.html" class="playground-frame" allow="clipboard-read; clipboard-write"></iframe>
+
+<style>
+    .playground-frame {
+        width: 100%;
+        height: calc(100vh - 4rem);
+        border: none;
+        display: block;
+    }
+</style>

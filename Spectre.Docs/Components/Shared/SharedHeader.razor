@@ -98,6 +98,9 @@
                 <a href="/blog" class="px-2 lg:px-3 py-2 rounded-md  @(CurrentSection == "Blog" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
                     Blog
                 </a>
+                <a href="/playground" class="px-2 lg:px-3 py-2 rounded-md @(CurrentSection == "Playground" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
+                    Playground
+                </a>
                 <a href="https://github.com/spectreconsole" class="px-2 lg:px-3 py-2 rounded-md text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
                     GitHub
                 </a>
@@ -158,6 +161,9 @@
             <a href="/blog" class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Blog" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
                 Blog
             </a>
+            <a href="/playground" class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Playground" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
+                Playground
+            </a>
         </div>
     </nav>
 </header>
@@ -186,6 +192,10 @@
             else if (currentPath.StartsWith("/blog", StringComparison.OrdinalIgnoreCase))
             {
                 CurrentSection = "Blog";
+            }
+            else if (currentPath.StartsWith("/playground", StringComparison.OrdinalIgnoreCase))
+            {
+                CurrentSection = "Playground";
             }
             else
             {
