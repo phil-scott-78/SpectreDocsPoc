@@ -132,6 +132,10 @@ app.Use(async (context, next) =>
 {
     if (context.Request.Path.StartsWithSegments("/playground", out var remaining))
     {
+        // Add Cross-Origin headers required for SharedArrayBuffer (WASM threading)
+        context.Response.Headers["Cross-Origin-Opener-Policy"] = "same-origin";
+        context.Response.Headers["Cross-Origin-Embedder-Policy"] = "require-corp";
+
         string? filePath = null;
 
         // Handle /playground/index.html explicitly
@@ -236,6 +240,7 @@ app.Use(async (context, next) =>
             context.Response.ContentType = ext switch
             {
                 ".js" => "application/javascript",
+                ".mjs" => "application/javascript",
                 ".css" => "text/css",
                 ".html" => "text/html; charset=utf-8",
                 ".json" => "application/json",

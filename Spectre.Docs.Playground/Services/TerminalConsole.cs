@@ -1,27 +1,24 @@
 using System.Text;
 using Spectre.Console;
 using Spectre.Console.Rendering;
-using Spectre.Docs.Playground.Components;
 
 namespace Spectre.Docs.Playground.Services;
 
 /// <summary>
-/// An IAnsiConsole implementation that bridges Spectre.Console with xterm.js terminal.
-/// Uses fire-and-forget for async operations since WASM doesn't support blocking.
+/// An IAnsiConsole implementation that bridges Spectre.Console with a terminal via TerminalBridge.
+/// Uses synchronous blocking operations which are safe on background threads with WasmEnableThreads.
 /// </summary>
 public class TerminalConsole : IAnsiConsole
 {
-    private readonly Terminal _terminal;
-    private readonly CancellationToken _cancellationToken;
+    private readonly TerminalBridge _bridge;
     private readonly object _lock = new();
     private int _cursorLeft;
     private int _cursorTop;
 
-    public TerminalConsole(Terminal terminal, CancellationToken cancellationToken = default)
+    public TerminalConsole(TerminalBridge bridge)
     {
-        _terminal = terminal;
-        _cancellationToken = cancellationToken;
-        Profile = new Profile(new TerminalOutput(terminal), Encoding.UTF8);
+        _bridge = bridge;
+        Profile = new Profile(new TerminalOutput(_bridge), Encoding.UTF8);
         Profile.Width = 80;
         Profile.Height = 24;
         Profile.Capabilities.Ansi = true;
@@ -30,9 +27,9 @@ public class TerminalConsole : IAnsiConsole
         Profile.Capabilities.Interactive = true;
         Profile.Capabilities.Unicode = true;
 
-        Input = new TerminalInput(terminal, cancellationToken);
+        Input = new TerminalInput(_bridge);
         ExclusivityMode = new TerminalExclusivityMode();
-        Cursor = new TerminalCursor(terminal, () => _cursorLeft, l => _cursorLeft = l, () => _cursorTop, t => _cursorTop = t);
+        Cursor = new TerminalCursor(_bridge, () => _cursorLeft, l => _cursorLeft = l, () => _cursorTop, t => _cursorTop = t);
     }
 
     public Profile Profile { get; }
@@ -43,8 +40,7 @@ public class TerminalConsole : IAnsiConsole
 
     public void Clear(bool home)
     {
-        // Fire and forget - WASM can't block
-        _ = _terminal.Clear();
+        _bridge.WriteClear();
         if (home)
         {
             _cursorLeft = 0;
@@ -90,8 +86,8 @@ public class TerminalConsole : IAnsiConsole
             builder.Append("\x1b[0m");
         }
 
-        // Fire and forget - WASM can't block
-        _ = _terminal.Write(builder.ToString());
+        // Write to bridge (thread-safe)
+        _bridge.WriteOutput(builder.ToString());
 
         // Track cursor position
         foreach (var c in segment.Text)
@@ -110,8 +106,7 @@ public class TerminalConsole : IAnsiConsole
 
     private void WriteAnsi(string ansi)
     {
-        // Fire and forget - WASM can't block
-        _ = _terminal.Write(ansi);
+        _bridge.WriteOutput(ansi);
     }
 
     private static string GetAnsiStyle(Style style)
@@ -168,12 +163,12 @@ public class TerminalConsole : IAnsiConsole
 
     private class TerminalOutput : IAnsiConsoleOutput
     {
-        private readonly Terminal _terminal;
+        private readonly TerminalBridge _bridge;
 
-        public TerminalOutput(Terminal terminal)
+        public TerminalOutput(TerminalBridge bridge)
         {
-            _terminal = terminal;
-            Writer = new TerminalTextWriter(terminal);
+            _bridge = bridge;
+            Writer = new TerminalTextWriter(bridge);
         }
 
         public TextWriter Writer { get; }
@@ -189,73 +184,66 @@ public class TerminalConsole : IAnsiConsole
 
     private class TerminalTextWriter : TextWriter
     {
-        private readonly Terminal _terminal;
+        private readonly TerminalBridge _bridge;
 
-        public TerminalTextWriter(Terminal terminal)
+        public TerminalTextWriter(TerminalBridge bridge)
         {
-            _terminal = terminal;
+            _bridge = bridge;
         }
 
         public override Encoding Encoding => Encoding.UTF8;
 
         public override void Write(char value)
         {
-            // Fire and forget - WASM can't block
-            _ = _terminal.Write(value.ToString());
+            _bridge.WriteOutput(value.ToString());
         }
 
         public override void Write(string? value)
         {
             if (value != null)
             {
-                // Fire and forget - WASM can't block
-                _ = _terminal.Write(value);
+                _bridge.WriteOutput(value);
             }
         }
 
         public override void WriteLine(string? value)
         {
-            // Fire and forget - WASM can't block
-            _ = _terminal.WriteLine(value ?? "");
+            _bridge.WriteOutput((value ?? "") + "\r\n");
         }
     }
 
     private class TerminalInput : IAnsiConsoleInput
     {
-        private readonly Terminal _terminal;
-        private readonly CancellationToken _cancellationToken;
+        private readonly TerminalBridge _bridge;
 
-        public TerminalInput(Terminal terminal, CancellationToken cancellationToken)
+        public TerminalInput(TerminalBridge bridge)
         {
-            _terminal = terminal;
-            _cancellationToken = cancellationToken;
+            _bridge = bridge;
         }
 
         public bool IsKeyAvailable()
         {
-            // In WASM, we can't synchronously check for key availability
-            return false;
+            return _bridge.IsInputAvailable();
         }
 
         public ConsoleKeyInfo? ReadKey(bool intercept)
         {
-            // Can't do synchronous reads in WASM - return null
-            // Interactive features will use ReadKeyAsync instead
-            return null;
+            // Synchronous blocking read - safe on background thread with WasmEnableThreads
+            try
+            {
+                return _bridge.ReadKey();
+            }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }
         }
 
         public async Task<ConsoleKeyInfo?> ReadKeyAsync(bool intercept, CancellationToken cancellationToken)
         {
             try
             {
-                using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _cancellationToken);
-                var keyInfo = await _terminal.ReadKeyAsync(linkedCts.Token);
-                return new ConsoleKeyInfo(
-                    keyInfo.KeyChar,
-                    keyInfo.Key,
-                    keyInfo.Shift,
-                    keyInfo.Alt,
-                    keyInfo.Control);
+                return await _bridge.ReadKeyAsync(cancellationToken);
             }
             catch (OperationCanceledException)
             {
@@ -279,18 +267,18 @@ public class TerminalConsole : IAnsiConsole
 
     private class TerminalCursor : IAnsiConsoleCursor
     {
-        private readonly Terminal _terminal;
+        private readonly TerminalBridge _bridge;
         private readonly Func<int> _getLeft;
         private readonly Action<int> _setLeft;
         private readonly Func<int> _getTop;
         private readonly Action<int> _setTop;
 
         public TerminalCursor(
-            Terminal terminal,
+            TerminalBridge bridge,
             Func<int> getLeft, Action<int> setLeft,
             Func<int> getTop, Action<int> setTop)
         {
-            _terminal = terminal;
+            _bridge = bridge;
             _getLeft = getLeft;
             _setLeft = setLeft;
             _getTop = getTop;
@@ -300,8 +288,7 @@ public class TerminalConsole : IAnsiConsole
         public void Show(bool show)
         {
             var code = show ? "\x1b[?25h" : "\x1b[?25l";
-            // Fire and forget - WASM can't block
-            _ = _terminal.Write(code);
+            _bridge.WriteOutput(code);
         }
 
         public void Move(CursorDirection direction, int steps)
@@ -317,8 +304,7 @@ public class TerminalConsole : IAnsiConsole
 
             if (!string.IsNullOrEmpty(code))
             {
-                // Fire and forget - WASM can't block
-                _ = _terminal.Write(code);
+                _bridge.WriteOutput(code);
 
                 switch (direction)
                 {
@@ -340,8 +326,7 @@ public class TerminalConsole : IAnsiConsole
 
         public void SetPosition(int column, int line)
         {
-            // Fire and forget - WASM can't block
-            _ = _terminal.Write($"\x1b[{line + 1};{column + 1}H");
+            _bridge.WriteOutput($"\x1b[{line + 1};{column + 1}H");
             _setLeft(column);
             _setTop(line);
         }

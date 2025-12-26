@@ -9,13 +9,39 @@ public class ExecutionService
 {
     public async Task ExecuteAsync(byte[] assemblyBytes, Terminal terminal, CancellationToken cancellationToken = default)
     {
-        // Create a custom IAnsiConsole that writes to the terminal
-        var console = new TerminalConsole(terminal, cancellationToken);
+        // Create a bridge for thread-safe terminal I/O
+        var bridge = new TerminalBridge(cancellationToken);
+
+        // Create a custom IAnsiConsole that writes to the bridge
+        var console = new TerminalConsole(bridge);
 
         // Set the console as the default for Spectre.Console
-        // This is a bit hacky but necessary for top-level statement style code
         SetDefaultConsole(console);
 
+        // Start the execution on a background thread
+        var executionTask = Task.Run(() => ExecuteOnBackgroundThread(assemblyBytes, bridge, cancellationToken), cancellationToken);
+
+        // Start forwarding keyboard input from terminal to bridge
+        var inputTask = ForwardInputAsync(terminal, bridge, cancellationToken);
+
+        try
+        {
+            // Process output from the bridge and send to terminal (on main thread)
+            await ProcessOutputAsync(bridge, terminal, executionTask, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            await terminal.WriteLine("\x1b[33mExecution cancelled.\x1b[0m");
+        }
+        finally
+        {
+            // Reset the default console
+            ResetDefaultConsole();
+        }
+    }
+
+    private void ExecuteOnBackgroundThread(byte[] assemblyBytes, TerminalBridge bridge, CancellationToken cancellationToken)
+    {
         try
         {
             // Load the assembly
@@ -27,7 +53,9 @@ public class ExecutionService
             var entryPoint = assembly.EntryPoint;
             if (entryPoint == null)
             {
-                throw new InvalidOperationException("No entry point found in the compiled assembly.");
+                bridge.WriteOutput("\x1b[31mError: No entry point found in the compiled assembly.\x1b[0m\r\n");
+                bridge.Complete();
+                return;
             }
 
             // Execute the entry point
@@ -41,7 +69,7 @@ public class ExecutionService
             // Handle async entry points
             if (result is Task task)
             {
-                await task;
+                task.GetAwaiter().GetResult(); // Safe to block on background thread
             }
 
             // Unload the assembly context
@@ -50,24 +78,69 @@ public class ExecutionService
         catch (TargetInvocationException ex) when (ex.InnerException != null)
         {
             // Unwrap reflection exceptions
-            await terminal.WriteLine($"\x1b[31mError: {ex.InnerException.Message}\x1b[0m");
+            bridge.WriteOutput($"\x1b[31mError: {ex.InnerException.Message}\x1b[0m\r\n");
             if (ex.InnerException.StackTrace != null)
             {
-                await terminal.WriteLine($"\x1b[90m{ex.InnerException.StackTrace}\x1b[0m");
+                bridge.WriteOutput($"\x1b[90m{ex.InnerException.StackTrace}\x1b[0m\r\n");
             }
         }
         catch (OperationCanceledException)
         {
-            await terminal.WriteLine("\x1b[33mExecution cancelled.\x1b[0m");
+            bridge.WriteOutput("\x1b[33mExecution cancelled.\x1b[0m\r\n");
         }
         catch (Exception ex)
         {
-            await terminal.WriteLine($"\x1b[31mError: {ex.Message}\x1b[0m");
+            bridge.WriteOutput($"\x1b[31mError: {ex.Message}\x1b[0m\r\n");
+            if (ex.StackTrace != null)
+            {
+                bridge.WriteOutput($"\x1b[90m{ex.StackTrace}\x1b[0m\r\n");
+            }
         }
         finally
         {
-            // Reset the default console
-            ResetDefaultConsole();
+            bridge.Complete();
+        }
+    }
+
+    private async Task ProcessOutputAsync(TerminalBridge bridge, Terminal terminal, Task executionTask, CancellationToken cancellationToken)
+    {
+        // Read from the output channel and write to terminal
+        await foreach (var output in bridge.OutputReader.ReadAllAsync(cancellationToken))
+        {
+            // Check for special clear marker
+            if (output == "\x00CLEAR\x00")
+            {
+                await terminal.Clear();
+            }
+            else
+            {
+                await terminal.Write(output);
+            }
+        }
+
+        // Wait for execution to complete
+        await executionTask;
+    }
+
+    private async Task ForwardInputAsync(Terminal terminal, TerminalBridge bridge, CancellationToken cancellationToken)
+    {
+        try
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                var keyInfo = await terminal.ReadKeyAsync(cancellationToken);
+                var consoleKeyInfo = new ConsoleKeyInfo(
+                    keyInfo.KeyChar,
+                    keyInfo.Key,
+                    keyInfo.Shift,
+                    keyInfo.Alt,
+                    keyInfo.Control);
+                bridge.WriteInput(consoleKeyInfo);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // Normal cancellation
         }
     }
 

@@ -10,6 +10,8 @@
     <BlazorWebAssemblyEnableLinking>true</BlazorWebAssemblyEnableLinking>
     <!-- Disable WebCIL to output regular .dll files that Roslyn can read -->
     <WasmEnableWebcil>false</WasmEnableWebcil>
+    <!-- Enable WASM threading to allow blocking operations on background threads -->
+    <WasmEnableThreads>true</WasmEnableThreads>
   </PropertyGroup>
 
   <ItemGroup>

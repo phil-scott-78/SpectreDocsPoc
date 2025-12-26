@@ -28,27 +28,35 @@ AnsiConsole.Write(
 
 AnsiConsole.WriteLine();
 
-// Markup text with colors and styles
-AnsiConsole.MarkupLine(""[bold yellow]Welcome[/] to [blue]Spectre.Console[/]!"");
-AnsiConsole.MarkupLine(""You can use [underline]various[/] [italic]styles[/] and [red]colors[/]."");
+// Interactive text prompt - type your name and press Enter
+var name = AnsiConsole.Ask<string>(""What's your [green]name[/]?"");
+AnsiConsole.MarkupLine($""Hello, [blue]{name}[/]!"");
+
 AnsiConsole.WriteLine();
 
-// A colorful table
+// Confirm prompt
+if (AnsiConsole.Confirm(""Do you like Spectre.Console?""))
+{
+    AnsiConsole.MarkupLine(""[green]Awesome![/] Thanks for the feedback!"");
+}
+else
+{
+    AnsiConsole.MarkupLine(""[yellow]That's okay![/] We're always improving."");
+}
+
+AnsiConsole.WriteLine();
+
+// Show a table with results
 var table = new Table();
 table.Border(TableBorder.Rounded);
-table.AddColumn(""[cyan]Feature[/]"");
-table.AddColumn(""[cyan]Description[/]"");
-table.AddRow(""[green]Markup[/]"", ""Rich text with colors and styles"");
-table.AddRow(""[green]Tables[/]"", ""Beautiful formatted tables"");
-table.AddRow(""[green]Figlet[/]"", ""ASCII art text banners"");
-table.AddRow(""[green]Rules[/]"", ""Horizontal dividers"");
+table.AddColumn(""[cyan]Property[/]"");
+table.AddColumn(""[cyan]Value[/]"");
+table.AddRow(""Name"", $""[blue]{name}[/]"");
+table.AddRow(""Time"", $""[yellow]{DateTime.Now:HH:mm:ss}[/]"");
 AnsiConsole.Write(table);
 
-AnsiConsole.WriteLine();
-
-// A rule (horizontal divider)
-var rule = new Rule(""[yellow]That's Spectre.Console![/]"");
-rule.Justification = Justify.Center;
+// A rule to finish
+var rule = new Rule(""[green]Thanks for trying Spectre.Console![/]"");
 AnsiConsole.Write(rule);
 ";
 
