@@ -15,12 +15,12 @@ public class TerminalConsole : IAnsiConsole
     private int _cursorLeft;
     private int _cursorTop;
 
-    public TerminalConsole(TerminalBridge bridge)
+    public TerminalConsole(TerminalBridge bridge, int width = 80, int height = 24)
     {
         _bridge = bridge;
-        Profile = new Profile(new TerminalOutput(_bridge), Encoding.UTF8);
-        Profile.Width = 80;
-        Profile.Height = 24;
+        Profile = new Profile(new TerminalOutput(_bridge, width, height), Encoding.UTF8);
+        Profile.Width = width;
+        Profile.Height = height;
         Profile.Capabilities.Ansi = true;
         Profile.Capabilities.Links = false;
         Profile.Capabilities.Legacy = false;
@@ -53,16 +53,23 @@ public class TerminalConsole : IAnsiConsole
         lock (_lock)
         {
             var options = RenderOptions.Create(this, Profile.Capabilities);
-            var segments = renderable.Render(options, Profile.Width);
-            foreach (var segment in segments)
+
+            // Process through the Pipeline to handle IRenderHook (required for Live rendering)
+            var processedRenderables = Pipeline.Process(options, new[] { renderable });
+
+            foreach (var processedRenderable in processedRenderables)
             {
-                if (segment.IsControlCode)
+                var segments = processedRenderable.Render(options, Profile.Width);
+                foreach (var segment in segments)
                 {
-                    WriteAnsi(segment.Text);
-                }
-                else
-                {
-                    WriteText(segment);
+                    if (segment.IsControlCode)
+                    {
+                        WriteAnsi(segment.Text);
+                    }
+                    else
+                    {
+                        WriteText(segment);
+                    }
                 }
             }
         }
@@ -164,17 +171,21 @@ public class TerminalConsole : IAnsiConsole
     private class TerminalOutput : IAnsiConsoleOutput
     {
         private readonly TerminalBridge _bridge;
+        private readonly int _width;
+        private readonly int _height;
 
-        public TerminalOutput(TerminalBridge bridge)
+        public TerminalOutput(TerminalBridge bridge, int width, int height)
         {
             _bridge = bridge;
+            _width = width;
+            _height = height;
             Writer = new TerminalTextWriter(bridge);
         }
 
         public TextWriter Writer { get; }
         public bool IsTerminal => true;
-        public int Width => 80;
-        public int Height => 24;
+        public int Width => _width;
+        public int Height => _height;
 
         public void SetEncoding(Encoding encoding)
         {
@@ -193,6 +204,7 @@ public class TerminalConsole : IAnsiConsole
 
         public override Encoding Encoding => Encoding.UTF8;
 
+        // Sync write methods
         public override void Write(char value)
         {
             _bridge.WriteOutput(value.ToString());
@@ -206,9 +218,148 @@ public class TerminalConsole : IAnsiConsole
             }
         }
 
+        public override void Write(char[]? buffer)
+        {
+            if (buffer != null && buffer.Length > 0)
+            {
+                _bridge.WriteOutput(new string(buffer));
+            }
+        }
+
+        public override void Write(char[] buffer, int index, int count)
+        {
+            if (buffer != null && count > 0)
+            {
+                _bridge.WriteOutput(new string(buffer, index, count));
+            }
+        }
+
+        public override void Write(ReadOnlySpan<char> buffer)
+        {
+            if (buffer.Length > 0)
+            {
+                _bridge.WriteOutput(new string(buffer));
+            }
+        }
+
+        public override void Write(StringBuilder? value)
+        {
+            if (value != null && value.Length > 0)
+            {
+                _bridge.WriteOutput(value.ToString());
+            }
+        }
+
+        // Sync writeline methods
         public override void WriteLine(string? value)
         {
             _bridge.WriteOutput((value ?? "") + "\r\n");
+        }
+
+        public override void WriteLine(ReadOnlySpan<char> buffer)
+        {
+            _bridge.WriteOutput(new string(buffer) + "\r\n");
+        }
+
+        public override void WriteLine()
+        {
+            _bridge.WriteOutput("\r\n");
+        }
+
+        // Async write methods - these are critical for Live rendering
+        public override Task WriteAsync(char value)
+        {
+            _bridge.WriteOutput(value.ToString());
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteAsync(string? value)
+        {
+            if (value != null)
+            {
+                _bridge.WriteOutput(value);
+            }
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteAsync(char[] buffer, int index, int count)
+        {
+            if (buffer != null && count > 0)
+            {
+                _bridge.WriteOutput(new string(buffer, index, count));
+            }
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteAsync(ReadOnlyMemory<char> buffer, CancellationToken cancellationToken = default)
+        {
+            if (buffer.Length > 0)
+            {
+                _bridge.WriteOutput(new string(buffer.Span));
+            }
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteAsync(StringBuilder? value, CancellationToken cancellationToken = default)
+        {
+            if (value != null && value.Length > 0)
+            {
+                _bridge.WriteOutput(value.ToString());
+            }
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteLineAsync()
+        {
+            _bridge.WriteOutput("\r\n");
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteLineAsync(char value)
+        {
+            _bridge.WriteOutput(value.ToString() + "\r\n");
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteLineAsync(string? value)
+        {
+            _bridge.WriteOutput((value ?? "") + "\r\n");
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteLineAsync(char[] buffer, int index, int count)
+        {
+            if (buffer != null && count > 0)
+            {
+                _bridge.WriteOutput(new string(buffer, index, count) + "\r\n");
+            }
+            else
+            {
+                _bridge.WriteOutput("\r\n");
+            }
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteLineAsync(ReadOnlyMemory<char> buffer, CancellationToken cancellationToken = default)
+        {
+            _bridge.WriteOutput(new string(buffer.Span) + "\r\n");
+            return Task.CompletedTask;
+        }
+
+        public override Task WriteLineAsync(StringBuilder? value, CancellationToken cancellationToken = default)
+        {
+            _bridge.WriteOutput((value?.ToString() ?? "") + "\r\n");
+            return Task.CompletedTask;
+        }
+
+        public override void Flush()
+        {
+            // No-op - we write immediately
+        }
+
+        public override Task FlushAsync()
+        {
+            return Task.CompletedTask;
         }
     }
 

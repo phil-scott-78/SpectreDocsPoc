@@ -9,11 +9,14 @@ public class ExecutionService
 {
     public async Task ExecuteAsync(byte[] assemblyBytes, Terminal terminal, CancellationToken cancellationToken = default)
     {
+        // Get actual terminal dimensions
+        var (cols, rows) = await terminal.GetSize();
+
         // Create a bridge for thread-safe terminal I/O
         var bridge = new TerminalBridge(cancellationToken);
 
-        // Create a custom IAnsiConsole that writes to the bridge
-        var console = new TerminalConsole(bridge);
+        // Create a custom IAnsiConsole that writes to the bridge with actual terminal size
+        var console = new TerminalConsole(bridge, cols, rows);
 
         // Set the console as the default for Spectre.Console
         SetDefaultConsole(console);
