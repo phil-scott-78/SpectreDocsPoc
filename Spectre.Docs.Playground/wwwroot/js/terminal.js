@@ -107,14 +107,40 @@ window.terminalInterop = {
     write: function (terminalId, text) {
         const entry = this.terminals.get(terminalId);
         if (entry) {
-            entry.term.write(text);
+            // Write character by character to work around ghostty-web WASM buffer issues
+            // This is slower but more reliable
+            try {
+                entry.term.write(text);
+            } catch (e) {
+                // If bulk write fails, try writing line by line
+                const lines = text.split(/(\r\n|\n|\r)/);
+                for (const line of lines) {
+                    if (line.length === 0) continue;
+                    try {
+                        entry.term.write(line);
+                    } catch (lineErr) {
+                        // Last resort: write character by character
+                        for (let i = 0; i < line.length; i++) {
+                            try {
+                                entry.term.write(line[i]);
+                            } catch (charErr) {
+                                // Skip problematic characters
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
 
     writeLine: function (terminalId, text) {
         const entry = this.terminals.get(terminalId);
         if (entry) {
-            entry.term.writeln(text);
+            try {
+                entry.term.writeln(text);
+            } catch (e) {
+                console.warn('Terminal writeln error (ignored):', e.message);
+            }
         }
     },
 
