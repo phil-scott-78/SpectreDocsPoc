@@ -1,16 +1,33 @@
+import { init, Terminal, FitAddon } from 'https://cdn.jsdelivr.net/npm/ghostty-web@0.4.0/dist/ghostty-web.js';
+
+// Initialize ghostty WASM
+let ghosttyInitialized = false;
+let initPromise = null;
+
+async function ensureInitialized() {
+    if (ghosttyInitialized) return;
+    if (initPromise) return initPromise;
+
+    initPromise = init();
+    await initPromise;
+    ghosttyInitialized = true;
+}
+
 window.terminalInterop = {
     terminals: new Map(),
 
-    init: function (elementId, dotNetRef) {
+    init: async function (elementId, dotNetRef) {
         const container = document.getElementById(elementId);
         if (!container) {
             console.error('Terminal container not found:', elementId);
             return null;
         }
 
+        // Ensure ghostty WASM is initialized
+        await ensureInitialized();
+
         const term = new Terminal({
             cursorBlink: true,
-            cursorStyle: 'block',
             fontSize: 14,
             fontFamily: '"Cascadia Code", "Fira Code", Consolas, monospace',
             theme: {
@@ -35,28 +52,38 @@ window.terminalInterop = {
                 brightCyan: '#4ec9b0',
                 brightWhite: '#ffffff'
             },
-            convertEol: true,
             scrollback: 1000
         });
 
-        const fitAddon = new FitAddon.FitAddon();
+        const fitAddon = new FitAddon();
         term.loadAddon(fitAddon);
 
         term.open(container);
         fitAddon.fit();
 
-        // Handle window resize
-        const resizeObserver = new ResizeObserver(() => {
+        // Use ghostty-web's observeResize for automatic fitting on container resize
+        fitAddon.observeResize();
+
+        // Also handle window resize events
+        window.addEventListener('resize', () => {
             fitAddon.fit();
         });
-        resizeObserver.observe(container);
 
-        // Handle keyboard input
+        // Handle keyboard input - for regular characters only
         term.onData(data => {
+            // Skip anything that looks like an escape sequence or control character
+            // These are all handled by onKey instead
+            if (data.startsWith('\x1b') || // Escape sequences (arrow keys, etc.)
+                data === '\r' || data === '\n' || // Enter
+                data === '\b' || data === '\x7f' || // Backspace
+                data === '\t') { // Tab
+                return;
+            }
+
             dotNetRef.invokeMethodAsync('OnTerminalInput', data);
         });
 
-        // Handle special keys
+        // Handle special keys - this is the primary handler for navigation keys
         term.onKey(e => {
             // Send key info for special handling
             dotNetRef.invokeMethodAsync('OnTerminalKey', {
@@ -72,7 +99,7 @@ window.terminalInterop = {
         });
 
         const terminalId = 'term_' + Date.now();
-        this.terminals.set(terminalId, { term, fitAddon, resizeObserver });
+        this.terminals.set(terminalId, { term, fitAddon });
 
         return terminalId;
     },
@@ -135,7 +162,6 @@ window.terminalInterop = {
     dispose: function (terminalId) {
         const entry = this.terminals.get(terminalId);
         if (entry) {
-            entry.resizeObserver.disconnect();
             entry.term.dispose();
             this.terminals.delete(terminalId);
         }

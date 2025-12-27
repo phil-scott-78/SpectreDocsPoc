@@ -6,10 +6,7 @@
     <title>Spectre.Console Playground</title>
     <base href="/playground/" />
 
-    <!-- xterm.js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
-    <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+    <!-- ghostty-web (xterm.js compatible) -->
 
     <style>
         html, body {
@@ -174,7 +171,7 @@
     <script src="js/editor.js"></script>
 
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="js/terminal.js"></script>
+    <script type="module" src="js/terminal.js"></script>
 
     <script>
         // Panel resizer functionality
