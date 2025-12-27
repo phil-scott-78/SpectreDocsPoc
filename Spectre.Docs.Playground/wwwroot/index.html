@@ -31,14 +31,28 @@
         }
 
         .editor-panel {
-            flex: 1;
+            width: 50%;
+            min-width: 200px;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid #333;
+        }
+
+        .resizer {
+            width: 6px;
+            background: #333;
+            cursor: col-resize;
+            flex-shrink: 0;
+            transition: background 0.15s ease;
+        }
+
+        .resizer:hover,
+        .resizer.resizing {
+            background: #0e639c;
         }
 
         .terminal-panel {
             flex: 1;
+            min-width: 200px;
             display: flex;
             flex-direction: column;
             background: #000;
@@ -157,8 +171,75 @@
         });
     </script>
     <script src="_content/BlazorMonaco/jsInterop.js"></script>
+    <script src="js/editor.js"></script>
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="js/terminal.js"></script>
+
+    <script>
+        // Panel resizer functionality
+        (function() {
+            function initResizer() {
+                const resizer = document.getElementById('panel-resizer');
+                if (!resizer) {
+                    // Retry after Blazor renders the component
+                    setTimeout(initResizer, 100);
+                    return;
+                }
+
+                const container = resizer.parentElement;
+                const editorPanel = container.querySelector('.editor-panel');
+                const terminalPanel = container.querySelector('.terminal-panel');
+
+                let isResizing = false;
+
+                resizer.addEventListener('mousedown', function(e) {
+                    isResizing = true;
+                    resizer.classList.add('resizing');
+                    document.body.style.cursor = 'col-resize';
+                    document.body.style.userSelect = 'none';
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', function(e) {
+                    if (!isResizing) return;
+
+                    const containerRect = container.getBoundingClientRect();
+                    const containerWidth = containerRect.width;
+                    const resizerWidth = resizer.offsetWidth;
+
+                    // Calculate new width based on mouse position
+                    let newEditorWidth = e.clientX - containerRect.left;
+
+                    // Enforce minimum widths
+                    const minWidth = 200;
+                    const maxWidth = containerWidth - minWidth - resizerWidth;
+
+                    newEditorWidth = Math.max(minWidth, Math.min(maxWidth, newEditorWidth));
+
+                    editorPanel.style.width = newEditorWidth + 'px';
+                });
+
+                document.addEventListener('mouseup', function() {
+                    if (isResizing) {
+                        isResizing = false;
+                        resizer.classList.remove('resizing');
+                        document.body.style.cursor = '';
+                        document.body.style.userSelect = '';
+
+                        // Trigger resize events for Monaco and xterm
+                        window.dispatchEvent(new Event('resize'));
+                    }
+                });
+            }
+
+            // Start initialization when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initResizer);
+            } else {
+                initResizer();
+            }
+        })();
+    </script>
 </body>
 </html>
