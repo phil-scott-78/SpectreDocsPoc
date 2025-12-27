@@ -107,28 +107,13 @@ window.terminalInterop = {
     write: function (terminalId, text) {
         const entry = this.terminals.get(terminalId);
         if (entry) {
-            // Write character by character to work around ghostty-web WASM buffer issues
-            // This is slower but more reliable
             try {
-                entry.term.write(text);
+                // Convert standalone \n to \r\n for proper terminal line breaks
+                // First normalize \r\n to \n, then convert all \n to \r\n
+                const normalizedText = text.replace(/\r\n/g, '\n').replace(/\n/g, '\r\n');
+                entry.term.write(normalizedText);
             } catch (e) {
-                // If bulk write fails, try writing line by line
-                const lines = text.split(/(\r\n|\n|\r)/);
-                for (const line of lines) {
-                    if (line.length === 0) continue;
-                    try {
-                        entry.term.write(line);
-                    } catch (lineErr) {
-                        // Last resort: write character by character
-                        for (let i = 0; i < line.length; i++) {
-                            try {
-                                entry.term.write(line[i]);
-                            } catch (charErr) {
-                                // Skip problematic characters
-                            }
-                        }
-                    }
-                }
+                console.warn('Terminal write error:', e.message);
             }
         }
     },
