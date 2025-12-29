@@ -19,19 +19,17 @@ public class CompletionService
         {
             await _workspaceService.EnsureInitializedAsync();
 
-            // Create a document with standard usings prepended
-            var fullCode = WorkspaceService.StandardUsings + code;
             var document = _workspaceService.CreateDocument(code);
             if (document == null)
             {
                 return [];
             }
 
-            // Convert line/column to absolute position, accounting for prepended usings
-            var sourceText = SourceText.From(fullCode);
-            var position = _workspaceService.GetPosition(sourceText, lineNumber, column);
+            // Convert line/column to absolute position
+            var sourceText = SourceText.From(code);
+            var position = WorkspaceService.GetPosition(sourceText, lineNumber, column);
 
-            if (position < 0 || position > fullCode.Length)
+            if (position < 0 || position > code.Length)
             {
                 return [];
             }
@@ -72,19 +70,17 @@ public class CompletionService
         {
             await _workspaceService.EnsureInitializedAsync();
 
-            // Create document with standard usings prepended
-            var fullCode = WorkspaceService.StandardUsings + code;
             var document = _workspaceService.CreateDocument(code);
             if (document == null)
             {
                 return null;
             }
 
-            // Convert line/column to absolute position, accounting for prepended usings
-            var sourceText = SourceText.From(fullCode);
-            var position = _workspaceService.GetPosition(sourceText, lineNumber, column);
+            // Convert line/column to absolute position
+            var sourceText = SourceText.From(code);
+            var position = WorkspaceService.GetPosition(sourceText, lineNumber, column);
 
-            if (position < 0 || position > fullCode.Length)
+            if (position < 0 || position > code.Length)
             {
                 return null;
             }
@@ -138,18 +134,17 @@ public class CompletionService
                 return null;
             }
 
-            // Calculate the range in the original code (without usings offset)
+            // Calculate the range in the code
             var span = quickInfo.Span;
             var startLine = sourceText.Lines.GetLineFromPosition(span.Start);
             var endLine = sourceText.Lines.GetLineFromPosition(span.End);
-            var usingsLineCount = WorkspaceService.StandardUsings.Count(c => c == '\n');
 
             return new HoverData
             {
                 Contents = string.Join("\n\n", contents),
-                StartLine = startLine.LineNumber + 1 - usingsLineCount, // Convert to 1-based
+                StartLine = startLine.LineNumber + 1, // Convert to 1-based
                 StartColumn = span.Start - startLine.Start + 1,
-                EndLine = endLine.LineNumber + 1 - usingsLineCount,
+                EndLine = endLine.LineNumber + 1,
                 EndColumn = span.End - endLine.Start + 1
             };
         }

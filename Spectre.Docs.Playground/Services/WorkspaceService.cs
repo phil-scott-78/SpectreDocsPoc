@@ -35,16 +35,15 @@ public class WorkspaceService
         "Spectre.Console"
     ];
 
-    // Standard usings to include for code context
-    public const string StandardUsings =
+    // Global usings included as a separate document in the compilation
+    public const string GlobalUsings =
         """
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Threading;
-        using System.Threading.Tasks;
-        using Spectre.Console;
-
+        global using System;
+        global using System.Collections.Generic;
+        global using System.Linq;
+        global using System.Threading;
+        global using System.Threading.Tasks;
+        global using Spectre.Console;
         """;
 
     public WorkspaceService(HttpClient httpClient)
@@ -106,13 +105,12 @@ public class WorkspaceService
 
     /// <summary>
     /// Creates a document in the workspace for the given code.
+    /// Global usings are included as a separate document in the project.
     /// </summary>
-    public Document? CreateDocument(string code, bool includeUsings = true)
+    public Document? CreateDocument(string code)
     {
         if (_workspace == null)
             return null;
-
-        var fullCode = includeUsings ? StandardUsings + code : code;
 
         var projectId = ProjectId.CreateNewId();
         var projectInfo = ProjectInfo.Create(
@@ -126,7 +124,12 @@ public class WorkspaceService
             metadataReferences: _references);
 
         var project = _workspace.AddProject(projectInfo);
-        var sourceText = SourceText.From(fullCode);
+
+        // Add global usings as a separate document
+        _workspace.AddDocument(project.Id, "GlobalUsings.cs", SourceText.From(GlobalUsings));
+
+        // Add the user's code as the main document
+        var sourceText = SourceText.From(code);
         var document = _workspace.AddDocument(project.Id, "Program.cs", sourceText);
 
         // Clean up the project after getting the document
@@ -140,13 +143,21 @@ public class WorkspaceService
     /// </summary>
     public CSharpCompilation CreateCompilation(string code)
     {
-        var syntaxTree = CSharpSyntaxTree.ParseText(
+        var parseOptions = new CSharpParseOptions(LanguageVersion.Latest);
+
+        var globalUsingsSyntaxTree = CSharpSyntaxTree.ParseText(
+            GlobalUsings,
+            parseOptions,
+            path: "GlobalUsings.cs");
+
+        var codeSyntaxTree = CSharpSyntaxTree.ParseText(
             code,
-            new CSharpParseOptions(LanguageVersion.Latest));
+            parseOptions,
+            path: "Program.cs");
 
         return CSharpCompilation.Create(
             $"PlaygroundAssembly_{Guid.NewGuid():N}",
-            [syntaxTree],
+            [globalUsingsSyntaxTree, codeSyntaxTree],
             _references,
             new CSharpCompilationOptions(OutputKind.ConsoleApplication)
                 .WithOptimizationLevel(OptimizationLevel.Release)
@@ -154,16 +165,12 @@ public class WorkspaceService
     }
 
     /// <summary>
-    /// Converts a Monaco editor position (1-based line/column) to an absolute position,
-    /// accounting for prepended usings if applicable.
+    /// Converts a Monaco editor position (1-based line/column) to an absolute position.
     /// </summary>
-    public int GetPosition(SourceText sourceText, int lineNumber, int column, bool includeUsingsOffset = true)
+    public static int GetPosition(SourceText sourceText, int lineNumber, int column)
     {
         var lines = sourceText.Lines;
-
-        // Count lines in the standard usings prefix
-        var offsetLines = includeUsingsOffset ? StandardUsings.Count(c => c == '\n') : 0;
-        var adjustedLine = lineNumber - 1 + offsetLines; // Convert to 0-based and add offset lines
+        var adjustedLine = lineNumber - 1; // Convert to 0-based
 
         if (adjustedLine < 0 || adjustedLine >= lines.Count)
         {

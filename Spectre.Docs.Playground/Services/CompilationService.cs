@@ -15,7 +15,7 @@ public class CompilationService
     {
         await _workspaceService.EnsureInitializedAsync();
 
-        var compilation = _workspaceService.CreateCompilation(WorkspaceService.StandardUsings + code);
+        var compilation = _workspaceService.CreateCompilation(code);
 
         using var ms = new MemoryStream();
         var result = compilation.Emit(ms);

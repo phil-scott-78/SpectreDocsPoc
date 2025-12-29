@@ -241,14 +241,32 @@ window.terminalInterop = {
                 inputProcessor.enqueueInput(data);
             });
 
-            // Handle special keys
+            // Handle special keys only - regular characters are handled by onData
+            // This prevents double-firing for keys like space that trigger both events
             term.onKey(e => {
                 const domEvent = e.domEvent || {};
+                const code = domEvent.code || '';
+
+                // Only process special keys, not regular characters
+                // Regular characters (letters, numbers, space, punctuation) are handled by onData
+                const isSpecialKey = code.startsWith('Arrow') ||
+                    code === 'Enter' || code === 'NumpadEnter' ||
+                    code === 'Backspace' || code === 'Delete' ||
+                    code === 'Tab' || code === 'Escape' ||
+                    code === 'Home' || code === 'End' ||
+                    code === 'PageUp' || code === 'PageDown' ||
+                    code === 'Insert' ||
+                    e.key.startsWith('\x1b'); // Escape sequences from terminal
+
+                if (!isSpecialKey) {
+                    return;
+                }
+
                 inputProcessor.enqueueKey({
                     key: e.key,
                     domEvent: {
                         key: domEvent.key || '',
-                        code: domEvent.code || '',
+                        code: code,
                         ctrlKey: domEvent.ctrlKey || false,
                         altKey: domEvent.altKey || false,
                         shiftKey: domEvent.shiftKey || false
