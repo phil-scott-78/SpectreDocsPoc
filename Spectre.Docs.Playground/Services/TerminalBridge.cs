@@ -33,7 +33,6 @@ public class TerminalBridge
     /// </summary>
     public void WriteOutput(string text)
     {
-        // Use synchronous write that blocks - this is safe on a background thread
         _outputChannel.Writer.TryWrite(text);
     }
 
@@ -42,7 +41,7 @@ public class TerminalBridge
     /// </summary>
     public void WriteClear()
     {
-        _outputChannel.Writer.TryWrite("\x00CLEAR\x00");
+        _outputChannel.Writer.TryWrite("\fLEAR\0");
     }
 
     /// <summary>

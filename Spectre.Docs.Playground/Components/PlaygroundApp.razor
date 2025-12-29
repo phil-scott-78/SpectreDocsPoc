@@ -1,11 +1,19 @@
 @inject CompilationService CompilationService
 @inject ExecutionService ExecutionService
-@inject IJSRuntime JSRuntime
 
 <div class="playground-container">
     <div class="editor-panel">
         <div class="panel-header">
-            <span>Code Editor</span>
+            <div class="editor-header-left">
+                <span>Code Editor</span>
+                <select class="examples-select" @onchange="OnExampleSelected">
+                    <option value="">Examples...</option>
+                    @foreach (var example in Examples)
+                    {
+                        <option value="@example.Key">@example.Key</option>
+                    }
+                </select>
+            </div>
             <button class="run-button" @onclick="RunCode" disabled="@_isRunning">
                 @if (_isRunning)
                 {
@@ -34,10 +42,25 @@
     <div class="terminal-panel">
         <div class="panel-header">
             <span>Terminal Output</span>
-            <button class="clear-button" @onclick="ClearTerminal">Clear</button>
+            <div class="terminal-header-buttons">
+                @if (_isRunning)
+                {
+                    <button class="stop-button" @onclick="StopCode">Stop</button>
+                }
+                <button class="clear-button" @onclick="ClearTerminal">Clear</button>
+            </div>
         </div>
         <div class="panel-content">
-            <Terminal @ref="_terminal" />
+            <div class="terminal-frame">
+                <div class="terminal-dots">
+                    <div class="terminal-dot terminal-dot-1"></div>
+                    <div class="terminal-dot terminal-dot-2"></div>
+                    <div class="terminal-dot terminal-dot-3"></div>
+                </div>
+                <div class="terminal-inner">
+                    <Terminal @ref="_terminal" />
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -46,8 +69,237 @@
     private PlaygroundEditor? _codeEditor;
     private Terminal? _terminal;
     private bool _isRunning;
-    private List<string> _compilationErrors = new();
+    private List<string> _compilationErrors = [];
     private CancellationTokenSource? _executionCts;
+
+    private static readonly Dictionary<string, string> Examples = new()
+    {
+        ["Tables"] = """
+            // Create a simple table
+            var table = new Table();
+            table.Border(TableBorder.Rounded);
+
+            // Add columns
+            table.AddColumn("[cyan]Name[/]");
+            table.AddColumn("[cyan]Age[/]");
+            table.AddColumn("[cyan]City[/]");
+
+            // Add rows
+            table.AddRow("Alice", "30", "New York");
+            table.AddRow("Bob", "25", "Los Angeles");
+            table.AddRow("Charlie", "35", "Chicago");
+
+            AnsiConsole.Write(table);
+            """,
+
+        ["Progress Bar"] = """
+            // Simulate a download with progress
+            AnsiConsole.Progress()
+                .Start(ctx =>
+                {
+                    var task = ctx.AddTask("[green]Downloading files[/]");
+
+                    while (!ctx.IsFinished)
+                    {
+                        task.Increment(3.5);
+                        Thread.Sleep(50);
+                    }
+                });
+
+            AnsiConsole.MarkupLine("[green]Download complete![/]");
+            """,
+
+        ["Tree View"] = """
+            // Create a tree structure
+            var root = new Tree("[yellow]Solution[/]");
+
+            var src = root.AddNode("[blue]src[/]");
+            var project = src.AddNode("[green]MyProject[/]");
+            project.AddNode("Program.cs");
+            project.AddNode("Startup.cs");
+            project.AddNode("appsettings.json");
+
+            var tests = root.AddNode("[blue]tests[/]");
+            var testProject = tests.AddNode("[green]MyProject.Tests[/]");
+            testProject.AddNode("UnitTests.cs");
+            testProject.AddNode("IntegrationTests.cs");
+
+            root.AddNode("README.md");
+            root.AddNode(".gitignore");
+
+            AnsiConsole.Write(root);
+            """,
+
+        ["Bar Chart"] = """
+            // Create a bar chart
+            AnsiConsole.Write(new BarChart()
+                .Width(60)
+                .Label("[green bold underline]Programming Languages[/]")
+                .CenterLabel()
+                .AddItem("C#", 85, Color.Green)
+                .AddItem("Python", 78, Color.Blue)
+                .AddItem("JavaScript", 72, Color.Yellow)
+                .AddItem("Rust", 45, Color.Red)
+                .AddItem("Go", 52, Color.Cyan1));
+            """,
+
+        ["Panels"] = """
+            // Create styled panels
+            var panel = new Panel(
+                Align.Center(
+                    new Markup("[blue]Hello[/] from [red]Spectre.Console[/]!"),
+                    VerticalAlignment.Middle))
+                .Header("[yellow]Welcome[/]")
+                .Border(BoxBorder.Rounded)
+                .BorderStyle(Style.Parse("cyan"))
+                .Padding(2, 1);
+
+            AnsiConsole.Write(panel);
+
+            AnsiConsole.WriteLine();
+
+            // Nested panels
+            var inner = new Panel("This is the [green]inner[/] panel")
+                .Header("Inner")
+                .Border(BoxBorder.Double);
+
+            var outer = new Panel(inner)
+                .Header("Outer")
+                .Border(BoxBorder.Rounded)
+                .Padding(1, 1);
+
+            AnsiConsole.Write(outer);
+            """,
+
+        ["Prompt Selection"] = """
+            // Single selection
+            var fruit = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("What's your [green]favorite fruit[/]?")
+                    .PageSize(5)
+                    .AddChoices(new[] {
+                        "Apple", "Banana", "Orange",
+                        "Mango", "Strawberry", "Grape"
+                    }));
+
+            AnsiConsole.MarkupLine($"You selected: [yellow]{fruit}[/]");
+
+            AnsiConsole.WriteLine();
+
+            // Multi selection
+            var toppings = AnsiConsole.Prompt(
+                new MultiSelectionPrompt<string>()
+                    .Title("Select your [green]pizza toppings[/]:")
+                    .NotRequired()
+                    .PageSize(5)
+                    .InstructionsText("[grey](Press [blue]<space>[/] to toggle, [green]<enter>[/] to accept)[/]")
+                    .AddChoices(new[] {
+                        "Pepperoni", "Mushrooms", "Olives",
+                        "Onions", "Bacon", "Extra Cheese"
+                    }));
+
+            AnsiConsole.MarkupLine($"Toppings: [cyan]{string.Join(", ", toppings)}[/]");
+            """,
+
+        ["Calendar"] = """
+            // Display a calendar
+            var calendar = new Calendar(2025, 1)
+                .AddCalendarEvent(2025, 1, 1)   // New Year's Day
+                .AddCalendarEvent(2025, 1, 20)  // MLK Day
+                .HighlightStyle(Style.Parse("yellow bold"))
+                .HeaderStyle(Style.Parse("blue"));
+
+            AnsiConsole.Write(calendar);
+
+            AnsiConsole.WriteLine();
+
+            // Show current date info
+            var today = DateTime.Now;
+            AnsiConsole.MarkupLine($"[grey]Today is[/] [green]{today:dddd, MMMM d, yyyy}[/]");
+            """,
+
+        ["Exceptions"] = """
+            // Pretty print exceptions
+            try
+            {
+                DoSomething();
+            }
+            catch (Exception ex)
+            {
+                AnsiConsole.WriteException(ex,
+                    ExceptionFormats.ShortenPaths |
+                    ExceptionFormats.ShortenTypes |
+                    ExceptionFormats.ShortenMethods);
+            }
+
+            void DoSomething()
+            {
+                DoSomethingElse();
+            }
+
+            void DoSomethingElse()
+            {
+                throw new InvalidOperationException("Something went wrong!");
+            }
+            """,
+
+        ["Canvas"] = """
+            // Draw on a canvas
+            var canvas = new Canvas(16, 16);
+
+            // Draw a simple pattern
+            for (int i = 0; i < 16; i++)
+            {
+                canvas.SetPixel(i, 0, Color.Red);
+                canvas.SetPixel(i, 15, Color.Red);
+                canvas.SetPixel(0, i, Color.Blue);
+                canvas.SetPixel(15, i, Color.Blue);
+            }
+
+            // Draw diagonals
+            for (int i = 0; i < 16; i++)
+            {
+                canvas.SetPixel(i, i, Color.Green);
+                canvas.SetPixel(15 - i, i, Color.Yellow);
+            }
+
+            AnsiConsole.Write(canvas);
+            """,
+
+        ["Live Display"] = """
+            // Live updating display
+            var table = new Table().Border(TableBorder.Rounded);
+            table.AddColumn("Time");
+            table.AddColumn("Status");
+
+            AnsiConsole.Live(table)
+                .Start(ctx =>
+                {
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        table.AddRow(
+                            DateTime.Now.ToString("HH:mm:ss"),
+                            $"[green]Step {i} complete[/]");
+                        ctx.Refresh();
+                        Thread.Sleep(500);
+                    }
+                });
+
+            AnsiConsole.MarkupLine("[yellow]All steps completed![/]");
+            """
+    };
+
+    private async Task OnExampleSelected(ChangeEventArgs e)
+    {
+        var selectedKey = e.Value?.ToString();
+        if (!string.IsNullOrEmpty(selectedKey) && Examples.TryGetValue(selectedKey, out var code))
+        {
+            if (_codeEditor != null)
+            {
+                await _codeEditor.SetCode(code);
+            }
+        }
+    }
 
     private async Task RunCode()
     {
@@ -85,7 +337,7 @@
         }
         catch (Exception ex)
         {
-            await _terminal.WriteLine($"\x1b[31mError: {ex.Message}\x1b[0m");
+            await _terminal.WriteLine($"\e[31mError: {ex.Message}\e[0m");
         }
         finally
         {
@@ -101,6 +353,14 @@
         if (_terminal != null)
         {
             await _terminal.Clear();
+        }
+    }
+
+    private async Task StopCode()
+    {
+        if (_executionCts != null)
+        {
+            await _executionCts.CancelAsync();
         }
     }
 

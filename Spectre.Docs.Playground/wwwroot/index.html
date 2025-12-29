@@ -4,17 +4,71 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spectre.Console Playground</title>
-    <base href="/playground/" />
+    <base href="/" />
 
     <!-- ghostty-web (xterm.js compatible) -->
 
     <style>
+        /* Light mode (default) - using neutral grays from design system */
+        :root {
+            --bg-primary: #fbfbfb;          /* neutral-50 */
+            --bg-secondary: #ffffff;
+            --bg-panel-header: #ebebeb;     /* neutral-200 */
+            --border-color: #e0e0e0;        /* neutral-300 */
+            --text-primary: #262626;        /* neutral-900 */
+            --text-secondary: #737373;      /* neutral-500 */
+            --resizer-bg: #d4d4d4;          /* neutral-300 */
+            --resizer-hover: #0e639c;
+            --btn-secondary-bg: #e5e5e5;    /* neutral-200 */
+            --btn-secondary-border: #d4d4d4;
+            --btn-secondary-text: #404040;  /* neutral-700 */
+            --btn-secondary-hover: #d4d4d4;
+            /* Terminal frame - always dark like homepage */
+            --terminal-frame-bg: rgba(37, 37, 37, 0.8);  /* neutral-950 with opacity */
+            --terminal-frame-border: rgba(115, 115, 115, 0.5);  /* neutral-500 */
+            --terminal-inner-bg: #1e1e1e;
+            --terminal-panel-bg: #ffffff;   /* white */
+            /* Dots - light mode (brighter) */
+            --dot-1-bg: rgba(251, 191, 36, 0.9);
+            --dot-2-bg: rgba(252, 211, 77, 0.9);
+            --dot-3-bg: rgba(253, 230, 138, 0.9);
+            --dot-border: rgba(120, 53, 15, 0.5);
+        }
+
+        /* Dark mode - using neutral grays from design system */
+        body.dark {
+            --bg-primary: #252525;          /* neutral-950 */
+            --bg-secondary: #343434;        /* neutral-900 */
+            --bg-panel-header: #444444;     /* neutral-800 */
+            --border-color: #525252;        /* neutral-600 */
+            --text-primary: #fafafa;        /* neutral-50 */
+            --text-secondary: #a3a3a3;      /* neutral-400 */
+            --resizer-bg: #525252;          /* neutral-600 */
+            --btn-secondary-bg: #525252;    /* neutral-600 */
+            --btn-secondary-border: #666666;
+            --btn-secondary-text: #d4d4d4;  /* neutral-300 */
+            --btn-secondary-hover: #666666;
+            /* Terminal frame - dark mode */
+            --terminal-frame-bg: #444444;   /* neutral-800 */
+            --terminal-frame-border: rgba(115, 115, 115, 0.1);
+            --terminal-inner-bg: #1e1e1e;
+            --terminal-panel-bg: #343434;   /* base-900 */
+            /* Dots - dark mode (dimmer) */
+            --dot-1-bg: rgba(180, 83, 9, 0.6);
+            --dot-2-bg: rgba(217, 119, 6, 0.6);
+            --dot-3-bg: rgba(245, 158, 11, 0.6);
+            --dot-border: rgba(217, 119, 6, 1);
+        }
+
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.2s, color 0.2s;
         }
 
         #app {
@@ -24,7 +78,7 @@
         .playground-container {
             display: flex;
             height: 100%;
-            background: #1e1e1e;
+            background: var(--bg-primary);
         }
 
         .editor-panel {
@@ -36,7 +90,7 @@
 
         .resizer {
             width: 6px;
-            background: #333;
+            background: var(--resizer-bg);
             cursor: col-resize;
             flex-shrink: 0;
             transition: background 0.15s ease;
@@ -44,7 +98,7 @@
 
         .resizer:hover,
         .resizer.resizing {
-            background: #0e639c;
+            background: var(--resizer-hover);
         }
 
         .terminal-panel {
@@ -52,7 +106,53 @@
             min-width: 200px;
             display: flex;
             flex-direction: column;
-            background: #000;
+            background: var(--terminal-panel-bg);
+        }
+
+        .terminal-frame {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin: 8px;
+            padding: 4px;
+            background: var(--terminal-frame-bg);
+            border: 1px solid var(--terminal-frame-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .terminal-dots {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding: 8px 12px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            border: 1px solid var(--dot-border);
+        }
+
+        .terminal-dot-1 {
+            background: var(--dot-1-bg);
+        }
+
+        .terminal-dot-2 {
+            background: var(--dot-2-bg);
+        }
+
+        .terminal-dot-3 {
+            background: var(--dot-3-bg);
+        }
+
+        .terminal-inner {
+            flex: 1;
+            background: var(--terminal-inner-bg);
+            margin: 0 8px 8px 8px;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .panel-header {
@@ -60,9 +160,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 8px 16px;
-            background: #252526;
-            border-bottom: 1px solid #333;
-            color: #ccc;
+            background: var(--bg-panel-header);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
             font-size: 13px;
         }
 
@@ -94,9 +194,9 @@
         }
 
         .clear-button {
-            background: #333;
-            color: #ccc;
-            border: 1px solid #555;
+            background: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            border: 1px solid var(--btn-secondary-border);
             padding: 6px 12px;
             border-radius: 3px;
             cursor: pointer;
@@ -104,7 +204,29 @@
         }
 
         .clear-button:hover {
-            background: #444;
+            background: var(--btn-secondary-hover);
+        }
+
+        .stop-button {
+            background: #a11;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stop-button:hover {
+            background: #c22;
+        }
+
+        .terminal-header-buttons {
+            display: flex;
+            gap: 8px;
         }
 
         .loading-overlay {
@@ -149,9 +271,50 @@
             max-height: 150px;
             overflow-y: auto;
         }
+
+        .editor-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .examples-select {
+            background: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            border: 1px solid var(--btn-secondary-border);
+            padding: 5px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .examples-select:hover {
+            background: var(--btn-secondary-hover);
+        }
+
+        .examples-select:focus {
+            border-color: #0e639c;
+        }
     </style>
 </head>
-<body>
+<body class="dark">
+    <script>
+        // Listen for theme messages from parent window
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'theme') {
+                if (event.data.dark) {
+                    document.body.classList.add('dark');
+                } else {
+                    document.body.classList.remove('dark');
+                }
+                // Notify Monaco editor of theme change
+                if (window.updateMonacoTheme) {
+                    window.updateMonacoTheme(event.data.dark);
+                }
+            }
+        });
+    </script>
     <div id="app">
         <div class="loading-overlay">
             <div class="loading-spinner"></div>
@@ -162,16 +325,29 @@
     <!-- BlazorMonaco -->
     <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/loader.js"></script>
     <script>
+        console.log('[page] Loading Monaco editor...');
         require.config({ paths: { 'vs': '_content/BlazorMonaco/lib/monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function() {
-            // Monaco is loaded
+            console.log('[page] Monaco editor loaded');
         });
     </script>
     <script src="_content/BlazorMonaco/jsInterop.js"></script>
+    <script>console.log('[page] BlazorMonaco jsInterop loaded');</script>
     <script src="js/editor.js"></script>
+    <script>console.log('[page] editor.js loaded');</script>
 
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script>console.log('[page] Loading Blazor WASM...');</script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script type="module" src="js/terminal.js"></script>
+    <script type="module">
+        console.log('[page] Blazor script loaded, starting Blazor...');
+        try {
+            await Blazor.start();
+            console.log('[page] Blazor WASM started and ready');
+        } catch(err) {
+            console.error('[page] Blazor start error:', err);
+        }
+    </script>
 
     <script>
         // Panel resizer functionality

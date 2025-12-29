@@ -21,11 +21,14 @@ public class ExecutionService
         // Set the console as the default for Spectre.Console
         SetDefaultConsole(console);
 
+        // Create a linked cancellation token that we can cancel when execution completes
+        using var executionCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+
         // Start the execution on a background thread
         var executionTask = Task.Run(() => ExecuteOnBackgroundThread(assemblyBytes, bridge, cancellationToken), cancellationToken);
 
-        // Start forwarding keyboard input from terminal to bridge
-        var inputTask = ForwardInputAsync(terminal, bridge, cancellationToken);
+        // Start forwarding keyboard input from terminal to bridge (uses linked token so it stops when execution completes)
+        var inputTask = ForwardInputAsync(terminal, bridge, executionCts.Token);
 
         try
         {
@@ -34,10 +37,23 @@ public class ExecutionService
         }
         catch (OperationCanceledException)
         {
-            await terminal.WriteLine("\x1b[33mExecution cancelled.\x1b[0m");
+            await terminal.WriteLine("\e[33mExecution cancelled.\e[0m");
         }
         finally
         {
+            // Cancel the input forwarding task now that execution is complete
+            await executionCts.CancelAsync();
+
+            // Wait for input task to finish (it should exit quickly after cancellation)
+            try
+            {
+                await inputTask;
+            }
+            catch (OperationCanceledException)
+            {
+                // Expected when we cancel
+            }
+
             // Reset the default console
             ResetDefaultConsole();
         }
@@ -56,7 +72,7 @@ public class ExecutionService
             var entryPoint = assembly.EntryPoint;
             if (entryPoint == null)
             {
-                bridge.WriteOutput("\x1b[31mError: No entry point found in the compiled assembly.\x1b[0m\r\n");
+                bridge.WriteOutput("\e[31mError: No entry point found in the compiled assembly.\e[0m\r\n");
                 bridge.Complete();
                 return;
             }
@@ -64,8 +80,8 @@ public class ExecutionService
             // Execute the entry point
             var parameters = entryPoint.GetParameters();
             object?[] args = parameters.Length > 0
-                ? new object?[] { Array.Empty<string>() }
-                : Array.Empty<object?>();
+                ? [Array.Empty<string>()]
+                : [];
 
             var result = entryPoint.Invoke(null, args);
 
@@ -81,22 +97,22 @@ public class ExecutionService
         catch (TargetInvocationException ex) when (ex.InnerException != null)
         {
             // Unwrap reflection exceptions
-            bridge.WriteOutput($"\x1b[31mError: {ex.InnerException.Message}\x1b[0m\r\n");
+            bridge.WriteOutput($"\e[31mError: {ex.InnerException.Message}\e[0m\r\n");
             if (ex.InnerException.StackTrace != null)
             {
-                bridge.WriteOutput($"\x1b[90m{ex.InnerException.StackTrace}\x1b[0m\r\n");
+                bridge.WriteOutput($"\e[90m{ex.InnerException.StackTrace}\e[0m\r\n");
             }
         }
         catch (OperationCanceledException)
         {
-            bridge.WriteOutput("\x1b[33mExecution cancelled.\x1b[0m\r\n");
+            bridge.WriteOutput("\e[33mExecution cancelled.\e[0m\r\n");
         }
         catch (Exception ex)
         {
-            bridge.WriteOutput($"\x1b[31mError: {ex.Message}\x1b[0m\r\n");
+            bridge.WriteOutput($"\e[31mError: {ex.Message}\e[0m\r\n");
             if (ex.StackTrace != null)
             {
-                bridge.WriteOutput($"\x1b[90m{ex.StackTrace}\x1b[0m\r\n");
+                bridge.WriteOutput($"\e[90m{ex.StackTrace}\e[0m\r\n");
             }
         }
         finally
@@ -111,7 +127,7 @@ public class ExecutionService
         await foreach (var output in bridge.OutputReader.ReadAllAsync(cancellationToken))
         {
             // Check for special clear marker
-            if (output == "\x00CLEAR\x00")
+            if (output == "\fLEAR\0")
             {
                 await terminal.Clear();
             }

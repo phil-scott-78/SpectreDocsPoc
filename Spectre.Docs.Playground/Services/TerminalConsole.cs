@@ -11,21 +11,21 @@ namespace Spectre.Docs.Playground.Services;
 public class TerminalConsole : IAnsiConsole
 {
     private readonly TerminalBridge _bridge;
-    private readonly object _lock = new();
+    private readonly Lock _lock = new();
     private int _cursorLeft;
     private int _cursorTop;
 
     public TerminalConsole(TerminalBridge bridge, int width = 80, int height = 24)
     {
         _bridge = bridge;
-        Profile = new Profile(new TerminalOutput(_bridge, width, height), Encoding.UTF8);
-        Profile.Width = width;
-        Profile.Height = height;
-        Profile.Capabilities.Ansi = true;
-        Profile.Capabilities.Links = false;
-        Profile.Capabilities.Legacy = false;
-        Profile.Capabilities.Interactive = true;
-        Profile.Capabilities.Unicode = true;
+        Profile = new Profile(new TerminalOutput(_bridge, width, height), Encoding.UTF8)
+        {
+            Width = width, Height = height, Capabilities =
+            {
+                Ansi = true, Links = false, Legacy = false, Interactive = true,
+                Unicode = true
+            }
+        };
 
         Input = new TerminalInput(_bridge);
         ExclusivityMode = new TerminalExclusivityMode();
@@ -55,7 +55,7 @@ public class TerminalConsole : IAnsiConsole
             var options = RenderOptions.Create(this, Profile.Capabilities);
 
             // Process through the Pipeline to handle IRenderHook (required for Live rendering)
-            var processedRenderables = Pipeline.Process(options, new[] { renderable });
+            var processedRenderables = Pipeline.Process(options, [renderable]);
 
             foreach (var processedRenderable in processedRenderables)
             {
@@ -80,7 +80,7 @@ public class TerminalConsole : IAnsiConsole
         var builder = new StringBuilder();
 
         // Apply style using ANSI codes
-        if (segment.Style != Style.Plain)
+        if (!segment.Style.Equals(Style.Plain))
         {
             builder.Append(GetAnsiStyle(segment.Style));
         }
@@ -88,9 +88,9 @@ public class TerminalConsole : IAnsiConsole
         builder.Append(segment.Text);
 
         // Reset style
-        if (segment.Style != Style.Plain)
+        if (!segment.Style.Equals(Style.Plain))
         {
-            builder.Append("\x1b[0m");
+            builder.Append("\e[0m");
         }
 
         // Write to bridge (thread-safe)
@@ -162,7 +162,7 @@ public class TerminalConsole : IAnsiConsole
 
         if (codes.Count > 0)
         {
-            builder.Append($"\x1b[{string.Join(";", codes)}m");
+            builder.Append($"\e[{string.Join(";", codes)}m");
         }
 
         return builder.ToString();
@@ -170,22 +170,18 @@ public class TerminalConsole : IAnsiConsole
 
     private class TerminalOutput : IAnsiConsoleOutput
     {
-        private readonly TerminalBridge _bridge;
-        private readonly int _width;
-        private readonly int _height;
-
         public TerminalOutput(TerminalBridge bridge, int width, int height)
         {
-            _bridge = bridge;
-            _width = width;
-            _height = height;
+            Width = width;
+            Height = height;
             Writer = new TerminalTextWriter(bridge);
         }
 
         public TextWriter Writer { get; }
         public bool IsTerminal => true;
-        public int Width => _width;
-        public int Height => _height;
+        public int Width { get; }
+
+        public int Height { get; }
 
         public void SetEncoding(Encoding encoding)
         {
@@ -228,7 +224,11 @@ public class TerminalConsole : IAnsiConsole
 
         public override void Write(char[] buffer, int index, int count)
         {
-            if (buffer != null && count > 0)
+            ArgumentNullException.ThrowIfNull(buffer);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+
+            if (count > 0)
             {
                 _bridge.WriteOutput(new string(buffer, index, count));
             }
@@ -284,7 +284,7 @@ public class TerminalConsole : IAnsiConsole
 
         public override Task WriteAsync(char[] buffer, int index, int count)
         {
-            if (buffer != null && count > 0)
+            if (count > 0)
             {
                 _bridge.WriteOutput(new string(buffer, index, count));
             }
@@ -438,7 +438,7 @@ public class TerminalConsole : IAnsiConsole
 
         public void Show(bool show)
         {
-            var code = show ? "\x1b[?25h" : "\x1b[?25l";
+            var code = show ? "\e[?25h" : "\e[?25l";
             _bridge.WriteOutput(code);
         }
 
@@ -446,10 +446,10 @@ public class TerminalConsole : IAnsiConsole
         {
             var code = direction switch
             {
-                CursorDirection.Up => $"\x1b[{steps}A",
-                CursorDirection.Down => $"\x1b[{steps}B",
-                CursorDirection.Right => $"\x1b[{steps}C",
-                CursorDirection.Left => $"\x1b[{steps}D",
+                CursorDirection.Up => $"\e[{steps}A",
+                CursorDirection.Down => $"\e[{steps}B",
+                CursorDirection.Right => $"\e[{steps}C",
+                CursorDirection.Left => $"\e[{steps}D",
                 _ => ""
             };
 
@@ -477,7 +477,7 @@ public class TerminalConsole : IAnsiConsole
 
         public void SetPosition(int column, int line)
         {
-            _bridge.WriteOutput($"\x1b[{line + 1};{column + 1}H");
+            _bridge.WriteOutput($"\e[{line + 1};{column + 1}H");
             _setLeft(column);
             _setTop(line);
         }

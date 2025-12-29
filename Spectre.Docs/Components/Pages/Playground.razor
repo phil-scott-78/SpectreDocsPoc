@@ -7,7 +7,7 @@
     <meta name="description" content="Interactive playground for Spectre.Console - write and run C# code with rich console output directly in your browser." />
 </HeadContent>
 
-<iframe src="/playground/index.html" class="playground-frame" allow="clipboard-read; clipboard-write"></iframe>
+<iframe id="playground-iframe" src="/playground/index.html" class="playground-frame" allow="clipboard-read; clipboard-write"></iframe>
 
 <style>
     .playground-frame {
@@ -17,3 +17,31 @@
         display: block;
     }
 </style>
+
+<script>
+    (function() {
+        function sendThemeToIframe() {
+            const iframe = document.getElementById('playground-iframe');
+            if (iframe && iframe.contentWindow) {
+                const isDark = document.documentElement.classList.contains('dark');
+                iframe.contentWindow.postMessage({ type: 'theme', dark: isDark }, '*');
+            }
+        }
+
+        // Send theme when iframe loads
+        const iframe = document.getElementById('playground-iframe');
+        if (iframe) {
+            iframe.addEventListener('load', sendThemeToIframe);
+        }
+
+        // Watch for theme changes on the document
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    sendThemeToIframe();
+                }
+            });
+        });
+        observer.observe(document.documentElement, { attributes: true });
+    })();
+</script>

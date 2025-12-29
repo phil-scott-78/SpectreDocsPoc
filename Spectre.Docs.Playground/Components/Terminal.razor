@@ -18,6 +18,12 @@
     .terminal-container .xterm-viewport {
         overflow-y: auto !important;
     }
+
+    /* Hide the native text caret in Firefox for ghostty-web */
+    .terminal-container,
+    .terminal-container * {
+        caret-color: transparent !important;
+    }
 </style>
 
 @code {
@@ -26,16 +32,31 @@
     private DotNetObjectReference<Terminal>? _dotNetRef;
     private readonly System.Threading.Channels.Channel<TerminalKeyInfo> _inputChannel =
         System.Threading.Channels.Channel.CreateUnbounded<TerminalKeyInfo>();
+    private bool _isInitializing;
+    private bool _isInitialized;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && !_isInitialized && !_isInitializing)
         {
-            _dotNetRef = DotNetObjectReference.Create(this);
-            _terminalId = await JSRuntime.InvokeAsync<string>(
-                "terminalInterop.init",
-                _containerId,
-                _dotNetRef);
+            _isInitializing = true;
+            try
+            {
+                _dotNetRef = DotNetObjectReference.Create(this);
+                _terminalId = await JSRuntime.InvokeAsync<string>(
+                    "terminalInterop.init",
+                    _containerId,
+                    _dotNetRef);
+                _isInitialized = _terminalId != null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Terminal initialization failed: {ex.Message}");
+            }
+            finally
+            {
+                _isInitializing = false;
+            }
         }
     }
 
@@ -46,7 +67,10 @@
         foreach (var c in data)
         {
             var keyInfo = ParseKeyFromChar(c);
-            _inputChannel.Writer.TryWrite(keyInfo);
+            if (!_inputChannel.Writer.TryWrite(keyInfo))
+            {
+                Console.WriteLine($"Warning: Failed to write input '{c}' to channel (channel may be closed)");
+            }
         }
     }
 
@@ -57,7 +81,10 @@
         var keyInfo = ParseKeyEvent(keyEvent);
         if (keyInfo != null)
         {
-            _inputChannel.Writer.TryWrite(keyInfo);
+            if (!_inputChannel.Writer.TryWrite(keyInfo))
+            {
+                Console.WriteLine($"Warning: Failed to write key '{keyInfo.Key}' to channel (channel may be closed)");
+            }
         }
     }
 
@@ -79,20 +106,65 @@
 
     private TerminalKeyInfo? ParseKeyEvent(TerminalKeyEvent keyEvent)
     {
-        // Handle escape sequences for arrow keys etc.
-        return keyEvent.DomEvent.Code switch
+        var shift = keyEvent.DomEvent.ShiftKey;
+        var alt = keyEvent.DomEvent.AltKey;
+        var ctrl = keyEvent.DomEvent.CtrlKey;
+
+        // First try to match by DomEvent.Code (standard DOM KeyboardEvent property)
+        var result = keyEvent.DomEvent.Code switch
         {
-            "ArrowUp" => new TerminalKeyInfo(ConsoleKey.UpArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "ArrowDown" => new TerminalKeyInfo(ConsoleKey.DownArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "ArrowLeft" => new TerminalKeyInfo(ConsoleKey.LeftArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "ArrowRight" => new TerminalKeyInfo(ConsoleKey.RightArrow, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "Home" => new TerminalKeyInfo(ConsoleKey.Home, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "End" => new TerminalKeyInfo(ConsoleKey.End, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "PageUp" => new TerminalKeyInfo(ConsoleKey.PageUp, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "PageDown" => new TerminalKeyInfo(ConsoleKey.PageDown, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "Delete" => new TerminalKeyInfo(ConsoleKey.Delete, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            "Insert" => new TerminalKeyInfo(ConsoleKey.Insert, '\0', keyEvent.DomEvent.ShiftKey, keyEvent.DomEvent.AltKey, keyEvent.DomEvent.CtrlKey),
-            _ => null // Already handled by OnTerminalInput
+            // Arrow keys for navigation
+            "ArrowUp" => new TerminalKeyInfo(ConsoleKey.UpArrow, '\0', shift, alt, ctrl),
+            "ArrowDown" => new TerminalKeyInfo(ConsoleKey.DownArrow, '\0', shift, alt, ctrl),
+            "ArrowLeft" => new TerminalKeyInfo(ConsoleKey.LeftArrow, '\0', shift, alt, ctrl),
+            "ArrowRight" => new TerminalKeyInfo(ConsoleKey.RightArrow, '\0', shift, alt, ctrl),
+            // Page navigation
+            "Home" => new TerminalKeyInfo(ConsoleKey.Home, '\0', shift, alt, ctrl),
+            "End" => new TerminalKeyInfo(ConsoleKey.End, '\0', shift, alt, ctrl),
+            "PageUp" => new TerminalKeyInfo(ConsoleKey.PageUp, '\0', shift, alt, ctrl),
+            "PageDown" => new TerminalKeyInfo(ConsoleKey.PageDown, '\0', shift, alt, ctrl),
+            // Editing keys
+            "Delete" => new TerminalKeyInfo(ConsoleKey.Delete, '\0', shift, alt, ctrl),
+            "Insert" => new TerminalKeyInfo(ConsoleKey.Insert, '\0', shift, alt, ctrl),
+            "Backspace" => new TerminalKeyInfo(ConsoleKey.Backspace, '\b', shift, alt, ctrl),
+            // Common action keys
+            "Enter" or "NumpadEnter" => new TerminalKeyInfo(ConsoleKey.Enter, '\r', shift, alt, ctrl),
+            "Tab" => new TerminalKeyInfo(ConsoleKey.Tab, '\t', shift, alt, ctrl),
+            "Escape" => new TerminalKeyInfo(ConsoleKey.Escape, '\x1b', shift, alt, ctrl),
+            "Space" => new TerminalKeyInfo(ConsoleKey.Spacebar, ' ', shift, alt, ctrl),
+            _ => null
+        };
+
+        if (result != null)
+            return result;
+
+        // Fall back to parsing escape sequences from the key property
+        // This handles terminal emulators like ghostty-web that may not populate domEvent.code
+        return keyEvent.Key switch
+        {
+            // Arrow keys (CSI sequences: ESC [ A/B/C/D)
+            "\x1b[A" or "\x1bOA" => new TerminalKeyInfo(ConsoleKey.UpArrow, '\0', shift, alt, ctrl),
+            "\x1b[B" or "\x1bOB" => new TerminalKeyInfo(ConsoleKey.DownArrow, '\0', shift, alt, ctrl),
+            "\x1b[C" or "\x1bOC" => new TerminalKeyInfo(ConsoleKey.RightArrow, '\0', shift, alt, ctrl),
+            "\x1b[D" or "\x1bOD" => new TerminalKeyInfo(ConsoleKey.LeftArrow, '\0', shift, alt, ctrl),
+            // Home/End (CSI sequences)
+            "\x1b[H" or "\x1bOH" or "\x1b[1~" => new TerminalKeyInfo(ConsoleKey.Home, '\0', shift, alt, ctrl),
+            "\x1b[F" or "\x1bOF" or "\x1b[4~" => new TerminalKeyInfo(ConsoleKey.End, '\0', shift, alt, ctrl),
+            // Page Up/Down
+            "\x1b[5~" => new TerminalKeyInfo(ConsoleKey.PageUp, '\0', shift, alt, ctrl),
+            "\x1b[6~" => new TerminalKeyInfo(ConsoleKey.PageDown, '\0', shift, alt, ctrl),
+            // Delete/Insert
+            "\x1b[3~" => new TerminalKeyInfo(ConsoleKey.Delete, '\0', shift, alt, ctrl),
+            "\x1b[2~" => new TerminalKeyInfo(ConsoleKey.Insert, '\0', shift, alt, ctrl),
+            // Backspace (can be DEL or BS depending on terminal)
+            "\x7f" or "\b" => new TerminalKeyInfo(ConsoleKey.Backspace, '\b', shift, alt, ctrl),
+            // Enter
+            "\r" or "\n" => new TerminalKeyInfo(ConsoleKey.Enter, '\r', shift, alt, ctrl),
+            // Tab
+            "\t" => new TerminalKeyInfo(ConsoleKey.Tab, '\t', shift, alt, ctrl),
+            // Escape (just the escape character)
+            "\x1b" => new TerminalKeyInfo(ConsoleKey.Escape, '\x1b', shift, alt, ctrl),
+            _ => null // Regular characters handled by OnTerminalInput
         };
     }
 
