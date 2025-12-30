@@ -72,6 +72,13 @@ public class RemoteRemoveSettings : RemoteSettings
     public string Name { get; init; } = string.Empty;
 }
 
+/// <summary>
+/// Settings for listing remotes.
+/// </summary>
+public class RemoteListSettings : RemoteSettings
+{
+}
+
 internal class RemoteAddCommand : Command<RemoteAddSettings>
 {
     protected override int Execute(CommandContext context, RemoteAddSettings settings, CancellationToken cancellation)
@@ -94,9 +101,9 @@ internal class RemoteRemoveCommand : Command<RemoteRemoveSettings>
     }
 }
 
-internal class RemoteListCommand : Command<RemoteSettings>
+internal class RemoteListCommand : Command<RemoteListSettings>
 {
-    protected override int Execute(CommandContext context, RemoteSettings settings, CancellationToken cancellation)
+    protected override int Execute(CommandContext context, RemoteListSettings settings, CancellationToken cancellation)
     {
         System.Console.WriteLine("Listing remotes...");
         if (settings.Verbose)

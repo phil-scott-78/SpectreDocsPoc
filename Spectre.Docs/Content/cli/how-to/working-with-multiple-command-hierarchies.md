@@ -15,7 +15,7 @@ A git-style CLI with nested `remote` subcommandsâ€”`add`, `remove`, and `list`â€
 
 ## Create a Command Branch
 
-Use `AddBranch<TSettings>("name", ...)` to define a parent command with nested subcommands:
+Use `AddBranch` to define a parent command with nested subcommands. Use the generic overload when you want shared settings/options for the branch:
 
 ```csharp:xmldocid,bodyonly
 M:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.Demo.RunAsync(System.String[])
@@ -30,13 +30,16 @@ Define a base settings class for the branch, then inherit from it in subcommand 
 ```csharp:xmldocid
 T:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.RemoteSettings
 T:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.RemoteAddSettings
+T:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.RemoteListSettings
 ```
 
-The `--verbose` flag is now available on all remote subcommands: `myapp remote add origin https://... --verbose`.
+The `--verbose` flag is now available on all remote subcommands, and can be specified either before or after the subcommand name: `myapp remote --verbose add origin https://...` or `myapp remote add origin https://... --verbose`.
+
+Tip: even if a subcommand doesn't add any extra arguments/options (like `list`), give it a dedicated settings type that inherits from the branch settings (for example, `RemoteListSettings : RemoteSettings`).
 
 ## Nest Multiple Levels
 
-For complex CLIs, branches can contain other branches:
+For complex CLIs, branches can contain other branches (use the non-generic overload when you just want grouping):
 
 ```csharp
 config.AddBranch("cloud", cloud =>
