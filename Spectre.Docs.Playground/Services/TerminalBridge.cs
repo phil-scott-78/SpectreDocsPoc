@@ -106,11 +106,4 @@ public class TerminalBridge
         _outputChannel.Writer.TryComplete();
     }
 
-    /// <summary>
-    /// Clear any pending input.
-    /// </summary>
-    public void ClearInput()
-    {
-        while (_inputChannel.Reader.TryRead(out _)) { }
-    }
 }

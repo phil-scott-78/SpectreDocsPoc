@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using System.Xml;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Host.Mef;
@@ -34,6 +36,16 @@ public class WorkspaceService
         "netstandard",
         "Spectre.Console"
     ];
+
+    // Spectre.Console packages that have XML documentation available
+    // This mirrors the _packages list in XmlDocumentationService
+    private static readonly Dictionary<string, string> SpectrePackageXmlFiles = new()
+    {
+        ["Spectre.Console"] = "Spectre.Console.xml",
+        ["Spectre.Console.Json"] = "Spectre.Console.Json.xml",
+        ["Spectre.Console.ImageSharp"] = "Spectre.Console.ImageSharp.xml",
+        ["Spectre.Console.Cli"] = "Spectre.Console.Cli.xml"
+    };
 
     // Global usings included as a separate document in the compilation
     public const string GlobalUsings =
@@ -78,10 +90,13 @@ public class WorkspaceService
                     var bytes = await TryLoadAssemblyBytesAsync(assemblyName);
                     if (bytes != null)
                     {
+                        // Try to load XML documentation for this assembly
+                        var xmlDocProvider = await TryLoadXmlDocumentationAsync(assemblyName);
+
                         // Create reference with documentation provider if available
                         var reference = MetadataReference.CreateFromImage(
                             bytes,
-                            documentation: GetXmlDocumentationProvider(assemblyName));
+                            documentation: xmlDocProvider);
                         _references.Add(reference);
                     }
                 }
@@ -217,10 +232,102 @@ public class WorkspaceService
         return null;
     }
 
-    private DocumentationProvider? GetXmlDocumentationProvider(string assemblyName)
+    private async Task<DocumentationProvider?> TryLoadXmlDocumentationAsync(string assemblyName)
     {
-        // In WASM, XML documentation loading is not directly supported
-        // The documentation is embedded in the completion items via Roslyn's services
+        // Only load XML documentation for Spectre.Console packages
+        // This mirrors the approach in XmlDocumentationService
+        if (!SpectrePackageXmlFiles.TryGetValue(assemblyName, out var xmlFileName))
+        {
+            return null;
+        }
+
+        try
+        {
+            // Try to load XML documentation file from xml folder
+            var response = await _httpClient.GetAsync($"xml/{xmlFileName}");
+            if (response.IsSuccessStatusCode)
+            {
+                var xmlBytes = await response.Content.ReadAsByteArrayAsync();
+
+                // Verify it's valid XML by checking for XML declaration or root element
+                if (xmlBytes.Length > 5)
+                {
+                    return XmlDocumentationProvider.CreateFromBytes(xmlBytes);
+                }
+            }
+        }
+        catch
+        {
+            // XML documentation is optional - silently continue without it
+        }
+
         return null;
+    }
+
+    /// <summary>
+    /// Custom XML documentation provider that can be created from bytes.
+    /// </summary>
+    private sealed class XmlDocumentationProvider : DocumentationProvider
+    {
+        private readonly Dictionary<string, string> _documentation = new();
+
+        private XmlDocumentationProvider(byte[] xmlBytes)
+        {
+            ParseXmlDocumentation(xmlBytes);
+        }
+
+        public static XmlDocumentationProvider CreateFromBytes(byte[] xmlBytes)
+        {
+            return new XmlDocumentationProvider(xmlBytes);
+        }
+
+        private void ParseXmlDocumentation(byte[] xmlBytes)
+        {
+            try
+            {
+                using var stream = new MemoryStream(xmlBytes);
+                using var reader = XmlReader.Create(stream, new XmlReaderSettings
+                {
+                    DtdProcessing = DtdProcessing.Prohibit,
+                    IgnoreWhitespace = false // Preserve whitespace for formatting
+                });
+
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Element && reader.Name == "member")
+                    {
+                        var name = reader.GetAttribute("name");
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            // ReadInnerXml gets the content without the <member> wrapper
+                            var xml = reader.ReadInnerXml();
+                            _documentation[name] = xml;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // If parsing fails, we just won't have documentation
+            }
+        }
+
+        protected override string? GetDocumentationForSymbol(
+            string documentationMemberID,
+            System.Globalization.CultureInfo preferredCulture,
+            CancellationToken cancellationToken = default)
+        {
+            return _documentation.TryGetValue(documentationMemberID, out var xml) ? xml : null;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return ReferenceEquals(this, obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return RuntimeHelpers.GetHashCode(this);
+        }
     }
 }

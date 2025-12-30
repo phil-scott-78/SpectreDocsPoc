@@ -185,7 +185,7 @@ public class TerminalConsole : IAnsiConsole
 
         public void SetEncoding(Encoding encoding)
         {
-            // Not needed for xterm.js
+            // Not needed for terminal emulator
         }
     }
 

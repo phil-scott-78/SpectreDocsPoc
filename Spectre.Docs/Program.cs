@@ -127,7 +127,10 @@ app.UseAntiforgery();
 
 // Custom middleware to serve playground static files from source - must be before other static file middleware
 var playgroundWwwroot = Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "Spectre.Docs.Playground", "wwwroot"));
-var playgroundBinWwwroot = Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "Spectre.Docs.Playground", "bin", "Release", "net10.0", "wwwroot"));
+// Check both Debug and Release directories - prefer Debug when running with dotnet run
+var playgroundBinDebug = Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "Spectre.Docs.Playground", "bin", "Debug", "net10.0", "wwwroot"));
+var playgroundBinRelease = Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "Spectre.Docs.Playground", "bin", "Release", "net10.0", "wwwroot"));
+var playgroundBinWwwroot = Directory.Exists(playgroundBinDebug) ? playgroundBinDebug : playgroundBinRelease;
 app.Use(async (context, next) =>
 {
     if (context.Request.Path.StartsWithSegments("/playground", out var remaining))
@@ -138,7 +141,7 @@ app.Use(async (context, next) =>
 
         string? filePath = null;
 
-        // Handle /playground/index.html explicitly
+        // Handle /playground/index.html explicitly (the iframe source)
         if (remaining.Value == "/index.html")
         {
             filePath = Path.Combine(playgroundWwwroot, "index.html");
