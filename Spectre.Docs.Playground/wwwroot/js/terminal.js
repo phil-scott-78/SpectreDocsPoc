@@ -151,7 +151,7 @@ window.terminalInterop = {
                         fontFamily: '"Cascadia Code", "Fira Code", Consolas, monospace',
                         theme: {
                             // One Dark theme
-                            background: '#282c34',
+                            background: '#1e1e1e',
                             foreground: '#abb2bf',
                             cursor: '#528bff',
                             cursorAccent: '#282c34',
