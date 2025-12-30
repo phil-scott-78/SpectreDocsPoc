@@ -153,8 +153,8 @@ window.terminalInterop = {
                             // One Dark theme
                             background: '#1e1e1e',
                             foreground: '#abb2bf',
-                            cursor: '#528bff',
-                            cursorAccent: '#282c34',
+                            cursor: '#d4d4d4',
+                            cursorAccent: '#1e1e1e',
                             black: '#282c34',
                             red: '#e06c75',
                             green: '#98c379',
