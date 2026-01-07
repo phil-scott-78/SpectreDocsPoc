@@ -35,7 +35,7 @@ T:Spectre.Docs.Cli.Examples.DemoApps.CommandHierarchies.RemoteListSettings
 
 The `--verbose` flag is now available on all remote subcommands, and can be specified either before or after the subcommand name: `myapp remote --verbose add origin https://...` or `myapp remote add origin https://... --verbose`.
 
-Rule: when you use `AddBranch<TSettings>`, each subcommand's settings type should inherit from `TSettings`. Even if a subcommand doesn't add any extra arguments/options (like `list`), give it a dedicated settings type (for example, `RemoteListSettings : RemoteSettings`).
+When using `AddBranch<TSettings>`, each subcommand's settings class must inherit from `TSettings`. Even if a subcommand doesn't add any extra arguments or options (like `list` above), create a dedicated settings type that inherits from the branch settings—this ensures the framework correctly binds shared options to all subcommands.
 
 ## Nest Multiple Levels
 
