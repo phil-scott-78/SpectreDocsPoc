@@ -37,4 +37,3 @@ AnsiConsole.Write(tree);
 
 - <xref:console-widget-tree> - Display hierarchical data
 - <xref:console-howto-displaying-hierarchical-data> - Tree usage guide
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support for tree characters

@@ -168,7 +168,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.ProgressExamples.ProgressR
 - <xref:console-status-spinners> - Learn progress basics
 - <xref:console-live-status> - Simple spinner for indeterminate operations
 - <xref:console-spinner-styles> - Available spinner animations
-- <xref:console-explanation-async-patterns> - Best practices for async operations
 
 ## API Reference
 

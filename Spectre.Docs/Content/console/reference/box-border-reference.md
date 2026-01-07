@@ -31,5 +31,4 @@ AnsiConsole.Write(panel);
 
 - <xref:console-widget-panel> - Bordered containers using box borders
 - <xref:console-widget-rule> - Horizontal dividers using box borders
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support by terminal
 - <xref:console-table-border-reference> - Borders for tables

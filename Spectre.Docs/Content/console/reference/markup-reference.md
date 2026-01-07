@@ -259,4 +259,3 @@ AnsiConsole.MarkupLine("[red]text[/]");
 - <xref:console-text-styles> - All text decorations
 - <xref:console-emoji-reference> - Emoji shortcodes
 - <xref:console-widget-markup> - API reference and advanced usage
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Feature support by terminal

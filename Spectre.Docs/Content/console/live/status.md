@@ -108,7 +108,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.StatusExamples.StatusWithM
 - <xref:console-status-spinners> - Learn status basics
 - <xref:console-live-progress> - For operations with measurable progress
 - <xref:console-spinner-styles> - Available spinner animations
-- <xref:console-explanation-async-patterns> - Best practices for async operations
 
 ## API Reference
 

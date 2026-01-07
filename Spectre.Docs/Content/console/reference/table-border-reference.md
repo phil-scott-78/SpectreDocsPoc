@@ -33,5 +33,4 @@ AnsiConsole.Write(table);
 
 - <xref:console-widget-table> - Display tabular data with borders
 - <xref:console-howto-displaying-tabular-data> - Table styling guide
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Unicode support by terminal
 - <xref:console-box-border-reference> - Borders for panels and rules

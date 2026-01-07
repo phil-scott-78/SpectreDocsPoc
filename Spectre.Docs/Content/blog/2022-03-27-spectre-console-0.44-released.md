@@ -8,7 +8,7 @@ Version 0.44 of Spectre.Console has been released!
 
 There are a lot of fixes and improvements in this release, but the most noteworthy 
 additions are better exception rendering, support for alternate screen buffers, 
-and a new widget called [TextPath](xref:T:Spectre.Console.TextPath), which makes 
+and a new widget called [TextPath](xref:console-widget-text-path), which makes 
 it easy to render paths in the console.
 
 Check out the two new examples in our GitHub repository:

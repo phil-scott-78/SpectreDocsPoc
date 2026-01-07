@@ -143,7 +143,6 @@ M:Spectre.Docs.Examples.SpectreConsole.Reference.Live.LiveDisplayExamples.LiveDi
 - <xref:console-live-progress> - Tracking task progress
 - <xref:console-live-status> - Simple spinner animations
 - <xref:console-widget-layout> - Complex dashboard layouts
-- <xref:console-explanation-async-patterns> - Best practices for async operations
 
 ## API Reference
 

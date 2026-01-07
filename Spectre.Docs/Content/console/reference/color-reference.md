@@ -35,4 +35,3 @@ AnsiConsole.Write("Styled text", style);
 - <xref:console-markup-reference> - Using colors in markup syntax
 - <xref:console-widget-text> - Programmatic color styling
 - <xref:console-getting-started> - Learn color basics
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Color support by terminal

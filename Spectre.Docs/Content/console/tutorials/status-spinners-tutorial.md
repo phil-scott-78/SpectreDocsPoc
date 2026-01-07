@@ -92,7 +92,7 @@ You can now customize the look and feel of your spinners.
 Let's put it all together into a complete brewing experience that changes both the message and spinner style at each stage:
 
 ```csharp:xmldocid,bodyonly
-M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.ShowCompleteCoffeeBrew
+M:Spectre.Docs.Examples.SpectreConsole.Tutorials.StatusSpinnersTutorial.Run(Spectre.Console.IAnsiConsole)
 ```
 
 Run the complete application:
@@ -121,4 +121,3 @@ Add these spinners to file uploads, API calls, database queries, build processes
 - <xref:console-howto-showing-progress-bars> - Track multiple operations with progress bars
 - <xref:console-live-status> - Explore async operations, return values, and manual refresh
 - <xref:console-spinner-styles> - See all available spinner styles
-- <xref:console-explanation-async-patterns> - Best practices for async operations

@@ -47,4 +47,3 @@ AnsiConsole.Write("Styled text", style);
 - <xref:console-color-reference> - Available colors
 - <xref:console-widget-text> - Programmatic style control
 - <xref:console-getting-started> - Learn styling basics
-- [Terminal Compatibility](/console/reference/compatibility-matrix) - Style support by terminal
