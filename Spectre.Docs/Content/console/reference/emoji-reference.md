@@ -11,8 +11,9 @@ to include emoji in your console output.
 ## Usage Example
 
 ```csharp
-AnsiConsole.Markup("Hello [yellow]:wave:[/]!");
-AnsiConsole.Markup("[green]:white_check_mark:[/] Task completed!");
+// Emoji colors work for monochrome.
+AnsiConsole.Markup("Hello [yellow]:waving_hand:[/]!");
+AnsiConsole.Markup("[green]:check_mark:[/] Task completed!");
 AnsiConsole.Markup("[red]:x:[/] Error occurred [yellow]:warning:[/]");
 ```
 
@@ -21,6 +22,12 @@ AnsiConsole.Markup("[red]:x:[/] Error occurred [yellow]:warning:[/]");
 - **Font Support:** Emoji rendering depends on your console's font. Not all fonts support color emoji.
 - **Console Support:** Some consoles may display emoji as monochrome symbols instead of color icons.
 - **Cross-Platform:** Emoji support varies across different operating systems and terminal applications.
+
+e.g Windows PowerShell
+
+```csharp
+Console.OutputEncoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+```
 
 ## Complete Emoji Reference
 
