@@ -11,8 +11,9 @@ to include emoji in your console output.
 ## Usage Example
 
 ```csharp
-AnsiConsole.Markup("Hello [yellow]:wave:[/]!");
-AnsiConsole.Markup("[green]:white_check_mark:[/] Task completed!");
+// Emoji colors work for monochrome.
+AnsiConsole.Markup("Hello [yellow]:waving_hand:[/]!");
+AnsiConsole.Markup("[green]:check_mark:[/] Task completed!");
 AnsiConsole.Markup("[red]:x:[/] Error occurred [yellow]:warning:[/]");
 ```
 
