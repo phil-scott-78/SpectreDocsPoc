@@ -23,12 +23,6 @@ AnsiConsole.Markup("[red]:x:[/] Error occurred [yellow]:warning:[/]");
 - **Console Support:** Some consoles may display emoji as monochrome symbols instead of color icons.
 - **Cross-Platform:** Emoji support varies across different operating systems and terminal applications.
 
-e.g Windows PowerShell
-
-```csharp
-Console.OutputEncoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
-```
-
 ## Complete Emoji Reference
 
 <EmojiList />
