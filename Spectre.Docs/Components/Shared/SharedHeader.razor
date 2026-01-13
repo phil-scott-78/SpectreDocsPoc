@@ -1,6 +1,7 @@
 @inject NavigationManager NavigationManager
 
-<header class="sticky top-0 h-16 z-50 w-full border-b border-base-200 dark:border-base-800 bg-white/95 dark:bg-base-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-base-900/60">
+<header
+    class="sticky top-0 h-16 z-50 w-full border-b border-base-200 dark:border-base-800 bg-white/95 dark:bg-base-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-base-900/60">
     <div class="w-full max-w-[98rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
             <!-- Left side - Sidebar toggle and Logo -->
@@ -8,16 +9,21 @@
                 <!-- Sidebar toggle button (only visible when sidebar exists and ShowSidebarToggle is true) -->
                 @if (ShowSidebarToggle && HasTableOfContents)
                 {
-                    <button id="sidebar-toggle" class="lg:hidden p-2 rounded-md text-base-600 dark:text-base-400 hover:bg-base-100 dark:hover:bg-base-800 transition-colors" aria-label="Toggle sidebar">
+                    <button id="sidebar-toggle"
+                            class="lg:hidden p-2 rounded-md text-base-600 dark:text-base-400 hover:bg-base-100 dark:hover:bg-base-800 transition-colors"
+                            aria-label="Toggle sidebar">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 }
 
                 <!-- Logo and Title -->
                 <a href="/" class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="logo" class="w-auto mr-3 h-10 hidden md:block fill-primary-700 dark:fill-primary-500/90"  viewBox="0 0 1270.000000 1270.000000" preserveAspectRatio="xMidYMid meet">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="logo"
+                         class="w-auto mr-3 h-10 hidden md:block fill-primary-700 dark:fill-primary-500/90"
+                         viewBox="0 0 1270.000000 1270.000000" preserveAspectRatio="xMidYMid meet">
                         <g transform="translate(0.000000,1270.000000) scale(0.100000,-0.100000)">
                             <path d="M799 10610 c-199 -48 -354 -191 -414 -383 l-25 -78 0 -3084 0 -3084
         25 -79 c45 -141 155 -270 289 -335 124 -61 -80 -57 2819 -57 l2646 0 5 -43 c3
@@ -78,7 +84,8 @@
                         </g>
                     </svg>
 
-                    <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary-600 to-tertiary-one-600 dark:from-primary-400 dark:to-tertiary-one-400 bg-clip-text text-transparent">
+                    <span
+                        class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary-600 to-tertiary-one-600 dark:from-primary-400 dark:to-tertiary-one-400 bg-clip-text text-transparent">
                         Spectre.Console
                     </span>
                 </a>
@@ -86,20 +93,29 @@
 
             <!-- Navigation -->
             <nav class="hidden md:flex items-center space-x-1 text-xs lg:text-sm font-medium">
-                <a href="/" class="px-2 lg:px-3 py-2 rounded-md @(CurrentSection == "" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
+                <a href="/"
+                   class="px-2 lg:px-3 py-2 rounded-md @(CurrentSection == "" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
                     Home
                 </a>
-                <a href="/console" class="px-2 lg:px-3 py-2 rounded-md  @(CurrentSection == "Console" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
+                <a href="/console"
+                   class="px-2 lg:px-3 py-2 rounded-md  @(CurrentSection == "Console" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
                     Console
                 </a>
-                <a href="/cli" class="px-2 lg:px-3 py-2 rounded-md @(CurrentSection == "Cli" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
+                <a href="/cli"
+                   class="px-2 lg:px-3 py-2 rounded-md @(CurrentSection == "Cli" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
                     CLI
                 </a>
-                <a href="/blog" class="px-2 lg:px-3 py-2 rounded-md  @(CurrentSection == "Blog" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
+                <a href="/blog"
+                   class="px-2 lg:px-3 py-2 rounded-md  @(CurrentSection == "Blog" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors duration-250">
                     Blog
                 </a>
-                <a href="https://github.com/spectreconsole" class="px-2 lg:px-3 py-2 rounded-md text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
+                <a href="https://github.com/spectreconsole"
+                   class="px-2 lg:px-3 py-2 rounded-md text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
                     GitHub
+                </a>
+                <a href="https://discord.gg/DxqCxpmA2K"
+                   class="px-2 lg:px-3 py-2 rounded-md text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
+                    Discord
                 </a>
             </nav>
 
@@ -108,35 +124,48 @@
                 <!-- Search Box (only show if ShowSearch is true) -->
                 @if (ShowSearch)
                 {
-                    <div class="relative w-8 md:w-32 lg:w-64 bg-base-100 dark:bg-base-800/50 border border-base-200 dark:border-base-700 rounded-full lg:rounded-md ">
+                    <div
+                        class="relative w-8 md:w-32 lg:w-64 bg-base-100 dark:bg-base-800/50 border border-base-200 dark:border-base-700 rounded-full lg:rounded-md ">
                         <input
                             id="search-input"
                             type="text"
                             class="transition-all text-xs lg:text-sm w-full h-8 lg:h-10 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 focus:border-transparent"
                             readonly
                         />
-                        <svg class="transition-all absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-base-500 dark:text-base-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg
+                            class="transition-all absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-base-500 dark:text-base-400 pointer-events-none"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="M21 21l-4.35-4.35"></path>
                         </svg>
-                        <div class="transition-all text-xs md:text-sm hidden md:block absolute left-10 top-1/2 transform -translate-y-1/2 text-base-600 dark:text-base-400  pointer-events-none">Search</div>
+                        <div
+                            class="transition-all text-xs md:text-sm hidden md:block absolute left-10 top-1/2 transform -translate-y-1/2 text-base-600 dark:text-base-400  pointer-events-none">
+                            Search
+                        </div>
                     </div>
                 }
 
                 <!-- Theme toggle button -->
-                <button data-theme-toggle class="p-2 rounded-md text-base-600 dark:text-base-400 hover:bg-base-100 dark:hover:bg-base-800 transition-colors" aria-label="Toggle theme">
+                <button data-theme-toggle
+                        class="p-2 rounded-md text-base-600 dark:text-base-400 hover:bg-base-100 dark:hover:bg-base-800 transition-colors"
+                        aria-label="Toggle theme">
                     <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                     <svg class="w-5 h-5 block dark:hidden" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                     </svg>
                 </button>
 
                 <!-- Mobile menu button -->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-base-600 dark:text-base-400 hover:bg-base-100 dark:hover:bg-base-800 transition-colors" aria-label="Toggle menu">
+                <button id="mobile-menu-button"
+                        class="md:hidden p-2 rounded-md text-base-600 dark:text-base-400 hover:bg-base-100 dark:hover:bg-base-800 transition-colors"
+                        aria-label="Toggle menu">
                     <svg viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                        <path d="M8 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM8 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM9.5 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"></path>
+                        <path
+                            d="M8 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM8 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM9.5 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"></path>
                     </svg>
                 </button>
             </div>
@@ -144,29 +173,52 @@
     </div>
 
     <!-- Mobile Navigation -->
-    <nav id="mobile-menu" data-expanded="false" class="md:hidden data-[expanded=false]:hidden bg-base-100 dark:bg-base-950 border-b border-base-200 dark:border-base-800 shadow-md">
+    <nav id="mobile-menu" data-expanded="false"
+         class="md:hidden data-[expanded=false]:hidden bg-base-100 dark:bg-base-950 border-b border-base-200 dark:border-base-800 shadow-md">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="/" class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
+            <a href="/"
+               class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
                 Home
             </a>
-            <a href="/console" class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Console" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
+            <a href="/console"
+               class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Console" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
                 Console
             </a>
-            <a href="/cli" class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Cli" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
+            <a href="/cli"
+               class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Cli" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
                 CLI
             </a>
-            <a href="/blog" class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Blog" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
+            <a href="/blog"
+               class="block px-3 py-2 rounded-md text-base font-medium @(CurrentSection == "Blog" ? "bg-base-100 dark:bg-base-800 text-base-900 dark:text-base-100" : "text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800") transition-colors">
                 Blog
             </a>
+            <div class="border-t-1 border-base-200 dark:border-base-800">
+                <a href="https://github.com/spectreconsole"
+                   class="block px-3 py-2 rounded-md text-base font-medium text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
+                    GitHub
+                </a>
+                <a href="https://discord.gg/DxqCxpmA2K"
+                   class="block px-3 py-2 rounded-md text-base font-medium text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-base-100 hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
+                    Discord
+                </a>
+            </div>
         </div>
     </nav>
 </header>
 
 @code {
-    [Parameter] public string CurrentSection { get; set; } = "";
-    [Parameter] public bool HasTableOfContents { get; set; }
-    [Parameter] public bool ShowSidebarToggle { get; set; } = true;
-    [Parameter] public bool ShowSearch { get; set; } = true;
+
+    [Parameter]
+    public string CurrentSection { get; set; } = "";
+
+    [Parameter]
+    public bool HasTableOfContents { get; set; }
+
+    [Parameter]
+    public bool ShowSidebarToggle { get; set; } = true;
+
+    [Parameter]
+    public bool ShowSearch { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
     {
@@ -195,4 +247,5 @@
 
         await base.OnInitializedAsync();
     }
+
 }
